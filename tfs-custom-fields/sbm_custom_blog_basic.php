@@ -33,7 +33,7 @@ function tfs_basic_blog_meta_callback( $post ) {
   ?>
   
   <div style="margin-top: 1.618em;">
-    <h1>Basic Blog Template</h1>
+    <h1>Basic Blog Template Color Options</h1>
   </div>
   
   <div class="container">
