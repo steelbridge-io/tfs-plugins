@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["common.scss"],"names":[],"mappings":"AAAA;AAAA;AAAA;AAAA;AAAA;AAAA","file":"common.css"}
+{
+"version": 3,
+"mappings": "AAAA;;;;;EAKE",
+"sources": ["common.scss"],
+"names": [],
+"file": "common.css"
+}
