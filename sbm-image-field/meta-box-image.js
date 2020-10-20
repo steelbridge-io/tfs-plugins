@@ -2,8 +2,1772 @@
  * Attaches the image uploader to the input field
  */
 
-// Featured Image 1
 jQuery(document).ready( function($){ "use strict";
+
+    // Signature Travel Template.
+       var sig_travel_logo_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-logo-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_logo_frame ) {
+            sig_travel_logo_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_logo_frame = wp.media.frames.sig_travel_logo_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_logo_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_logo_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-logo').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_logo_frame.open();
+    });
+
+
+// Signature Travel Template.
+    var sig_travel_csel_1_img_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-csel-1-img-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_csel_1_img_frame ) {
+            sig_travel_csel_1_img_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_csel_1_img_frame = wp.media.frames.sig_travel_csel_1_img_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_csel_1_img_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_csel_1_img_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-csel-1-img').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_csel_1_img_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_csel_2_img_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-csel-2-img-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_csel_2_img_frame ) {
+            sig_travel_csel_2_img_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_csel_2_img_frame = wp.media.frames.sig_travel_csel_2_img_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_csel_2_img_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_csel_2_img_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-csel-2-img').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_csel_2_img_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_csel_3_img_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-csel-3-img-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_csel_3_img_frame ) {
+            sig_travel_csel_3_img_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_csel_3_img_frame = wp.media.frames.sig_travel_csel_3_img_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_csel_3_img_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_csel_3_img_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-csel-3-img').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_csel_3_img_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_csel_4_img_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-csel-4-img-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_csel_4_img_frame ) {
+            sig_travel_csel_4_img_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_csel_4_img_frame = wp.media.frames.sig_travel_csel_4_img_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_csel_4_img_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_csel_4_img_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-csel-4-img').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_csel_4_img_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_csel_5_img_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-csel-5-img-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_csel_5_img_frame ) {
+            sig_travel_csel_5_img_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_csel_5_img_frame = wp.media.frames.sig_travel_csel_5_img_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_csel_5_img_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_csel_5_img_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-csel-5-img').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_csel_5_img_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_csel_6_img_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-csel-6-img-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_csel_6_img_frame ) {
+            sig_travel_csel_6_img_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_csel_6_img_frame = wp.media.frames.sig_travel_csel_6_img_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_csel_6_img_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_csel_6_img_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-csel-6-img').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_csel_6_img_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_1_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-1-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_1_image_frame ) {
+            sig_travel_1_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_1_image_frame = wp.media.frames.sig_travel_1_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_1_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_1_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-1-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_1_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_2_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-2-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_2_image_frame ) {
+            sig_travel_2_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_2_image_frame = wp.media.frames.sig_travel_2_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_2_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_2_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-2-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_2_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_3_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-3-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_3_image_frame ) {
+            sig_travel_3_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_3_image_frame = wp.media.frames.sig_travel_3_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_3_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_3_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-3-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_3_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_4_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-4-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_4_image_frame ) {
+            sig_travel_4_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_4_image_frame = wp.media.frames.sig_travel_4_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_4_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_4_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-4-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_4_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_5_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-5-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_5_image_frame ) {
+            sig_travel_5_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_5_image_frame = wp.media.frames.sig_travel_5_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_5_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_5_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-5-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_5_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_6_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-6-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_6_image_frame ) {
+            sig_travel_6_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_6_image_frame = wp.media.frames.sig_travel_6_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_6_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_6_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-6-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_6_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_7_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-7-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_7_image_frame ) {
+            sig_travel_7_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_7_image_frame = wp.media.frames.sig_travel_7_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_7_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_7_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-7-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_7_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_8_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-8-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_8_image_frame ) {
+            sig_travel_8_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_8_image_frame = wp.media.frames.sig_travel_8_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_8_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_8_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-8-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_8_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_9_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-9-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_9_image_frame ) {
+            sig_travel_9_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_9_image_frame = wp.media.frames.sig_travel_9_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_9_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_9_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-9-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_9_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_10_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-10-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_10_image_frame ) {
+            sig_travel_10_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_10_image_frame = wp.media.frames.sig_travel_10_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_10_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_10_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-10-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_10_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_11_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-11-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_11_image_frame ) {
+            sig_travel_11_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_11_image_frame = wp.media.frames.sig_travel_11_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_11_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_11_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-11-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_11_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_12_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-12-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_12_image_frame ) {
+            sig_travel_12_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_12_image_frame = wp.media.frames.sig_travel_12_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_12_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_12_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-12-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_12_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_13_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-13-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_13_image_frame ) {
+            sig_travel_13_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_13_image_frame = wp.media.frames.sig_travel_13_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_13_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_13_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-13-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_13_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_14_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-14-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_14_image_frame ) {
+            sig_travel_14_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_14_image_frame = wp.media.frames.sig_travel_14_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_14_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_14_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-14-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_14_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_15_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-15-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_15_image_frame ) {
+            sig_travel_15_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_15_image_frame = wp.media.frames.sig_travel_15_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_15_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_15_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-15-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_15_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_16_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-16-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_16_image_frame ) {
+            sig_travel_16_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_16_image_frame = wp.media.frames.sig_travel_16_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_16_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_16_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-16-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_16_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_17_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-17-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_17_image_frame ) {
+            sig_travel_17_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_17_image_frame = wp.media.frames.sig_travel_17_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_17_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_17_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-17-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_17_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_18_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-18-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_18_image_frame ) {
+            sig_travel_18_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_18_image_frame = wp.media.frames.sig_travel_18_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_18_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_18_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-18-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_18_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_19_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-19-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_19_image_frame ) {
+            sig_travel_19_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_19_image_frame = wp.media.frames.sig_travel_19_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_19_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_19_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-19-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_19_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_20_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-20-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_20_image_frame ) {
+            sig_travel_20_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_20_image_frame = wp.media.frames.sig_travel_20_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_20_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_20_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-20-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_20_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_21_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-21-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_21_image_frame ) {
+            sig_travel_21_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_21_image_frame = wp.media.frames.sig_travel_21_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_21_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_21_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-21-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_21_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_22_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-22-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_22_image_frame ) {
+            sig_travel_22_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_22_image_frame = wp.media.frames.sig_travel_22_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_22_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_22_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-22-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_22_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_23_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-23-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_23_image_frame ) {
+            sig_travel_23_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_23_image_frame = wp.media.frames.sig_travel_23_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_23_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_23_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-23-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_23_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_24_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-24-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_24_image_frame ) {
+            sig_travel_24_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_24_image_frame = wp.media.frames.sig_travel_24_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_24_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_24_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-24-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_24_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_25_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-25-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_25_image_frame ) {
+            sig_travel_25_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_25_image_frame = wp.media.frames.sig_travel_25_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_25_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_25_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-25-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_25_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_26_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-26-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_26_image_frame ) {
+            sig_travel_26_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_26_image_frame = wp.media.frames.sig_travel_26_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_26_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_26_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-26-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_26_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_27_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-27-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_27_image_frame ) {
+            sig_travel_27_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_27_image_frame = wp.media.frames.sig_travel_27_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_27_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_27_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-27-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_27_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_28_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-28-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_28_image_frame ) {
+            sig_travel_28_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_28_image_frame = wp.media.frames.sig_travel_28_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_28_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_28_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-28-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_28_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_29_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-29-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_29_image_frame ) {
+            sig_travel_29_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_29_image_frame = wp.media.frames.sig_travel_29_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_29_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_29_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-29-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_29_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_30_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-30-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_30_image_frame ) {
+            sig_travel_30_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_30_image_frame = wp.media.frames.sig_travel_30_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_30_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_30_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-30-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_30_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_31_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-31-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_31_image_frame ) {
+            sig_travel_31_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_31_image_frame = wp.media.frames.sig_travel_31_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_31_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_31_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-31-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_31_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_32_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-32-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_32_image_frame ) {
+            sig_travel_32_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_32_image_frame = wp.media.frames.sig_travel_32_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_32_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_32_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-32-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_32_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_33_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-33-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_33_image_frame ) {
+            sig_travel_33_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_33_image_frame = wp.media.frames.sig_travel_33_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_33_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_33_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-33-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_33_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_34_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-34-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_34_image_frame ) {
+            sig_travel_34_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_34_image_frame = wp.media.frames.sig_travel_34_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_34_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_34_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-34-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_34_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_35_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-35-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_35_image_frame ) {
+            sig_travel_35_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_35_image_frame = wp.media.frames.sig_travel_35_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_35_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_35_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-35-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_35_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_36_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-36-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_36_image_frame ) {
+            sig_travel_36_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_36_image_frame = wp.media.frames.sig_travel_36_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_36_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_36_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-36-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_36_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_37_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-37-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_37_image_frame ) {
+            sig_travel_37_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_37_image_frame = wp.media.frames.sig_travel_37_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_37_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_37_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-37-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_37_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_38_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-38-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_38_image_frame ) {
+            sig_travel_38_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_38_image_frame = wp.media.frames.sig_travel_38_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_38_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_38_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-38-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_38_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_39_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-39-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_39_image_frame ) {
+            sig_travel_39_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_39_image_frame = wp.media.frames.sig_travel_39_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_39_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_39_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-39-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_39_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_40_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-40-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_40_image_frame ) {
+            sig_travel_40_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_40_image_frame = wp.media.frames.sig_travel_40_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_40_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_40_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-40-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_40_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_41_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-41-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_41_image_frame ) {
+            sig_travel_41_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_41_image_frame = wp.media.frames.sig_travel_41_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_41_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_41_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-41-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_41_image_frame.open();
+    });
+
+    // Signature Travel Template.
+    var sig_travel_42_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-travel-42-image-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( sig_travel_42_image_frame ) {
+            sig_travel_42_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        sig_travel_42_image_frame = wp.media.frames.sig_travel_42_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        sig_travel_42_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = sig_travel_42_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-travel-42-image').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        sig_travel_42_image_frame.open();
+    });
 
     // Instantiates the variable that holds the media library frame.
     var featured1_image_frame;
@@ -124,7 +1888,7 @@ jQuery(document).ready( function($){ "use strict";
     });
 });
 
-// Featured image 4
+// Featured image
 
 jQuery(document).ready( function($){ "use strict";
 

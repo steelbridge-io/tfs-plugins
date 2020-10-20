@@ -16,10 +16,10 @@ function tfs_cust_blog_new() {
   global $post;
   if(!empty($post)){
     $pageTemplate = get_post_meta($post->ID, '_wp_page_template', true);
-    if($pageTemplate == 'page-templates/blog-template-new.php') {
-      $types = array('post', 'page', 'lower48', 'lower48blog');
+    if($pageTemplate == 'page-templates/blog-template-new.php' || 'page-templates/blog-template-travel.php') {
+      $types = array('post', 'page', 'lower48', 'lower48blog', 'travel-blog' );
       foreach($types as $type) {
-        add_meta_box( 'blog_meta', __( 'New Blog Template Options &amp; Content', 'tfs-blog-textdomain' ), 'tfs_newblog_callback', $type, 'normal', 'high' );
+        add_meta_box( 'blog_meta', __( 'Blog Template Options &amp; Content', 'tfs-blog-textdomain' ), 'tfs_newblog_callback', $type, 'normal', 'high' );
       }
     }
   }
@@ -33,8 +33,16 @@ function tfs_newblog_callback( $post ) {
   ?>
   
   <div style="margin-top: 1.618em;">
-    <h1>New Blog Template Custom Content</h1>
+    <h1>Blog Template Custom Content</h1>
   </div>
+  
+  <p> <!-- ==== TFS LOGO ==== -->
+    
+    <label for="blog-template-logo" class="fish-camp-row-title"><?php _e( '<h3>TFS Logo</h3>', 'the-fly-shop' );?></label>
+    <input type="text" style="width:50%;" name="blog-template-logo" id="blog-template-logo" value="<?php if ( isset ( $sbm_stored_blog_meta['blog-template-logo'] ) ) echo $sbm_stored_blog_meta['blog-template-logo'][0];?>" />
+    <input type="button" id="blog-template-logo-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
+  
+  </p>
   
   <!-- description -->
   <p>

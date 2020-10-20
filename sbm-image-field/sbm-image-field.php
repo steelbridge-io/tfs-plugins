@@ -21,6 +21,7 @@ include( plugin_dir_path( __FILE__ ) . 'includes/signature_events_field.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/sections_image_field.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/holiday_image_field.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/outfitters_image_field.php');
+include( plugin_dir_path( __FILE__ ) . 'includes/signature_travel_meta.php');
 include( plugin_dir_path( __FILE__ ) . 'css/stream-report-css.php');
 
 /*
@@ -29,7 +30,7 @@ include( plugin_dir_path( __FILE__ ) . 'css/stream-report-css.php');
 
 function tfs_image_enqueue() {
 	global $typenow;
-		if( $typenow == 'page' or 'post' or 'travel_cpt' or 'guide_service' or 'fishcamp_cpt' or 'adventures' or 'schools_cpt' or 'flyfishing-news' ) {
+		if( $typenow == 'page' or 'post' or 'travel_cpt' or 'guide_service' or 'fishcamp_cpt' or 'adventures' or 'schools_cpt' or 'flyfishing-news' or 'travel-blog' ) {
 		wp_enqueue_media();
 
 		wp_enqueue_style( 'custom_admin_style_css', plugins_url('css/style.css', __FILE__) );
