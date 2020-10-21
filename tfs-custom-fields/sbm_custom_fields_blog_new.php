@@ -36,6 +36,21 @@ function tfs_newblog_callback( $post ) {
     <h1>Blog Template Custom Content</h1>
   </div>
   
+  <p>
+    <label for="select-sidebar" class="prfx-row-title"><h3><?php _e( 'Sidebar Select', 'The_Fly_Shop' )?></h3></label>
+    <select name="select-sidebar" id="select-sidebar">
+      <option value="" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], '' ); ?>><?php _e( 'Default', 'The_Fly_Shop' )?></option>';
+      <option value="esblodge" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'esblodge' ); ?>><?php _e( 'ESB Lodge', 'The_Fly_Shop' )?></option>';
+      <option value="lavacreeklodge" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'lavacreeklodge' ); ?>><?php _e( 'Lava Creek Lodge', 'The_Fly_Shop' )?></option>';
+      <option value="lower48" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'lower48' ); ?>><?php _e( 'Lower 48', 'The_Fly_Shop' )?></option>';
+      <option value="news" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'news' ); ?>><?php _e( 'News', 'The_Fly_Shop' )?></option>';
+      <option value="outfitter" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'outfitter' ); ?>><?php _e( 'Outfitters', 'The_Fly_Shop' )?></option>';
+      <option value="retail" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'retail' ); ?>><?php _e( 'Retail', 'The_Fly_Shop' )?></option>';
+      <option value="survey" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'survey' ); ?>><?php _e( 'Survey', 'The_Fly_Shop' )?></option>';
+      <option value="travel" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'travel' ); ?>><?php _e( 'Travel', 'The_Fly_Shop' )?></option>';
+    </select>
+  </p>
+  
   <p> <!-- ==== TFS LOGO ==== -->
     
     <label for="blog-template-logo" class="fish-camp-row-title"><?php _e( '<h3>TFS Logo</h3>', 'the-fly-shop' );?></label>

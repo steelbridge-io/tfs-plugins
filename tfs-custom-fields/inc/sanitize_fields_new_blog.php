@@ -34,5 +34,8 @@ return;
   if( isset( $_POST[ 'blog-description-new' ] ) ) {
     update_post_meta( $post_id, 'blog-description-new', sanitize_text_field( $_POST[ 'blog-description-new' ] ) );
   }
-
+  
+  if( isset( $_POST[ 'select-sidebar' ] ) ) {
+    update_post_meta( $post_id, 'select-sidebar', $_POST[ 'select-sidebar' ] );
+  }
 }

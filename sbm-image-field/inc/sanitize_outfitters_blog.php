@@ -18,4 +18,8 @@ function outfitters_meta_save( $post_id ) {
   if( isset( $_POST[ 'outfitters-logo' ] ) ) {
     update_post_meta( $post_id, 'outfitters-logo', $_POST[ 'outfitters-logo' ] );
   }
+  
+  if( isset( $_POST[ 'outfitters-select-sidebar' ] ) ) {
+    update_post_meta( $post_id, 'outfitters-select-sidebar', $_POST[ 'outfitters-select-sidebar' ] );
+  }
 }
