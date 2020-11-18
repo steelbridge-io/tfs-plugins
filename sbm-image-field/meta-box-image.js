@@ -10475,7 +10475,7 @@ jQuery(document).ready( function($){ "use strict";
     var outfitters_image_frame;
 
     // Runs when the image button is clicked.
-    $('#outfitters-logo-button-button').click(function(e){
+    $('#outfitters-logo-button').click(function(e){
 
         // Prevents the default action from occuring.
         e.preventDefault();
@@ -10500,7 +10500,7 @@ jQuery(document).ready( function($){ "use strict";
             var media_attachment = outfitters_image_frame.state().get('selection').first().toJSON();
 
             // Sends the attachment URL to our custom image input field.
-            $('#outfitters-logo-button').val(media_attachment.url);
+            $('#outfitters-logo').val(media_attachment.url);
         });
 
         // Opens the media library frame.
