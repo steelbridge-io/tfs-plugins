@@ -25,7 +25,6 @@ include( plugin_dir_path( __FILE__ ) . 'sbm_custom_fields_blog_new.php');
 include( plugin_dir_path( __FILE__ ) . 'sbm_custom_fields_travel_table.php');
 include( plugin_dir_path( __FILE__ ) . 'sbm_custom_survey_template.php');
 include( plugin_dir_path( __FILE__ ) . 'sbm_custom_blog_basic.php');
-include( plugin_dir_path( __FILE__ ) . 'sbm_cuStom_fields_blog_new.php');
 include( plugin_dir_path( __FILE__ ) . 'meta-style/meta-css.php');
 
 function favicon_function() {
