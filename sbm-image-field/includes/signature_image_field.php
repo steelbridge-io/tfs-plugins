@@ -256,12 +256,21 @@ function signature_meta_callback( $post ) {
 				<li role="presentation" class="active"><a href="#signatureimage1" aria-controls="signatureimage1" role="tab" data-toggle="tab">Signature Image &#35;1</a></li>
 				<li role="presentation"><a href="#signatureimage2" aria-controls="signatureimage2" role="tab" data-toggle="tab">Signature Image &#35;2</a></li>
 				<li role="presentation"><a href="#signatureimage3" aria-controls="signatureimage3" role="tab" data-toggle="tab">Signature Image &#35;3</a></li>
+                <li role="presentation"><a href="#signatureimage4" aria-controls="signatureimage4" role="tab" data-toggle="tab">Signature Image &#35;4</a></li>
+                <li role="presentation"><a href="#signatureimage5" aria-controls="signatureimage5" role="tab" data-toggle="tab">Signature Image &#35;5</a></li>
+                <li role="presentation"><a href="#signatureimage6" aria-controls="signatureimage6" role="tab" data-toggle="tab">Signature Image &#35;6</a></li>
+                <li role="presentation"><a href="#signatureimage7" aria-controls="signatureimage7" role="tab" data-toggle="tab">Signature Image &#35;7</a></li>
+                <li role="presentation"><a href="#signatureimage8" aria-controls="signatureimage8" role="tab" data-toggle="tab">Signature Image &#35;8</a></li>
+                <li role="presentation"><a href="#signatureimage9" aria-controls="signatureimage9" role="tab" data-toggle="tab">Signature Image &#35;9</a></li>
+                <li role="presentation"><a href="#signatureimage10" aria-controls="signatureimage10" role="tab" data-toggle="tab">Signature Image &#35;10</a></li>
+                <li role="presentation"><a href="#signatureimage11" aria-controls="signatureimage11" role="tab" data-toggle="tab">Signature Image &#35;11</a></li>
+                <li role="presentation"><a href="#signatureimage12" aria-controls="signatureimage12" role="tab" data-toggle="tab">Signature Image &#35;12</a></li>
 			</ul>
 
 			<div class="panel-body boof">
 				<div class="tab-content">
    		
-    		<!-- ==== SIGNATURE #1 ==== -->
+    		    <!-- ==== SIGNATURE #1 ==== -->
 				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage1">
 				
 				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;1</h3>', 'signature-textdomain' );?></label><br>
@@ -404,555 +413,445 @@ function signature_meta_callback( $post ) {
 				</p>
 
 				</div><!-- #/siagntureimage3 -->
-
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
-
-	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	
-	<!-- ****
-	Tabbed section 4, 5, 6 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage4" aria-controls="signatureimage4" role="tab" data-toggle="tab">Signature Image &#35;4</a></li>
-				<li role="presentation"><a href="#signatureimage5" aria-controls="signatureimage5" role="tab" data-toggle="tab">Signature Image &#35;5</a></li>
-				<li role="presentation"><a href="#signatureimage6" aria-controls="signatureimage6" role="tab" data-toggle="tab">Signature Image &#35;6</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 4, 5, 6 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 4, 5, 6</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-456-checkbox">
-					<input type="checkbox" name="signature-456-checkbox" id="signature-456-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-456-checkbox'] ) ) checked( $signature_stored_meta['signature-456-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 4, 5, 6.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-				
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #4 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage4">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;4</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 4 image title. -->
-				<strong><label for="signature-image-4-title" class="signature-row-title"><?php _e( 'Signature Image &#35;4 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-4-title" id="signature-image-4-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-4-title'] ) ) echo $signature_stored_meta['signature-image-4-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 4 image title link. -->
-				<strong><label for="signature-image-4-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;4 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-4-title-link" id="signature-image-4-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-4-title-link'] ) ) echo $signature_stored_meta['signature-image-4-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 4 image -->
-				<strong><label for="signature-image-4" class="signature-row-title"><?php _e( 'Signature Image &#35;4', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-4" id="signature-image-4" value="<?php if ( isset ( $signature_stored_meta['signature-image-4'] ) ) echo $signature_stored_meta['signature-image-4'][0];?>" />
-				<input type="button" id="signature-image-4-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 4 image sub-title. -->
-				<strong><label for="signature-image-4-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;4 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-4-sub-title" id="signature-image-4-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-4-sub-title'] ) ) echo $signature_stored_meta['signature-image-4-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 4 image caption.-->
-				<strong><label for="signature-image-4-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;4 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-4-caption" id="signature-image-4-caption"><?php if ( isset ( $signature_stored_meta['signature-image-4-caption'] ) ) echo $signature_stored_meta['signature-image-4-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #5 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage5">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;5</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 5 image title. -->
-				<strong><label for="signature-image-5-title" class="signature-row-title"><?php _e( 'Signature Image &#35;5 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-5-title" id="signature-image-5-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-5-title'] ) ) echo $signature_stored_meta['signature-image-5-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 5 image title link. -->
-				<strong><label for="signature-image-5-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;5 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-5-title-link" id="signature-image-5-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-5-title-link'] ) ) echo $signature_stored_meta['signature-image-5-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 5 image -->
-				<strong><label for="signature-image-5" class="signature-row-title"><?php _e( 'Signature Image &#35;5', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-5" id="signature-image-5" value="<?php if ( isset ( $signature_stored_meta['signature-image-5'] ) ) echo $signature_stored_meta['signature-image-5'][0];?>" />
-				<input type="button" id="signature-image-5-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 5 image sub-title. -->
-				<strong><label for="signature-image-5-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;5 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-5-sub-title" id="signature-image-5-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-5-sub-title'] ) ) echo $signature_stored_meta['signature-image-5-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 5 image caption.-->
-				<strong><label for="signature-image-5-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;5 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-5-caption" id="signature-image-5-caption"><?php if ( isset ( $signature_stored_meta['signature-image-5-caption'] ) ) echo $signature_stored_meta['signature-image-5-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #6 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage6">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;6</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 6 image title. -->
-				<strong><label for="signature-image-6-title" class="signature-row-title"><?php _e( 'Signature Image &#35;6 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-6-title" id="signature-image-6-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-6-title'] ) ) echo $signature_stored_meta['signature-image-6-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 6 image title link. -->
-				<strong><label for="signature-image-6-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;6 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-6-title-link" id="signature-image-6-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-6-title-link'] ) ) echo $signature_stored_meta['signature-image-6-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 6 image -->
-				<strong><label for="signature-image-6" class="signature-row-title"><?php _e( 'Signature Image &#35;6', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-6" id="signature-image-6" value="<?php if ( isset ( $signature_stored_meta['signature-image-6'] ) ) echo $signature_stored_meta['signature-image-6'][0];?>" />
-				<input type="button" id="signature-image-6-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 6 image sub-title. -->
-				<strong><label for="signature-image-6-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;6 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-6-sub-title" id="signature-image-6-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-6-sub-title'] ) ) echo $signature_stored_meta['signature-image-6-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 6 image caption.-->
-				<strong><label for="signature-image-6-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;6 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-6-caption" id="signature-image-6-caption"><?php if ( isset ( $signature_stored_meta['signature-image-6-caption'] ) ) echo $signature_stored_meta['signature-image-6-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
+                
+                <!-- ==== SIGNATURE #4 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage4">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;4</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 4 image title. -->
+                    <strong><label for="signature-image-4-title" class="signature-row-title"><?php _e( 'Signature Image &#35;4 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-4-title" id="signature-image-4-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-4-title'] ) ) echo $signature_stored_meta['signature-image-4-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 4 image title link. -->
+                    <strong><label for="signature-image-4-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;4 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-4-title-link" id="signature-image-4-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-4-title-link'] ) ) echo $signature_stored_meta['signature-image-4-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 4 image -->
+                    <strong><label for="signature-image-4" class="signature-row-title"><?php _e( 'Signature Image &#35;4', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-4" id="signature-image-4" value="<?php if ( isset ( $signature_stored_meta['signature-image-4'] ) ) echo $signature_stored_meta['signature-image-4'][0];?>" />
+                    <input type="button" id="signature-image-4-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 4 image sub-title. -->
+                    <strong><label for="signature-image-4-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;4 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-4-sub-title" id="signature-image-4-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-4-sub-title'] ) ) echo $signature_stored_meta['signature-image-4-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 4 image caption.-->
+                    <strong><label for="signature-image-4-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;4 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-4-caption" id="signature-image-4-caption"><?php if ( isset ( $signature_stored_meta['signature-image-4-caption'] ) ) echo $signature_stored_meta['signature-image-4-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #5 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage5">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;5</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 5 image title. -->
+                    <strong><label for="signature-image-5-title" class="signature-row-title"><?php _e( 'Signature Image &#35;5 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-5-title" id="signature-image-5-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-5-title'] ) ) echo $signature_stored_meta['signature-image-5-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 5 image title link. -->
+                    <strong><label for="signature-image-5-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;5 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-5-title-link" id="signature-image-5-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-5-title-link'] ) ) echo $signature_stored_meta['signature-image-5-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 5 image -->
+                    <strong><label for="signature-image-5" class="signature-row-title"><?php _e( 'Signature Image &#35;5', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-5" id="signature-image-5" value="<?php if ( isset ( $signature_stored_meta['signature-image-5'] ) ) echo $signature_stored_meta['signature-image-5'][0];?>" />
+                    <input type="button" id="signature-image-5-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 5 image sub-title. -->
+                    <strong><label for="signature-image-5-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;5 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-5-sub-title" id="signature-image-5-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-5-sub-title'] ) ) echo $signature_stored_meta['signature-image-5-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 5 image caption.-->
+                    <strong><label for="signature-image-5-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;5 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-5-caption" id="signature-image-5-caption"><?php if ( isset ( $signature_stored_meta['signature-image-5-caption'] ) ) echo $signature_stored_meta['signature-image-5-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #6 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage6">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;6</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 6 image title. -->
+                    <strong><label for="signature-image-6-title" class="signature-row-title"><?php _e( 'Signature Image &#35;6 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-6-title" id="signature-image-6-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-6-title'] ) ) echo $signature_stored_meta['signature-image-6-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 6 image title link. -->
+                    <strong><label for="signature-image-6-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;6 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-6-title-link" id="signature-image-6-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-6-title-link'] ) ) echo $signature_stored_meta['signature-image-6-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 6 image -->
+                    <strong><label for="signature-image-6" class="signature-row-title"><?php _e( 'Signature Image &#35;6', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-6" id="signature-image-6" value="<?php if ( isset ( $signature_stored_meta['signature-image-6'] ) ) echo $signature_stored_meta['signature-image-6'][0];?>" />
+                    <input type="button" id="signature-image-6-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 6 image sub-title. -->
+                    <strong><label for="signature-image-6-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;6 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-6-sub-title" id="signature-image-6-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-6-sub-title'] ) ) echo $signature_stored_meta['signature-image-6-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 6 image caption.-->
+                    <strong><label for="signature-image-6-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;6 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-6-caption" id="signature-image-6-caption"><?php if ( isset ( $signature_stored_meta['signature-image-6-caption'] ) ) echo $signature_stored_meta['signature-image-6-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #7 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage7">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;7</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 7 image title. -->
+                    <strong><label for="signature-image-7-title" class="signature-row-title"><?php _e( 'Signature Image &#35;7 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-7-title" id="signature-image-7-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-7-title'] ) ) echo $signature_stored_meta['signature-image-7-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 7 image title link. -->
+                    <strong><label for="signature-image-7-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;7 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-7-title-link" id="signature-image-7-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-7-title-link'] ) ) echo $signature_stored_meta['signature-image-7-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 7 image -->
+                    <strong><label for="signature-image-7" class="signature-row-title"><?php _e( 'Signature Image &#35;7', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-7" id="signature-image-7" value="<?php if ( isset ( $signature_stored_meta['signature-image-7'] ) ) echo $signature_stored_meta['signature-image-7'][0];?>" />
+                    <input type="button" id="signature-image-7-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 7 image sub-title. -->
+                    <strong><label for="signature-image-7-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;7 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-7-sub-title" id="signature-image-7-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-7-sub-title'] ) ) echo $signature_stored_meta['signature-image-7-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 7 image caption.-->
+                    <strong><label for="signature-image-7-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;7 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-7-caption" id="signature-image-7-caption"><?php if ( isset ( $signature_stored_meta['signature-image-7-caption'] ) ) echo $signature_stored_meta['signature-image-7-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #8 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage8">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;8</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 8 image title. -->
+                    <strong><label for="signature-image-8-title" class="signature-row-title"><?php _e( 'Signature Image &#35;8 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-8-title" id="signature-image-8-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-8-title'] ) ) echo $signature_stored_meta['signature-image-8-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 8 image title link. -->
+                    <strong><label for="signature-image-8-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;8 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-8-title-link" id="signature-image-8-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-8-title-link'] ) ) echo $signature_stored_meta['signature-image-8-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 8 image -->
+                    <strong><label for="signature-image-8" class="signature-row-title"><?php _e( 'Signature Image &#35;8', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-8" id="signature-image-8" value="<?php if ( isset ( $signature_stored_meta['signature-image-8'] ) ) echo $signature_stored_meta['signature-image-8'][0];?>" />
+                    <input type="button" id="signature-image-8-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 8 image sub-title. -->
+                    <strong><label for="signature-image-8-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;8 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-8-sub-title" id="signature-image-8-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-8-sub-title'] ) ) echo $signature_stored_meta['signature-image-8-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 8 image caption.-->
+                    <strong><label for="signature-image-8-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;8 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-8-caption" id="signature-image-8-caption"><?php if ( isset ( $signature_stored_meta['signature-image-8-caption'] ) ) echo $signature_stored_meta['signature-image-8-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #9 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage9">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;9</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 9 image title. -->
+                    <strong><label for="signature-image-9-title" class="signature-row-title"><?php _e( 'Signature Image &#35;9 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-9-title" id="signature-image-9-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-9-title'] ) ) echo $signature_stored_meta['signature-image-9-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 9 image title link. -->
+                    <strong><label for="signature-image-9-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;9 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-9-title-link" id="signature-image-9-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-9-title-link'] ) ) echo $signature_stored_meta['signature-image-9-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 9 image -->
+                    <strong><label for="signature-image-9" class="signature-row-title"><?php _e( 'Signature Image &#35;9', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-9" id="signature-image-9" value="<?php if ( isset ( $signature_stored_meta['signature-image-9'] ) ) echo $signature_stored_meta['signature-image-9'][0];?>" />
+                    <input type="button" id="signature-image-9-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 9 image sub-title. -->
+                    <strong><label for="signature-image-9-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;9 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-9-sub-title" id="signature-image-9-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-9-sub-title'] ) ) echo $signature_stored_meta['signature-image-9-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 9 image caption.-->
+                    <strong><label for="signature-image-9-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;9 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-9-caption" id="signature-image-9-caption"><?php if ( isset ( $signature_stored_meta['signature-image-9-caption'] ) ) echo $signature_stored_meta['signature-image-9-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #10 ==== -->
+				<?php ob_get_contents(); ?>
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage10">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;10</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 10 image title. -->
+                    <strong><label for="signature-image-10-title" class="signature-row-title"><?php _e( 'Signature Image &#35;10 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-10-title" id="signature-image-10-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-10-title'] ) ) echo $signature_stored_meta['signature-image-10-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 10 image title link. -->
+                    <strong><label for="signature-image-10-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;10 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-10-title-link" id="signature-image-10-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-10-title-link'] ) ) echo $signature_stored_meta['signature-image-10-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 10 image -->
+                    <strong><label for="signature-image-10" class="signature-row-title"><?php _e( 'Signature Image &#35;10', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-10" id="signature-image-10" value="<?php if ( isset ( $signature_stored_meta['signature-image-10'] ) ) echo $signature_stored_meta['signature-image-10'][0];?>" />
+                    <input type="button" id="signature-image-10-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 10 image sub-title. -->
+                    <strong><label for="signature-image-10-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;10 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-10-sub-title" id="signature-image-10-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-10-sub-title'] ) ) echo $signature_stored_meta['signature-image-10-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 10 image caption.-->
+                    <strong><label for="signature-image-10-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;10 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-10-caption" id="signature-image-10-caption"><?php if ( isset ( $signature_stored_meta['signature-image-10-caption'] ) ) echo $signature_stored_meta['signature-image-10-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #11 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage11">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;11</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 11 image title. -->
+                    <strong><label for="signature-image-11-title" class="signature-row-title"><?php _e( 'Signature Image &#35;11 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-11-title" id="signature-image-11-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-11-title'] ) ) echo $signature_stored_meta['signature-image-11-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 11 image title link. -->
+                    <strong><label for="signature-image-11-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;11 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-11-title-link" id="signature-image-11-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-11-title-link'] ) ) echo $signature_stored_meta['signature-image-11-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 11 image -->
+                    <strong><label for="signature-image-11" class="signature-row-title"><?php _e( 'Signature Image &#35;11', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-11" id="signature-image-11" value="<?php if ( isset ( $signature_stored_meta['signature-image-11'] ) ) echo $signature_stored_meta['signature-image-11'][0];?>" />
+                    <input type="button" id="signature-image-11-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 11 image sub-title. -->
+                    <strong><label for="signature-image-11-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;11 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-11-sub-title" id="signature-image-11-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-11-sub-title'] ) ) echo $signature_stored_meta['signature-image-11-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 11 image caption.-->
+                    <strong><label for="signature-image-11-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;11 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-11-caption" id="signature-image-11-caption"><?php if ( isset ( $signature_stored_meta['signature-image-11-caption'] ) ) echo $signature_stored_meta['signature-image-11-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #12 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage12">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;12</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 12 image title. -->
+                    <strong><label for="signature-image-12-title" class="signature-row-title"><?php _e( 'Signature Image &#35;12 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-12-title" id="signature-image-12-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-12-title'] ) ) echo $signature_stored_meta['signature-image-12-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 12 image title link. -->
+                    <strong><label for="signature-image-12-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;12 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-12-title-link" id="signature-image-12-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-12-title-link'] ) ) echo $signature_stored_meta['signature-image-12-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 12 image -->
+                    <strong><label for="signature-image-12" class="signature-row-title"><?php _e( 'Signature Image &#35;12', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-12" id="signature-image-12" value="<?php if ( isset ( $signature_stored_meta['signature-image-12'] ) ) echo $signature_stored_meta['signature-image-12'][0];?>" />
+                    <input type="button" id="signature-image-12-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 12 image sub-title. -->
+                    <strong><label for="signature-image-12-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;12 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-12-sub-title" id="signature-image-12-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-12-sub-title'] ) ) echo $signature_stored_meta['signature-image-12-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 12 image caption.-->
+                    <strong><label for="signature-image-12-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;12 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-12-caption" id="signature-image-12-caption"><?php if ( isset ( $signature_stored_meta['signature-image-12-caption'] ) ) echo $signature_stored_meta['signature-image-12-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                </div><!-- ./tab-content -->
 			</div><!-- ./panel-body boof -->
 		</div><!-- ./panel-heading -->
 	</div><!-- ./panel with-nav-tabs panel-default -->
  
-	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	
-	<!-- ****
-	Tabbed section 7, 8, 9 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage7" aria-controls="signatureimage7" role="tab" data-toggle="tab">Signature Image &#35;7</a></li>
-				<li role="presentation"><a href="#signatureimage8" aria-controls="signatureimage8" role="tab" data-toggle="tab">Signature Image &#35;8</a></li>
-				<li role="presentation"><a href="#signatureimage9" aria-controls="signatureimage9" role="tab" data-toggle="tab">Signature Image &#35;9</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 7, 8, 9 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 7, 8, 9</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-789-checkbox">
-					<input type="checkbox" name="signature-789-checkbox" id="signature-789-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-789-checkbox'] ) ) checked( $signature_stored_meta['signature-789-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 7, 8, 9.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #7 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage7">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;7</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 7 image title. -->
-				<strong><label for="signature-image-7-title" class="signature-row-title"><?php _e( 'Signature Image &#35;7 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-7-title" id="signature-image-7-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-7-title'] ) ) echo $signature_stored_meta['signature-image-7-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 7 image title link. -->
-				<strong><label for="signature-image-7-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;7 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-7-title-link" id="signature-image-7-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-7-title-link'] ) ) echo $signature_stored_meta['signature-image-7-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 7 image -->
-				<strong><label for="signature-image-7" class="signature-row-title"><?php _e( 'Signature Image &#35;7', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-7" id="signature-image-7" value="<?php if ( isset ( $signature_stored_meta['signature-image-7'] ) ) echo $signature_stored_meta['signature-image-7'][0];?>" />
-				<input type="button" id="signature-image-7-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 7 image sub-title. -->
-				<strong><label for="signature-image-7-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;7 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-7-sub-title" id="signature-image-7-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-7-sub-title'] ) ) echo $signature_stored_meta['signature-image-7-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 7 image caption.-->
-				<strong><label for="signature-image-7-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;7 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-7-caption" id="signature-image-7-caption"><?php if ( isset ( $signature_stored_meta['signature-image-7-caption'] ) ) echo $signature_stored_meta['signature-image-7-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #8 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage8">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;8</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 8 image title. -->
-				<strong><label for="signature-image-8-title" class="signature-row-title"><?php _e( 'Signature Image &#35;8 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-8-title" id="signature-image-8-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-8-title'] ) ) echo $signature_stored_meta['signature-image-8-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 8 image title link. -->
-				<strong><label for="signature-image-8-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;8 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-8-title-link" id="signature-image-8-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-8-title-link'] ) ) echo $signature_stored_meta['signature-image-8-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 8 image -->
-				<strong><label for="signature-image-8" class="signature-row-title"><?php _e( 'Signature Image &#35;8', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-8" id="signature-image-8" value="<?php if ( isset ( $signature_stored_meta['signature-image-8'] ) ) echo $signature_stored_meta['signature-image-8'][0];?>" />
-				<input type="button" id="signature-image-8-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 8 image sub-title. -->
-				<strong><label for="signature-image-8-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;8 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-8-sub-title" id="signature-image-8-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-8-sub-title'] ) ) echo $signature_stored_meta['signature-image-8-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 8 image caption.-->
-				<strong><label for="signature-image-8-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;8 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-8-caption" id="signature-image-8-caption"><?php if ( isset ( $signature_stored_meta['signature-image-8-caption'] ) ) echo $signature_stored_meta['signature-image-8-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #9 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage9">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;9</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 9 image title. -->
-				<strong><label for="signature-image-9-title" class="signature-row-title"><?php _e( 'Signature Image &#35;9 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-9-title" id="signature-image-9-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-9-title'] ) ) echo $signature_stored_meta['signature-image-9-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 9 image title link. -->
-				<strong><label for="signature-image-9-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;9 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-9-title-link" id="signature-image-9-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-9-title-link'] ) ) echo $signature_stored_meta['signature-image-9-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 9 image -->
-				<strong><label for="signature-image-9" class="signature-row-title"><?php _e( 'Signature Image &#35;9', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-9" id="signature-image-9" value="<?php if ( isset ( $signature_stored_meta['signature-image-9'] ) ) echo $signature_stored_meta['signature-image-9'][0];?>" />
-				<input type="button" id="signature-image-9-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 9 image sub-title. -->
-				<strong><label for="signature-image-9-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;9 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-9-sub-title" id="signature-image-9-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-9-sub-title'] ) ) echo $signature_stored_meta['signature-image-9-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 9 image caption.-->
-				<strong><label for="signature-image-9-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;9 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-9-caption" id="signature-image-9-caption"><?php if ( isset ( $signature_stored_meta['signature-image-9-caption'] ) ) echo $signature_stored_meta['signature-image-9-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
-	
-	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	<?php ob_get_contents(); ?>
-	<!-- ****
-	Tabbed section 10, 11, 12 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage10" aria-controls="signatureimage10" role="tab" data-toggle="tab">Signature Image &#35;10</a></li>
-				<li role="presentation"><a href="#signatureimage11" aria-controls="signatureimage11" role="tab" data-toggle="tab">Signature Image &#35;11</a></li>
-				<li role="presentation"><a href="#signatureimage12" aria-controls="signatureimage12" role="tab" data-toggle="tab">Signature Image &#35;12</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 10, 11, 12 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 10, 11, 12</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-101112-checkbox">
-					<input type="checkbox" name="signature-101112-checkbox" id="signature-101112-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-101112-checkbox'] ) ) checked( $signature_stored_meta['signature-101112-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 10, 11, 12.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #10 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage10">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;10</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 10 image title. -->
-				<strong><label for="signature-image-10-title" class="signature-row-title"><?php _e( 'Signature Image &#35;10 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-10-title" id="signature-image-10-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-10-title'] ) ) echo $signature_stored_meta['signature-image-10-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 10 image title link. -->
-				<strong><label for="signature-image-10-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;10 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-10-title-link" id="signature-image-10-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-10-title-link'] ) ) echo $signature_stored_meta['signature-image-10-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 10 image -->
-				<strong><label for="signature-image-10" class="signature-row-title"><?php _e( 'Signature Image &#35;10', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-10" id="signature-image-10" value="<?php if ( isset ( $signature_stored_meta['signature-image-10'] ) ) echo $signature_stored_meta['signature-image-10'][0];?>" />
-				<input type="button" id="signature-image-10-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 10 image sub-title. -->
-				<strong><label for="signature-image-10-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;10 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-10-sub-title" id="signature-image-10-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-10-sub-title'] ) ) echo $signature_stored_meta['signature-image-10-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 10 image caption.-->
-				<strong><label for="signature-image-10-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;10 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-10-caption" id="signature-image-10-caption"><?php if ( isset ( $signature_stored_meta['signature-image-10-caption'] ) ) echo $signature_stored_meta['signature-image-10-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #11 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage11">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;11</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 11 image title. -->
-				<strong><label for="signature-image-11-title" class="signature-row-title"><?php _e( 'Signature Image &#35;11 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-11-title" id="signature-image-11-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-11-title'] ) ) echo $signature_stored_meta['signature-image-11-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 11 image title link. -->
-				<strong><label for="signature-image-11-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;11 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-11-title-link" id="signature-image-11-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-11-title-link'] ) ) echo $signature_stored_meta['signature-image-11-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 11 image -->
-				<strong><label for="signature-image-11" class="signature-row-title"><?php _e( 'Signature Image &#35;11', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-11" id="signature-image-11" value="<?php if ( isset ( $signature_stored_meta['signature-image-11'] ) ) echo $signature_stored_meta['signature-image-11'][0];?>" />
-				<input type="button" id="signature-image-11-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 11 image sub-title. -->
-				<strong><label for="signature-image-11-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;11 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-11-sub-title" id="signature-image-11-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-11-sub-title'] ) ) echo $signature_stored_meta['signature-image-11-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 11 image caption.-->
-				<strong><label for="signature-image-11-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;11 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-11-caption" id="signature-image-11-caption"><?php if ( isset ( $signature_stored_meta['signature-image-11-caption'] ) ) echo $signature_stored_meta['signature-image-11-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #12 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage12">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;12</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 12 image title. -->
-				<strong><label for="signature-image-12-title" class="signature-row-title"><?php _e( 'Signature Image &#35;12 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-12-title" id="signature-image-12-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-12-title'] ) ) echo $signature_stored_meta['signature-image-12-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 12 image title link. -->
-				<strong><label for="signature-image-12-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;12 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-12-title-link" id="signature-image-12-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-12-title-link'] ) ) echo $signature_stored_meta['signature-image-12-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 12 image -->
-				<strong><label for="signature-image-12" class="signature-row-title"><?php _e( 'Signature Image &#35;12', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-12" id="signature-image-12" value="<?php if ( isset ( $signature_stored_meta['signature-image-12'] ) ) echo $signature_stored_meta['signature-image-12'][0];?>" />
-				<input type="button" id="signature-image-12-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 12 image sub-title. -->
-				<strong><label for="signature-image-12-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;12 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-12-sub-title" id="signature-image-12-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-12-sub-title'] ) ) echo $signature_stored_meta['signature-image-12-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 12 image caption.-->
-				<strong><label for="signature-image-12-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;12 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-12-caption" id="signature-image-12-caption"><?php if ( isset ( $signature_stored_meta['signature-image-12-caption'] ) ) echo $signature_stored_meta['signature-image-12-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
-	
 	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
 	
 	<!-- ****
@@ -965,22 +864,16 @@ function signature_meta_callback( $post ) {
 				<li role="presentation" class="active"><a href="#signatureimage13" aria-controls="signatureimage13" role="tab" data-toggle="tab">Signature Image &#35;13</a></li>
 				<li role="presentation"><a href="#signatureimage14" aria-controls="signatureimage14" role="tab" data-toggle="tab">Signature Image &#35;14</a></li>
 				<li role="presentation"><a href="#signatureimage15" aria-controls="signatureimage15" role="tab" data-toggle="tab">Signature Image &#35;15</a></li>
+                <li role="presentation"><a href="#signatureimage16" aria-controls="signatureimage16" role="tab" data-toggle="tab">Signature Image &#35;16</a></li>
+                <li role="presentation"><a href="#signatureimage17" aria-controls="signatureimage17" role="tab" data-toggle="tab">Signature Image &#35;17</a></li>
+                <li role="presentation"><a href="#signatureimage18" aria-controls="signatureimage18" role="tab" data-toggle="tab">Signature Image &#35;18</a></li>
+                <li role="presentation"><a href="#signatureimage19" aria-controls="signatureimage19" role="tab" data-toggle="tab">Signature Image &#35;19</a></li>
+                <li role="presentation"><a href="#signatureimage20" aria-controls="signatureimage20" role="tab" data-toggle="tab">Signature Image &#35;20</a></li>
+                <li role="presentation"><a href="#signatureimage21" aria-controls="signatureimage21" role="tab" data-toggle="tab">Signature Image &#35;21</a></li>
+                <li role="presentation"><a href="#signatureimage22" aria-controls="signatureimage22" role="tab" data-toggle="tab">Signature Image &#35;22</a></li>
 			</ul>
 
 			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 13, 14, 15 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 13, 14, 15</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-131415-checkbox">
-					<input type="checkbox" name="signature-131415-checkbox" id="signature-131415-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-131415-checkbox'] ) ) checked( $signature_stored_meta['signature-131415-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 13, 14, 15.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
 			
 				<div class="tab-content">
 
@@ -1081,7 +974,6 @@ function signature_meta_callback( $post ) {
 				</div>
 
 				<!-- ==== SIGNATURE #15 ==== -->
-				
 				<div role="tabpanel" class="tab-pane fade" id="signatureimage15">
 
 				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;15</h3>', 'signature-textdomain' );?></label><br>
@@ -1128,374 +1020,348 @@ function signature_meta_callback( $post ) {
 				</p>
 
 				</div>
+                
+                <!-- ==== SIGNATURE #16 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage16">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;16</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 16 image title. -->
+                    <strong><label for="signature-image-16-title" class="signature-row-title"><?php _e( 'Signature Image &#35;16 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-16-title" id="signature-image-16-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-16-title'] ) ) echo $signature_stored_meta['signature-image-16-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 16 image title link. -->
+                    <strong><label for="signature-image-16-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;16 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-16-title-link" id="signature-image-16-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-16-title-link'] ) ) echo $signature_stored_meta['signature-image-16-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 16 image -->
+                    <strong><label for="signature-image-16" class="signature-row-title"><?php _e( 'Signature Image &#35;16', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-16" id="signature-image-16" value="<?php if ( isset ( $signature_stored_meta['signature-image-16'] ) ) echo $signature_stored_meta['signature-image-16'][0];?>" />
+                    <input type="button" id="signature-image-16-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 16 image sub-title. -->
+                    <strong><label for="signature-image-16-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;16 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-16-sub-title" id="signature-image-16-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-16-sub-title'] ) ) echo $signature_stored_meta['signature-image-16-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 16 image caption.-->
+                    <strong><label for="signature-image-16-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;16 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-16-caption" id="signature-image-16-caption"><?php if ( isset ( $signature_stored_meta['signature-image-16-caption'] ) ) echo $signature_stored_meta['signature-image-16-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #17 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage17">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;17</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 17 image title. -->
+                    <strong><label for="signature-image-17-title" class="signature-row-title"><?php _e( 'Signature Image &#35;17 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-17-title" id="signature-image-17-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-17-title'] ) ) echo $signature_stored_meta['signature-image-17-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 17 image title link. -->
+                    <strong><label for="signature-image-17-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;17 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-17-title-link" id="signature-image-17-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-17-title-link'] ) ) echo $signature_stored_meta['signature-image-17-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 17 image -->
+                    <strong><label for="signature-image-17" class="signature-row-title"><?php _e( 'Signature Image &#35;17', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-17" id="signature-image-17" value="<?php if ( isset ( $signature_stored_meta['signature-image-17'] ) ) echo $signature_stored_meta['signature-image-17'][0];?>" />
+                    <input type="button" id="signature-image-17-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 17 image sub-title. -->
+                    <strong><label for="signature-image-17-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;17 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-17-sub-title" id="signature-image-17-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-17-sub-title'] ) ) echo $signature_stored_meta['signature-image-17-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 17 image caption.-->
+                    <strong><label for="signature-image-17-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;17 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-17-caption" id="signature-image-17-caption"><?php if ( isset ( $signature_stored_meta['signature-image-14-caption'] ) ) echo $signature_stored_meta['signature-image-17-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #18 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage18">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;18</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 18 image title. -->
+                    <strong><label for="signature-image-18-title" class="signature-row-title"><?php _e( 'Signature Image &#35;18 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-18-title" id="signature-image-18-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-18-title'] ) ) echo $signature_stored_meta['signature-image-18-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 18 image title link. -->
+                    <strong><label for="signature-image-18-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;18 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-18-title-link" id="signature-image-18-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-18-title-link'] ) ) echo $signature_stored_meta['signature-image-18-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 18 image -->
+                    <strong><label for="signature-image-18" class="signature-row-title"><?php _e( 'Signature Image &#35;18', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-18" id="signature-image-18" value="<?php if ( isset ( $signature_stored_meta['signature-image-18'] ) ) echo $signature_stored_meta['signature-image-18'][0];?>" />
+                    <input type="button" id="signature-image-18-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 18 image sub-title. -->
+                    <strong><label for="signature-image-18-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;18 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-18-sub-title" id="signature-image-18-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-18-sub-title'] ) ) echo $signature_stored_meta['signature-image-18-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 18 image caption.-->
+                    <strong><label for="signature-image-18-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;18 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-18-caption" id="signature-image-18-caption"><?php if ( isset ( $signature_stored_meta['signature-image-18-caption'] ) ) echo $signature_stored_meta['signature-image-18-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #19 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage19">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;19</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 19 image title. -->
+                    <strong><label for="signature-image-19-title" class="signature-row-title"><?php _e( 'Signature Image &#35;19 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-19-title" id="signature-image-19-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-19-title'] ) ) echo $signature_stored_meta['signature-image-19-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 19 image title link. -->
+                    <strong><label for="signature-image-19-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;19 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-19-title-link" id="signature-image-19-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-19-title-link'] ) ) echo $signature_stored_meta['signature-image-19-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 19 image -->
+                    <strong><label for="signature-image-19" class="signature-row-title"><?php _e( 'Signature Image &#35;19', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-19" id="signature-image-19" value="<?php if ( isset ( $signature_stored_meta['signature-image-19'] ) ) echo $signature_stored_meta['signature-image-19'][0];?>" />
+                    <input type="button" id="signature-image-19-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 19 image sub-title. -->
+                    <strong><label for="signature-image-19-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;19 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-19-sub-title" id="signature-image-19-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-19-sub-title'] ) ) echo $signature_stored_meta['signature-image-19-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 19 image caption.-->
+                    <strong><label for="signature-image-19-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;19 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-19-caption" id="signature-image-19-caption"><?php if ( isset ( $signature_stored_meta['signature-image-19-caption'] ) ) echo $signature_stored_meta['signature-image-19-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #20 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage20">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;20</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 20 image title. -->
+                    <strong><label for="signature-image-20-title" class="signature-row-title"><?php _e( 'Signature Image &#35;20 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-20-title" id="signature-image-20-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-20-title'] ) ) echo $signature_stored_meta['signature-image-20-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 20 image title link. -->
+                    <strong><label for="signature-image-20-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;20 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-20-title-link" id="signature-image-20-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-20-title-link'] ) ) echo $signature_stored_meta['signature-image-20-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 20 image -->
+                    <strong><label for="signature-image-20" class="signature-row-title"><?php _e( 'Signature Image &#35;20', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-20" id="signature-image-20" value="<?php if ( isset ( $signature_stored_meta['signature-image-20'] ) ) echo $signature_stored_meta['signature-image-20'][0];?>" />
+                    <input type="button" id="signature-image-20-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 20 image sub-title. -->
+                    <strong><label for="signature-image-20-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;20 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-20-sub-title" id="signature-image-20-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-20-sub-title'] ) ) echo $signature_stored_meta['signature-image-20-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 20 image caption.-->
+                    <strong><label for="signature-image-20-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;20 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-20-caption" id="signature-image-20-caption"><?php if ( isset ( $signature_stored_meta['signature-image-20-caption'] ) ) echo $signature_stored_meta['signature-image-20-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #21 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage21">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;21</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 21 image title. -->
+                    <strong><label for="signature-image-21-title" class="signature-row-title"><?php _e( 'Signature Image &#35;21 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-21-title" id="signature-image-21-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-21-title'] ) ) echo $signature_stored_meta['signature-image-21-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 21 image title link. -->
+                    <strong><label for="signature-image-21-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;21 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-21-title-link" id="signature-image-21-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-21-title-link'] ) ) echo $signature_stored_meta['signature-image-21-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 21 image -->
+                    <strong><label for="signature-image-21" class="signature-row-title"><?php _e( 'Signature Image &#35;21', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-21" id="signature-image-21" value="<?php if ( isset ( $signature_stored_meta['signature-image-21'] ) ) echo $signature_stored_meta['signature-image-21'][0];?>" />
+                    <input type="button" id="signature-image-21-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 21 image sub-title. -->
+                    <strong><label for="signature-image-21-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;21 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-21-sub-title" id="signature-image-21-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-21-sub-title'] ) ) echo $signature_stored_meta['signature-image-21-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 21 image caption.-->
+                    <strong><label for="signature-image-21-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;21 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-21-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-21-caption'] ) ) echo $signature_stored_meta['signature-image-21-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #22 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage22">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;22</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 22 image title. -->
+                    <strong><label for="signature-image-22-title" class="signature-row-title"><?php _e( 'Signature Image &#35;22 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-22-title" id="signature-image-22-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-22-title'] ) ) echo $signature_stored_meta['signature-image-22-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 22 image title link. -->
+                    <strong><label for="signature-image-22-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;22 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-22-title-link" id="signature-image-22-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-22-title-link'] ) ) echo $signature_stored_meta['signature-image-22-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 22 image -->
+                    <strong><label for="signature-image-22" class="signature-row-title"><?php _e( 'Signature Image &#35;22', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-22" id="signature-image-22" value="<?php if ( isset ( $signature_stored_meta['signature-image-22'] ) ) echo $signature_stored_meta['signature-image-22'][0];?>" />
+                    <input type="button" id="signature-image-22-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 22 image sub-title. -->
+                    <strong><label for="signature-image-22-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;22 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-22-sub-title" id="signature-image-22-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-22-sub-title'] ) ) echo $signature_stored_meta['signature-image-22-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 22 image caption.-->
+                    <strong><label for="signature-image-22-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;22 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-22-caption" id="signature-image-22-caption"><?php if ( isset ( $signature_stored_meta['signature-image-22-caption'] ) ) echo $signature_stored_meta['signature-image-22-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
     
 				</div><!-- ./tab-content -->
 			</div><!-- ./panel-body boof -->
 		</div><!-- ./panel-heading -->
 	</div><!-- ./panel with-nav-tabs panel-default -->
 
-	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	
-	<!-- ****
-	Tabbed section 16, 17, 18 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage16" aria-controls="signatureimage16" role="tab" data-toggle="tab">Signature Image &#35;16</a></li>
-				<li role="presentation"><a href="#signatureimage17" aria-controls="signatureimage17" role="tab" data-toggle="tab">Signature Image &#35;17</a></li>
-				<li role="presentation"><a href="#signatureimage18" aria-controls="signatureimage18" role="tab" data-toggle="tab">Signature Image &#35;18</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 16, 17, 18 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 16, 17, 18</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-161718-checkbox">
-					<input type="checkbox" name="signature-161718-checkbox" id="signature-161718-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-161718-checkbox'] ) ) checked( $signature_stored_meta['signature-161718-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 16, 17, 18.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #16 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage16">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;16</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 16 image title. -->
-				<strong><label for="signature-image-16-title" class="signature-row-title"><?php _e( 'Signature Image &#35;16 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-16-title" id="signature-image-16-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-16-title'] ) ) echo $signature_stored_meta['signature-image-16-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 16 image title link. -->
-				<strong><label for="signature-image-16-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;16 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-16-title-link" id="signature-image-16-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-16-title-link'] ) ) echo $signature_stored_meta['signature-image-16-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 16 image -->
-				<strong><label for="signature-image-16" class="signature-row-title"><?php _e( 'Signature Image &#35;16', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-16" id="signature-image-16" value="<?php if ( isset ( $signature_stored_meta['signature-image-16'] ) ) echo $signature_stored_meta['signature-image-16'][0];?>" />
-				<input type="button" id="signature-image-16-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 16 image sub-title. -->
-				<strong><label for="signature-image-16-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;16 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-16-sub-title" id="signature-image-16-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-16-sub-title'] ) ) echo $signature_stored_meta['signature-image-16-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 16 image caption.-->
-				<strong><label for="signature-image-16-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;16 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-16-caption" id="signature-image-16-caption"><?php if ( isset ( $signature_stored_meta['signature-image-16-caption'] ) ) echo $signature_stored_meta['signature-image-16-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #17 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage17">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;17</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 17 image title. -->
-				<strong><label for="signature-image-17-title" class="signature-row-title"><?php _e( 'Signature Image &#35;17 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-17-title" id="signature-image-17-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-17-title'] ) ) echo $signature_stored_meta['signature-image-17-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 17 image title link. -->
-				<strong><label for="signature-image-17-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;17 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-17-title-link" id="signature-image-17-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-17-title-link'] ) ) echo $signature_stored_meta['signature-image-17-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 17 image -->
-				<strong><label for="signature-image-17" class="signature-row-title"><?php _e( 'Signature Image &#35;17', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-17" id="signature-image-17" value="<?php if ( isset ( $signature_stored_meta['signature-image-17'] ) ) echo $signature_stored_meta['signature-image-17'][0];?>" />
-				<input type="button" id="signature-image-17-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 17 image sub-title. -->
-				<strong><label for="signature-image-17-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;17 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-17-sub-title" id="signature-image-17-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-17-sub-title'] ) ) echo $signature_stored_meta['signature-image-17-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 17 image caption.-->
-				<strong><label for="signature-image-17-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;17 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-17-caption" id="signature-image-17-caption"><?php if ( isset ( $signature_stored_meta['signature-image-14-caption'] ) ) echo $signature_stored_meta['signature-image-17-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #18 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage18">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;18</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 18 image title. -->
-				<strong><label for="signature-image-18-title" class="signature-row-title"><?php _e( 'Signature Image &#35;18 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-18-title" id="signature-image-18-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-18-title'] ) ) echo $signature_stored_meta['signature-image-18-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 18 image title link. -->
-				<strong><label for="signature-image-18-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;18 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-18-title-link" id="signature-image-18-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-18-title-link'] ) ) echo $signature_stored_meta['signature-image-18-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 18 image -->
-				<strong><label for="signature-image-18" class="signature-row-title"><?php _e( 'Signature Image &#35;18', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-18" id="signature-image-18" value="<?php if ( isset ( $signature_stored_meta['signature-image-18'] ) ) echo $signature_stored_meta['signature-image-18'][0];?>" />
-				<input type="button" id="signature-image-18-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 18 image sub-title. -->
-				<strong><label for="signature-image-18-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;18 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-18-sub-title" id="signature-image-18-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-18-sub-title'] ) ) echo $signature_stored_meta['signature-image-18-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 18 image caption.-->
-				<strong><label for="signature-image-18-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;18 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-18-caption" id="signature-image-18-caption"><?php if ( isset ( $signature_stored_meta['signature-image-18-caption'] ) ) echo $signature_stored_meta['signature-image-18-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
- 
-	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	
-	<!-- ****
-	Tabbed section 19, 20, 21 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage19" aria-controls="signatureimage19" role="tab" data-toggle="tab">Signature Image &#35;19</a></li>
-				<li role="presentation"><a href="#signatureimage20" aria-controls="signatureimage20" role="tab" data-toggle="tab">Signature Image &#35;20</a></li>
-				<li role="presentation"><a href="#signatureimage21" aria-controls="signatureimage21" role="tab" data-toggle="tab">Signature Image &#35;21</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 19, 20, 21 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 19, 20, 21</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-192021-checkbox">
-					<input type="checkbox" name="signature-192021-checkbox" id="signature-192021-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-192021-checkbox'] ) ) checked( $signature_stored_meta['signature-192021-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 19, 20, 21.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #19 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage19">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;19</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 19 image title. -->
-				<strong><label for="signature-image-19-title" class="signature-row-title"><?php _e( 'Signature Image &#35;19 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-19-title" id="signature-image-19-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-19-title'] ) ) echo $signature_stored_meta['signature-image-19-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 19 image title link. -->
-				<strong><label for="signature-image-19-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;19 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-19-title-link" id="signature-image-19-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-19-title-link'] ) ) echo $signature_stored_meta['signature-image-19-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 19 image -->
-				<strong><label for="signature-image-19" class="signature-row-title"><?php _e( 'Signature Image &#35;19', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-19" id="signature-image-19" value="<?php if ( isset ( $signature_stored_meta['signature-image-19'] ) ) echo $signature_stored_meta['signature-image-19'][0];?>" />
-				<input type="button" id="signature-image-19-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 19 image sub-title. -->
-				<strong><label for="signature-image-19-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;19 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-19-sub-title" id="signature-image-19-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-19-sub-title'] ) ) echo $signature_stored_meta['signature-image-19-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 19 image caption.-->
-				<strong><label for="signature-image-19-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;19 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-19-caption" id="signature-image-19-caption"><?php if ( isset ( $signature_stored_meta['signature-image-19-caption'] ) ) echo $signature_stored_meta['signature-image-19-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #20 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage20">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;20</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 20 image title. -->
-				<strong><label for="signature-image-20-title" class="signature-row-title"><?php _e( 'Signature Image &#35;20 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-20-title" id="signature-image-20-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-20-title'] ) ) echo $signature_stored_meta['signature-image-20-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 20 image title link. -->
-				<strong><label for="signature-image-20-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;20 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-20-title-link" id="signature-image-20-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-20-title-link'] ) ) echo $signature_stored_meta['signature-image-20-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 20 image -->
-				<strong><label for="signature-image-20" class="signature-row-title"><?php _e( 'Signature Image &#35;20', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-20" id="signature-image-20" value="<?php if ( isset ( $signature_stored_meta['signature-image-20'] ) ) echo $signature_stored_meta['signature-image-20'][0];?>" />
-				<input type="button" id="signature-image-20-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 20 image sub-title. -->
-				<strong><label for="signature-image-20-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;20 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-20-sub-title" id="signature-image-20-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-20-sub-title'] ) ) echo $signature_stored_meta['signature-image-20-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 20 image caption.-->
-				<strong><label for="signature-image-20-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;20 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-20-caption" id="signature-image-20-caption"><?php if ( isset ( $signature_stored_meta['signature-image-20-caption'] ) ) echo $signature_stored_meta['signature-image-20-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #21 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage21">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;21</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 21 image title. -->
-				<strong><label for="signature-image-21-title" class="signature-row-title"><?php _e( 'Signature Image &#35;21 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-21-title" id="signature-image-21-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-21-title'] ) ) echo $signature_stored_meta['signature-image-21-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 21 image title link. -->
-				<strong><label for="signature-image-21-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;21 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-21-title-link" id="signature-image-21-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-21-title-link'] ) ) echo $signature_stored_meta['signature-image-21-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 21 image -->
-				<strong><label for="signature-image-21" class="signature-row-title"><?php _e( 'Signature Image &#35;21', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-21" id="signature-image-21" value="<?php if ( isset ( $signature_stored_meta['signature-image-21'] ) ) echo $signature_stored_meta['signature-image-21'][0];?>" />
-				<input type="button" id="signature-image-21-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 21 image sub-title. -->
-				<strong><label for="signature-image-21-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;21 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-21-sub-title" id="signature-image-21-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-21-sub-title'] ) ) echo $signature_stored_meta['signature-image-21-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 21 image caption.-->
-				<strong><label for="signature-image-21-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;21 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-21-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-21-caption'] ) ) echo $signature_stored_meta['signature-image-21-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
-	
 	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
 	
 	<!-- ****
@@ -1505,78 +1371,24 @@ function signature_meta_callback( $post ) {
 		<div class="panel-heading">
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage22" aria-controls="signatureimage22" role="tab" data-toggle="tab">Signature Image &#35;22</a></li>
-				<li role="presentation"><a href="#signatureimage23" aria-controls="signatureimage23" role="tab" data-toggle="tab">Signature Image &#35;23</a></li>
+				<li role="presentation" class="active"><a href="#signatureimage23" aria-controls="signatureimage23" role="tab" data-toggle="tab">Signature Image &#35;23</a></li>
 				<li role="presentation"><a href="#signatureimage24" aria-controls="signatureimage24" role="tab" data-toggle="tab">Signature Image &#35;24</a></li>
+                <li role="presentation"><a href="#signatureimage25" aria-controls="signatureimage25" role="tab" data-toggle="tab">Signature Image &#35;25</a></li>
+                <li role="presentation"><a href="#signatureimage26" aria-controls="signatureimage26" role="tab" data-toggle="tab">Signature Image &#35;26</a></li>
+                <li role="presentation"><a href="#signatureimage27" aria-controls="signatureimage27" role="tab" data-toggle="tab">Signature Image &#35;27</a></li>
+                <li role="presentation"><a href="#signatureimage28" aria-controls="signatureimage28" role="tab" data-toggle="tab">Signature Image &#35;28</a></li>
+                <li role="presentation"><a href="#signatureimage29" aria-controls="signatureimage29" role="tab" data-toggle="tab">Signature Image &#35;29</a></li>
+                <li role="presentation"><a href="#signatureimage30" aria-controls="signatureimage30" role="tab" data-toggle="tab">Signature Image &#35;30</a></li>
+                <li role="presentation"><a href="#signatureimage31" aria-controls="signatureimage31" role="tab" data-toggle="tab">Signature Image &#35;31</a></li>
+                <li role="presentation"><a href="#signatureimage32" aria-controls="signatureimage32" role="tab" data-toggle="tab">Signature Image &#35;32</a></li>
 			</ul>
 
 			<div class="panel-body boof">
 			
-			<p> <!-- ==== Optional images 22, 23, 24 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 22, 23, 24</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-222324-checkbox">
-					<input type="checkbox" name="signature-222324-checkbox" id="signature-222324-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-222324-checkbox'] ) ) checked( $signature_stored_meta['signature-222324-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 22, 23, 24.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
 				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #22 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage22">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;22</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 22 image title. -->
-				<strong><label for="signature-image-22-title" class="signature-row-title"><?php _e( 'Signature Image &#35;22 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-22-title" id="signature-image-22-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-22-title'] ) ) echo $signature_stored_meta['signature-image-22-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 22 image title link. -->
-				<strong><label for="signature-image-22-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;22 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-22-title-link" id="signature-image-22-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-22-title-link'] ) ) echo $signature_stored_meta['signature-image-22-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 22 image -->
-				<strong><label for="signature-image-22" class="signature-row-title"><?php _e( 'Signature Image &#35;22', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-22" id="signature-image-22" value="<?php if ( isset ( $signature_stored_meta['signature-image-22'] ) ) echo $signature_stored_meta['signature-image-22'][0];?>" />
-				<input type="button" id="signature-image-22-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 22 image sub-title. -->
-				<strong><label for="signature-image-22-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;22 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-22-sub-title" id="signature-image-22-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-22-sub-title'] ) ) echo $signature_stored_meta['signature-image-22-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 22 image caption.-->
-				<strong><label for="signature-image-22-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;22 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-22-caption" id="signature-image-22-caption"><?php if ( isset ( $signature_stored_meta['signature-image-22-caption'] ) ) echo $signature_stored_meta['signature-image-22-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
+    
 				<!-- ==== SIGNATURE #23 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage23">
+				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage23">
 				
 				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;23</h3>', 'signature-textdomain' );?></label><br>
 
@@ -1624,7 +1436,6 @@ function signature_meta_callback( $post ) {
 				</div>
 
 				<!-- ==== SIGNATURE #24 ==== -->
-				
 				<div role="tabpanel" class="tab-pane fade" id="signatureimage24">
 
 				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;24</h3>', 'signature-textdomain' );?></label><br>
@@ -1671,374 +1482,396 @@ function signature_meta_callback( $post ) {
 				</p>
 
 				</div>
+                
+                <!-- ==== SIGNATURE #25 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage25">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;25</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 25 image title. -->
+                    <strong><label for="signature-image-25-title" class="signature-row-title"><?php _e( 'Signature Image &#35;25 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-25-title" id="signature-image-25-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-25-title'] ) ) echo $signature_stored_meta['signature-image-25-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 25 image title link. -->
+                    <strong><label for="signature-image-25-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;25 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-25-title-link" id="signature-image-25-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-25-title-link'] ) ) echo $signature_stored_meta['signature-image-25-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 25 image -->
+                    <strong><label for="signature-image-25" class="signature-row-title"><?php _e( 'Signature Image &#35;25', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-25" id="signature-image-25" value="<?php if ( isset ( $signature_stored_meta['signature-image-25'] ) ) echo $signature_stored_meta['signature-image-25'][0];?>" />
+                    <input type="button" id="signature-image-25-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 25 image sub-title. -->
+                    <strong><label for="signature-image-25-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;25 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-25-sub-title" id="signature-image-25-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-25-sub-title'] ) ) echo $signature_stored_meta['signature-image-25-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 25 image caption.-->
+                    <strong><label for="signature-image-25-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;25 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-25-caption" id="signature-image-25-caption"><?php if ( isset ( $signature_stored_meta['signature-image-25-caption'] ) ) echo $signature_stored_meta['signature-image-25-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #26 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage26">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;26</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 26 image title. -->
+                    <strong><label for="signature-image-26-title" class="signature-row-title"><?php _e( 'Signature Image &#35;26 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-26-title" id="signature-image-26-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-26-title'] ) ) echo $signature_stored_meta['signature-image-26-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 26 image title link. -->
+                    <strong><label for="signature-image-26-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;26 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-26-title-link" id="signature-image-26-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-26-title-link'] ) ) echo $signature_stored_meta['signature-image-26-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 26 image -->
+                    <strong><label for="signature-image-26" class="signature-row-title"><?php _e( 'Signature Image &#35;26', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-26" id="signature-image-26" value="<?php if ( isset ( $signature_stored_meta['signature-image-26'] ) ) echo $signature_stored_meta['signature-image-26'][0];?>" />
+                    <input type="button" id="signature-image-26-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 26 image sub-title. -->
+                    <strong><label for="signature-image-26-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;26 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-26-sub-title" id="signature-image-26-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-26-sub-title'] ) ) echo $signature_stored_meta['signature-image-26-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 26 image caption.-->
+                    <strong><label for="signature-image-26-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;26 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-26-caption" id="signature-image-26-caption"><?php if ( isset ( $signature_stored_meta['signature-image-26-caption'] ) ) echo $signature_stored_meta['signature-image-26-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #27 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage27">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;27</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 27 image title. -->
+                    <strong><label for="signature-image-27-title" class="signature-row-title"><?php _e( 'Signature Image &#35;27 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-27-title" id="signature-image-27-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-27-title'] ) ) echo $signature_stored_meta['signature-image-27-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 27 image title link. -->
+                    <strong><label for="signature-image-27-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;27 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-27-title-link" id="signature-image-27-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-27-title-link'] ) ) echo $signature_stored_meta['signature-image-27-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 27 image -->
+                    <strong><label for="signature-image-27" class="signature-row-title"><?php _e( 'Signature Image &#35;27', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-27" id="signature-image-27" value="<?php if ( isset ( $signature_stored_meta['signature-image-27'] ) ) echo $signature_stored_meta['signature-image-27'][0];?>" />
+                    <input type="button" id="signature-image-27-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 27 image sub-title. -->
+                    <strong><label for="signature-image-27-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;27 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-27-sub-title" id="signature-image-27-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-27-sub-title'] ) ) echo $signature_stored_meta['signature-image-27-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 27 image caption.-->
+                    <strong><label for="signature-image-27-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;27 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-27-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-27-caption'] ) ) echo $signature_stored_meta['signature-image-27-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #28 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage28">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;28</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 28 image title. -->
+                    <strong><label for="signature-image-28-title" class="signature-row-title"><?php _e( 'Signature Image &#35;28 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-28-title" id="signature-image-28-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-28-title'] ) ) echo $signature_stored_meta['signature-image-28-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 28 image title link. -->
+                    <strong><label for="signature-image-28-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;28 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-28-title-link" id="signature-image-28-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-28-title-link'] ) ) echo $signature_stored_meta['signature-image-28-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 28 image -->
+                    <strong><label for="signature-image-28" class="signature-row-title"><?php _e( 'Signature Image &#35;28', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-28" id="signature-image-28" value="<?php if ( isset ( $signature_stored_meta['signature-image-28'] ) ) echo $signature_stored_meta['signature-image-28'][0];?>" />
+                    <input type="button" id="signature-image-28-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 28 image sub-title. -->
+                    <strong><label for="signature-image-28-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;28 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-28-sub-title" id="signature-image-28-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-28-sub-title'] ) ) echo $signature_stored_meta['signature-image-28-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 28 image caption.-->
+                    <strong><label for="signature-image-28-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;28 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-28-caption" id="signature-image-28-caption"><?php if ( isset ( $signature_stored_meta['signature-image-28-caption'] ) ) echo $signature_stored_meta['signature-image-28-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #29 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage29">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;29</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 29 image title. -->
+                    <strong><label for="signature-image-29-title" class="signature-row-title"><?php _e( 'Signature Image &#35;29 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-29-title" id="signature-image-29-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-29-title'] ) ) echo $signature_stored_meta['signature-image-29-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 29 image title link. -->
+                    <strong><label for="signature-image-29-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;29 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-29-title-link" id="signature-image-29-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-29-title-link'] ) ) echo $signature_stored_meta['signature-image-29-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 29 image -->
+                    <strong><label for="signature-image-29" class="signature-row-title"><?php _e( 'Signature Image &#35;29', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-29" id="signature-image-29" value="<?php if ( isset ( $signature_stored_meta['signature-image-29'] ) ) echo $signature_stored_meta['signature-image-29'][0];?>" />
+                    <input type="button" id="signature-image-29-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 29 image sub-title. -->
+                    <strong><label for="signature-image-29-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;29 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-29-sub-title" id="signature-image-29-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-29-sub-title'] ) ) echo $signature_stored_meta['signature-image-29-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 29 image caption.-->
+                    <strong><label for="signature-image-29-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;29 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-29-caption" id="signature-image-29-caption"><?php if ( isset ( $signature_stored_meta['signature-image-29-caption'] ) ) echo $signature_stored_meta['signature-image-29-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #30 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage30">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;30</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 30 image title. -->
+                    <strong><label for="signature-image-30-title" class="signature-row-title"><?php _e( 'Signature Image &#35;30 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-30-title" id="signature-image-30-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-30-title'] ) ) echo $signature_stored_meta['signature-image-30-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 30 image title link. -->
+                    <strong><label for="signature-image-30-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;30 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-30-title-link" id="signature-image-30-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-30-title-link'] ) ) echo $signature_stored_meta['signature-image-30-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 30 image -->
+                    <strong><label for="signature-image-30" class="signature-row-title"><?php _e( 'Signature Image &#35;30', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-30" id="signature-image-30" value="<?php if ( isset ( $signature_stored_meta['signature-image-30'] ) ) echo $signature_stored_meta['signature-image-30'][0];?>" />
+                    <input type="button" id="signature-image-30-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 30 image sub-title. -->
+                    <strong><label for="signature-image-30-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;30 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-30-sub-title" id="signature-image-30-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-30-sub-title'] ) ) echo $signature_stored_meta['signature-image-30-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 30 image caption.-->
+                    <strong><label for="signature-image-30-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;30 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-30-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-30-caption'] ) ) echo $signature_stored_meta['signature-image-30-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #31 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage31">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;31</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 31 image title. -->
+                    <strong><label for="signature-image-31-title" class="signature-row-title"><?php _e( 'Signature Image &#35;31 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-31-title" id="signature-image-31-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-31-title'] ) ) echo $signature_stored_meta['signature-image-31-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 31 image title link. -->
+                    <strong><label for="signature-image-31-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;31 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-31-title-link" id="signature-image-31-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-31-title-link'] ) ) echo $signature_stored_meta['signature-image-31-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 31 image -->
+                    <strong><label for="signature-image-31" class="signature-row-title"><?php _e( 'Signature Image &#35;31', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-31" id="signature-image-31" value="<?php if ( isset ( $signature_stored_meta['signature-image-31'] ) ) echo $signature_stored_meta['signature-image-31'][0];?>" />
+                    <input type="button" id="signature-image-31-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 31 image sub-title. -->
+                    <strong><label for="signature-image-31-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;31 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-31-sub-title" id="signature-image-31-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-31-sub-title'] ) ) echo $signature_stored_meta['signature-image-31-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 31 image caption.-->
+                    <strong><label for="signature-image-31-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;31 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-31-caption" id="signature-image-31-caption"><?php if ( isset ( $signature_stored_meta['signature-image-31-caption'] ) ) echo $signature_stored_meta['signature-image-31-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #32 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage32">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;32</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 32 image title. -->
+                    <strong><label for="signature-image-32-title" class="signature-row-title"><?php _e( 'Signature Image &#35;32 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-32-title" id="signature-image-32-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-32-title'] ) ) echo $signature_stored_meta['signature-image-32-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 32 image title link. -->
+                    <strong><label for="signature-image-32-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;32 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-32-title-link" id="signature-image-32-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-32-title-link'] ) ) echo $signature_stored_meta['signature-image-32-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 32 image -->
+                    <strong><label for="signature-image-32" class="signature-row-title"><?php _e( 'Signature Image &#35;32', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-32" id="signature-image-32" value="<?php if ( isset ( $signature_stored_meta['signature-image-32'] ) ) echo $signature_stored_meta['signature-image-32'][0];?>" />
+                    <input type="button" id="signature-image-32-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 32 image sub-title. -->
+                    <strong><label for="signature-image-32-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;32 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-32-sub-title" id="signature-image-32-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-32-sub-title'] ) ) echo $signature_stored_meta['signature-image-32-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 32 image caption.-->
+                    <strong><label for="signature-image-32-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;32 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-32-caption" id="signature-image-32-caption"><?php if ( isset ( $signature_stored_meta['signature-image-32-caption'] ) ) echo $signature_stored_meta['signature-image-32-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
     
 				</div><!-- ./tab-content -->
 			</div><!-- ./panel-body boof -->
 		</div><!-- ./panel-heading -->
 	</div><!-- ./panel with-nav-tabs panel-default -->
 	
-	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	
-	<!-- ****
-	Tabbed section 25, 26, 27 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage25" aria-controls="signatureimage25" role="tab" data-toggle="tab">Signature Image &#35;25</a></li>
-				<li role="presentation"><a href="#signatureimage26" aria-controls="signatureimage26" role="tab" data-toggle="tab">Signature Image &#35;26</a></li>
-				<li role="presentation"><a href="#signatureimage27" aria-controls="signatureimage27" role="tab" data-toggle="tab">Signature Image &#35;27</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 25, 26, 27 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 25, 26, 27</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-252627-checkbox">
-					<input type="checkbox" name="signature-252627-checkbox" id="signature-252627-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-252627-checkbox'] ) ) checked( $signature_stored_meta['signature-252627-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 25, 26, 27.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #25 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage25">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;25</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 25 image title. -->
-				<strong><label for="signature-image-25-title" class="signature-row-title"><?php _e( 'Signature Image &#35;25 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-25-title" id="signature-image-25-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-25-title'] ) ) echo $signature_stored_meta['signature-image-25-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 25 image title link. -->
-				<strong><label for="signature-image-25-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;25 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-25-title-link" id="signature-image-25-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-25-title-link'] ) ) echo $signature_stored_meta['signature-image-25-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 25 image -->
-				<strong><label for="signature-image-25" class="signature-row-title"><?php _e( 'Signature Image &#35;25', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-25" id="signature-image-25" value="<?php if ( isset ( $signature_stored_meta['signature-image-25'] ) ) echo $signature_stored_meta['signature-image-25'][0];?>" />
-				<input type="button" id="signature-image-25-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 25 image sub-title. -->
-				<strong><label for="signature-image-25-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;25 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-25-sub-title" id="signature-image-25-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-25-sub-title'] ) ) echo $signature_stored_meta['signature-image-25-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 25 image caption.-->
-				<strong><label for="signature-image-25-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;25 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-25-caption" id="signature-image-25-caption"><?php if ( isset ( $signature_stored_meta['signature-image-25-caption'] ) ) echo $signature_stored_meta['signature-image-25-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #26 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage26">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;26</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 26 image title. -->
-				<strong><label for="signature-image-26-title" class="signature-row-title"><?php _e( 'Signature Image &#35;26 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-26-title" id="signature-image-26-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-26-title'] ) ) echo $signature_stored_meta['signature-image-26-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 26 image title link. -->
-				<strong><label for="signature-image-26-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;26 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-26-title-link" id="signature-image-26-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-26-title-link'] ) ) echo $signature_stored_meta['signature-image-26-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 26 image -->
-				<strong><label for="signature-image-26" class="signature-row-title"><?php _e( 'Signature Image &#35;26', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-26" id="signature-image-26" value="<?php if ( isset ( $signature_stored_meta['signature-image-26'] ) ) echo $signature_stored_meta['signature-image-26'][0];?>" />
-				<input type="button" id="signature-image-26-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 26 image sub-title. -->
-				<strong><label for="signature-image-26-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;26 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-26-sub-title" id="signature-image-26-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-26-sub-title'] ) ) echo $signature_stored_meta['signature-image-26-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 26 image caption.-->
-				<strong><label for="signature-image-26-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;26 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-26-caption" id="signature-image-26-caption"><?php if ( isset ( $signature_stored_meta['signature-image-26-caption'] ) ) echo $signature_stored_meta['signature-image-26-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #27 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage27">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;27</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 27 image title. -->
-				<strong><label for="signature-image-27-title" class="signature-row-title"><?php _e( 'Signature Image &#35;27 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-27-title" id="signature-image-27-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-27-title'] ) ) echo $signature_stored_meta['signature-image-27-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 27 image title link. -->
-				<strong><label for="signature-image-27-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;27 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-27-title-link" id="signature-image-27-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-27-title-link'] ) ) echo $signature_stored_meta['signature-image-27-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 27 image -->
-				<strong><label for="signature-image-27" class="signature-row-title"><?php _e( 'Signature Image &#35;27', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-27" id="signature-image-27" value="<?php if ( isset ( $signature_stored_meta['signature-image-27'] ) ) echo $signature_stored_meta['signature-image-27'][0];?>" />
-				<input type="button" id="signature-image-27-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 27 image sub-title. -->
-				<strong><label for="signature-image-27-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;27 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-27-sub-title" id="signature-image-27-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-27-sub-title'] ) ) echo $signature_stored_meta['signature-image-27-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 27 image caption.-->
-				<strong><label for="signature-image-27-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;27 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-27-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-27-caption'] ) ) echo $signature_stored_meta['signature-image-27-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
-	
-	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	
-	<!-- ****
-	Tabbed section 28, 29, 30 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage28" aria-controls="signatureimage28" role="tab" data-toggle="tab">Signature Image &#35;28</a></li>
-				<li role="presentation"><a href="#signatureimage29" aria-controls="signatureimage29" role="tab" data-toggle="tab">Signature Image &#35;29</a></li>
-				<li role="presentation"><a href="#signatureimage30" aria-controls="signatureimage30" role="tab" data-toggle="tab">Signature Image &#35;30</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 28, 29, 30 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 28, 29, 30</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-282930-checkbox">
-					<input type="checkbox" name="signature-282930-checkbox" id="signature-282930-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-282930-checkbox'] ) ) checked( $signature_stored_meta['signature-282930-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 28, 29, 30.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #28 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage28">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;28</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 28 image title. -->
-				<strong><label for="signature-image-28-title" class="signature-row-title"><?php _e( 'Signature Image &#35;28 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-28-title" id="signature-image-28-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-28-title'] ) ) echo $signature_stored_meta['signature-image-28-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 28 image title link. -->
-				<strong><label for="signature-image-28-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;28 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-28-title-link" id="signature-image-28-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-28-title-link'] ) ) echo $signature_stored_meta['signature-image-28-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 28 image -->
-				<strong><label for="signature-image-28" class="signature-row-title"><?php _e( 'Signature Image &#35;28', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-28" id="signature-image-28" value="<?php if ( isset ( $signature_stored_meta['signature-image-28'] ) ) echo $signature_stored_meta['signature-image-28'][0];?>" />
-				<input type="button" id="signature-image-28-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 28 image sub-title. -->
-				<strong><label for="signature-image-28-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;28 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-28-sub-title" id="signature-image-28-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-28-sub-title'] ) ) echo $signature_stored_meta['signature-image-28-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 28 image caption.-->
-				<strong><label for="signature-image-28-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;28 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-28-caption" id="signature-image-28-caption"><?php if ( isset ( $signature_stored_meta['signature-image-28-caption'] ) ) echo $signature_stored_meta['signature-image-28-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #29 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage29">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;29</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 29 image title. -->
-				<strong><label for="signature-image-29-title" class="signature-row-title"><?php _e( 'Signature Image &#35;29 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-29-title" id="signature-image-29-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-29-title'] ) ) echo $signature_stored_meta['signature-image-29-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 29 image title link. -->
-				<strong><label for="signature-image-29-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;29 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-29-title-link" id="signature-image-29-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-29-title-link'] ) ) echo $signature_stored_meta['signature-image-29-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 29 image -->
-				<strong><label for="signature-image-29" class="signature-row-title"><?php _e( 'Signature Image &#35;29', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-29" id="signature-image-29" value="<?php if ( isset ( $signature_stored_meta['signature-image-29'] ) ) echo $signature_stored_meta['signature-image-29'][0];?>" />
-				<input type="button" id="signature-image-29-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 29 image sub-title. -->
-				<strong><label for="signature-image-29-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;29 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-29-sub-title" id="signature-image-29-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-29-sub-title'] ) ) echo $signature_stored_meta['signature-image-29-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 29 image caption.-->
-				<strong><label for="signature-image-29-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;29 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-29-caption" id="signature-image-29-caption"><?php if ( isset ( $signature_stored_meta['signature-image-29-caption'] ) ) echo $signature_stored_meta['signature-image-29-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #30 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage30">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;30</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 30 image title. -->
-				<strong><label for="signature-image-30-title" class="signature-row-title"><?php _e( 'Signature Image &#35;30 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-30-title" id="signature-image-30-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-30-title'] ) ) echo $signature_stored_meta['signature-image-30-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 30 image title link. -->
-				<strong><label for="signature-image-30-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;30 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-30-title-link" id="signature-image-30-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-30-title-link'] ) ) echo $signature_stored_meta['signature-image-30-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 30 image -->
-				<strong><label for="signature-image-30" class="signature-row-title"><?php _e( 'Signature Image &#35;30', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-30" id="signature-image-30" value="<?php if ( isset ( $signature_stored_meta['signature-image-30'] ) ) echo $signature_stored_meta['signature-image-30'][0];?>" />
-				<input type="button" id="signature-image-30-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 30 image sub-title. -->
-				<strong><label for="signature-image-30-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;30 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-30-sub-title" id="signature-image-30-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-30-sub-title'] ) ) echo $signature_stored_meta['signature-image-30-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 30 image caption.-->
-				<strong><label for="signature-image-30-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;30 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-30-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-30-caption'] ) ) echo $signature_stored_meta['signature-image-30-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
-
 	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
 	
 	<!-- ****
@@ -2048,127 +1881,24 @@ function signature_meta_callback( $post ) {
 		<div class="panel-heading">
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage31" aria-controls="signatureimage31" role="tab" data-toggle="tab">Signature Image &#35;31</a></li>
-				<li role="presentation"><a href="#signatureimage32" aria-controls="signatureimage32" role="tab" data-toggle="tab">Signature Image &#35;32</a></li>
-				<li role="presentation"><a href="#signatureimage33" aria-controls="signatureimage33" role="tab" data-toggle="tab">Signature Image &#35;33</a></li>
+				<li role="presentation" class="active"><a href="#signatureimage33" aria-controls="signatureimage33" role="tab" data-toggle="tab">Signature Image &#35;33</a></li>
+                <li role="presentation"><a href="#signatureimage34" aria-controls="signatureimage34" role="tab" data-toggle="tab">Signature Image &#35;34</a></li>
+                <li role="presentation"><a href="#signatureimage35" aria-controls="signatureimage32" role="tab" data-toggle="tab">Signature Image &#35;35</a></li>
+                <li role="presentation"><a href="#signatureimage36" aria-controls="signatureimage33" role="tab" data-toggle="tab">Signature Image &#35;36</a></li>
+                <li role="presentation"><a href="#signatureimage37" aria-controls="signatureimage37" role="tab" data-toggle="tab">Signature Image &#35;37</a></li>
+                <li role="presentation"><a href="#signatureimage38" aria-controls="signatureimage38" role="tab" data-toggle="tab">Signature Image &#35;38</a></li>
+                <li role="presentation"><a href="#signatureimage39" aria-controls="signatureimage39" role="tab" data-toggle="tab">Signature Image &#35;39</a></li>
+                <li role="presentation"><a href="#signatureimage40" aria-controls="signatureimage40" role="tab" data-toggle="tab">Signature Image &#35;40</a></li>
+                <li role="presentation"><a href="#signatureimage41" aria-controls="signatureimage41" role="tab" data-toggle="tab">Signature Image &#35;41</a></li>
+                <li role="presentation"><a href="#signatureimage42" aria-controls="signatureimage42" role="tab" data-toggle="tab">Signature Image &#35;42</a></li>
 			</ul>
 
 			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 31, 32, 33 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 31, 32, 33</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-313233-checkbox">
-					<input type="checkbox" name="signature-313233-checkbox" id="signature-313233-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-313233-checkbox'] ) ) checked( $signature_stored_meta['signature-313233-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 31, 32, 33.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
+		
 				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #31 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage31">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;31</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 31 image title. -->
-				<strong><label for="signature-image-31-title" class="signature-row-title"><?php _e( 'Signature Image &#35;31 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-31-title" id="signature-image-31-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-31-title'] ) ) echo $signature_stored_meta['signature-image-31-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 31 image title link. -->
-				<strong><label for="signature-image-31-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;31 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-31-title-link" id="signature-image-31-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-31-title-link'] ) ) echo $signature_stored_meta['signature-image-31-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 31 image -->
-				<strong><label for="signature-image-31" class="signature-row-title"><?php _e( 'Signature Image &#35;31', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-31" id="signature-image-31" value="<?php if ( isset ( $signature_stored_meta['signature-image-31'] ) ) echo $signature_stored_meta['signature-image-31'][0];?>" />
-				<input type="button" id="signature-image-31-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 31 image sub-title. -->
-				<strong><label for="signature-image-31-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;31 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-31-sub-title" id="signature-image-31-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-31-sub-title'] ) ) echo $signature_stored_meta['signature-image-31-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 31 image caption.-->
-				<strong><label for="signature-image-31-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;31 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-31-caption" id="signature-image-31-caption"><?php if ( isset ( $signature_stored_meta['signature-image-31-caption'] ) ) echo $signature_stored_meta['signature-image-31-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #32 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage32">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;32</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 32 image title. -->
-				<strong><label for="signature-image-32-title" class="signature-row-title"><?php _e( 'Signature Image &#35;32 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-32-title" id="signature-image-32-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-32-title'] ) ) echo $signature_stored_meta['signature-image-32-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 32 image title link. -->
-				<strong><label for="signature-image-32-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;32 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-32-title-link" id="signature-image-32-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-32-title-link'] ) ) echo $signature_stored_meta['signature-image-32-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 32 image -->
-				<strong><label for="signature-image-32" class="signature-row-title"><?php _e( 'Signature Image &#35;32', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-32" id="signature-image-32" value="<?php if ( isset ( $signature_stored_meta['signature-image-32'] ) ) echo $signature_stored_meta['signature-image-32'][0];?>" />
-				<input type="button" id="signature-image-32-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 32 image sub-title. -->
-				<strong><label for="signature-image-32-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;32 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-32-sub-title" id="signature-image-32-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-32-sub-title'] ) ) echo $signature_stored_meta['signature-image-32-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 32 image caption.-->
-				<strong><label for="signature-image-32-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;32 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-32-caption" id="signature-image-32-caption"><?php if ( isset ( $signature_stored_meta['signature-image-32-caption'] ) ) echo $signature_stored_meta['signature-image-32-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #33 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage33">
+                
+                <!-- ==== SIGNATURE #32 ==== -->
+				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage33">
 
 				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;33</h3>', 'signature-textdomain' );?></label><br>
 
@@ -2214,6 +1944,438 @@ function signature_meta_callback( $post ) {
 				</p>
 
 				</div>
+                
+                <!-- ==== SIGNATURE #34 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage34">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;34</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 34 image title. -->
+                    <strong><label for="signature-image-34-title" class="signature-row-title"><?php _e( 'Signature Image &#35;34 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-34-title" id="signature-image-34-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-34-title'] ) ) echo $signature_stored_meta['signature-image-34-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 34 image title link. -->
+                    <strong><label for="signature-image-34-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;34 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-34-title-link" id="signature-image-34-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-34-title-link'] ) ) echo $signature_stored_meta['signature-image-34-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 34 image -->
+                    <strong><label for="signature-image-34" class="signature-row-title"><?php _e( 'Signature Image &#35;34', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-34" id="signature-image-34" value="<?php if ( isset ( $signature_stored_meta['signature-image-34'] ) ) echo $signature_stored_meta['signature-image-34'][0];?>" />
+                    <input type="button" id="signature-image-34-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 34 image sub-title. -->
+                    <strong><label for="signature-image-34-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;34 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-34-sub-title" id="signature-image-34-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-34-sub-title'] ) ) echo $signature_stored_meta['signature-image-34-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 34 image caption.-->
+                    <strong><label for="signature-image-34-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;34 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-34-caption" id="signature-image-34-caption"><?php if ( isset ( $signature_stored_meta['signature-image-34-caption'] ) ) echo $signature_stored_meta['signature-image-34-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #35 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage35">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;35</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 35 image title. -->
+                    <strong><label for="signature-image-35-title" class="signature-row-title"><?php _e( 'Signature Image &#35;35 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-35-title" id="signature-image-35-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-35-title'] ) ) echo $signature_stored_meta['signature-image-35-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 35 image title link. -->
+                    <strong><label for="signature-image-35-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;35 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-35-title-link" id="signature-image-35-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-35-title-link'] ) ) echo $signature_stored_meta['signature-image-35-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 35 image -->
+                    <strong><label for="signature-image-35" class="signature-row-title"><?php _e( 'Signature Image &#35;35', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-35" id="signature-image-35" value="<?php if ( isset ( $signature_stored_meta['signature-image-35'] ) ) echo $signature_stored_meta['signature-image-35'][0];?>" />
+                    <input type="button" id="signature-image-35-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 35 image sub-title. -->
+                    <strong><label for="signature-image-35-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;35 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-35-sub-title" id="signature-image-35-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-35-sub-title'] ) ) echo $signature_stored_meta['signature-image-35-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 35 image caption.-->
+                    <strong><label for="signature-image-35-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;35 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-35-caption" id="signature-image-35-caption"><?php if ( isset ( $signature_stored_meta['signature-image-35-caption'] ) ) echo $signature_stored_meta['signature-image-35-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #36 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage36">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;36</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 36 image title. -->
+                    <strong><label for="signature-image-36-title" class="signature-row-title"><?php _e( 'Signature Image &#35;36 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-36-title" id="signature-image-36-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-36-title'] ) ) echo $signature_stored_meta['signature-image-36-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 36 image title link. -->
+                    <strong><label for="signature-image-36-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;36 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-36-title-link" id="signature-image-36-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-36-title-link'] ) ) echo $signature_stored_meta['signature-image-36-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 36 image -->
+                    <strong><label for="signature-image-36" class="signature-row-title"><?php _e( 'Signature Image &#35;36', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-36" id="signature-image-36" value="<?php if ( isset ( $signature_stored_meta['signature-image-36'] ) ) echo $signature_stored_meta['signature-image-36'][0];?>" />
+                    <input type="button" id="signature-image-36-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 36 image sub-title. -->
+                    <strong><label for="signature-image-36-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;36 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-36-sub-title" id="signature-image-36-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-36-sub-title'] ) ) echo $signature_stored_meta['signature-image-36-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 36 image caption.-->
+                    <strong><label for="signature-image-36-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;36 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-36-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-36-caption'] ) ) echo $signature_stored_meta['signature-image-36-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #37 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage37">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;37</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 37 image title. -->
+                    <strong><label for="signature-image-37-title" class="signature-row-title"><?php _e( 'Signature Image &#35;37 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-37-title" id="signature-image-37-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-37-title'] ) ) echo $signature_stored_meta['signature-image-37-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 37 image title link. -->
+                    <strong><label for="signature-image-37-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;37 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-37-title-link" id="signature-image-37-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-37-title-link'] ) ) echo $signature_stored_meta['signature-image-37-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 37 image -->
+                    <strong><label for="signature-image-37" class="signature-row-title"><?php _e( 'Signature Image &#35;37', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-37" id="signature-image-37" value="<?php if ( isset ( $signature_stored_meta['signature-image-37'] ) ) echo $signature_stored_meta['signature-image-37'][0];?>" />
+                    <input type="button" id="signature-image-37-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 37 image sub-title. -->
+                    <strong><label for="signature-image-37-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;37 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-37-sub-title" id="signature-image-37-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-37-sub-title'] ) ) echo $signature_stored_meta['signature-image-37-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 37 image caption.-->
+                    <strong><label for="signature-image-37-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;37 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-37-caption" id="signature-image-37-caption"><?php if ( isset ( $signature_stored_meta['signature-image-37-caption'] ) ) echo $signature_stored_meta['signature-image-37-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #38 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage38">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;38</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 38 image title. -->
+                    <strong><label for="signature-image-38-title" class="signature-row-title"><?php _e( 'Signature Image &#35;38 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-38-title" id="signature-image-38-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-38-title'] ) ) echo $signature_stored_meta['signature-image-38-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 38 image title link. -->
+                    <strong><label for="signature-image-38-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;38 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-38-title-link" id="signature-image-38-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-38-title-link'] ) ) echo $signature_stored_meta['signature-image-38-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 38 image -->
+                    <strong><label for="signature-image-38" class="signature-row-title"><?php _e( 'Signature Image &#35;38', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-38" id="signature-image-38" value="<?php if ( isset ( $signature_stored_meta['signature-image-38'] ) ) echo $signature_stored_meta['signature-image-38'][0];?>" />
+                    <input type="button" id="signature-image-38-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 38 image sub-title. -->
+                    <strong><label for="signature-image-38-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;38 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-38-sub-title" id="signature-image-38-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-38-sub-title'] ) ) echo $signature_stored_meta['signature-image-38-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 38 image caption.-->
+                    <strong><label for="signature-image-38-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;38 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-38-caption" id="signature-image-38-caption"><?php if ( isset ( $signature_stored_meta['signature-image-38-caption'] ) ) echo $signature_stored_meta['signature-image-38-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #39 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage39">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;39</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 39 image title. -->
+                    <strong><label for="signature-image-39-title" class="signature-row-title"><?php _e( 'Signature Image &#35;39 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-39-title" id="signature-image-39-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-39-title'] ) ) echo $signature_stored_meta['signature-image-39-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 39 image title link. -->
+                    <strong><label for="signature-image-39-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;39 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-39-title-link" id="signature-image-39-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-39-title-link'] ) ) echo $signature_stored_meta['signature-image-39-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 39 image -->
+                    <strong><label for="signature-image-39" class="signature-row-title"><?php _e( 'Signature Image &#35;39', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-39" id="signature-image-39" value="<?php if ( isset ( $signature_stored_meta['signature-image-39'] ) ) echo $signature_stored_meta['signature-image-39'][0];?>" />
+                    <input type="button" id="signature-image-39-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 39 image sub-title. -->
+                    <strong><label for="signature-image-39-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;39 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-39-sub-title" id="signature-image-39-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-39-sub-title'] ) ) echo $signature_stored_meta['signature-image-39-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 39 image caption.-->
+                    <strong><label for="signature-image-39-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;39 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-39-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-39-caption'] ) ) echo $signature_stored_meta['signature-image-39-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #40 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage40">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;40</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 40 image title. -->
+                    <strong><label for="signature-image-40-title" class="signature-row-title"><?php _e( 'Signature Image &#35;40 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-40-title" id="signature-image-40-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-40-title'] ) ) echo $signature_stored_meta['signature-image-40-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 40 image title link. -->
+                    <strong><label for="signature-image-40-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;40 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-40-title-link" id="signature-image-40-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-40-title-link'] ) ) echo $signature_stored_meta['signature-image-40-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 40 image -->
+                    <strong><label for="signature-image-40" class="signature-row-title"><?php _e( 'Signature Image &#35;40', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-40" id="signature-image-40" value="<?php if ( isset ( $signature_stored_meta['signature-image-40'] ) ) echo $signature_stored_meta['signature-image-40'][0];?>" />
+                    <input type="button" id="signature-image-40-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 40 image sub-title. -->
+                    <strong><label for="signature-image-40-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;40 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-40-sub-title" id="signature-image-40-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-40-sub-title'] ) ) echo $signature_stored_meta['signature-image-40-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 40 image caption.-->
+                    <strong><label for="signature-image-40-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;40 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-40-caption" id="signature-image-40-caption"><?php if ( isset ( $signature_stored_meta['signature-image-40-caption'] ) ) echo $signature_stored_meta['signature-image-40-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #41 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage41">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;41</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 41 image title. -->
+                    <strong><label for="signature-image-41-title" class="signature-row-title"><?php _e( 'Signature Image &#35;41 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-41-title" id="signature-image-41-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-41-title'] ) ) echo $signature_stored_meta['signature-image-41-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 41 image title link. -->
+                    <strong><label for="signature-image-41-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;41 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-41-title-link" id="signature-image-41-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-41-title-link'] ) ) echo $signature_stored_meta['signature-image-41-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 41 image -->
+                    <strong><label for="signature-image-41" class="signature-row-title"><?php _e( 'Signature Image &#35;41', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-41" id="signature-image-41" value="<?php if ( isset ( $signature_stored_meta['signature-image-41'] ) ) echo $signature_stored_meta['signature-image-41'][0];?>" />
+                    <input type="button" id="signature-image-41-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 41 image sub-title. -->
+                    <strong><label for="signature-image-41-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;41 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-41-sub-title" id="signature-image-41-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-41-sub-title'] ) ) echo $signature_stored_meta['signature-image-41-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 41 image caption.-->
+                    <strong><label for="signature-image-41-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;41 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-41-caption" id="signature-image-41-caption"><?php if ( isset ( $signature_stored_meta['signature-image-41-caption'] ) ) echo $signature_stored_meta['signature-image-41-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
+                
+                <!-- ==== SIGNATURE #42 ==== -->
+                <div role="tabpanel" class="tab-pane fade" id="signatureimage42">
+                  
+                  <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;42</h3>', 'signature-textdomain' );?></label><br>
+                  
+                  <p>
+                    
+                    <!-- Signature 42 image title. -->
+                    <strong><label for="signature-image-42-title" class="signature-row-title"><?php _e( 'Signature Image &#35;42 Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-42-title" id="signature-image-42-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-42-title'] ) ) echo $signature_stored_meta['signature-image-42-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 42 image title link. -->
+                    <strong><label for="signature-image-42-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;42 Title Link', 'signature-textdomain' );?></label></strong>
+                    <input  style="width: 100%;" type="text" name="signature-image-42-title-link" id="signature-image-42-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-42-title-link'] ) ) echo $signature_stored_meta['signature-image-42-title-link'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 42 image -->
+                    <strong><label for="signature-image-42" class="signature-row-title"><?php _e( 'Signature Image &#35;42', 'signature-textdomain' );?></label></strong><br>
+                    <input style="width:75%;" type="text" name="signature-image-42" id="signature-image-42" value="<?php if ( isset ( $signature_stored_meta['signature-image-42'] ) ) echo $signature_stored_meta['signature-image-42'][0];?>" />
+                    <input type="button" id="signature-image-42-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 42 image sub-title. -->
+                    <strong><label for="signature-image-42-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;42 Sub-Title', 'signature-textdomain' );?></label></strong>
+                    <input style="width: 100%;" type="text" name="signature-image-42-sub-title" id="signature-image-42-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-42-sub-title'] ) ) echo $signature_stored_meta['signature-image-42-sub-title'][0]; ?>" />
+                  
+                  </p>
+                  
+                  <p>
+                    
+                    <!-- Signature 42 image caption.-->
+                    <strong><label for="signature-image-42-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;42 Caption', 'signature-textdomain' )?></label></strong>
+                    <textarea style="width: 100%;" rows="4" name="signature-image-42-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-42-caption'] ) ) echo $signature_stored_meta['signature-image-42-caption'][0]; ?></textarea>
+                  
+                  </p>
+                
+                </div>
     
 				</div><!-- ./tab-content -->
 			</div><!-- ./panel-body boof -->
@@ -2221,550 +2383,7 @@ function signature_meta_callback( $post ) {
 	</div><!-- ./panel with-nav-tabs panel-default -->
 
 	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	
-	<!-- ****
-	Tabbed section 34, 35, 36 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage34" aria-controls="signatureimage34" role="tab" data-toggle="tab">Signature Image &#35;34</a></li>
-				<li role="presentation"><a href="#signatureimage35" aria-controls="signatureimage32" role="tab" data-toggle="tab">Signature Image &#35;35</a></li>
-				<li role="presentation"><a href="#signatureimage36" aria-controls="signatureimage33" role="tab" data-toggle="tab">Signature Image &#35;36</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 34, 35, 36 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 34, 35, 36</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-343536-checkbox">
-					<input type="checkbox" name="signature-343536-checkbox" id="signature-343536-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-343536-checkbox'] ) ) checked( $signature_stored_meta['signature-343536-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 34, 35, 36.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #34 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage34">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;34</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 34 image title. -->
-				<strong><label for="signature-image-34-title" class="signature-row-title"><?php _e( 'Signature Image &#35;34 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-34-title" id="signature-image-34-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-34-title'] ) ) echo $signature_stored_meta['signature-image-34-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 34 image title link. -->
-				<strong><label for="signature-image-34-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;34 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-34-title-link" id="signature-image-34-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-34-title-link'] ) ) echo $signature_stored_meta['signature-image-34-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 34 image -->
-				<strong><label for="signature-image-34" class="signature-row-title"><?php _e( 'Signature Image &#35;34', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-34" id="signature-image-34" value="<?php if ( isset ( $signature_stored_meta['signature-image-34'] ) ) echo $signature_stored_meta['signature-image-34'][0];?>" />
-				<input type="button" id="signature-image-34-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 34 image sub-title. -->
-				<strong><label for="signature-image-34-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;34 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-34-sub-title" id="signature-image-34-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-34-sub-title'] ) ) echo $signature_stored_meta['signature-image-34-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 34 image caption.-->
-				<strong><label for="signature-image-34-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;34 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-34-caption" id="signature-image-34-caption"><?php if ( isset ( $signature_stored_meta['signature-image-34-caption'] ) ) echo $signature_stored_meta['signature-image-34-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #35 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage35">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;35</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 35 image title. -->
-				<strong><label for="signature-image-35-title" class="signature-row-title"><?php _e( 'Signature Image &#35;35 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-35-title" id="signature-image-35-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-35-title'] ) ) echo $signature_stored_meta['signature-image-35-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 35 image title link. -->
-				<strong><label for="signature-image-35-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;35 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-35-title-link" id="signature-image-35-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-35-title-link'] ) ) echo $signature_stored_meta['signature-image-35-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 35 image -->
-				<strong><label for="signature-image-35" class="signature-row-title"><?php _e( 'Signature Image &#35;35', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-35" id="signature-image-35" value="<?php if ( isset ( $signature_stored_meta['signature-image-35'] ) ) echo $signature_stored_meta['signature-image-35'][0];?>" />
-				<input type="button" id="signature-image-35-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 35 image sub-title. -->
-				<strong><label for="signature-image-35-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;35 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-35-sub-title" id="signature-image-35-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-35-sub-title'] ) ) echo $signature_stored_meta['signature-image-35-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 35 image caption.-->
-				<strong><label for="signature-image-35-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;35 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-35-caption" id="signature-image-35-caption"><?php if ( isset ( $signature_stored_meta['signature-image-35-caption'] ) ) echo $signature_stored_meta['signature-image-35-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #36 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage36">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;36</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 36 image title. -->
-				<strong><label for="signature-image-36-title" class="signature-row-title"><?php _e( 'Signature Image &#35;36 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-36-title" id="signature-image-36-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-36-title'] ) ) echo $signature_stored_meta['signature-image-36-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 36 image title link. -->
-				<strong><label for="signature-image-36-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;36 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-36-title-link" id="signature-image-36-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-36-title-link'] ) ) echo $signature_stored_meta['signature-image-36-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 36 image -->
-				<strong><label for="signature-image-36" class="signature-row-title"><?php _e( 'Signature Image &#35;36', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-36" id="signature-image-36" value="<?php if ( isset ( $signature_stored_meta['signature-image-36'] ) ) echo $signature_stored_meta['signature-image-36'][0];?>" />
-				<input type="button" id="signature-image-36-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 36 image sub-title. -->
-				<strong><label for="signature-image-36-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;36 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-36-sub-title" id="signature-image-36-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-36-sub-title'] ) ) echo $signature_stored_meta['signature-image-36-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 36 image caption.-->
-				<strong><label for="signature-image-36-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;36 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-36-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-36-caption'] ) ) echo $signature_stored_meta['signature-image-36-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
-
-	<hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	
-	<!-- ****
-	Tabbed section 37, 38, 39 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage37" aria-controls="signatureimage37" role="tab" data-toggle="tab">Signature Image &#35;37</a></li>
-				<li role="presentation"><a href="#signatureimage38" aria-controls="signatureimage38" role="tab" data-toggle="tab">Signature Image &#35;38</a></li>
-				<li role="presentation"><a href="#signatureimage39" aria-controls="signatureimage39" role="tab" data-toggle="tab">Signature Image &#35;39</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 37, 38, 39 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 37, 38, 39</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-373839-checkbox">
-					<input type="checkbox" name="signature-373839-checkbox" id="signature-373839-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-373839-checkbox'] ) ) checked( $signature_stored_meta['signature-373839-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 37, 38, 39.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #37 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage37">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;37</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 37 image title. -->
-				<strong><label for="signature-image-37-title" class="signature-row-title"><?php _e( 'Signature Image &#35;37 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-37-title" id="signature-image-37-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-37-title'] ) ) echo $signature_stored_meta['signature-image-37-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 37 image title link. -->
-				<strong><label for="signature-image-37-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;37 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-37-title-link" id="signature-image-37-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-37-title-link'] ) ) echo $signature_stored_meta['signature-image-37-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 37 image -->
-				<strong><label for="signature-image-37" class="signature-row-title"><?php _e( 'Signature Image &#35;37', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-37" id="signature-image-37" value="<?php if ( isset ( $signature_stored_meta['signature-image-37'] ) ) echo $signature_stored_meta['signature-image-37'][0];?>" />
-				<input type="button" id="signature-image-37-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 37 image sub-title. -->
-				<strong><label for="signature-image-37-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;37 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-37-sub-title" id="signature-image-37-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-37-sub-title'] ) ) echo $signature_stored_meta['signature-image-37-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 37 image caption.-->
-				<strong><label for="signature-image-37-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;37 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-37-caption" id="signature-image-37-caption"><?php if ( isset ( $signature_stored_meta['signature-image-37-caption'] ) ) echo $signature_stored_meta['signature-image-37-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #38 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage38">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;38</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 38 image title. -->
-				<strong><label for="signature-image-38-title" class="signature-row-title"><?php _e( 'Signature Image &#35;38 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-38-title" id="signature-image-38-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-38-title'] ) ) echo $signature_stored_meta['signature-image-38-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 38 image title link. -->
-				<strong><label for="signature-image-38-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;38 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-38-title-link" id="signature-image-38-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-38-title-link'] ) ) echo $signature_stored_meta['signature-image-38-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 38 image -->
-				<strong><label for="signature-image-38" class="signature-row-title"><?php _e( 'Signature Image &#35;38', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-38" id="signature-image-38" value="<?php if ( isset ( $signature_stored_meta['signature-image-38'] ) ) echo $signature_stored_meta['signature-image-38'][0];?>" />
-				<input type="button" id="signature-image-38-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 38 image sub-title. -->
-				<strong><label for="signature-image-38-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;38 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-38-sub-title" id="signature-image-38-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-38-sub-title'] ) ) echo $signature_stored_meta['signature-image-38-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 38 image caption.-->
-				<strong><label for="signature-image-38-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;38 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-38-caption" id="signature-image-38-caption"><?php if ( isset ( $signature_stored_meta['signature-image-38-caption'] ) ) echo $signature_stored_meta['signature-image-38-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #39 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage39">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;39</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 39 image title. -->
-				<strong><label for="signature-image-39-title" class="signature-row-title"><?php _e( 'Signature Image &#35;39 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-39-title" id="signature-image-39-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-39-title'] ) ) echo $signature_stored_meta['signature-image-39-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 39 image title link. -->
-				<strong><label for="signature-image-39-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;39 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-39-title-link" id="signature-image-39-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-39-title-link'] ) ) echo $signature_stored_meta['signature-image-39-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 39 image -->
-				<strong><label for="signature-image-39" class="signature-row-title"><?php _e( 'Signature Image &#35;39', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-39" id="signature-image-39" value="<?php if ( isset ( $signature_stored_meta['signature-image-39'] ) ) echo $signature_stored_meta['signature-image-39'][0];?>" />
-				<input type="button" id="signature-image-39-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 39 image sub-title. -->
-				<strong><label for="signature-image-39-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;39 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-39-sub-title" id="signature-image-39-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-39-sub-title'] ) ) echo $signature_stored_meta['signature-image-39-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 39 image caption.-->
-				<strong><label for="signature-image-39-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;39 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-39-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-39-caption'] ) ) echo $signature_stored_meta['signature-image-39-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
-
-  <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-	
-	<!-- ****
-	Tabbed section 40, 41, 42 begins here
-	**** -->
-	<div class="panel with-nav-tabs panel-default">
-		<div class="panel-heading">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#signatureimage40" aria-controls="signatureimage40" role="tab" data-toggle="tab">Signature Image &#35;40</a></li>
-				<li role="presentation"><a href="#signatureimage41" aria-controls="signatureimage41" role="tab" data-toggle="tab">Signature Image &#35;41</a></li>
-				<li role="presentation"><a href="#signatureimage42" aria-controls="signatureimage42" role="tab" data-toggle="tab">Signature Image &#35;42</a></li>
-			</ul>
-
-			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional images 40, 41, 42 ==== -->
-
-					<span class="signature-row-title"><?php _e( '<strong>Display images 40, 41, 42</strong>', 'signature-textdomain' )?></span>
-					<div class="signature-row-content">
-					<label for="signature-404142-checkbox">
-					<input type="checkbox" name="signature-404142-checkbox" id="signature-404142-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-404142-checkbox'] ) ) checked( $signature_stored_meta['signature-404142-checkbox'][0], 'yes' ); ?> />
-					<?php _e( 'Check box to show images 40, 41, 42.', 'signature-textdomain' )?>
-					</label>
-					</label>
-					</div>
-
-				</p>
-			
-				<div class="tab-content">
-
-				<!-- ==== SIGNATURE #40 ==== -->
-				<div role="tabpanel" class="tab-pane fade in active" id="signatureimage40">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;40</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 40 image title. -->
-				<strong><label for="signature-image-40-title" class="signature-row-title"><?php _e( 'Signature Image &#35;40 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-40-title" id="signature-image-40-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-40-title'] ) ) echo $signature_stored_meta['signature-image-40-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 40 image title link. -->
-				<strong><label for="signature-image-40-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;40 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-40-title-link" id="signature-image-40-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-40-title-link'] ) ) echo $signature_stored_meta['signature-image-40-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 40 image -->
-				<strong><label for="signature-image-40" class="signature-row-title"><?php _e( 'Signature Image &#35;40', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-40" id="signature-image-40" value="<?php if ( isset ( $signature_stored_meta['signature-image-40'] ) ) echo $signature_stored_meta['signature-image-40'][0];?>" />
-				<input type="button" id="signature-image-40-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 40 image sub-title. -->
-				<strong><label for="signature-image-40-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;40 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-40-sub-title" id="signature-image-40-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-40-sub-title'] ) ) echo $signature_stored_meta['signature-image-40-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 40 image caption.-->
-				<strong><label for="signature-image-40-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;40 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-40-caption" id="signature-image-40-caption"><?php if ( isset ( $signature_stored_meta['signature-image-40-caption'] ) ) echo $signature_stored_meta['signature-image-40-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #41 ==== -->
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage41">
-				
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;41</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 41 image title. -->
-				<strong><label for="signature-image-41-title" class="signature-row-title"><?php _e( 'Signature Image &#35;41 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-41-title" id="signature-image-41-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-41-title'] ) ) echo $signature_stored_meta['signature-image-41-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 41 image title link. -->
-				<strong><label for="signature-image-41-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;41 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-41-title-link" id="signature-image-41-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-41-title-link'] ) ) echo $signature_stored_meta['signature-image-41-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 41 image -->
-				<strong><label for="signature-image-41" class="signature-row-title"><?php _e( 'Signature Image &#35;41', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-41" id="signature-image-41" value="<?php if ( isset ( $signature_stored_meta['signature-image-41'] ) ) echo $signature_stored_meta['signature-image-41'][0];?>" />
-				<input type="button" id="signature-image-41-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 41 image sub-title. -->
-				<strong><label for="signature-image-41-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;41 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-41-sub-title" id="signature-image-41-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-41-sub-title'] ) ) echo $signature_stored_meta['signature-image-41-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 41 image caption.-->
-				<strong><label for="signature-image-41-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;41 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-41-caption" id="signature-image-41-caption"><?php if ( isset ( $signature_stored_meta['signature-image-41-caption'] ) ) echo $signature_stored_meta['signature-image-41-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-
-				<!-- ==== SIGNATURE #42 ==== -->
-				
-				<div role="tabpanel" class="tab-pane fade" id="signatureimage42">
-
-				<label for="signature-image" class="signature-row-title"><?php _e( '<h3>Signature &#35;42</h3>', 'signature-textdomain' );?></label><br>
-
-				<p>
-
-				<!-- Signature 42 image title. -->
-				<strong><label for="signature-image-42-title" class="signature-row-title"><?php _e( 'Signature Image &#35;42 Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-42-title" id="signature-image-42-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-42-title'] ) ) echo $signature_stored_meta['signature-image-42-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 42 image title link. -->
-				<strong><label for="signature-image-42-title-link" class="signature-row-title-link"><?php _e( 'Signature Image &#35;42 Title Link', 'signature-textdomain' );?></label></strong>
-				<input  style="width: 100%;" type="text" name="signature-image-42-title-link" id="signature-image-42-title-link" value="<?php if ( isset ( $signature_stored_meta['signature-image-42-title-link'] ) ) echo $signature_stored_meta['signature-image-42-title-link'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 42 image -->
-				<strong><label for="signature-image-42" class="signature-row-title"><?php _e( 'Signature Image &#35;42', 'signature-textdomain' );?></label></strong><br>
-				<input style="width:75%;" type="text" name="signature-image-42" id="signature-image-42" value="<?php if ( isset ( $signature_stored_meta['signature-image-42'] ) ) echo $signature_stored_meta['signature-image-42'][0];?>" />
-				<input type="button" id="signature-image-42-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'signature-textdomain' );?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 42 image sub-title. -->
-				<strong><label for="signature-image-42-sub-title" class="signature-row-title"><?php _e( 'Signature Image &#35;42 Sub-Title', 'signature-textdomain' );?></label></strong>
-				<input style="width: 100%;" type="text" name="signature-image-42-sub-title" id="signature-image-42-sub-title" value="<?php if ( isset ( $signature_stored_meta['signature-image-42-sub-title'] ) ) echo $signature_stored_meta['signature-image-42-sub-title'][0]; ?>" />
-
-				</p>
-
-				<p>
-
-				<!-- Signature 42 image caption.-->
-				<strong><label for="signature-image-42-caption" class="signature-row-title"><?php _e( 'Signature Image &#35;42 Caption', 'signature-textdomain' )?></label></strong>
-				<textarea style="width: 100%;" rows="4" name="signature-image-42-caption" id="signature-image-21-caption"><?php if ( isset ( $signature_stored_meta['signature-image-42-caption'] ) ) echo $signature_stored_meta['signature-image-42-caption'][0]; ?></textarea>
-
-				</p>
-
-				</div>
-    
-				</div><!-- ./tab-content -->
-			</div><!-- ./panel-body boof -->
-		</div><!-- ./panel-heading -->
-	</div><!-- ./panel with-nav-tabs panel-default -->
-
-  <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
-    
+  
     <!-- ****
 		Tabbed section begins here
 		**** -->
@@ -2779,19 +2398,6 @@ function signature_meta_callback( $post ) {
 			</ul>
 
 			<div class="panel-body boof">
-			
-			<p> <!-- ==== Optional centered image ==== -->
-
-			<span class="signature-row-title"><?php _e( '<strong>Display two centered images and content</strong>', 'signature-textdomain' )?></span>
-			<div class="signature-row-content">
-			<label for="signature-2-checkbox">
-			<input type="checkbox" name="signature-2-checkbox" id="signature-2-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-2-checkbox'] ) ) checked( $signature_stored_meta['signature-2-checkbox'][0], 'yes' ); ?> />
-			<?php _e( 'Check box to show two centered final images.', 'signature-textdomain' )?>
-			</label>
-			</label>
-			</div>
-
-			</p>
 			
 				<div class="tab-content">
 
@@ -2896,19 +2502,6 @@ function signature_meta_callback( $post ) {
 			</div><!-- ./panel-body boof -->
 		</div><!-- ./panel-heading -->
 	</div><!-- ./panel with-nav-tabs panel-default -->
-  
-  <p> <!-- ==== Optional centered image ==== -->
-
-		<span class="signature-row-title"><?php _e( '<strong>Display single centered image/content</strong>', 'signature-textdomain' )?></span>
-		<div class="signature-row-content">
-		<label for="signature-1-checkbox">
-		<input type="checkbox" name="signature-1-checkbox" id="signature-1-checkbox" value="yes" <?php if ( isset ( $signature_stored_meta['signature-1-checkbox'] ) ) checked( $signature_stored_meta['signature-1-checkbox'][0], 'yes' ); ?> />
-		<?php _e( 'Check box to show centered final image.', 'signature-textdomain' )?>
-		</label>
-		</label>
-		</div>
-		
-	</p>
   
   <label for="signature-image" class="signature-row-title"><?php _e( '<h3>Optional Centered Image &amp; Content</h3>', 'signature-textdomain' );?></label><br>
 
