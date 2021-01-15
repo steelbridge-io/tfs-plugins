@@ -45,7 +45,7 @@ $outfittersblog_stored_meta = get_post_meta( $post->ID );?>
   </p>
   
   <p> <!-- ==== Blog Logo ==== -->
-    <label for="outfitters-logo" class="outfitters-logo"><?php _e( '<h3>TFS Logo</h3>', 'the-fly-shop' );?></label>
+    <label for="outfitters-logo" class="travel-row-title"><?php _e( '<h3>TFS Logo</h3>', 'the-fly-shop' );?></label>
     
     <input type="text" name="outfitters-logo" id="outfitters-logo" value="<?php if ( isset ( $outfittersblog_stored_meta['outfitters-logo'] ) ) echo $outfittersblog_stored_meta['outfitters-logo'][0];?>" />
     <input type="button" id="outfitters-logo-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'travel-textdomain' );?>" />
