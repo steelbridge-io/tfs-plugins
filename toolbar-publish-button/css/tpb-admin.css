@@ -1,0 +1,94 @@
+
+/* == Button Styles == */
+
+#wpadminbar .wpuxss-tpb .ab-item {
+    padding: 0 14px 0 7px;
+}
+#wpadminbar:not(.mobile) > #wp-toolbar li.wpuxss-tpb:hover span.ab-label,
+#wpadminbar li.wpuxss-tpb:hover .ab-icon:before {
+    color: #fff;
+}
+
+#wpadminbar .wpuxss-tpb-publish .ab-icon {
+    margin-right: 2px !important;
+}
+#wpadminbar .wpuxss-tpb-publish .ab-icon:before {
+    content: '\f147';
+    font-size: 28px;
+}
+#wpadminbar .wpuxss-tpb-save-post .ab-icon:before {
+    content: '\f464';
+    font-size: 22px;
+}
+#wpadminbar .wpuxss-tpb-post-preview .ab-icon:before {
+    content: '\f115';
+    font-size: 24px;
+}
+#wpadminbar #wpuxss-tpb-buttons-right {
+    margin-right: 10px;
+}
+
+
+
+/* == Option Page Styles == */
+
+#wpuxss-credit .author {
+    font-style: italic;
+    margin: 30px 0 0;
+    padding: 10px 0 5px;
+    border-top: 1px solid #e0e5e9;
+}
+#wpuxss-credit .logo-webbistro {
+    font-style: italic;
+    text-decoration: none;
+}
+#wpuxss-credit .icon-webbistro {
+    font-family: 'webbistro';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+#wpuxss-credit h4 {
+    margin: 20px 0 4px;
+}
+#wpuxss-credit p,
+#wpuxss-credit ul {
+    margin-top: 0;
+}
+#wpuxss-credit li {
+    list-style: disc;
+    margin-left: 1.4em;
+}
+#wpuxss-credit .button-primary {
+    background-color: #1ace0d;
+    border-color: #139a09;
+}
+#wpuxss-credit .button-primary:hover {
+    background: #1dbb11;
+    border-color: #127d0a;
+    color: #e4ffe2;
+}
+#wpuxss-credit .button-primary:focus {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #1dbb11;
+}
+#wpuxss-credit .button-primary span {
+    font-weight: bold;
+}
+
+
+
+
+@font-face {
+    font-family: 'webbistro';
+    src:url('../fonts/webbistro.eot');
+    src:url('../fonts/webbistro.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/webbistro.woff') format('woff'),
+        url('../fonts/webbistro.ttf') format('truetype'),
+        url('../fonts/webbistro.svg#webbistro') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
