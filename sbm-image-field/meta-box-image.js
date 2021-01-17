@@ -10507,3 +10507,42 @@ jQuery(document).ready( function($){ "use strict";
         outfitters_image_frame.open();
     });
 });
+
+jQuery(document).ready( function($){ "use strict";
+
+// Instantiates the variable that holds the media library frame.
+    var newstemplate_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#news-template-logo-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( newstemplate_image_frame ) {
+            newstemplate_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        newstemplate_image_frame = wp.media.frames.newstemplate_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        newstemplate_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = newstemplate_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#news-template-logo').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        newstemplate_image_frame.open();
+    });
+});

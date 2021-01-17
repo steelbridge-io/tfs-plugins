@@ -22,6 +22,10 @@ include( plugin_dir_path( __FILE__ ) . 'includes/sections_image_field.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/holiday_image_field.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/outfitters_image_field.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/signature_travel_meta.php');
+include( plugin_dir_path( __FILE__ ) . 'includes/newstemplate_options.php');
+
+
+
 include( plugin_dir_path( __FILE__ ) . 'css/stream-report-css.php');
 
 /*

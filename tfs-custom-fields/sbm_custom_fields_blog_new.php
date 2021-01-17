@@ -3,9 +3,9 @@
  * Description: New Blog Template Custom Meta Fields
  *
  * @package		tfsBlog
- * @since			1.3.0
- * @author			Chris Parsons
- * @link				http://steelbridge.io
+ * @since		1.3.0
+ * @author		Chris Parsons
+ * @link		http://steelbridge.io
  * @license		GNU General Public License
  */
 
@@ -17,7 +17,7 @@ function tfs_cust_blog_new() {
   if(!empty($post)){
     $pageTemplate = get_post_meta($post->ID, '_wp_page_template', true);
     if($pageTemplate == 'page-templates/blog-template-new.php' || 'page-templates/blog-template-travel.php') {
-      $types = array('post', 'page', 'lower48', 'lower48blog', 'travel-blog' );
+      $types = array('post', 'page', 'lower48', 'lower48blog', 'travel-blog');
       foreach($types as $type) {
         add_meta_box( 'blog_meta', __( 'Blog Template Options &amp; Content', 'tfs-blog-textdomain' ), 'tfs_newblog_callback', $type, 'normal', 'high' );
       }
