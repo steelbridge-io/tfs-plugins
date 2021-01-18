@@ -22,4 +22,12 @@ function news_template_meta_save( $post_id ) {
   if( isset( $_POST[ 'news-template-select-sidebar' ] ) ) {
     update_post_meta( $post_id, 'news-template-select-sidebar', $_POST[ 'news-template-select-sidebar' ] );
   }
+  
+  if( isset( $_POST[ 'news-template-description' ] ) ) {
+    update_post_meta( $post_id, 'news-template-description', $_POST[ 'news-template-description' ] );
+  }
+  
+  if( isset( $_POST[ 'news-template-select-post' ] ) ) {
+    update_post_meta( $post_id, 'news-template-select-post', $_POST[ 'news-template-select-post' ] );
+  }
 }
