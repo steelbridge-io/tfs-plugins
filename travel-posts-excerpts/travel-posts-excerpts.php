@@ -63,8 +63,6 @@ class TVLPostsAndExcerpts extends WP_Widget {
     echo '<div>';
     
     // retrieve last n blog posts
-    $q = array('posts_per_page' => $instance['numposts']);
-    
     if (!empty($instance['ignore_sticky_posts'])) {
       $q["ignore_sticky_posts"] = $instance['ignore_sticky_posts'];
     }
@@ -76,6 +74,7 @@ class TVLPostsAndExcerpts extends WP_Widget {
       $q['tag'] = $instance['tag'];
     $q = apply_filters('tvl_posts_excerpt_query', $q);
     $q = array('post_type'=>array('travel-blog'));
+    $q = array('posts_per_page' => $instance['travel_numposts']);
     $rpwe = new wp_query($q);
     $excerpts = $instance['numexcerpts'];
     $date = apply_filters('tvl_posts_excerpt_date_format', $instance['date']);
@@ -122,7 +121,7 @@ class TVLPostsAndExcerpts extends WP_Widget {
   function update( $new_instance, $old_instance ) {
     $instance = $old_instance;
     $instance['title'] 				 = sanitize_text_field($new_instance['title']);
-    $instance['numposts'] 			 = intval($new_instance['numposts']);
+    $instance['travel_numposts'] 			 = intval($new_instance['travel_numposts']);
     $instance['ignore_sticky_posts'] = intval($new_instance['ignore_sticky_posts']);
     $instance['offset'] 			 = intval($new_instance['offset']);
     $instance['numexcerpts'] 		 = intval($new_instance['numexcerpts']);
@@ -148,7 +147,7 @@ class TVLPostsAndExcerpts extends WP_Widget {
     //Defaults
     $instance = wp_parse_args( (array) $instance, array(
       'title' => __('Travel Posts & Excerpts', 'tvl_posts_excerpt'),
-      'numposts' => 5,
+      'travel_numposts' => 5,
       'ignore_sticky_posts' => 1,
       'numexcerpts' => 5,
       'date' => get_option('date_format'),
@@ -173,8 +172,8 @@ class TVLPostsAndExcerpts extends WP_Widget {
       <label for="<?php echo $this->get_field_id('postlink'); ?>"><?php _e('Link widget title to blog home page?', 'tvl_posts_excerpt'); ?></label>
       <input id="<?php echo $this->get_field_id('postlink'); ?>" name="<?php echo $this->get_field_name('postlink'); ?>" type="checkbox" <?php if ($instance['postlink']) { ?> checked="checked" <?php } ?> />
     </p>
-    <p><label for="<?php echo $this->get_field_id('numposts'); ?>"><?php _e('Number of posts to show:', 'tvl_posts_excerpt'); ?></label>
-      <input class="widefat" id="<?php echo $this->get_field_id('numposts'); ?>" name="<?php echo $this->get_field_name('numposts'); ?>" type="text" value="<?php echo $instance['numposts']; ?>" /></p>
+    <p><label for="<?php echo $this->get_field_id('travel_numposts'); ?>"><?php _e('Number of posts to show:', 'tvl_posts_excerpt'); ?></label>
+      <input class="widefat" id="<?php echo $this->get_field_id('travel_numposts'); ?>" name="<?php echo $this->get_field_name('travel_numposts'); ?>" type="text" value="<?php echo $instance['travel_numposts']; ?>" /></p>
     
     <p>
       <label for="<?php echo $this->get_field_id('ignore_sticky_posts'); ?>"><?php _e('Ignore sticky posts?', 'tvl_posts_excerpt'); ?></label>

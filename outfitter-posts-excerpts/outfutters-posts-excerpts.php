@@ -24,7 +24,7 @@ class outfittersPostsExcerpts extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array('classname' => 'recent_with_excerpt', 'description' => __( 'Your most recent posts, with optional excerpts', 'outfitters_posts_excerpts') );
-		parent::__construct('outfittersPostsExcerpts', __('Outfitetrs Post And Excerpt', 'outfitters_posts_excerpts'), $widget_ops);
+		parent::__construct('outfittersPostsExcerpts', __('Outfitters Posts And Excerpt', 'outfitters_posts_excerpts'), $widget_ops);
 	}
 	
 	
@@ -33,7 +33,7 @@ class outfittersPostsExcerpts extends WP_Widget {
 			
 			$title = apply_filters('widget_title', $instance['title']);
 			
-			//echo $before_widget . $before_tag;
+			echo $before_widget . $before_tag;
             echo $before_widget;
 			if ( !empty($title) ) {
 				if (!empty($instance['postlink']))  {
@@ -62,10 +62,30 @@ class outfittersPostsExcerpts extends WP_Widget {
 			
 			do_action('outfitters_posts_excerpts_begin');
 			echo '<div>';
+      
+            function update( $new_instance, $old_instance ) {
+              $instance = $old_instance;
+              $instance['title'] 				  = sanitize_text_field($new_instance['title']);
+              $instance['outfitters_numposts']    = intval($new_instance['outfitters_numposts']);
+              $instance['ignore_sticky_posts']    = intval($new_instance['ignore_sticky_posts']);
+              $instance['flyfishing-news']        = intval($new_instance['flyfishing-news']);
+              $instance['offset'] 			      = intval($new_instance['offset']);
+              $instance['numexcerpts'] 		      = intval($new_instance['numexcerpts']);
+              $instance['more_text'] 			  = sanitize_text_field($new_instance['more_text']);
+              $instance['date'] 				  = sanitize_text_field($new_instance['date']);
+              $instance['words'] 				  = intval($new_instance['words']);
+              $instance['tags'] 				  = $new_instance['tags'];
+              $instance['outfitters'] 		      = intval($new_instance['outfitters']);
+              $instance['tag'] 				      = sanitize_text_field($new_instance['tag']);
+              $instance['postlink'] 			  = intval($new_instance['postlink']);
+              $instance['thumb'] 				  = intval($new_instance['thumb']);
+              $instance['thumbposition'] 		  = sanitize_text_field($new_instance['thumbposition']);
+              $instance['thumbsize'] 			  = sanitize_text_field($new_instance['thumbsize']);
+              return $instance;
+            }
+            
 			
 			// retrieve last n blog posts
-			$q = array('posts_per_page' => $instance['numposts']);
-			
 			if (!empty($instance['ignore_sticky_posts'])) {
 				$q["ignore_sticky_posts"] = $instance['ignore_sticky_posts'];
 			}
@@ -77,9 +97,10 @@ class outfittersPostsExcerpts extends WP_Widget {
 				$q['tag'] = $instance['tag'];
 			$q = apply_filters('outfitters_posts_excerpts_query', $q);
             $q = array('post_type'=>array('flyfishing-news'));
+            $q = array('posts_per_page' => $instance['outfitters_numposts']);
 			$rpwe = new wp_query($q);
 			$excerpts = $instance['numexcerpts'];
-			$date = apply_filters('outfitters_posts_excerpts_date_format', $instance['date']);
+			//$date = apply_filters('outfitters_posts_excerpts_date_format', $instance['date']);
 			
 			// the Loop
    
@@ -121,27 +142,6 @@ class outfittersPostsExcerpts extends WP_Widget {
             echo $after_widget;
 			wp_reset_query();
 	}
-	
-	
-	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		$instance['title'] 				 = sanitize_text_field($new_instance['title']);
-		$instance['numposts'] 			 = intval($new_instance['numposts']);
-		$instance['ignore_sticky_posts'] = intval($new_instance['ignore_sticky_posts']);
-		$instance['offset'] 			 = intval($new_instance['offset']);
-		$instance['numexcerpts'] 		 = intval($new_instance['numexcerpts']);
-		$instance['more_text'] 			 = sanitize_text_field($new_instance['more_text']);
-		$instance['date'] 				 = sanitize_text_field($new_instance['date']);
-		$instance['words'] 				 = intval($new_instance['words']);
-		$instance['tags'] 				 = $new_instance['tags'];
-		$instance['outfitters'] 		 = intval($new_instance['outfitters']);
-		$instance['tag'] 				 = sanitize_text_field($new_instance['tag']);
-		$instance['postlink'] 			 = intval($new_instance['postlink']);
-		$instance['thumb'] 				 = intval($new_instance['thumb']);
-		$instance['thumbposition'] 		 = sanitize_text_field($new_instance['thumbposition']);
-		$instance['thumbsize'] 			 = sanitize_text_field($new_instance['thumbsize']);
-		return $instance;
-	}
 
 	function form( $instance ) {
 		if (get_option('show_on_front') == 'page')
@@ -150,9 +150,10 @@ class outfittersPostsExcerpts extends WP_Widget {
 			$link = home_url();
 
 		//Defaults
+        $value = $instance['outfitters_numposts'];
 		$instance = wp_parse_args( (array) $instance, array(
 			'title' => __('FlyFishing News', 'outfitters_posts_excerpts'),
-			'numposts' => 5,
+			'outfitters_numposts' => 5,
 			'ignore_sticky_posts' => 1,
 			'numexcerpts' => 5,
 			'date' => get_option('date_format'),
@@ -177,8 +178,8 @@ class outfittersPostsExcerpts extends WP_Widget {
        <label for="<?php echo $this->get_field_id('postlink'); ?>"><?php _e('Link widget title to blog home page?', 'outfitters_posts_excerpts'); ?></label>
        <input id="<?php echo $this->get_field_id('postlink'); ?>" name="<?php echo $this->get_field_name('postlink'); ?>" type="checkbox" <?php if ($instance['postlink']) { ?> checked="checked" <?php } ?> />
        </p>
-       <p><label for="<?php echo $this->get_field_id('numposts'); ?>"><?php _e('Number of posts to show:', 'outfitters_posts_excerpts'); ?></label>
-       <input class="widefat" id="<?php echo $this->get_field_id('numposts'); ?>" name="<?php echo $this->get_field_name('numposts'); ?>" type="text" value="<?php echo $instance['numposts']; ?>" /></p>
+       <p><label for="<?php echo $this->get_field_id('outfitters_numposts'); ?>"><?php _e('Number of posts to show:', 'outfitters_posts_excerpts'); ?></label>
+       <input class="widefat" id="<?php echo $this->get_field_id('outfitters_numposts'); ?>" name="<?php echo $this->get_field_name('outfitters_numposts'); ?>" type="text" value="<?php echo $instance['outfitters_numposts']; ?>" /></p>
 
        <p>
        <label for="<?php echo $this->get_field_id('ignore_sticky_posts'); ?>"><?php _e('Ignore sticky posts?', 'outfitters_posts_excerpts'); ?></label>
