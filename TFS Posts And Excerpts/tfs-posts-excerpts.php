@@ -63,8 +63,6 @@ class TFSPostsAndExcerpts extends WP_Widget {
     echo '<div>';
     
     // retrieve last n blog posts
-    $q = array('posts_per_page' => $instance['numposts']);
-    
     if (!empty($instance['ignore_sticky_posts'])) {
       $q["ignore_sticky_posts"] = $instance['ignore_sticky_posts'];
     }
@@ -75,6 +73,7 @@ class TFSPostsAndExcerpts extends WP_Widget {
     if (!empty($instance['tag']))
       $q['tag'] = $instance['tag'];
     $q = apply_filters('tfs_posts_excerpt_query', $q);
+    $q = array('posts_per_page' => $instance['numposts']);
     $rpwe = new wp_query($q);
     $excerpts = $instance['numexcerpts'];
     //$date = apply_filters('tfs_posts_excerpt_date_format', $instance['date']);
