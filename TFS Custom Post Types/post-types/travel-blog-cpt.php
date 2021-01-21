@@ -70,7 +70,7 @@ function custom_travelblog_tax() {
         'travel-blog',
         array(
             'hierarchical'	=> true,
-            'label'			=> __('Travel Blog Categories'),
+            'label'			=> __('Categories'),
             'query_var'		=> true,
             'rewrite'		=> true,
             'show_in_rest'  => true,
