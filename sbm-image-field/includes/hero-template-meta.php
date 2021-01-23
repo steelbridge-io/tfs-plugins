@@ -37,6 +37,14 @@
     <h2 class="admin-font">Hero Template Settings</h2>
   
     <p>
+    
+      <!-- Hero Video URL -->
+      <strong><label for="hero-video-url" class="holiday-row-title"><?php _e( 'Add URL To Google Cloud Video', 'the-fly-shop' );?></label></strong>
+      <input style="width: 100%;" type="url" name="hero-video-url" id="hero-video-url" value="<?php if ( isset ( $hero_temp_stored_meta['hero-video-url'] ) ) echo $hero_temp_stored_meta['hero-video-url'][0]; ?>" />
+  
+    </p>
+  
+    <p>
       <label for="hero-template-select-sidebar" class="prfx-row-title"><h3><?php _e( 'Sidebar Select', 'the-fly-shop' )?></h3></label>
     <select name="hero-template-select-sidebar" id="hero-template-select-sidebar">
       <option value="" <?php if ( isset ( $hero_temp_store_meta['hero-template-select-sidebar'] ) ) selected( $hero_temp_store_meta['hero-template-select-sidebar'][0], '' ); ?>><?php _e( 'Default', 'the-fly-shop' )?></option>';
@@ -55,7 +63,7 @@
     
       <!-- Hero Description-->
       <strong><label for="hero-video-image-description" class="holiday-row-title"><?php _e( 'Hero Video/Image Description', 'the-fly-shop' )?></label></strong>
-      <textarea style="width: 100%;" rows="4" name="hero-video-image-description" id="hero-video-image-description"><?php if ( isset ( $holiday_stored_meta['hero-video-image-description'] ) ) echo $holiday_stored_meta['hero-video-image-description'][0]; ?></textarea>
+      <textarea style="width: 100%;" rows="4" name="hero-video-image-description" id="hero-video-image-description"><?php if ( isset ( $hero_temp_stored_meta['hero-video-image-description'] ) ) echo $hero_temp_stored_meta['hero-video-image-description'][0]; ?></textarea>
   
     </p>
 

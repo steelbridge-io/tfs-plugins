@@ -14,6 +14,11 @@
     }
     
     // Checks for input and saves if needed
+    if( isset( $_POST[ 'hero-video-url' ] ) ) {
+      update_post_meta( $post_id, 'hero-video-url', $_POST[ 'hero-video-url' ] );
+    }
+    
+    // Checks for input and saves if needed
     if( isset( $_POST[ 'hero-template-select-sidebar' ] ) ) {
       update_post_meta( $post_id, 'hero-template-select-sidebar', $_POST[ 'hero-template-select-sidebar' ] );
     }
