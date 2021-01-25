@@ -36,14 +36,14 @@ function streamreport_meta_callback( $post ) {
 
     </p>
   
-    <p> <!-- ==== Stream Report Hero Video ==== -->
+    <p>
       
-      <label for="report-video" class="streamreport-row-title"><?php _e( '<strong>Hero Video</strong>', 'the-fly-shop' )?></label><br>
-      <input type="text" name="report-video" id="report-video" value="<?php if ( isset ( $streamreport_stored_meta['report-video'] ) ) echo $streamreport_stored_meta['report-video'][0]; ?>" />
-      <input type="button" id="report-video-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' )?>" />
-    
+      <!-- Hero Video URL -->
+      <strong><label for="report-video" class="report-video"><?php _e( 'Add URL To Google Cloud Video', 'the-fly-shop' );?></label></strong>
+      <input style="width: 100%;" type="url" name="report-video" id="report-video" value="<?php if ( isset ( $streamreport_stored_meta['report-video'] ) ) echo $streamreport_stored_meta['report-video'][0]; ?>" />
+      
     </p>
-
+  
     <p> <!-- ==== Stream Report Hero Image ==== -->
 
     <label for="report-image" class="streamreport-row-title"><?php _e( '<strong>Hero Image</strong>', 'the-fly-shop' )?></label><br>
