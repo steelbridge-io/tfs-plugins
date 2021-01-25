@@ -59,7 +59,7 @@ function streamreport_meta_save( $post_id ) {
 				update_post_meta( $post_id, 'report-image', $_POST[ 'report-image' ] );
 		}
 		
-		if( isset( $POST[ 'report-video' ] ) ) {
+		if( isset( $_POST[ 'report-video' ] ) ) {
 		    update_post_meta( $post_id, 'report-video', $_POST[ 'report-video' ] );
     }
  
