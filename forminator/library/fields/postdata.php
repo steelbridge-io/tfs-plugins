@@ -139,9 +139,10 @@ class Forminator_Postdata extends Forminator_Field {
 		$id       = self::get_property( 'element_id', $field );
 		$name     = $id;
 		$design   = $this->get_form_style( $settings );
+		$ajax     = ! empty( $settings['use_ajax_load'] );
 
 		$html .= $this->get_post_title( $id, $name, $field, $required, $design );
-		$html .= $this->get_post_content( $id, $name, $field, $required );
+		$html .= $this->get_post_content( $id, $name, $field, $required, $ajax );
 		$html .= $this->get_post_excerpt( $id, $name, $field, $required, $design );
 		$html .= $this->get_post_image( $id, $name, $field, $required, $design );
 		$html .= $this->get_post_categories( $id, $name, $field, $required );
@@ -192,11 +193,12 @@ class Forminator_Postdata extends Forminator_Field {
 	 * @param $name
 	 * @param $field
 	 * @param $required
+	 * @param $ajax
 	 *
 	 * @return string
 	 */
-	public function get_post_content( $id, $name, $field, $required ) {
-		return apply_filters( 'forminator_field_postdata_post_content', $this->_get_post_field( $id, $name, $field, $required, 'post_content', 'wp_editor', 'forminator-textarea', 'post-content' ) );
+	public function get_post_content( $id, $name, $field, $required, $ajax ) {
+		return apply_filters( 'forminator_field_postdata_post_content', $this->_get_post_field( $id, $name, $field, $required, 'post_content', 'wp_editor', 'forminator-textarea', 'post-content', array( 'ajax' => $ajax ) ) );
 	}
 
 	/**
@@ -374,18 +376,19 @@ class Forminator_Postdata extends Forminator_Field {
 					$html .= '<div class="forminator-field">';
 
 			if ( 'wp_editor' === $type ) {
-
-				// multiple wp_editor support
+				// multiple wp_editor support.
 				$field_markup['id'] = $field_markup['id'] . '-' . uniqid();
+			}
 
+			$ajax = ! empty( $options['ajax'] );
+			if ( 'wp_editor' === $type && ! $ajax ) {
 				$html .= self::create_wp_editor(
 					$field_markup,
 					$label,
 					$description,
 					$required
 				);
-			} elseif ( 'textarea' === $type ) {
-
+			} elseif ( in_array( $type, array( 'textarea', 'wp_editor' ), true ) ) {
 				$html .= self::create_textarea(
 					$field_markup,
 					$label,
@@ -393,6 +396,11 @@ class Forminator_Postdata extends Forminator_Field {
 					$required,
 					$design
 				);
+				if ( 'wp_editor' === $type && $ajax ) {
+					$_id   = $field_markup['id'];
+					$args  = self::get_tinymce_args( $_id );
+					$html .= '<script>wp.editor.initialize("' . esc_attr( $_id ) . '", ' . $args . ');</script>';
+				}
 			} elseif ( 'select' === $type ) {
 
 				if ( empty( $options ) ) {

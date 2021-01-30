@@ -37,7 +37,7 @@ $section = isset( $_GET['section'] ) ? sanitize_text_field( $_GET['section'] ) :
 
 		</ul>
 
-		<select class="sui-mobile-nav sui-sidenav-hide-lg">
+		<select id="forminator-sidenav" class="sui-mobile-nav sui-sidenav-hide-lg">
 			<option value="dashboard"><?php esc_html_e( 'General', Forminator::DOMAIN ); ?></option>
 			<option value="accessibility"><?php esc_html_e( 'Accessibility', Forminator::DOMAIN ); ?></option>
 			<option value="data"><?php esc_html_e( 'Data', Forminator::DOMAIN ); ?></option>

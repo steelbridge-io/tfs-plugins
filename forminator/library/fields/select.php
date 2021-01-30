@@ -241,22 +241,18 @@ class Forminator_Select extends Forminator_Field {
 				$i ++;
 			}
 
-					//If default values aren't enabled
-					if ( empty( $default_arr ) && '' !== $option_first_key ) {
-						$default_arr[] = $option_first_key;
-					}
-					if ( ! empty( $default_arr ) ) {
-						$default = json_encode( $default_arr, JSON_FORCE_OBJECT );
-					}
+			if ( ! empty( $default_arr ) ) {
+				$default = json_encode( $default_arr, JSON_FORCE_OBJECT );
+			}
 
-					$html .= sprintf(
-						"<input type='hidden' name='%s' class='%s' value='%s' />",
-						$field_name . '-multiselect-default-values',
-						'multiselect-default-values',
-						$default
-					);
+			$html .= sprintf(
+				"<input type='hidden' name='%s' class='%s' value='%s' />",
+				$field_name . '-multiselect-default-values',
+				'multiselect-default-values',
+				$default
+			);
 
-				$html .= '</div>';
+			$html .= '</div>';
 
 		} else {
 			$options_markup = '';

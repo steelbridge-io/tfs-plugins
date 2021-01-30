@@ -257,7 +257,6 @@ class Forminator_Addon_Googlesheet_Form_Hooks extends Forminator_Addon_Form_Hook
 					// fallback to submitted_data
 					$meta_value = $submitted_data[ $element_id ];
 				}
-
 				forminator_addon_maybe_log( __METHOD__, $field_type, $meta_value );
 
 				$form_value = Forminator_Form_Entry_Model::meta_value_to_string( $field_type, $meta_value, false );

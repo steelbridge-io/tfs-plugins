@@ -333,6 +333,7 @@ class Forminator_Signature_Field extends Forminator_Field {
 					// show/hide placeholder
 					jQuery( "#' . $id . '_Container" ).on( "mouseenter", function() {
 						jQuery( "#' . $id . '_placeholder" ).css( "visibility", "hidden" );
+						jQuery( "#' . $id . '_Container canvas" ).focus();
 					});
 
 					jQuery( "#' . $id . '_Container" ).on( "mouseleave", function() {
@@ -365,7 +366,7 @@ class Forminator_Signature_Field extends Forminator_Field {
  						$signature_library = ob_get_clean();
  					}
 
- 					$script .= "<script type=\"text/javascript\">$signature_library$signature_script</script>";
+ 					$script .= "<script type=\"text/javascript\" id=\"forminator-field-signature-scripts\">$signature_library$signature_script</script>";
 
  				} else {
  					$src = forminator_plugin_url() . 'addons/pro/e-signature/lib/ss.js';
@@ -399,7 +400,7 @@ class Forminator_Signature_Field extends Forminator_Field {
 
 				$html .= '<div id="' . $id . '_Container" class="forminator-signature--container">';
 
-					$html .= '<canvas id="' . $id . '" class="forminator-signature-canvas" height="' . $height . '">';
+					$html .= '<canvas id="' . $id . '" class="forminator-signature-canvas" height="' . $height . '" tabindex="-1">';
 						$html .= '<p>' . esc_html__( 'Your browser does not support e-Signature field.', Forminator::DOMAIN ) . '</p>';
 					$html .= '</canvas>';
 

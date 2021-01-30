@@ -69,9 +69,9 @@ class Forminator_Time extends Forminator_Field {
 			'time_type'      => 'twelve',
 			'field_label'    => '',
 			'hh_label'       => __( 'Hours', Forminator::DOMAIN ),
-			'hh_placeholder' => __( 'E.g. 08', Forminator::DOMAIN ),
+			'hh_placeholder' => __( 'E.g., 08', Forminator::DOMAIN ),
 			'mm_label'       => __( 'Minutes', Forminator::DOMAIN ),
-			'mm_placeholder' => __( 'E.g. 00', Forminator::DOMAIN ),
+			'mm_placeholder' => __( 'E.g., 00', Forminator::DOMAIN ),
 		);
 	}
 

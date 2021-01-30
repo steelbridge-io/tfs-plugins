@@ -286,28 +286,28 @@ class Forminator_PayPal extends Forminator_Field {
 		// Validate intent
 		if ( ! isset( $order->intent ) || $order->intent !== "CAPTURE" ) {
 			return array(
-				'error' => __( 'Invalid payment intent', Forminator::DOMAIN )
+				'error' => __( 'Error! Something went wrong during checkout and payment couldn\'t be approved.', Forminator::DOMAIN )
 			);
 		}
 
 		// Validate status
 		if ( ! isset( $order->status ) || $order->status !== "APPROVED" ) {
 			return array(
-				'error' => __( 'Invalid order status', Forminator::DOMAIN )
+				'error' => __( 'Error! Something went wrong during checkout and payment couldn\'t be approved.', Forminator::DOMAIN )
 			);
 		}
 
 		// Validate amount
 		if ( ! isset( $order->purchase_units[0]->amount->value ) || floatval( $order->purchase_units[0]->amount->value ) !== floatval( $charge_amount ) ) {
 			return array(
-				'error' => __( 'Invalid payment amount', Forminator::DOMAIN )
+				'error' => __( 'Error! Invalid payment amount!', Forminator::DOMAIN )
 			);
 		}
 
 		// Validate currency
 		if ( ! isset( $order->purchase_units[0]->amount->currency_code ) || $order->purchase_units[0]->amount->currency_code !== $currency ) {
 			return array(
-				'error' => __( 'Invalid currency code', Forminator::DOMAIN )
+				'error' => __( 'Error! Invalid currency code!', Forminator::DOMAIN )
 			);
 		}
 

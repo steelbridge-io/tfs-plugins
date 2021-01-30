@@ -57,7 +57,7 @@ $cfrom_retain_ip_unit     = get_option( 'forminator_retain_ip_interval_unit', 'd
 
 								<input type="number"
 									name="submissions_retention_number"
-									placeholder="<?php esc_html_e( 'E.g. 10', Forminator::DOMAIN ); ?>"
+									placeholder="<?php esc_html_e( 'E.g., 10', Forminator::DOMAIN ); ?>"
 									value="<?php echo esc_attr( $cform_retain_number ); ?>"
 									min="0"
 									class="sui-form-control sui-form-control-inline"/>
@@ -66,7 +66,7 @@ $cfrom_retain_ip_unit     = get_option( 'forminator_retain_ip_interval_unit', 'd
 						<div class="sui-col-md-6">
 							<div class="sui-form-field">
 
-								<select name="submissions_retention_unit">
+								<select id="submissions_retention_unit" name="submissions_retention_unit">
 									<option value="days" <?php selected( $cfrom_retain_unit, 'days' ); ?>>
 										<?php esc_html_e( 'day(s)', Forminator::DOMAIN ); ?></option>
 									<option value="weeks" <?php selected( $cfrom_retain_unit, 'weeks' ); ?>>
@@ -124,7 +124,7 @@ $cfrom_retain_ip_unit     = get_option( 'forminator_retain_ip_interval_unit', 'd
 
 								<input type="number"
 									name="cform_retention_ip_number"
-									placeholder="<?php esc_html_e( 'E.g. 10', Forminator::DOMAIN ); ?>"
+									placeholder="<?php esc_html_e( 'E.g., 10', Forminator::DOMAIN ); ?>"
 									value="<?php echo esc_attr( $cform_retain_ip_number ); ?>"
 									min="0"
 									class="sui-form-control sui-form-control-inline"/>
@@ -134,7 +134,7 @@ $cfrom_retain_ip_unit     = get_option( 'forminator_retain_ip_interval_unit', 'd
 						<div class="sui-col-md-6">
 							<div class="sui-form-field">
 
-								<select name="cform_retention_ip_unit">
+								<select id="cform_retention_ip_unit" name="cform_retention_ip_unit">
 									<option value="days" <?php selected( $cfrom_retain_ip_unit, 'days' ); ?>>
 										<?php esc_html_e( 'day(s)', Forminator::DOMAIN ); ?></option>
 									<option value="weeks" <?php selected( $cfrom_retain_ip_unit, 'weeks' ); ?>>

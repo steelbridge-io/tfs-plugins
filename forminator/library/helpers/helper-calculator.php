@@ -145,6 +145,7 @@ function forminator_calculator_maybe_replace_fields_on_formula( $formula, $submi
 			}
 
 			$submitted_field_data = isset( $submitted_data[ $field_id ] ) ? $submitted_data[ $field_id ] : null;
+
 			if ( $field_object->is_hidden( $field_settings, $submitted_data, [], $custom_form ) ) {
 				// skip validation, hidden values = 0 or 1
 				// see Forminator_CForm_Front_Action::replace_hidden_field_values()
@@ -153,9 +154,13 @@ function forminator_calculator_maybe_replace_fields_on_formula( $formula, $submi
 				$value = $field_object->get_calculable_value( $submitted_field_data, $field_settings );
 			}
 
-			// bracket-ify
-			$dummy_value = '(' . ( $value ) . ')';
-			$formula     = str_replace( $full_matches[ $key ], $dummy_value, $formula );
+			if ( ! isset( $field_settings['precision'] ) ) {
+				// bracket-ify.
+				$dummy_value = '(' . ( $value ) . ')';
+			} else {
+				$dummy_value = 'round(' . ( $value ) . ', ' . $field_settings['precision'] . ')';
+			}
+			$formula = str_replace( $full_matches[ $key ], $dummy_value, $formula );
 
 		}
 	}

@@ -115,31 +115,15 @@
 						$(this).datepicker( 'option', 'maxDate', max_date );
 					}
 					if( startField ) {
-						var fieldVal = $('input[name ="'+ startField + '"]').val();
-						if( typeof fieldVal !== 'undefined' ) {
-							var startDate  = new Date( fieldVal ),
-								sdata = startOffset.split('_'),
-								start_new_date = moment( startDate ).add( sdata[1], sdata[2] );
-							if( '-' === sdata[0] ) {
-								start_new_date = moment( startDate ).subtract( sdata[1], sdata[2] );
-							}
-							var start_date_format = moment( start_new_date ).format( dateFormat.toUpperCase() ),
-								startDateVal = new Date( start_date_format );
+						var startDateVal = self.getLimitDate( startField, startOffset );
+						if( 'undefined' !== typeof startDateVal ) {
 							$(this).datepicker( 'option', 'minDate', startDateVal );
 						}
 					}
 
 					if( endField ) {
-						var endFieldVal = $('input[name ="'+ endField + '"]').val();
-						if( typeof endFieldVal !== 'undefined' ) {
-							var endDate  = new Date( endFieldVal ),
-								edata = endOffset.split('_'),
-								end_new_date = moment( endDate ).add( edata[1], edata[2] );
-							if( '-' === edata[0] ) {
-								end_new_date = moment( endDate ).subtract( edata[1], edata[2] );
-							}
-							var end_date_format = moment( end_new_date ).format( dateFormat.toUpperCase() ),
-								endDateVal = new Date( end_date_format );
+						var endDateVal = self.getLimitDate( endField, endOffset );
+						if( 'undefined' !== typeof endDateVal ) {
 							$(this).datepicker( 'option', 'maxDate', endDateVal );
 						}
 					}
@@ -165,6 +149,24 @@
 
 			//Disables google translator for the datepicker - this prevented that when selecting the date the result is presented as follows: NaN/NaN/NaN
 			$('.ui-datepicker').addClass('notranslate');
+		},
+
+		getLimitDate: function ( dependentField, offset ) {
+			var fieldVal = $('input[name ="'+ dependentField + '"]').val();
+			if( typeof fieldVal !== 'undefined' ) {
+				var DateFormat = $('input[name ="'+ dependentField + '"]').data('format').replaceAll('y', 'yy'),
+					sdata = offset.split('_'),
+					newDate = moment( fieldVal, DateFormat.toUpperCase() );
+				if( '-' === sdata[0] ) {
+					newDate = newDate.subtract( sdata[1], sdata[2] );
+				} else {
+					newDate = newDate.add( sdata[1], sdata[2] );
+				}
+				var formatedDate = moment( newDate ).format( 'YYYY-MM-DD' ),
+					dateVal = new Date( formatedDate );
+
+				return dateVal;
+			}
 		},
 
 		restrict_date: function ( restrictedDays, disableDate, disableRange, date ) {

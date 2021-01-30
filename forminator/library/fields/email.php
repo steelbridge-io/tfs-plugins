@@ -69,7 +69,7 @@ class Forminator_Email extends Forminator_Field {
 	public function defaults() {
 		return array(
 			'validation'  => false,
-			'placeholder' => __( 'E.g. john@doe.com', Forminator::DOMAIN ),
+			'placeholder' => __( 'E.g., john@doe.com', Forminator::DOMAIN ),
 			'field_label' => __( 'Email Address', Forminator::DOMAIN ),
 		);
 	}

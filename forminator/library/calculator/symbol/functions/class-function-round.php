@@ -22,13 +22,15 @@ class Forminator_Calculator_Symbol_Function_Round extends Forminator_Calculator_
 	 * @throws Forminator_Calculator_Exception
 	 */
 	public function execute( $arguments ) {
-		if ( count( $arguments ) !== 1 ) {
-			throw new Forminator_Calculator_Exception( 'Error: Expected one argument, got ' . count( $arguments ) );
+		$count = count( $arguments );
+		if ( ! in_array( $count, array( 1, 2 ), true ) ) {
+			throw new Forminator_Calculator_Exception( 'Error: Expected one or two arguments, got ' . count( $arguments ) );
 		}
 
-		$number = $arguments[0];
+		$number    = $arguments[0];
+		$precision = isset( $arguments[1] ) ? (int) $arguments[1] : 0;
 
-		return round( $number );
+		return round( $number, $precision );
 	}
 
 }

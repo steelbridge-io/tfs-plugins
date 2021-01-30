@@ -80,7 +80,7 @@ class Forminator_Number extends Forminator_Field {
 				'limit_min'    => 1,
 				'limit_max'    => 150,
 				'field_label'  => __( 'Number', Forminator::DOMAIN ),
-				'placeholder'  => __( 'E.g. 10', Forminator::DOMAIN ),
+				'placeholder'  => __( 'E.g., 10', Forminator::DOMAIN ),
 			)
 		);
 	}

@@ -203,7 +203,7 @@ class Forminator_Poll_Admin extends Forminator_Admin_Module {
 			"poll_title_placeholder"         => __( "Enter title", Forminator::DOMAIN ),
 			"poll_desc_placeholder"          => __( "Enter description", Forminator::DOMAIN ),
 			"poll_question_placeholder"      => __( "Enter question title", Forminator::DOMAIN ),
-			"poll_button_placeholder"			=> __( "E.g. Vote", Forminator::DOMAIN ),
+			"poll_button_placeholder"			=> __( "E.g., Vote", Forminator::DOMAIN ),
 			"appearance_title"					=> __( "Poll Appearance", Forminator::DOMAIN ),
 
 			"validate_form_name"				=> __( "Form name cannot be empty! Please pick a name for your poll.", Forminator::DOMAIN ),

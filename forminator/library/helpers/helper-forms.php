@@ -158,10 +158,6 @@ function forminator_cform_modules( $limit = 4, $status = '' ) {
 
 	if ( ! empty( $models ) ) {
 		foreach ( $models as $model ) {
-			if ( isset( $model->settings['form-type'] ) && 'leads' === $model->settings['form-type'] ) {
-				continue;
-			}
-
 			$modules[] = array(
 				'id'      => $model->id,
 				'title'   => $model->name,
@@ -630,7 +626,10 @@ function forminator_prepare_css( $css_string, $prefix, $as_array = false, $separ
 		$a_styles[0]         = str_replace( $remove_element_name . '{', '', $a_styles[0] );
 		$names               = explode( ',', $name );
 		foreach ( $names as $name ) {
-			if ( $separate_prefix && empty( $wildcard ) ) {
+			$name = trim( $name );
+			if ( 0 === strpos( $name, ':' ) ) {
+				$space_needed = false;
+			} elseif ( $separate_prefix && empty( $wildcard ) ) {
 				$space_needed = true;
 			} elseif ( $separate_prefix && ! empty( $wildcard ) ) {
 				// wildcard is the sibling class of target selector e.g. "wph-modal"
@@ -643,7 +642,7 @@ function forminator_prepare_css( $css_string, $prefix, $as_array = false, $separ
 				$space_needed = false;
 			}
 			$maybe_put_space = ( $space_needed ) ? ' ' : '';
-			$prepared       .= ( $prefix . $maybe_put_space . trim( $name ) . ',' );
+			$prepared       .= ( trim( $prefix ) . $maybe_put_space . trim( $name ) . ',' );
 		}
 		$prepared  = trim( $prepared, ',' );
 		$prepared .= '{';

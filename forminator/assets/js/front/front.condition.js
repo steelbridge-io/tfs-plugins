@@ -65,7 +65,9 @@
 				self.process_relations( element_id, $element, e );
 			});
 			this.$el.find('.forminator-button.forminator-button-back, .forminator-button.forminator-button-next').click(function (e) {
-				form.find('.forminator-field input, .forminator-field select, .forminator-field textarea').change();
+				e.preventDefault();
+				form.find('.forminator-field input:not([type=file]), .forminator-field select, .forminator-field textarea').change();
+				$(this).trigger('forminator.front.pagination.move');
 			});
 			// Simulate change
 			this.$el.find('.forminator-field input, .forminator-field select, .forminator-field textarea').change();

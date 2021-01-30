@@ -57,7 +57,7 @@ $poll_submissions_retain_unit    = get_option( 'forminator_retain_poll_submissio
 
 								<input type="number"
 									name="poll_submissions_retention_number"
-									placeholder="<?php esc_html_e( 'E.g. 10', Forminator::DOMAIN ); ?>"
+									placeholder="<?php esc_html_e( 'E.g., 10', Forminator::DOMAIN ); ?>"
 									value="<?php echo esc_attr( $poll_submissions_retain_number ); ?>"
 									min="0"
 									class="sui-form-control sui-form-control-inline"/>
@@ -66,7 +66,7 @@ $poll_submissions_retain_unit    = get_option( 'forminator_retain_poll_submissio
 						</div>
 						<div class="sui-col-md-6">
 							<div class="sui-form-field">
-								<select name="poll_submissions_retention_unit">
+								<select id="poll_submissions_retention_unit" name="poll_submissions_retention_unit">
 									<option value="days" <?php selected( $poll_submissions_retain_unit, 'days' ); ?>>
 										<?php esc_html_e( 'day(s)', Forminator::DOMAIN ); ?></option>
 									<option value="weeks" <?php selected( $poll_submissions_retain_unit, 'weeks' ); ?>>
@@ -133,7 +133,7 @@ $poll_submissions_retain_unit    = get_option( 'forminator_retain_poll_submissio
 
 								<input type="number"
 									name="votes_retention_number"
-									placeholder="<?php esc_html_e( 'E.g. 10', Forminator::DOMAIN ); ?>"
+									placeholder="<?php esc_html_e( 'E.g., 10', Forminator::DOMAIN ); ?>"
 									value="<?php echo esc_attr( $polls_retain_number ); ?>"
 									min="0"
 									class="sui-form-control sui-form-control-inline"/>
@@ -142,7 +142,7 @@ $poll_submissions_retain_unit    = get_option( 'forminator_retain_poll_submissio
 						<div class="sui-col-md-6">
 							<div class="sui-form-field">
 
-								<select name="votes_retention_unit">
+								<select id="votes_retention_unit" name="votes_retention_unit">
 									<option value="days" <?php selected( $polls_retain_unit, 'days' ); ?>>
 										<?php esc_html_e( 'day(s)', Forminator::DOMAIN ); ?></option>
 									<option value="weeks" <?php selected( $polls_retain_unit, 'weeks' ); ?>>

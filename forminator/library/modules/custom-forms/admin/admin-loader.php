@@ -159,7 +159,7 @@ class Forminator_Custom_Form_Admin extends Forminator_Admin_Module {
 		$data['appearance'] = array(
 			"customize_typography"        => __( "Customize typography", Forminator::DOMAIN ),
 			"custom_font_family"          => __( "Enter custom font family name", Forminator::DOMAIN ),
-			"custom_font_placeholder"     => __( "E.g. 'Arial', sans-serif", Forminator::DOMAIN ),
+			"custom_font_placeholder"     => __( "E.g., 'Arial', sans-serif", Forminator::DOMAIN ),
 			"custom_font_description"     => __( "Type the font family name, as you would in CSS", Forminator::DOMAIN ),
 			"font_family"                 => __( "Font family", Forminator::DOMAIN ),
 			"font_size"                   => __( "Font size", Forminator::DOMAIN ),

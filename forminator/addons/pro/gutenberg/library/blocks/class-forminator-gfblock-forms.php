@@ -160,10 +160,6 @@ class Forminator_GFBlock_Forms extends Forminator_GFBlock_Abstract {
 			foreach ( $forms as $form ) {
 				$form_name = $form->name;
 
-				if ( isset( $form->settings['form-type'] ) && 'leads' === $form->settings['form-type'] ) {
-					continue;
-				}
-
 				if ( isset( $form->settings['formName'] ) && ! empty( $form->settings['formName'] ) ) {
 					$form_name = $form->settings['formName'];
 				}

@@ -118,7 +118,8 @@ class Forminator_Addon_Trello_Wp_Api {
 		// Adding extra user agent for wp remote request
 		add_filter( 'http_headers_useragent', array( $this, 'filter_user_agent' ) );
 
-		$url = trailingslashit( $this->_endpoint ) . $path;
+		$url  = trailingslashit( $this->_endpoint ) . $path;
+		$verb = ! empty( $verb ) ? $verb : 'GET';
 
 		/**
 		 * Filter trello url to be used on sending api request

@@ -58,6 +58,8 @@ class Forminator_Custom_Form extends Forminator_Module {
 			include_once __DIR__ . '/user/class-forminator-cform-user-data.php';
 			new Forminator_CForm_User_Data();
 		}
+
+		add_action( 'forminator_update_version', array( __CLASS__, 'migrate_leads_forms' ), 10, 2 );
 	}
 
 	/**
@@ -121,6 +123,40 @@ class Forminator_Custom_Form extends Forminator_Module {
 		);
 
 		register_post_type( 'forminator_forms', $args );
+
+		// Register custom post_status.
+		add_action( 'init', array( __CLASS__, 'add_custom_post_status' ) );
+	}
+
+	/**
+	 * Add custom post status for Leads forms
+	 */
+	public static function add_custom_post_status() {
+		register_post_status(
+			'leads',
+			array(
+				'public'                    => false,
+				'internal'                  => true,
+				'post_type'                 => array( 'forminator_forms' ),
+				'show_in_admin_all_list'    => false,
+				'show_in_admin_status_list' => false,
+				'exclude_from_search'       => true,
+			)
+		);
+	}
+
+	/**
+	 * Migrate leads forms
+	 *
+	 * @param string $new_version New plugin version.
+	 * @param string $old_version Old plugin version.
+	 * @return null
+	 */
+	public static function migrate_leads_forms( $new_version, $old_version ) {
+		if ( version_compare( $old_version, '1.14.7', '>' ) ) {
+			return;
+		}
+		Forminator_Migration::migrate_leads_forms();
 	}
 
 	/**
@@ -165,7 +201,9 @@ class Forminator_Custom_Form extends Forminator_Module {
 	 * @return array
 	 */
 	public function get_templates() {
-		usort( $this->templates, array( $this, "order_templates" ) );
+		array_multisort( array_map( function ( $template ) {
+			return $template->options['priortiy'];
+		}, $this->templates ), SORT_ASC, $this->templates );
 
 		return $this->templates;
 	}

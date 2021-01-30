@@ -104,6 +104,7 @@ class Forminator_Admin_AJAX {
 
 		add_action( 'wp_ajax_forminator_save_payments_settings_popup', array( $this, 'save_payments' ) );
 		add_action( 'wp_ajax_forminator_dismiss_notification', array( $this, 'dismiss_notice' ) );
+		add_action( 'wp_ajax_forminator_dismiss_notice', array( $this, 'dismiss_admin_notice' ) );
 
 		add_action( 'wp_ajax_forminator_later_notification', array( $this, 'later_notice' ) );
 	}
@@ -2283,7 +2284,7 @@ class Forminator_Admin_AJAX {
 	}
 
 	/**
-	 * Dismiss notice
+	 * Dismiss notice. Use dismiss_admin_notice method instead
 	 *
 	 * @since 1.9
 	 */
@@ -2299,6 +2300,24 @@ class Forminator_Admin_AJAX {
 		if ( $version_upgraded ) {
 			update_option( 'forminator_version_upgraded', false );
 		}
+
+		wp_send_json_success();
+	}
+
+	/**
+	 * Dismiss admin notice.
+	 */
+	public function dismiss_admin_notice() {
+		forminator_validate_ajax( 'forminator_dismiss_notice' );
+
+		$slug      = filter_input( INPUT_POST, 'slug', FILTER_SANITIZE_STRING );
+		$user_id   = get_current_user_id();
+		$dismissed = get_user_meta( $user_id, 'frmt_dismissed_messages', true );
+		if ( ! $dismissed || ! is_array( $dismissed ) ) {
+			$dismissed = array();
+		}
+		$dismissed[] = $slug;
+		update_user_meta( $user_id, 'frmt_dismissed_messages', $dismissed );
 
 		wp_send_json_success();
 	}

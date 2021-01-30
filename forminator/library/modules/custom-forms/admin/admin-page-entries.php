@@ -1495,10 +1495,10 @@ class Forminator_CForm_View_Page extends Forminator_Admin_Page {
 
 		foreach ( $registered_addons as $registered_addon ) {
 			try {
-				$quiz_hooks = $registered_addon->get_addon_quiz_hooks( $this->model_id );
+				$form_hooks = $registered_addon->get_addon_form_hooks( $this->form_id );
 				$meta_data  = forminator_find_addon_meta_data_from_entry_model( $registered_addon, $entry_model );
 
-				$addon_additional_items = $quiz_hooks->on_render_entry( $entry_model, $meta_data );// run and forget
+				$addon_additional_items = $form_hooks->on_render_entry( $entry_model, $meta_data );// run and forget
 
 				$addon_additional_items = self::format_addon_additional_items( $addon_additional_items, $meta_data );
 				$additonal_items        = array_merge( $additonal_items, $addon_additional_items );

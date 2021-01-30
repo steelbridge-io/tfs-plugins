@@ -396,7 +396,7 @@
 				    message       = $(this).closest('.forminator-social--icons').data('message'),
 				    message       = encodeURIComponent(message),
 					 social_shares = {
-						'facebook': 'https://www.facebook.com/sharer/sharer.php?u=' + url + '&t=' + message,
+						'facebook': 'https://www.facebook.com/sharer/sharer.php?u=' + url + '&quote=' + message,
 						'twitter': 'https://twitter.com/intent/tweet?&url=' + url + '&text=' + message,
 						'google': 'https://plus.google.com/share?url=' + url,
 						'linkedin': 'https://www.linkedin.com/shareArticle?mini=true&url=' + url + '&title=' + message
@@ -798,11 +798,23 @@
 		},
 
 		field_counter: function () {
-			var form = $(this.element);
+			var form = $(this.element),
+				submit_button = form.find('.forminator-button-submit');
+
 			form.find('.forminator-input, .forminator-textarea').each(function () {
 				var $input   = $(this),
 				    numwords = 0,
 				    count    = 0;
+
+				$input.on('keydown', function (e) {
+					if ( ! $(this).hasClass('forminator-textarea') && e.keyCode === 13 ) {
+						e.preventDefault();
+						if ( submit_button.is(":visible") ) {
+							submit_button.trigger('click');
+						}
+						return false;
+					}
+				});
 
 				$input.on('change keyup keydown', function (e) {
 					e.stopPropagation();

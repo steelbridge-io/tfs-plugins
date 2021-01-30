@@ -4,6 +4,38 @@ Author: Cvetan Cvetanov (Incsub)
 Change Log:
 ----------------------------------------------------------------------
 
+= 1.14.8 ( 2021-01-28 ) =
+
+- Improvement: Add a gender neutral option Mx. to the name prefix dropdown
+- Fix: PayPal submission stored but payment is not received
+- Fix: Form cannot be submitted if Signature field set required
+- Fix: Signature field not working with Pagination
+- Fix: Pressing enter on text input field triggers upload button
+- Fix: Upload field with multi upload and pagination adding files multiple times
+- Fix: Today option not working for date field limits
+- Fix: Multi upload files has wrong url from Media Library
+- Fix: Password field included in dropdowns on Email Notification tab
+- Fix: Forminator Settings has console errors of non-unique-ids
+- Fix: Pagination visibility issues when form used in Hustle popup
+- Fix: Allow "0" zero value fields to be displayed in email notifications
+- Fix: Mailchimp integration generates a fatal error when date field is Dropdown or Text input
+- Fix: Forminator Section title doesn't respect the font-size set under Appearance section
+- Fix: Signature field value is not included within email when merge tag used
+- Fix: E-Signature field is not working on Preview
+- Fix: Guernsey (GG) and Jersey (JE) are missing from the Country drop-down
+- Fix: ReCaptcha error message styles are missing
+- Fix: Signature field area cover half of the field
+- Fix: Signature field field value not saved after submission in specific cases
+- Fix: Sharing Quiz results on Facebook
+- Fix: Fatal error on submission when DatePicker type is dropdown/text inputs
+- Fix: Font weight shows "Invalid property value" in css
+- Fix: Poll results page showing error message box
+- Fix: Mailchimp > Status says not sent but it was actually sent
+- Fix: View Custom Form link showing in Menu navigation on Quiz submission page 
+- Fix: Cannot add optional field to HTML field and email notification
+- Fix: Post Data shows only public CPTs
+- Fix: Form not redirecting to a page upon submission when iPhone is used
+
 = 1.14.7 ( 2020-12-17 ) =
 
 - Improvement: PayPal payment successful but submission not stored.
@@ -792,4 +824,4 @@ Change Log:
 - First public release
 
 
-597717-1610423002-au
+597717-1611959261-au

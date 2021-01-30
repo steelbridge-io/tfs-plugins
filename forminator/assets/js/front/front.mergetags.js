@@ -116,19 +116,15 @@
 			//find element by suffix -field on id input (default behavior)
 			var $element = this.$el.find('#' + element_id + '-field');
 			if ($element.length === 0) {
-				//find element by its on name (for radio on singlevalue)
-				$element = this.$el.find('input[name=' + element_id + ']');
+				//find element by its on name
+				$element = this.$el.find('[name=' + element_id + ']');
 				if ($element.length === 0) {
-					// for text area that have uniqid, so we check its name instead
-					$element = this.$el.find('textarea[name=' + element_id + ']');
+					//find element by its on name[] (for checkbox on multivalue)
+					$element = this.$el.find('input[name="' + element_id + '[]"]');
 					if ($element.length === 0) {
-						//find element by its on name[] (for checkbox on multivalue)
-						$element = this.$el.find('input[name="' + element_id + '[]"]');
-						if ($element.length === 0) {
-							//find element by direct id (for name field mostly)
-							//will work for all field with element_id-[somestring]
-							$element = this.$el.find('#' + element_id);
-						}
+						//find element by direct id (for name field mostly)
+						//will work for all field with element_id-[somestring]
+						$element = this.$el.find('#' + element_id);
 					}
 				}
 			}

@@ -50,7 +50,7 @@ $order_filter  = isset( $this->order['order'] ) ? $this->order['order'] : '';
 				name="min_id"
 				min="0"
 				value="<?php echo esc_attr( $min_id ); ?>"
-				placeholder="<?php esc_html_e( 'E.g. 100', Forminator::DOMAIN ); ?>"
+				placeholder="<?php esc_html_e( 'E.g., 100', Forminator::DOMAIN ); ?>"
 				id="forminator-forms-filter--from-id"
 				class="sui-form-control"/>
 
@@ -63,7 +63,7 @@ $order_filter  = isset( $this->order['order'] ) ? $this->order['order'] : '';
 				name="max_id"
 				min="0"
 				value="<?php echo esc_attr( $max_id ); ?>"
-				placeholder="<?php esc_html_e( 'E.g. 100', Forminator::DOMAIN ); ?>"
+				placeholder="<?php esc_html_e( 'E.g., 100', Forminator::DOMAIN ); ?>"
 				id="forminator-forms-filte--to-id"
 				class="sui-form-control"/>
 
@@ -84,7 +84,7 @@ $order_filter  = isset( $this->order['order'] ) ? $this->order['order'] : '';
 					<input type="text"
 						name="search"
 						value="<?php echo esc_attr( $search_filter ); ?>"
-						placeholder="<?php esc_html_e( 'E.g. search', Forminator::DOMAIN ); ?>"
+						placeholder="<?php esc_html_e( 'E.g., search', Forminator::DOMAIN ); ?>"
 						id="forminator-forms-filter--by-keyword"
 						class="sui-form-control"/>
 				</div>

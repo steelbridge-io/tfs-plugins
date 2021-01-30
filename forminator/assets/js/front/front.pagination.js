@@ -79,12 +79,10 @@
 		init_events: function () {
 			var self = this;
 
-			this.$el.find('.forminator-button-back').click(function (e) {
-				e.preventDefault();
+			this.$el.find('.forminator-button-back').on('forminator.front.pagination.move',function (e) {
 				self.handle_click('prev');
 			});
-			this.$el.find('.forminator-button-next').click(function (e) {
-				e.preventDefault();
+			this.$el.find('.forminator-button-next').on('forminator.front.pagination.move', function (e) {
 				self.handle_click('next');
 			});
 

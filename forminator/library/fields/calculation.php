@@ -77,7 +77,6 @@ class Forminator_Calculation extends Forminator_Field {
 	public function defaults() {
 		return array(
 			'field_label' => __( 'Calculations', Forminator::DOMAIN ),
-			'placeholder' => __( 'E.g. Calculated Value', Forminator::DOMAIN ),
 		);
 	}
 
@@ -104,7 +103,6 @@ class Forminator_Calculation extends Forminator_Field {
 		$name        = $id;
 		$id          = $id . '-field';
 		$required    = self::get_property( 'required', $field, false );
-		$placeholder = $this->sanitize_value( self::get_property( 'placeholder', $field ) );
 		$value       = esc_html( self::get_post_data( $name, self::get_property( 'default_value', $field ) ) );
 		$label       = esc_html( self::get_property( 'field_label', $field, '' ) );
 		$description = esc_html( self::get_property( 'description', $field, '' ) );
@@ -119,7 +117,6 @@ class Forminator_Calculation extends Forminator_Field {
 			'type'            => 'number',
 			'name'            => $name,
 			'value'           => $value,
-			'placeholder'     => $placeholder,
 			'id'              => $id,
 			'class'           => 'forminator-calculation',
 			'data-formula'    => $formula,
@@ -155,7 +152,7 @@ class Forminator_Calculation extends Forminator_Field {
 
 		$html .= '</div>';
 
-		return apply_filters( 'forminator_field_calculation_markup', $html, $id, $required, $placeholder, $value );
+		return apply_filters( 'forminator_field_calculation_markup', $html, $id, $required, $value );
 	}
 
 	/**

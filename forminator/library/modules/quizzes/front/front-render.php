@@ -332,7 +332,7 @@ class Forminator_QForm_Front extends Forminator_Render_Form {
 					$label         = isset( $answer['title'] ) ? $answer['title'] : '';
 					$image         = isset( $answer['image'] ) ? $answer['image'] : '';
 					$image_alt     = '';
-					$has_label     = ( isset( $label ) && ! empty( $label ) );
+					$has_label     = isset( $label ) && '' !== $label;
 					$has_image     = ( isset( $image ) && ! empty( $image ) );
 					$has_image_alt = ( isset( $image_alt ) && ! empty( $image_alt ) );
 
@@ -471,7 +471,7 @@ class Forminator_QForm_Front extends Forminator_Render_Form {
 					$label         = $answer['title'];
 					$image         = isset( $answer['image'] ) ? $answer['image'] : '';
 					$image_alt     = '';
-					$has_label     = ( isset( $label ) && ! empty( $label ) );
+					$has_label     = isset( $label ) && '' !== $label;
 					$has_image     = ( ! empty( $image ) );
 					$has_image_alt = ( isset( $image_alt ) && ! empty( $image_alt ) );
 
@@ -724,6 +724,7 @@ class Forminator_QForm_Front extends Forminator_Render_Form {
 		$submit_data  = $this->get_submit_data();
 		$result_behav = isset( $this->model->settings['results_behav'] ) ? $this->model->settings['results_behav'] : '';
 		$lead_result  = 'beginning' === $this->get_form_placement() ? $result_behav : 'end';
+		$current_url  = $this->is_ajax_load( $this->is_preview ) && isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : forminator_get_current_url();
 
 		$html = '<div class="forminator-quiz--result">';
 		if ( 'knowledge' === $this->model->quiz_type && $this->has_lead() && 'end' === $lead_result ) {
@@ -776,7 +777,7 @@ class Forminator_QForm_Front extends Forminator_Render_Form {
 		$html .= sprintf( '<input type="hidden" name="has_lead" value="%s">', $this->has_lead() );
 		$html .= sprintf( '<input type="hidden" name="form_id" value="%s">', $form_id );
 		$html .= sprintf( '<input type="hidden" name="page_id" value="%s">', $post_id );
-		$html .= sprintf( '<input type="hidden" name="current_url" value="%s">', forminator_get_current_url() );
+		$html .= sprintf( '<input type="hidden" name="current_url" value="%s">', $current_url );
 
 		if ( $this->has_lead() ) {
 			$html .= sprintf( '<input type="hidden" name="entry_id" value="">' );

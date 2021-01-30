@@ -142,7 +142,8 @@ class Forminator_Addon_Mailchimp_Wp_Api {
 	private function request( $verb, $path, $args = array() ) {
 		// Adding extra user agent for wp remote request
 		add_filter( 'http_headers_useragent', array( $this, 'filter_user_agent' ) );
-		$url = trailingslashit( $this->_endpoint ) . $path;
+		$url  = trailingslashit( $this->_endpoint ) . $path;
+		$verb = ! empty( $verb ) ? $verb : 'GET';
 
 		/**
 		 * Filter mailchimp url to be used on sending api request
@@ -227,11 +228,12 @@ class Forminator_Addon_Mailchimp_Wp_Api {
 		}
 
 		if ( ! empty( $body ) ) {
-			$response = json_decode( $body );
+			$response      = json_decode( $body );
+			$response_code = wp_remote_retrieve_response_code( $res );
 
 			// check response status from API
-			if ( isset( $response->status ) ) {
-				if ( $response->status >= 400 ) {
+			if ( isset( $response_code ) ) {
+				if ( $response_code >= 400 ) {
 					forminator_addon_maybe_log( __METHOD__, $response );
 					$msg = '';
 					if ( isset( $response->detail ) ) {
@@ -239,7 +241,7 @@ class Forminator_Addon_Mailchimp_Wp_Api {
 						$msg = $response->detail;
 					}
 					$this->_last_data_received = $response;
-					if ( 404 === $response->status ) {
+					if ( 404 === $response_code ) {
 						/* translators: ... */
 						throw new Forminator_Addon_Mailchimp_Wp_Api_Not_Found_Exception( sprintf( __( 'Failed to processing request : %s', Forminator::DOMAIN ), $msg ) );
 					}

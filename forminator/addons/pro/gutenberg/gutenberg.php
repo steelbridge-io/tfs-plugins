@@ -41,7 +41,7 @@ class Forminator_Gutenberg {
 	 */
 	public static function init() {
 		// Load abstracts
-		require_once dirname( __FILE__ ) . '/library/class-forminator-gfblock-abstract.php';	 	  	   					 		  	 	
+		require_once dirname( __FILE__ ) . '/library/class-forminator-gfblock-abstract.php';
 
 		// Load blocks
 		self::load_blocks();

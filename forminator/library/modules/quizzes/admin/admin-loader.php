@@ -61,6 +61,7 @@ class Forminator_Quizz_Admin extends Forminator_Admin_Module {
 		remove_submenu_page( 'forminator', $this->page_edit_nowrong );
 		remove_submenu_page( 'forminator', $this->page_edit_knowledge );
 		remove_submenu_page( 'forminator', $this->page_entries );
+		remove_submenu_page( 'forminator', $this->page_entries );
 	}
 
 	/**
@@ -756,7 +757,7 @@ class Forminator_Quizz_Admin extends Forminator_Admin_Module {
 		$model->settings = $settings;
 
 		// status
-		$model->status = Forminator_Custom_Form_Model::STATUS_PUBLISH;
+		$model->status = 'leads';
 
 		// Save data
 		$id = $model->save();

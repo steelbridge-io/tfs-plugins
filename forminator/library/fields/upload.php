@@ -381,9 +381,18 @@ class Forminator_Upload extends Forminator_Field {
 				 * @param array $mime_types return null/empty array to use default WP file types @see https://codex.wordpress.org/Plugin_API/Filter_Reference/upload_mimes
 				 * @param array $field
 				 */
-				$mime_types = apply_filters( 'forminator_upload_field_mime_types', $mime_types, $field );
-				$valid      = wp_check_filetype( $file_name, $mime_types );
-				$ext        = pathinfo( $file_name, PATHINFO_EXTENSION );
+				$mime_types     = apply_filters( 'forminator_upload_field_mime_types', $mime_types, $field );
+				$valid          = wp_check_filetype( $file_name, $mime_types );
+				$ext            = pathinfo( $file_name, PATHINFO_EXTENSION );
+				$file_base_name = pathinfo( $file_name, PATHINFO_FILENAME );
+
+				$i                  = 1;
+				$original_file_name = $file_base_name;
+				while ( file_exists( forminator_upload_root() . '/' . $file_base_name . "." . $ext ) ) {
+					$file_base_name = ( string ) $original_file_name . $i;
+					$file_name      = $file_base_name . "." . $ext;
+					$i ++;
+				}
 
 				if ( false === $valid['ext'] ) {
 					if ( 'multiple' === $file_type ) {
@@ -493,7 +502,7 @@ class Forminator_Upload extends Forminator_Field {
 				// use move_uploaded_file instead of $wp_filesystem->put_contents
 				// increase performance, and avoid permission issues
 				if ( false !== move_uploaded_file( $file_object['tmp_name'], $file_path ) ) {
-					if ( $use_library ) {
+					if ( $use_library  && ( 'multiple' !== $file_type || ( 'multiple' === $file_type && 'submit' === $upload_type ) ) ) {
 						$upload_id = wp_insert_attachment(
 							array(
 								'guid'           => $file_path,
@@ -537,12 +546,15 @@ class Forminator_Upload extends Forminator_Field {
 	 * @since 1.6 copied from Forminator_Front_Action
 	 *
 	 * @param array $upload_data settings
+	 * @param array $field_array field array
 	 *
 	 * @return bool|array
 	 */
-	public function handle_ajax_multifile_upload( $upload_data ) {
+	public function handle_ajax_multifile_upload( $upload_data, $field_array = array() ) {
 		$file_path_arr = array();
 		$file_url_arr  = array();
+		$use_library   = self::get_property( 'use_library', $field_array, false );
+		$file_type     = self::get_property( 'file-type', $field_array, 'single' );
 		if ( ! empty( $upload_data ) ) {
 			if ( false !== array_search( false, array_column( $upload_data, 'success' ) ) ) {
 				return array(
@@ -567,6 +579,25 @@ class Forminator_Upload extends Forminator_Field {
 							$file_url  = $upload_dir['baseurl'] . '/' . trim( sanitize_file_name( $filename ) );
 						}
 						if ( rename( $temp_path, $file_path ) ) {
+							if ( $use_library  && 'multiple' === $file_type ) {
+								$upload_id = wp_insert_attachment(
+									array(
+										'guid'           => $file_path,
+										'post_mime_type' => $upload['mime_type'],
+										'post_title'     => preg_replace( '/\.[^.]+$/', '', $filename ),
+										'post_content'   => '',
+										'post_status'    => 'inherit',
+									),
+									$file_path
+								);
+
+								// wp_generate_attachment_metadata() won't work if you do not include this file
+								require_once ABSPATH . 'wp-admin/includes/image.php';
+
+								// Generate and save the attachment metas into the database
+								wp_update_attachment_metadata( $upload_id, wp_generate_attachment_metadata( $upload_id, $file_path ) );
+							}
+
 							$file_path_arr[] = $file_path;
 							$file_url_arr[]  = $file_url;
 						}

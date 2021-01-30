@@ -137,7 +137,8 @@ class Forminator_Addon_Slack_Wp_Api {
 		// Adding extra user agent for wp remote request
 		add_filter( 'http_headers_useragent', array( $this, 'filter_user_agent' ) );
 
-		$url = trailingslashit( $this->_endpoint ) . $path;
+		$url  = trailingslashit( $this->_endpoint ) . $path;
+		$verb = ! empty( $verb ) ? $verb : 'GET';
 
 		/**
 		 * Filter slack url to be used on sending api request

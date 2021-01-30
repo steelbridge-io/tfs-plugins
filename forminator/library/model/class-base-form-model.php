@@ -484,6 +484,7 @@ abstract class Forminator_Base_Form_Model {
 
 			// Migrate settings Custom Form
 			if ( 'forminator_forms' === $this->post_type ) {
+				$form_settings         = self::validate_registration_fields_mapping( $form_settings, $fields );
 				$object->settings      = Forminator_Migration::migrate_custom_form_settings( $form_settings, $fields );
 				$object->notifications = Forminator_Migration::migrate_custom_form_notifications( $object->notifications, $form_settings, $meta );
 			}
@@ -505,6 +506,44 @@ abstract class Forminator_Base_Form_Model {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Validate registration fields mapping for Registration forms
+	 *
+	 * @param array $form_settings Form settings.
+	 * @param array $fields Form fields.
+	 * @return array
+	 */
+	private static function validate_registration_fields_mapping( $form_settings, $fields ) {
+		$field_ids = wp_list_pluck( $fields, 'id' );
+		if ( ! empty( $form_settings['form-type'] ) && 'registration' === $form_settings['form-type'] && ! empty( $field_ids ) ) {
+			// Get first field id (not password).
+			$i = 0;
+			do {
+				$first_id = isset( $field_ids[ $i ] ) ? $field_ids[ $i ] : null;
+				$i++;
+				$is_password = false !== strpos( $first_id, 'password' );
+			} while ( $is_password );
+
+			foreach ( $form_settings as $key => $value ) {
+				if ( ! $first_id
+						|| 'registration-' !== substr( $key, 0, 13 )
+						|| '-field' !== substr( $key, -6 )
+						|| 'registration-role-field' === $key
+						|| in_array( $value, $field_ids, true ) ) {
+					continue;
+				}
+				if ( 'registration-password-field' === $key ) {
+					$form_settings[ $key ] = 'auto';
+				} else {
+					$form_settings[ $key ] = $first_id;
+				}
+
+			}
+		}
+
+		return $form_settings;
 	}
 
 	/**

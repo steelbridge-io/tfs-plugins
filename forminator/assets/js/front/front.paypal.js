@@ -160,7 +160,8 @@
 										value: paypalData.amount
 									}
 								}]
-						  }
+						  },
+						  form_fields: $form.serialize()
 					  })
 			      }).then(function(res) {
 			        return res.json();

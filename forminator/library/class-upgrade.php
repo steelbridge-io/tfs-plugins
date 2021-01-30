@@ -37,6 +37,19 @@ class Forminator_Upgrade {
 
 			// Update version
 			update_option( 'forminator_version', FORMINATOR_VERSION );
+
+			add_action(
+				'forminator_loaded',
+				function() use ( $old_version ) {
+					/**
+					 * Triggered when Forminator version is updated
+					 *
+					 * @param string FORMINATOR_VERSION New plugin version
+					 * @param string $old_version Old plugin version
+					 */
+					do_action( 'forminator_update_version', FORMINATOR_VERSION, $old_version );
+				}
+			);
 		}
 
 		// cleanup ip address on views

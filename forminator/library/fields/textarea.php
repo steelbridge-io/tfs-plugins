@@ -77,7 +77,7 @@ class Forminator_Textarea extends Forminator_Field {
 			'input_type'  => 'line',
 			'limit_type'  => 'characters',
 			'field_label' => __( 'Text', Forminator::DOMAIN ),
-			'placeholder' => __( "E.g. text placeholder\nYou can add new line", Forminator::DOMAIN ),
+			'placeholder' => __( "E.g., text placeholder\nYou can add new line", Forminator::DOMAIN ),
 		);
 	}
 
@@ -167,10 +167,14 @@ class Forminator_Textarea extends Forminator_Field {
 		$textarea = array_merge( $textarea, $autofill_markup );
 
 		$html .= '<div class="forminator-field">';
-		if ( true === $editor_type ) {
+		if ( true === $editor_type && empty( $settings['use_ajax_load'] ) ) {
 			$html .= self::create_wp_editor( $textarea, $label, '', $required );
 		} else {
 			$html .= self::create_textarea( $textarea, $label, '', $required, $design );
+			if ( true === $editor_type && ! empty( $settings['use_ajax_load'] ) ) {
+				$args  = self::get_tinymce_args( $id );
+				$html .= '<script>wp.editor.initialize("' . esc_attr( $id ) . '", ' . $args . ');</script>';
+			}
 		}
 		// Counter
 		if ( ! empty( $description ) || ( ! empty( $limit ) && ! empty( $limit_type ) ) ) {

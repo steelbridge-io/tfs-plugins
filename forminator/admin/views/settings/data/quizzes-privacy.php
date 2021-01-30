@@ -50,7 +50,7 @@ $quiz_retain_unit     = get_option( 'forminator_retain_quiz_submissions_interval
 
 								<input type="number"
 									name="quiz_submissions_retention_number"
-									placeholder="<?php esc_html_e( 'E.g. 10', Forminator::DOMAIN ); ?>"
+									placeholder="<?php esc_html_e( 'E.g., 10', Forminator::DOMAIN ); ?>"
 									value="<?php echo esc_attr( $quiz_retain_number ); ?>"
 									min="0"
 									class="sui-form-control sui-form-control-inline"/>
@@ -59,7 +59,7 @@ $quiz_retain_unit     = get_option( 'forminator_retain_quiz_submissions_interval
 						<div class="sui-col-md-6">
 							<div class="sui-form-field">
 
-								<select name="quiz_submissions_retention_unit">
+								<select id="quiz_submissions_retention_unit" name="quiz_submissions_retention_unit">
 									<option value="days" <?php selected( $quiz_retain_unit, 'days' ); ?>>
 										<?php esc_html_e( 'day(s)', Forminator::DOMAIN ); ?></option>
 									<option value="weeks" <?php selected( $quiz_retain_unit, 'weeks' ); ?>>

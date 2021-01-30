@@ -23,10 +23,19 @@ function forminatorSignInit() {
 
 		window[ 'loadSignField_' + id ]();
 	} );
+
+	jQuery( '.forminator-button.forminator-button-next').on( 'click', debounce( function() {
+		if ( jQuery( ".forminator-signature--container" ).length > 0 ) {
+			forminatorSignatureResize();
+		}
+	}, 250 ) );
 }
 
 // Resize signature
 function forminatorSignatureResize() {
+	if ( 'undefined' === typeof window.signObjects ) {
+		return;
+	}
 	jQuery ( ".forminator-signature" ).each( function() {
 		var $el = jQuery( this );
 		var id = $el.find( ".forminator-signature-canvas" ).attr( "id" );
@@ -42,7 +51,7 @@ function forminatorSignatureResize() {
 				}
 			});
 
-			var data = false;
+			var data = false,
 			$fieldVal = $el.find( 'input[name$="_data"]:eq( 0 )' ).val();
 
 			if ( $fieldVal ) {
@@ -138,6 +147,13 @@ jQuery( window ).on( "load", function() {
 			forminatorSignatureResize();
 		}
 	}, 250 ) );
+});
+
+// Initialize signature field inside Preview mode for admins.
+jQuery( 'document' ).ready( function() {
+	if ( jQuery("body").hasClass("wp-admin") ) {
+		forminatorLoadGutenberg();
+	}
 });
 
 jQuery( document ).on( 'forminator.gutenberg.form.loaded', function( id ) {

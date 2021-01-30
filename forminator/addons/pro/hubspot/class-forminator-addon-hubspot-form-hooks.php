@@ -142,6 +142,9 @@ class Forminator_Addon_Hubspot_Form_Hooks extends Forminator_Addon_Form_Hooks_Ab
 		$form_settings_instance = $this->form_settings_instance;
 		$form_settings          = $this->form_settings_instance->get_form_settings();
 
+		if ( empty( $connection_settings['name'] ) ) {
+			$connection_settings['name'] = __( 'HubSpot', Forminator::DOMAIN );
+		}
 		//check required fields
 		try {
 			$api  = $this->addon->get_api();
@@ -240,9 +243,6 @@ class Forminator_Addon_Hubspot_Form_Hooks extends Forminator_Addon_Form_Hooks_Ab
 			}
 
 			$create_ticket = isset( $connection_settings['create_ticket'] ) ? $connection_settings['create_ticket'] : '';
-			if( empty( $connection_settings['name'] ) ) {
-				$connection_settings['name'] = 'HubSpot';
-			}
 			$fromObjectId  = null;
 			if ( '1' === $create_ticket ) {
 				$ticket['pipeline_id']        = $connection_settings['pipeline_id'];

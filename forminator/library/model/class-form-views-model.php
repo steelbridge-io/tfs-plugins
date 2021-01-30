@@ -304,7 +304,7 @@ class Forminator_Form_Views_Model {
 	 */
 	public function count_non_empty_ip_address() {
 		global $wpdb;
-		$sql   = $wpdb->prepare( "SELECT COUNT(1) FROM {$this->get_table_name()} WHERE NULLIF(ip, %s) IS NOT NULL", '' );// phpcs:ignore
+		$sql   = "SELECT COUNT(`ip`) FROM {$this->get_table_name()} WHERE `ip` IS NOT NULL AND `ip` != '' LIMIT 1";// phpcs:ignore
 		$total = $wpdb->get_var( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		return intval( $total );

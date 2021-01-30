@@ -210,10 +210,6 @@ class Forminator_Entries_Page extends Forminator_Admin_Page {
 		$forms = $this->get_forms( $form_type );
 
 		foreach ( $forms as $form ) {
-			if ( isset( $form->settings['form-type'] ) && 'leads' === $form->settings['form-type'] ) {
-				continue;
-			}
-
 			/**@var Forminator_Base_Form_Model $form */
 			$title = ! empty( $form->settings['formName'] ) ? $form->settings['formName'] : $form->raw->post_title;
 			$html .= '<option value="' . $form->id . '" ' . selected( $form->id, $form_id, false ) . '>' . $title . '</option>';

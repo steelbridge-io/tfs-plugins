@@ -200,7 +200,7 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 			return $error;
 		}
 
-		$wrapper = '<div class="forminator-response-message" aria-hidden="true"></div>';
+		$wrapper = '<div class="forminator-response-message forminator-error" aria-hidden="true"></div>';
 
 		return $wrapper;
 	}
@@ -411,17 +411,9 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 		// load buttons css
 		wp_enqueue_style( 'buttons' );
 
-		if ( $this->has_postdata() || $this->has_editor()) {
-			if ( $is_ajax_load ) {
-				if ( class_exists( '_WP_Editors' ) ) {
-					global $wp_scripts;
-					ob_start();
-					_WP_Editors::enqueue_scripts();
-					$wp_scripts->do_footer_items();
-					_WP_Editors::editor_js();
-					$this->script .= ob_get_clean();
-				}
-
+		if ( $this->has_postdata() || $this->has_editor() ) {
+			if ( $is_ajax_load && function_exists( 'wp_enqueue_editor' ) ) {
+				wp_enqueue_editor();
 			}
 		}
 

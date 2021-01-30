@@ -81,7 +81,7 @@ class Forminator_Phone extends Forminator_Field {
 				'limit_type'            => 'characters',
 				'validation'            => 'none',
 				'field_label'           => __( 'Phone', Forminator::DOMAIN ),
-				'placeholder'           => __( 'E.g. +1 300 400 5000', Forminator::DOMAIN ),
+				'placeholder'           => __( 'E.g., +1 300 400 5000', Forminator::DOMAIN ),
 			)
 		);
 	}

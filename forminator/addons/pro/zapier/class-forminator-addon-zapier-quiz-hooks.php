@@ -167,7 +167,7 @@ class Forminator_Addon_Zapier_Quiz_Hooks extends Forminator_Addon_Quiz_Hooks_Abs
 
 			$zapier_api = $this->addon->get_api( $endpoint );
 
-			$args = $this->build_post_data( $current_entry_fields );
+			$args = $this->build_post_data( $current_entry_fields, $submitted_data );
 
 			/**
 			 * Filter arguments to passed on to Zapier Webhook API
@@ -226,10 +226,11 @@ class Forminator_Addon_Zapier_Quiz_Hooks extends Forminator_Addon_Quiz_Hooks_Abs
 	 * @since 1.6.2
 	 *
 	 * @param array $quiz_entry_fields
+	 * @param array $submitted_data
 	 *
 	 * @return array
 	 */
-	private function build_post_data( $quiz_entry_fields ) {
+	private function build_post_data( $quiz_entry_fields, $submitted_data ) {
 		$sample = array();
 
 		$sample['quiz-name'] = forminator_get_name_from_model( $this->quiz );
@@ -309,6 +310,16 @@ class Forminator_Addon_Zapier_Quiz_Hooks extends Forminator_Addon_Quiz_Hooks_Abs
 		}
 
 		$sample['result'] = $result;
+
+		$quiz_settings       = $this->quiz_settings_instance->get_quiz_settings();
+		$addons_fields       = $this->quiz_settings_instance->get_form_fields();
+		$quiz_submitted_data = get_addons_lead_form_entry_data( $quiz_settings, $submitted_data, $addons_fields );
+
+		if ( ! empty( $quiz_submitted_data ) ) {
+			foreach ( $quiz_submitted_data as $s => $quiz_submitted ) {
+				$sample[ $s ] = $quiz_submitted;
+			}
+		}
 
 		// wrap in array as zapier best practices
 		return array( $sample );

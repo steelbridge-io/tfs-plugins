@@ -70,7 +70,7 @@ class Forminator_Website extends Forminator_Field {
 	public function defaults() {
 		return array(
 			'field_label' => __( 'Website', Forminator::DOMAIN ),
-			'placeholder' => __( 'E.g. http://www.example.com', Forminator::DOMAIN ),
+			'placeholder' => __( 'E.g., http://www.example.com', Forminator::DOMAIN ),
 		);
 	}
 

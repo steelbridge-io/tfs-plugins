@@ -397,6 +397,8 @@ class Forminator_CForm_Front_Mail extends Forminator_Mail {
 					$this->set_message_with_vars( $this->message_vars, $message );
 					if ( ! empty( $files ) && isset( $notification['email-attachment'] ) && 'true' === $notification['email-attachment'] ) {
 						$this->set_attachment( $files );
+					} else {
+						$this->set_attachment( array() );
 					}
 
 					$this->send_multiple();

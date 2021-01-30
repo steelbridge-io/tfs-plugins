@@ -82,7 +82,7 @@ class Forminator_Currency extends Forminator_Field {
 				'limit_max'    => 150,
 				'currency'     => 'USD',
 				'field_label'  => __( 'Currency', Forminator::DOMAIN ),
-				'placeholder'  => __( 'E.g. 10', Forminator::DOMAIN ),
+				'placeholder'  => __( 'E.g., 10', Forminator::DOMAIN ),
 			)
 		);
 	}

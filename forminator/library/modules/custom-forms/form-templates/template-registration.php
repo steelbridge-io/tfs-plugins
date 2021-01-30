@@ -57,7 +57,7 @@ class Forminator_Template_Registration extends Forminator_Template {
 						'required'          => 'true',
 						'required_message'  => __( 'This field is required. Please enter email.', Forminator::DOMAIN ),
 						'field_label'       => __( 'Email', Forminator::DOMAIN ),
-						'placeholder'       => __( 'E.g. john@doe.com', Forminator::DOMAIN ),
+						'placeholder'       => __( 'E.g., john@doe.com', Forminator::DOMAIN ),
 						'validation'        => 'true',
 						'validation_message'=> __( 'This is not a valid email.', Forminator::DOMAIN ),
 					),

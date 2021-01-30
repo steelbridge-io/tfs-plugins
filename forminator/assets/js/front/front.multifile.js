@@ -93,7 +93,9 @@
 
 				ajax_request = self.handleChangeCallback( uploadParam, $this, ajax_request );
 				var file_list = Array.prototype.slice.call( fileList );
-				this.files = self.FileObjectItem( file_list );
+				if ( file_list.length > 0 ) {
+					this.files = self.FileObjectItem(file_list);
+				}
 			});
 
 			this.delete_files( fileList, ajax_request );
@@ -166,7 +168,8 @@
 									success: data.success,
 									message: 'undefined' !== data.data.message ? data.data.message : '',
 									file_id: unique_id,
-									file_name: item.name,
+									file_name: 'undefined' !== typeof data.data.file_url ? data.data.file_url.replace(/^.*[\\\/]/, '') : item.name,
+									mime_type: item.type,
 								};
 							self.add_upload_file( element, current_file );
 							if ( true === data.success && true === data.data.success && 'undefined' !== typeof data.data ) {

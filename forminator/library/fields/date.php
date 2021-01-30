@@ -71,11 +71,11 @@ class Forminator_Date extends Forminator_Field {
 			'placeholder'       => __( 'Choose Date', Forminator::DOMAIN ),
 			'icon'              => 'true',
 			'day_label'         => __( 'Day', Forminator::DOMAIN ),
-			'day_placeholder'   => __( 'E.g. 01', Forminator::DOMAIN ),
+			'day_placeholder'   => __( 'E.g., 01', Forminator::DOMAIN ),
 			'month_label'       => __( 'Month', Forminator::DOMAIN ),
-			'month_placeholder' => __( 'E.g. 01', Forminator::DOMAIN ),
+			'month_placeholder' => __( 'E.g., 01', Forminator::DOMAIN ),
 			'year_label'        => __( 'Year', Forminator::DOMAIN ),
-			'year_placeholder'  => __( 'E.g. 2000', Forminator::DOMAIN ),
+			'year_placeholder'  => __( 'E.g., 2000', Forminator::DOMAIN ),
 			'restrict_message'  => __( 'Please select one of the available dates.', Forminator::DOMAIN ),
 		);
 	}
@@ -204,7 +204,7 @@ class Forminator_Date extends Forminator_Field {
 
 			if ( 'today' === $default_date ) {
 				$datepicker_format = $this->normalize_date_format( $date_format );
-				$default_value     = date( $datepicker_format );
+				$default_value     = current_time( $datepicker_format );
 			}
 
 			if ( 'custom' === $default_date ) {
@@ -343,9 +343,7 @@ class Forminator_Date extends Forminator_Field {
 				$month = $parsed_date['month'];
 				$year  = $parsed_date['year'];
 			} else if ( 'today' === $default_date ) {
-				$day   = date( 'j' );
-				$month = date( 'n' );
-				$year  = date( 'Y' );
+				list( $day, $month, $year ) = explode( ' ', current_time( 'j n Y' ) );
 			} else if ( 'custom' === $default_date && ! empty( $default_date_value ) ) {
 				$day   = date( "j", strtotime( $default_date_value ) );
 				$month = date( "n", strtotime( $default_date_value ) );
@@ -1118,10 +1116,10 @@ class Forminator_Date extends Forminator_Field {
 		$date        = self::parse_date( $data, $date_format );
 
 		// strtotime does not recognize all of our date formats so we need to convert all dates to 1 accepted format before processing.
-      if ( 'Y-m-d' !== datepicker_default_format( $date_format ) ) {
-         $format_date = date_create_from_format( datepicker_default_format( $date_format ), $data );
-         $data        = date_format( $format_date, 'Y-m-d' );
-      }
+		if ( 'Y-m-d' !== datepicker_default_format( $date_format ) && ! is_array( $data ) ) {
+			$format_date = date_create_from_format( datepicker_default_format( $date_format ), $data );
+			$data        = date_format( $format_date, 'Y-m-d' );
+		}
 
 		if ( empty( $date ) || ! $this->check_date( $date['month'], $date['day'], $date['year'] ) ) {
 			$this->validation_message[ $id ] = apply_filters(

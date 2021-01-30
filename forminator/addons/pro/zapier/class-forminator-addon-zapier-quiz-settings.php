@@ -309,6 +309,30 @@ class Forminator_Addon_Zapier_Quiz_Settings extends Forminator_Addon_Quiz_Settin
 
 		$sample['result'] = $result;
 
+		$form_fields = isset( $this->form_fields ) ? $this->form_fields : array();
+		if ( ! empty( $form_fields ) ) {
+			foreach ( $form_fields as $form_field ) {
+				$sample[ $form_field['element_id'] ] = $form_field['field_label'];
+
+				if ( 'upload' === $form_field['type'] ) {
+
+					$sample_file_path = '/fake/path';
+					$upload_dir       = wp_get_upload_dir();
+					if ( isset( $upload_dir['basedir'] ) ) {
+						$sample_file_path = $upload_dir['basedir'];
+					}
+
+					$sample[ $form_field['element_id'] ] = array(
+						'name'      => $form_field['field_label'],
+						'type'      => 'image/png',
+						'size'      => 0,
+						'file_url'  => get_home_url(),
+						'file_path' => $sample_file_path,
+					);
+				}
+			}
+		}
+
 		// wrap in array as zapier best practices
 		return array( $sample );
 	}

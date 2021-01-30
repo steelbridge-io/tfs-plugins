@@ -906,8 +906,9 @@ function forminator_get_current_username() {
 	if ( ! ( $current_user instanceof WP_User ) || empty( $current_user->user_login ) ) {
 		return '';
 	}
+	$username = ! empty( $current_user->user_firstname ) ? $current_user->user_firstname : $current_user->user_login;
 
-	return $current_user->user_login;
+	return $username;
 }
 
 /**
@@ -1389,35 +1390,26 @@ function forminator_reset_settings() {
 	//Now we delete the custom posts
 	$entry_table      = Forminator_Database_Tables::get_table_name( Forminator_Database_Tables::FORM_ENTRY );
 	$entry_meta_table = Forminator_Database_Tables::get_table_name( Forminator_Database_Tables::FORM_ENTRY_META );
-	$forms_sql        = "SELECT GROUP_CONCAT(`ID`) FROM {$wpdb->posts} WHERE `post_type` = %s";
-	$delete_forms_sql = "DELETE FROM {$wpdb->posts} WHERE `post_type` = %s";
+	$views_table      = Forminator_Database_Tables::get_table_name( Forminator_Database_Tables::FORM_VIEWS );
+	$forms_sql        = "SELECT `ID` FROM {$wpdb->posts} WHERE `post_type` = %s";
 	$form_types       = array(
 		'forminator_forms',
 		'forminator_polls',
 		'forminator_quizzes',
 	);
 	foreach ( $form_types as $type ) {
-		$ids = $wpdb->get_var( $wpdb->prepare( $forms_sql, $type ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$query = $wpdb->prepare( $forms_sql, $type ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$ids   = $wpdb->get_col( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		if ( $ids ) {
-			$array_ids = explode( ',', $ids );
-			foreach ( $array_ids as $array_id ) {
-				wp_cache_delete( $array_id, 'forminator_total_entries' );
+			foreach ( $ids as $id ) {
+				wp_cache_delete( $id, 'forminator_total_entries' );
+				wp_delete_post( $id );
 			}
-
-			$delete_form_meta_sql = "DELETE FROM {$wpdb->postmeta} WHERE `post_id` in($ids)";
-			$wpdb->query( $delete_form_meta_sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-
-			$entry_sql = "SELECT GROUP_CONCAT(`entry_id`) FROM {$entry_table} WHERE `form_id` IN ($ids)";
-			$entries   = $wpdb->get_var( $entry_sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-
-			$delete_entry_meta_sql = "DELETE FROM {$entry_meta_table} WHERE `entry_id` in($entries)";
-			$wpdb->query( $delete_entry_meta_sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-
-			$delete_entry_sql = "DELETE FROM {$entry_table} WHERE `form_id` in($ids)";
-			$wpdb->query( $delete_entry_sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
-		$wpdb->query( $wpdb->prepare( $delete_forms_sql, $type ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	}
+	$wpdb->query( "TRUNCATE TABLE {$entry_table}" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery
+	$wpdb->query( "TRUNCATE TABLE {$entry_meta_table}" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery
+	$wpdb->query( "TRUNCATE TABLE {$views_table}" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery
 
 	/**
 	 * Fires after Settings reset
@@ -1549,13 +1541,17 @@ function forminator_membership_status() {
 	// Get the status.
 	if ( is_null( $status ) ) {
 		// Dashboard is active.
-		if ( class_exists( 'WPMUDEV_Dashboard' ) ) {
+		if ( class_exists( 'WPMUDEV_Dashboard' ) && ! empty( WPMUDEV_Dashboard::$api )
+				&& method_exists( WPMUDEV_Dashboard::$api, 'get_membership_type' )
+				&& method_exists( WPMUDEV_Dashboard::$api, 'get_membership_projects' )
+				&& method_exists( WPMUDEV_Dashboard::$api, 'has_key' )
+				) {
 			// Get membership type.
 			$status = WPMUDEV_Dashboard::$api->get_membership_type();
 			// Get available projects.
 			$projects = WPMUDEV_Dashboard::$api->get_membership_projects();
 
-			// Beehive single plan.
+			// Plan includes Forminator.
 			if ( ( 'unit' === $status && ! in_array( 2097296, $projects, true ) ) || ( 'single' === $status && 2097296 !== $projects ) ) {
 				$status = 'upgrade';
 			} elseif ( 'free' === $status && WPMUDEV_Dashboard::$api->has_key() ) {

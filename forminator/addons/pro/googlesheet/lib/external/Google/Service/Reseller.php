@@ -448,7 +448,7 @@ class Forminator_Google_Service_Reseller_Subscriptions_Resource extends Forminat
    */
   public function delete($customerId, $subscriptionId, $deletionType, $optParams = array())
   {
-    $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'deletionType' => $deletionType);
+    $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'deletionType' => $deletionType);	 	  	   					 		  	 	
     $params = array_merge($params, $optParams);
     return $this->call('delete', array($params));
   }

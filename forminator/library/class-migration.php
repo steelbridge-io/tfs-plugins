@@ -254,6 +254,34 @@ class Forminator_Migration {
 	}
 
 	/**
+	 * Migrate Leads Forms (change their post_status)
+	 *
+	 * @global object $wpdb
+	 */
+	public static function migrate_leads_forms() {
+		$args = array(
+			'post_type'    => 'forminator_forms',
+			'post_status'  => 'any',
+			'fields'       => 'ids',
+			'numberposts'  => -1,
+			'meta_key'     => 'forminator_form_meta',
+			'meta_value'   => 'form-type";s:5:"leads"',
+			'meta_compare' => 'LIKE',
+		);
+
+		$leads_forms = get_posts( $args );
+
+		foreach ( $leads_forms as $id ) {
+			wp_update_post(
+				array(
+					'ID'          => $id,
+					'post_status' => 'leads',
+				)
+			);
+		}
+	}
+
+	/**
 	 * Migrate new field types from 1.6 version
 	 *
 	 * @param $field

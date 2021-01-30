@@ -25,6 +25,7 @@ class Forminator_Admin {
 		add_action( 'admin_menu', array( $this, 'add_dashboard_page' ) );
 		add_action( 'admin_notices', array( $this, 'show_stripe_updated_notice' ) );
 		add_action( 'admin_notices', array( $this, 'show_rating_notice' ) );
+		add_action( 'admin_notices', array( $this, 'show_pro_available_notice' ) );
 		add_action( 'admin_notices', array( $this, 'show_cf7_importer_notice' ) );
 
 		// Add plugin action links
@@ -230,6 +231,71 @@ class Forminator_Admin {
 		return false;
 	}
 
+
+	/**
+	 * Displays an admin notice when the user is an active member and doesn't have Forminator Pro installed
+	 * Shown in forminator pages. Per user notification.
+	 */
+	public function show_pro_available_notice() {
+		$page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING );
+		if ( 'forminator' !== substr( $page, 0, 10 ) || FORMINATOR_PRO ) {
+			return;
+		}
+
+		// The notice was already dismissed.
+		if ( self::was_notification_dismissed( 'forminator_pro_is_available' ) ) {
+			return;
+		}
+
+		// Show the notice only to users who can do something about this and who are members.
+		if ( ! self::user_can_update_plugins() || ! in_array( forminator_membership_status(), array( 'full', 'upgrade' ), true ) ) {
+			return;
+		}
+
+		$url  = add_query_arg(
+			array( 'page' => 'wpmudev-plugins' ),
+			network_admin_url( 'admin.php' )
+		) . '#pid=2097296';
+		$link = '<a type="button" href="' . esc_url( $url ) . '" target="_self" class="button button-primary">' . esc_html__( 'Upgrade' ) . '</a>';
+
+		$username = forminator_get_current_username();
+		$name     = ! empty( $username ) ? $username : __( 'Hey', Forminator::DOMAIN );
+
+		$message = '<p>';
+		/* translators: user's name */
+		$message .= sprintf( esc_html__( '%s, it appears you have an active WPMU DEV membership but haven\'t upgraded Forminator to the pro version. You won\'t lose any settings upgrading, go for it!', Forminator::DOMAIN ), $name );
+		$message .= '</p>';
+		$message .= '<p>' . $link . '</p>';
+
+		echo '<div class="forminator-grouped-notice notice notice-info is-dismissible"'
+			. ' data-notice-slug="forminator_pro_is_available"'
+			. ' data-nonce="' . esc_attr( wp_create_nonce( 'forminator_dismiss_notice' ) ) . '">';
+		echo $message;
+		echo '</div>';
+	}
+
+	/**
+	 * Check if the given notification was dismissed.
+	 *
+	 * @param string $notification_name Notification slug.
+	 * @return bool
+	 */
+	public static function was_notification_dismissed( $notification_name ) {
+		$dismissed = get_user_meta( get_current_user_id(), 'frmt_dismissed_messages', true );
+
+		return ( is_array( $dismissed ) && in_array( $notification_name, $dismissed, true ) );
+	}
+
+	/**
+	 * Check if the current user is able to update plugins
+	 *
+	 * @return bool
+	 */
+	public static function user_can_update_plugins() {
+		$cap = is_multisite() ? 'manage_network_plugins' : 'update_plugins';
+
+		return current_user_can( $cap );
+	}
 
 	/**
 	 * Show CF7 importer notice

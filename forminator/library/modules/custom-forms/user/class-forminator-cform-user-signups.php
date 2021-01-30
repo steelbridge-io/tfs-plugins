@@ -167,6 +167,9 @@ class Forminator_CForm_User_Signups {
 
 		self::add_signups_to_wpdb();
 
+		if ( ! self::table_exists( $wpdb->signups ) ) {
+			return true;
+		}
 		return $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->signups WHERE $user_key = %s", $user_value ) );
 	}
 

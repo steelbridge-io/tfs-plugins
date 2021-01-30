@@ -694,6 +694,9 @@ function forminator_format_submitted_data_for_addon( $post_data, $files_data, $f
 						'month' => $post_data[ $month_element_id ],
 						'year'  => $post_data[ $year_element_id ],
 					);
+					if ( ! empty( $form_field['date_format'] ) ) {
+						$data['format'] = datepicker_default_format( $form_field['date_format'] );
+					}
 
 					$date = Forminator_Form_Entry_Model::meta_value_to_string( $form_field['type'], $data, false );
 

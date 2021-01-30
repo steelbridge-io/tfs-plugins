@@ -143,7 +143,8 @@ class Forminator_Addon_Hubspot_Wp_Api {
 		// Adding extra user agent for wp remote request
 		add_filter( 'http_headers_useragent', array( $this, 'filter_user_agent' ) );
 
-		$url = trailingslashit( $this->_endpoint ) . $path;
+		$url  = trailingslashit( $this->_endpoint ) . $path;
+		$verb = ! empty( $verb ) ? $verb : 'GET';
 
 		/**
 		 * Filter hubspot url to be used on sending api request
@@ -240,6 +241,11 @@ class Forminator_Addon_Hubspot_Wp_Api {
 		// probably silent mode
 		if ( ! empty( $body ) ) {
 			$res = json_decode( $body );
+			if ( isset( $res->status ) && 'error' === $res->status ) {
+				$message = isset( $res->message ) ? $res->message : __( 'Invalid', Forminator::DOMAIN );
+				/* translators: ... */
+				throw new Forminator_Addon_Hubspot_Wp_Api_Not_Found_Exception( sprintf( __( 'Failed to processing request : %s', Forminator::DOMAIN ), $message ) );
+			}
 			if ( isset( $res->ok ) && false === $res->ok ) {
 				$msg = '';
 				if ( isset( $res->error ) ) {

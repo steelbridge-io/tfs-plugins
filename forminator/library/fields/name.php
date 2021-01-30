@@ -64,14 +64,14 @@ class Forminator_Name extends Forminator_Field {
 	public function defaults() {
 		return array(
 			'field_label'             => __( 'Name', Forminator::DOMAIN ),
-			'placeholder'             => __( 'E.g. John Doe', Forminator::DOMAIN ),
+			'placeholder'             => __( 'E.g., John Doe', Forminator::DOMAIN ),
 			'prefix_label'            => __( 'Prefix', Forminator::DOMAIN ),
 			'fname_label'             => __( 'First Name', Forminator::DOMAIN ),
-			'fname_placeholder'       => __( 'E.g. John', Forminator::DOMAIN ),
+			'fname_placeholder'       => __( 'E.g., John', Forminator::DOMAIN ),
 			'mname_label'             => __( 'Middle Name', Forminator::DOMAIN ),
-			'mname_placeholder'       => __( 'E.g. Smith', Forminator::DOMAIN ),
+			'mname_placeholder'       => __( 'E.g., Smith', Forminator::DOMAIN ),
 			'lname_label'             => __( 'Last Name', Forminator::DOMAIN ),
-			'lname_placeholder'       => __( 'E.g. Doe', Forminator::DOMAIN ),
+			'lname_placeholder'       => __( 'E.g., Doe', Forminator::DOMAIN ),
 			'prefix'                  => 'true',
 			'fname'                   => 'true',
 			'mname'                   => 'true',

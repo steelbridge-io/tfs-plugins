@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Forminator Pro
- * Version: 1.14.7
+ * Version: 1.14.8
  * Plugin URI:  https://premium.wpmudev.org/project/forminator/
  * Description: Capture user information (as detailed as you like), engage users with interactive polls that show real-time results and graphs, “no wrong answer” Facebook-style quizzes and knowledge tests.
  * Author: WPMU DEV
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'FORMINATOR_VERSION' ) ) {
-	define( 'FORMINATOR_VERSION', '1.14.7' );
+	define( 'FORMINATOR_VERSION', '1.14.8' );
 }
 
 if ( ! defined( 'FORMINATOR_SUI_VERSION' ) ) {
@@ -462,7 +462,7 @@ if ( ! class_exists( 'Forminator' ) ) {
 					do_action(
 						'wpmudev-recommended-plugins-register-notice',
 						plugin_basename( __FILE__ ), // Plugin basename
-						'My Plugin Name', // Plugin Name
+						'Forminator', // Plugin Name
 						array(
 							'toplevel_page_forminator',
 							'toplevel_page_forminator-network',

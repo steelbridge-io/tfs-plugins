@@ -88,9 +88,13 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 				wp_send_json_error( esc_html__( 'The payment total must be greater than 0.', Forminator::DOMAIN ) );
 			}
 
+			$amount = $data['form_data']['purchase_units'][0]['amount']['value'];
+			$data['form_data']['purchase_units'][0]['amount']['value'] = number_format((float)$amount, 2, '.', '');
+
 			$paypal = new Forminator_PayPal_Express();
 
 			$request = array_merge( array( 'intent' => 'CAPTURE' ), $data['form_data'] );
+			$request = apply_filters( 'forminator_paypal_create_order_request', $request, $data );
 
 			$order = $paypal->create_order( $request, $data['mode'] );
 
@@ -148,6 +152,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 					$field_classes    = forminator_fields_to_array();
 					$submit_errors    = array();
 					$form_upload_data = array();
+					$submission_behav = $custom_form->get_submission_behaviour();
 
 					// verify captcha before any else
 					$captcha_field = $custom_form->get_captcha_field();
@@ -223,7 +228,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 								$upload_method = Forminator_Field::get_property( 'upload-method', $field_array, 'ajax' );
 								if ( 'multiple' === $file_type && 'ajax' === $upload_method ) {
 									$upload_multiple_data = isset( $form_upload_data[ $field->slug ] ) ? $form_upload_data[ $field->slug ] : array();
-									$upload_data          = $form_field_obj->handle_ajax_multifile_upload( $upload_multiple_data );
+									$upload_data          = $form_field_obj->handle_ajax_multifile_upload( $upload_multiple_data, $field_array );
 								} elseif ( 'multiple' === $file_type && 'submission' === $upload_method ) {
 									$upload_multiple_data = isset( $_FILES[ $field->slug ] ) ? $_FILES[ $field->slug ] : array();
 									$upload_data = $form_field_obj->handle_submission_multifile_upload( $field_array, $upload_multiple_data );
@@ -266,6 +271,26 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 							}
 						} else {
 							$field_data = $submitted_data[ $field_id ];
+						}
+
+						/**
+						 * Filter handle specific field types
+						 *
+						 * @since 1.13
+						 *
+						 * @param array $field_data Field data
+						 * @param object $form_field_obj Form field object
+						 * @param array $field_array field settings
+						 * @param string $submission_behav submission behaviour
+						 *
+						 * @return array $field_data Set `return` element of the array as true for returning
+						 */
+						$field_data = apply_filters( 'forminator_handle_specific_field_types', $field_data, $form_field_obj, $field_array, $submission_behav );
+
+						if ( ! empty( $field_data['return'] ) ) {
+							unset( $field_data['return'] );
+
+							return $field_data;
 						}
 
 						// Validate data when its available and not hidden on front end
@@ -714,16 +739,6 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 							continue;
 						}
 
-						$is_hidden      = false;
-						$form_field_obj = isset( $field_forms[ $field_type ] ) ? $field_forms[ $field_type ] : null;
-						if ( $form_field_obj ) {
-							if ( 'stripe' === $field_type ) {
-								$is_hidden = $form_field_obj->is_hidden( $field_array, $submitted_data, $pseudo_submitted_data, $custom_form );
-							} else {
-								$is_hidden = $form_field_obj->is_hidden( $field_array, $submitted_data, [], $custom_form );
-							}
-						}
-
 						// Exclude calculation field, we will process later
 						if ( 'calculation' === $field_type ) {
 							$calculation_exists = true;
@@ -736,9 +751,15 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 							continue;
 						}
 						// Exclude paypal field, we will process later
-						if ( 'stripe' === $field_type && ! $is_hidden ) {
-							$stripe_exists = true;
-							continue;
+						if ( 'stripe' === $field_type ) {
+							$form_field_obj = isset( $field_forms[ $field_type ] ) ? $field_forms[ $field_type ] : null;
+							if ( $form_field_obj ) {
+								$is_hidden = $form_field_obj->is_hidden( $field_array, $submitted_data, $pseudo_submitted_data, $custom_form );
+								if ( ! $is_hidden ) {
+									$stripe_exists = true;
+									continue;
+								}
+							}
 						}
 
 						if ( isset( $field->slug ) ) {
@@ -814,7 +835,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 									/** @var  Forminator_Upload $form_field_obj */
 									if ( 'multiple' === $file_type && 'ajax' === $upload_method ) {
 										$upload_multiple_data = isset( $form_upload_data[ $field->slug ] ) ? $form_upload_data[ $field->slug ] : array();
-										$upload_data          = $form_field_obj->handle_ajax_multifile_upload( $upload_multiple_data );
+										$upload_data          = $form_field_obj->handle_ajax_multifile_upload( $upload_multiple_data, $field_array );
 									} elseif ( 'multiple' === $file_type && 'submission' === $upload_method ) {
 										$upload_multiple_data = isset( $_FILES[ $field->slug ] ) ? $_FILES[ $field->slug ] : array();
 										$upload_data = $form_field_obj->handle_submission_multifile_upload( $field_array, $upload_multiple_data );
@@ -1184,8 +1205,12 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 								}
 							}
+
 							// PayPal
 							if ( $paypal_exists ) {
+								// Update entry with new
+								$entry->set_fields( $field_data_array );
+
 								if ( $custom_form->is_payment_require_ssl() && ! is_ssl() ) {
 									$response = array(
 										'message' => apply_filters(
@@ -1207,7 +1232,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 										$paypal_meta_value = $paypal_entry_meta['value'];
 										forminator_maybe_log( __METHOD__, $paypal_meta_value );
 										// Error
-										if ( 'APPROVED' !== $paypal_meta_value['status'] ) {
+										if ( ! isset( $paypal_meta_value['status'] ) || 'APPROVED' !== $paypal_meta_value['status'] ) {
 											$response = array(
 												'message' => $paypal_meta_value['error'],
 												'errors'  => array(),
@@ -1220,6 +1245,62 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 									}
 
 								}
+
+								$fields_collection = forminator_fields_to_array();
+
+								foreach ( $fields as $field ) {
+									$field = $field->to_formatted_array();
+
+									if ( isset( $field['type'] ) && 'paypal' === $field['type'] ) {
+										if ( isset( $fields_collection['paypal'] ) ) {
+											$element_id = isset( $field['element_id'] ) ? $field['element_id'] : false;
+											$mode 		= isset( $field['mode'] ) ? $field['mode'] : 'sandbox';
+
+											$i = 0;
+											foreach( $field_data_array as $data ) {
+												if ( $data['name'] === $element_id ) {
+													$paypal = new Forminator_PayPal_Express();
+													$capture = $paypal->capture_order( $submitted_data[ $element_id ], $mode );
+
+													if ( isset( $capture->status ) && "COMPLETED" === $capture->status ) {
+														$field_data_array[ $i ]['value']['status'] = "COMPLETED";
+
+														if ( isset( $capture->purchase_units[0]->payments->captures[0]->id ) ) {
+															$transaction_id = $capture->purchase_units[0]->payments->captures[0]->id;
+
+															$field_data_array[ $i ]['value']['transaction_id'] = $transaction_id;
+															$transaction_link = 'https://www.paypal.com/activity/payment/' . rawurlencode( $transaction_id );
+
+															if ( 'sandbox' === $mode ) {
+																$transaction_link = 'https://www.sandbox.paypal.com/activity/payment/' . rawurlencode( $transaction_id );
+															}
+
+															$field_data_array[ $i ]['value']['transaction_link'] = $transaction_link;
+														}
+													} else {
+														// Delete entry if capture is not successful
+														$entry->delete();
+
+														// Return error
+														$response = array(
+															'message' => __( 'Payment failed, please try again!', Forminator::DOMAIN ),
+															'success' => false,
+															'errors'  => array(),
+															'behav'   => $submission_behav,
+														);
+
+														wp_send_json_error( $response );
+													}
+												}
+
+												$i++;
+											}
+										}
+									}
+								}
+
+								// Update entry with new
+								$entry->set_fields( $field_data_array );
 							}
 
 							/**
@@ -1355,13 +1436,6 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 									}
 								}
 								$response['select_field'] = $result;
-							}
-
-							// PayPal
-							if ( $paypal_exists ) {
-								$field_data_array = $this->paypal_capture_payment( $custom_form, $submitted_data, $pseudo_submitted_data, $field_data_array, $entry );
-
-								$entry->set_fields( $field_data_array );
 							}
 
 							if ( ! empty( $product_fields ) ) {
@@ -1998,46 +2072,6 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 * @return array
 	 */
 	public function paypal_capture_payment( $custom_form, $submitted_data, $pseudo_submitted_data, $field_data_array, $entry ) {
-		$fields_collection = forminator_fields_to_array();
-		$fields            = $custom_form->get_fields();
-
-		foreach ( $fields as $field ) {
-			$field = $field->to_formatted_array();
-
-			if ( isset( $field['type'] ) && 'paypal' === $field['type'] ) {
-				if ( isset( $fields_collection['paypal'] ) ) {
-					$element_id = isset( $field['element_id'] ) ? $field['element_id'] : false;
-					$mode 		= isset( $field['mode'] ) ? $field['mode'] : 'sandbox';
-
-					$i = 0;
-					foreach( $field_data_array as $data ) {
-						if ( $data['name'] === $element_id ) {
-							$paypal = new Forminator_PayPal_Express();
-							$capture = $paypal->capture_order( $submitted_data[ $element_id ], $mode );
-
-							if ( "COMPLETED" === $capture->status ) {
-								$field_data_array[ $i ]['value']['status'] = "COMPLETED";
-
-								if ( isset( $capture->purchase_units[0]->payments->captures[0]->id ) ) {
-									$transaction_id = $capture->purchase_units[0]->payments->captures[0]->id;
-
-									$field_data_array[ $i ]['value']['transaction_id'] = $transaction_id;
-									$transaction_link = 'https://www.paypal.com/activity/payment/' . rawurlencode( $transaction_id );
-
-									if ( 'sandbox' === $mode ) {
-										$transaction_link = 'https://www.sandbox.paypal.com/activity/payment/' . rawurlencode( $transaction_id );
-									}
-
-									$field_data_array[ $i ]['value']['transaction_link'] = $transaction_link;
-								}
-							}
-						}
-
-						$i++;
-					}
-				}
-			}
-		}
 
 		return $field_data_array;
 	}

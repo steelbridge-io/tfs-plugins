@@ -153,7 +153,8 @@ class Forminator_Admin_Import_CF7 extends Forminator_Import_Mediator {
 				}
 
 				if ( ! empty( $field->labels ) && ( 'select' === $type || 'radio' === $type || 'checkbox' === $type ) ) {
-					$checked = array();
+					$checked     = array();
+					$after_pipes = array();
 
 					if ( isset( $field['options'] ) ) {
 						$has_blank  = preg_grep( "/^include_blank/", $field['options'] );
@@ -168,6 +169,9 @@ class Forminator_Admin_Import_CF7 extends Forminator_Import_Mediator {
 							}
 						}
 					}
+					if ( $field->pipes instanceof WPCF7_Pipes ) {
+						$after_pipes = $field->pipes->collect_afters();
+					}
 					if ( ! empty( $has_blank ) ) {
 						$blank_options[] = array(
 							'label'   => '---',
@@ -179,7 +183,7 @@ class Forminator_Admin_Import_CF7 extends Forminator_Import_Mediator {
 					foreach ( $field->labels as $key => $label ) {
 						$options[] = array(
 							'label'   => esc_html( $label ),
-							'value'   => esc_html( $field->values[ $key ] ),
+							'value'   => isset( $after_pipes[ $key ] ) ? esc_html( $after_pipes[ $key ] ) : esc_html( $field->values[ $key ] ),
 							'limit'   => '',
 							'default' => in_array( $key + 1, $checked )
 						);

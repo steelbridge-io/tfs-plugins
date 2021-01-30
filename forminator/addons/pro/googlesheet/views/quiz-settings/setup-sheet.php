@@ -49,7 +49,7 @@ foreach ( $template_vars as $key => $val ) {
 						'<a href="https://drive.google.com/#my-drive" target="_blank">' . esc_html__( 'Drive account', Forminator::DOMAIN ) . '</a>'
 					); //phpcs:ignore Standard.Category.SniffName.ErrorCode
 					?>
-					<?php esc_html_e( 'Navigate to or create a new directory where you want to new spreadsheet created. Make sure you are viewing the destination directory.', Forminator::DOMAIN ); ?>
+					<?php esc_html_e( 'Navigate to or create a new directory where you want to create a new spreadsheet. Make sure you are viewing the destination directory.', Forminator::DOMAIN ); ?>
 				</li>
 				<li>
 				<?php

@@ -142,6 +142,7 @@ class Forminator_Addon_Aweber_Wp_Api {
 	private function request( $verb, $url, $args = array(), $headers = array() ) {
 		// Adding extra user agent for wp remote request
 		add_filter( 'http_headers_useragent', array( $this, 'filter_user_agent' ) );
+		$verb = ! empty( $verb ) ? $verb : 'GET';
 
 		/**
 		 * Filter aweber url to be used on sending api request

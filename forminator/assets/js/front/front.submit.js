@@ -176,6 +176,9 @@
 						}
 					}
 				}
+
+				self.multi_upload_disable( $this, true );
+
 				var submitCallback = function() {
 					formData = new FormData(this); // reinit values
 
@@ -346,7 +349,7 @@
 											       errors_html += '<li>' + value[propName] + '</li>';
 											    }
 											}
-										})
+										});
 										errors_html += '</ul>';
 										$target_message.append(errors_html);
 									}
@@ -374,7 +377,7 @@
 												        errors_html += '<li>' + value[propName] + '</li>';
 												    }
 												}
-											})
+											});
 											errors_html += '</ul>';
 											$target_message.append(errors_html);
 										}
@@ -384,6 +387,7 @@
 								if (!data.data.success && typeof data.data.errors !== 'undefined' && data.data.errors.length) {
 									$this.trigger('forminator:form:submit:failed', formData);
 									self.show_messages(data.data.errors);
+									self.multi_upload_disable( $this, false );
 								}
 
 								if (data.success === true) {
@@ -433,21 +437,21 @@
 											});
 										}
 										// Reset multiselect
-										if ( $this.find('.multiselect-default-values').length > 0 && '' !== $this.find('.multiselect-default-values').val() ) {
-											var defaultValuesObj = $.parseJSON( $this.find('.multiselect-default-values').val() );
-											var defaultValuesArr = Object.values( defaultValuesObj );
-
-											$this.find('.forminator-multiselect input[type="checkbox"]').each(function (i, val) {
+										$this.find('.multiselect-default-values').each(function () {
+											var defaultValuesObj = '' !== $(this).val() ?  $.parseJSON( $(this).val() ) : [],
+												defaultValuesArr = Object.values( defaultValuesObj ),
+												multiSelect = $(this).closest('.forminator-multiselect');
+											multiSelect.find('input[type="checkbox"]').each(function (i, val) {
 												if( -1 !== $.inArray( $(val).val(), defaultValuesArr ) ) {
 													$(val).prop('checked', true);
 													$(val).closest('label').addClass('forminator-is_checked');
-												}else{
+												} else {
 													$(val).prop('checked', false);
 													$(val).closest('label').removeClass('forminator-is_checked');
 												}
 											});
-										}
-
+										});
+										self.multi_upload_disable( $this, false );
 										$this.trigger('forminator:form:submit:success', formData);
 
 										// restart condition after form reset to ensure values of input already reset-ed too
@@ -485,8 +489,8 @@
 								var $message = err.status === 400 ? window.ForminatorFront.cform.upload_error : window.ForminatorFront.cform.error;
 								$target_message.html('<label class="forminator-label--notice"><span>' + $message + '</span></label>');
 								self.focus_to_element($target_message);
-
 								$this.trigger('forminator:form:submit:failed', formData);
+								self.multi_upload_disable( $this, false );
 							},
 							complete: function(xhr,status) {
 								self.$el.find('.forminator-button-submit').removeClass('forminator-button-onload');
@@ -1302,6 +1306,15 @@
 			}
 
 			return this;
+		},
+
+		multi_upload_disable: function ( $form, disable ) {
+			$form.find( '.forminator-multi-upload input' ).each( function() {
+				var file_method = $(this).data('method');
+				if( 'ajax' === file_method ) {
+					$(this).attr('disabled', disable);
+				}
+			});
 		}
 
 	});

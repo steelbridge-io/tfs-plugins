@@ -77,7 +77,7 @@ class Forminator_Text extends Forminator_Field {
 			'input_type'  => 'line',
 			'limit_type'  => 'characters',
 			'field_label' => __( 'Text', Forminator::DOMAIN ),
-			'placeholder' => __( 'E.g. text placeholder', Forminator::DOMAIN ),
+			'placeholder' => __( 'E.g., text placeholder', Forminator::DOMAIN ),
 		);
 	}
 

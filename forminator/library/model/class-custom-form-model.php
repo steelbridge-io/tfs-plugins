@@ -166,16 +166,11 @@ class Forminator_Custom_Form_Model extends Forminator_Base_Form_Model {
 	 *
 	 * @since 1.14
 	 *
-	 * @param string $status
+	 * @param string $status Post status.
 	 *
 	 * @return int
 	 */
-	public function count_all( $status = '', $db = false ) {
-		if ( ! $db ) {
-			global $wpdb;
-			$db = $wpdb;
-		}
-
+	public function count_all( $status = '' ) {
 		if ( empty( $status ) ) {
 			$cache_key     = 'forminator_form_total_entries';
 			$cache_group   = 'forminator_form_total_entries';
@@ -188,25 +183,19 @@ class Forminator_Custom_Form_Model extends Forminator_Base_Form_Model {
 		if ( $entries_cache ) {
 			return $entries_cache;
 		} else {
-			$like = $wpdb->esc_like( 'form-type";s:5:"leads"' );
-			$like = '%' . $like . '%';
 
 			if ( empty( $status ) ) {
-				$status = "AND ( p.post_status = 'publish' OR p.post_status = 'draft' )";
-			} else {
-				$status = "AND p.post_status = '" . $status . "'";
+				$status = 'any';
 			}
 
-			$sql = "SELECT count(DISTINCT pm.post_id)
-				FROM $wpdb->postmeta pm
-				JOIN $wpdb->posts p ON (p.ID = pm.post_id)
-				WHERE pm.meta_key = 'forminator_form_meta'
-				AND pm.meta_value NOT LIKE %s
-				AND p.post_type = 'forminator_forms'
-				" . $status . "
-			";
-
-			$entries = $db->get_var( $db->prepare( $sql, $like ) );
+			$args    = array(
+				'post_type'   => $this->post_type,
+				'post_status' => $status,
+				'fields'      => 'ids',
+				'numberposts' => -1,
+			);
+			$posts   = get_posts( $args );
+			$entries = count( $posts );
 
 			wp_cache_set( $cache_group, $entries, $cache_key );
 

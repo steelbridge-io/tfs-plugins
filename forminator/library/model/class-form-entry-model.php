@@ -1375,11 +1375,11 @@ class Forminator_Form_Entry_Model {
 							if ( strlen( $file_name ) > $truncate ) {
 								$file_name = substr( $file_name, 0, $truncate ) . '...';
 							}
-							$string_value .= '<a href="' . $url . '" rel="noopener noreferrer" target="_blank" title="' . __( 'View File', Forminator::DOMAIN ) . '">' . $file_name . '</a>';
+							$string_value .= '<a href="' . $url . '" rel="noopener noreferrer" target="_blank" title="' . __( 'View File', Forminator::DOMAIN ) . '">' . $file_name . '</a><br/>';
 						}
 					} else {
 						//truncate url
-						$string_value = is_array( $file['file_url'] ) ? implode( ', ', $file['file_url'] ) : $file['file_url'];
+						$string_value = is_array( $file['file_url'] ) ? implode( '<br/>', $file['file_url'] ) : $file['file_url'];
 						if ( strlen( $string_value ) > $truncate ) {
 							$string_value = substr( $string_value, 0, $truncate ) . '...';
 						}

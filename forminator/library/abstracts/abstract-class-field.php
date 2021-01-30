@@ -308,7 +308,7 @@ abstract class Forminator_Field {
 		}
 
 		if ( isset( $wrapper_input[2] ) && ! empty( $wrapper_input[2] ) ) {
-			$html .= sprintf( '<span class="forminator-icon-%s" aria-hidden="true"></span>', $wrapper_input[2] );
+			$html .= sprintf( '<label for="%s"><span class="forminator-icon-%s" aria-hidden="true"></span></label>', $get_id, $wrapper_input[2] );
 		}
 
 		if ( isset( $wrapper_input[3] ) && ! empty( $wrapper_input[3] ) ) {
@@ -901,7 +901,7 @@ abstract class Forminator_Field {
 				if ( ! empty( $parent_conditions ) && 'any' !== $condition_rule ) {
 					// Increase conditions count
 					$conditions_count ++;
-					$parent_hidden = self::is_hidden( $parent_field, $form_data, $pseudo_submitted_data, $form_object = false );
+					$parent_hidden = self::is_hidden( $parent_field, $form_data, $pseudo_submitted_data, $form_object );
 
 					// If parent not hidden increase fulfilled conditions
 					if ( ! $parent_hidden && 'show' === $condition_action ) {
@@ -1693,5 +1693,73 @@ abstract class Forminator_Field {
 		}
 
 		return $attributes;
+	}
+
+	/**
+	 * Get TinyMCE arguments for js on front-end
+	 *
+	 * @param string $id Editor ID.
+	 * @return string
+	 */
+	public static function get_tinymce_args( $id ) {
+		$args = "{
+			tinymce: {
+				wpautop  : true,
+				theme    : 'modern',
+				skin     : 'lightgray',
+				language : 'en',
+				formats  : {
+					alignleft  : [
+						{ selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'left' } },
+						{ selector: 'img,table,dl.wp-caption', classes: 'alignleft' }
+					],
+					aligncenter: [
+						{ selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'center' } },
+						{ selector: 'img,table,dl.wp-caption', classes: 'aligncenter' }
+					],
+					alignright : [
+						{ selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign: 'right' } },
+						{ selector: 'img,table,dl.wp-caption', classes: 'alignright' }
+					],
+					strikethrough: { inline: 'del' }
+				},
+				relative_urls       : false,
+				remove_script_host  : false,
+				convert_urls        : false,
+				browser_spellcheck  : true,
+				fix_list_elements   : true,
+				entities            : '38,amp,60,lt,62,gt',
+				entity_encoding     : 'raw',
+				keep_styles         : false,
+				paste_webkit_styles : 'font-weight font-style color',
+				preview_styles      : 'font-family font-size font-weight font-style text-decoration text-transform',
+				tabfocus_elements   : ':prev,:next',
+				plugins    : 'charmap,hr,media,paste,tabfocus,textcolor,fullscreen,wptextpattern,lists,wordpress,wpeditimage,wpgallery,link,wplink,wpdialogs,wpview',
+				resize     : 'vertical',
+				menubar    : false,
+				indent     : false,
+				toolbar1   : 'formatselect,bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,wp_more,fullscreen,wp_adv',
+				toolbar2   : 'strikethrough,underline,hr,forecolor,pastetext,alignjustify,removeformat,charmap,outdent,indent,undo,redo,wp_help',
+				toolbar3   : '',
+				toolbar4   : '',
+				body_class : 'id post-type-post post-status-publish post-format-standard',
+				wpeditimage_disable_captions: false,
+				wpeditimage_html5_captions  : true
+
+			},
+			quicktags: true,
+		}";
+
+		/**
+		 * Filter TinyMCE arguments for js on front-end.
+		 *
+		 * @since 1.1
+		 *
+		 * @param string $args TinyMCE arguments
+		 * @param string $id   Editor ID
+		 */
+		$args = apply_filters( 'forminator_tinymce_args', $args, $id );
+
+		return $args;
 	}
 }

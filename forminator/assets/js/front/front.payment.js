@@ -135,7 +135,7 @@
 			var $form = $( e.target );
 
 			if(!$form.hasClass('forminator-custom-form')) {
-				$form = $form.closets('form.forminator-custom-form');
+				$form = $form.closest('form.forminator-custom-form');
 			}
 
 			return $form;
