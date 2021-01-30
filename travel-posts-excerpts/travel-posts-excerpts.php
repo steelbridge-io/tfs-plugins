@@ -63,6 +63,11 @@ class TVLPostsAndExcerpts extends WP_Widget {
     echo '<div>';
     
     // retrieve last n blog posts
+    //$q = array('post_type' => 'travel-blog');
+    $q = array(
+        'posts_per_page' => $instance['travel_numposts'],
+        'post_type' => 'travel-blog'
+    );
     if (!empty($instance['ignore_sticky_posts'])) {
       $q["ignore_sticky_posts"] = $instance['ignore_sticky_posts'];
     }
@@ -73,12 +78,10 @@ class TVLPostsAndExcerpts extends WP_Widget {
     if (!empty($instance['tag']))
       $q['tag'] = $instance['tag'];
     $q = apply_filters('tvl_posts_excerpt_query', $q);
-    $q = array('post_type'=>array('travel-blog'));
-    $q = array('posts_per_page' => $instance['travel_numposts']);
-    $rpwe = new wp_query($q);
+    
     $excerpts = $instance['numexcerpts'];
     $date = apply_filters('tvl_posts_excerpt_date_format', $instance['date']);
-    
+    $rpwe = new WP_Query($q);
     // the Loop
     if ($rpwe->have_posts()) :
       while ($rpwe->have_posts()) : $rpwe->the_post();
@@ -89,7 +92,7 @@ class TVLPostsAndExcerpts extends WP_Widget {
         echo '<h3'.$h2_classes.'><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
         
         if (!empty($date))
-        echo '<h4 class="date">'.get_the_time($date).'</h4>';
+        echo '<h4 class="date">Posted On: '.get_the_time($date).'</h4>';
         
         if ($excerpts > 0) { // show the excerpt
           if ($instance['thumb'] && $instance['thumbposition'] == 'between')
@@ -146,12 +149,12 @@ class TVLPostsAndExcerpts extends WP_Widget {
     
     //Defaults
     $instance = wp_parse_args( (array) $instance, array(
-      'title' => __('Travel Posts & Excerpts', 'tvl_posts_excerpt'),
+      'title' => __('Travel News', 'tvl_posts_excerpt'),
       'travel_numposts' => 5,
       'ignore_sticky_posts' => 1,
       'numexcerpts' => 5,
       'date' => get_option('date_format'),
-      'more_text' => __('more...', 'tvl_posts_excerpt'),
+      'more_text' => __('', 'tvl_posts_excerpt'),
       'words' => '55',
       'tags' => '<p><div><span><br><img><a><blockquote><cite><em><i><strong><b><h2><h3><h4><h5><h6>',
       'travelblog-category' => 0,
@@ -186,11 +189,11 @@ class TVLPostsAndExcerpts extends WP_Widget {
     <p><label for="<?php echo $this->get_field_id('numexcerpts'); ?>"><?php _e('Number of excerpts to show:', 'tvl_posts_excerpt'); ?></label>
       <input class="widefat" id="<?php echo $this->get_field_id('numexcerpts'); ?>" name="<?php echo $this->get_field_name('numexcerpts'); ?>" type="text" value="<?php echo $instance['numexcerpts']; ?>" /></p>
     
-    <p>
-      <label for="<?php echo $this->get_field_id('more_text'); ?>"><?php _e('"More" link text:', 'tvl_posts_excerpt'); ?></label>
-      <input class="widefat" id="<?php echo $this->get_field_id('more_text'); ?>" name="<?php echo $this->get_field_name('more_text'); ?>" type="text" value="<?php echo $instance['more_text']; ?>" />
-      <br /><small><?php _e('Leave blank to omit "more" link', 'tvl_posts_excerpt'); ?></small>
-    </p>
+   <!-- <p>
+      <label for="<?php //echo $this->get_field_id('more_text'); ?>"><?php// _e('"More" link text:', 'tvl_posts_excerpt'); ?></label>
+      <input class="widefat" id="<?php //echo $this->get_field_id('more_text'); ?>" name="<?php// echo $this->get_field_name('more_text'); ?>" type="text" value="<?php // echo $instance['more_text']; ?>" />
+      <br /><small><?php //_e('Leave blank to omit "more" link', 'tvl_posts_excerpt'); ?></small>
+    </p> -->
     
     <p>
        <label for="<?php echo $this->get_field_id('date'); ?>"><?php _e('Date format:', 'tvl_posts_excerpt'); ?></label>

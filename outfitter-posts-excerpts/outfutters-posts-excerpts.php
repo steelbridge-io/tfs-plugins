@@ -84,8 +84,11 @@ class outfittersPostsExcerpts extends WP_Widget {
               return $instance;
             }
             
-			
 			// retrieve last n blog posts
+            $q = array(
+              'post_type' => 'flyfishing-news',
+              'posts_per_page' => $instance['outfitters_numposts']
+            );
 			if (!empty($instance['ignore_sticky_posts'])) {
 				$q["ignore_sticky_posts"] = $instance['ignore_sticky_posts'];
 			}
@@ -96,11 +99,9 @@ class outfittersPostsExcerpts extends WP_Widget {
 			if (!empty($instance['tag']))
 				$q['tag'] = $instance['tag'];
 			$q = apply_filters('outfitters_posts_excerpts_query', $q);
-            $q = array('post_type'=>array('flyfishing-news'));
-            $q = array('posts_per_page' => $instance['outfitters_numposts']);
 			$rpwe = new wp_query($q);
 			$excerpts = $instance['numexcerpts'];
-			//$date = apply_filters('outfitters_posts_excerpts_date_format', $instance['date']);
+			$date = apply_filters('outfitters_posts_excerpts_date_format', $instance['date']);
 			
 			// the Loop
    
@@ -114,7 +115,7 @@ class outfittersPostsExcerpts extends WP_Widget {
                 echo '<h3'.$h2_classes.'><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
 				
 				if (!empty($date))
-					echo '<h4 class="date">'.get_the_time($date).'</h4>';
+					echo '<h4 class="date">Posted On: '.get_the_time($date).'</h4>';
                 
                 if ($excerpts > 0) { // show the excerpt
 					if ($instance['thumb'] && $instance['thumbposition'] == 'between')
@@ -157,7 +158,7 @@ class outfittersPostsExcerpts extends WP_Widget {
 			'ignore_sticky_posts' => 1,
 			'numexcerpts' => 5,
 			'date' => get_option('date_format'),
-			//'more_text' => __('more...', 'outfitters_posts_excerpts'),
+			'more_text' => __('', 'outfitters_posts_excerpts'),
 			'words' => '55',
 			'tags' => '<p><div><span><br><img><a><blockquote><cite><em><i><strong><b><h2><h3><h4><h5><h6>',
 			'outfitters' => 0,
@@ -192,17 +193,17 @@ class outfittersPostsExcerpts extends WP_Widget {
        <p><label for="<?php echo $this->get_field_id('numexcerpts'); ?>"><?php _e('Number of excerpts to show:', 'outfitters_posts_excerpts'); ?></label>
        <input class="widefat" id="<?php echo $this->get_field_id('numexcerpts'); ?>" name="<?php echo $this->get_field_name('numexcerpts'); ?>" type="text" value="<?php echo $instance['numexcerpts']; ?>" /></p>
        
-       <p>
-       <label for="<?php echo $this->get_field_id('more_text'); ?>"><?php _e('"More" link text:', 'outfitters_posts_excerpts'); ?></label>
-       <input class="widefat" id="<?php echo $this->get_field_id('more_text'); ?>" name="<?php echo $this->get_field_name('more_text'); ?>" type="text" value="<?php echo $instance['more_text']; ?>" />
-       <br /><small><?php _e('Leave blank to omit "more" link', 'outfitters_posts_excerpts'); ?></small>
-       </p>
+      <!-- <p>
+       <label for="<?php //echo $this->get_field_id('more_text'); ?>"><?php //_e('"More" link text:', 'outfitters_posts_excerpts'); ?></label>
+       <input class="widefat" id="<?php// echo $this->get_field_id('more_text'); ?>" name="<?php //echo $this->get_field_name('more_text'); ?>" type="text" value="<?php// echo $instance['more_text']; ?>" />
+       <br /><small><?php// _e('Leave blank to omit "more" link', 'outfitters_posts_excerpts'); ?></small>
+       </p> -->
 
       <p>
        <label for="<?php echo $this->get_field_id('date'); ?>"><?php _e('Date format:', 'outfitters_posts_excerpts'); ?></label>
        <input class="widefat" id="<?php echo $this->get_field_id('date'); ?>" name="<?php echo $this->get_field_name('date'); ?>" type="text" value="<?php echo $instance['date']; ?>" />
        <br /><small><?php _e('Leave blank to omit the date', 'outfitters_posts_excerpts'); ?></small>
-       </p>
+      </p>
 
        <p><label for="<?php echo $this->get_field_id('outfitters'); ?>"><?php _e('Limit to category:', 'outfitters_posts_excerpts'); ?>
        <?php wp_dropdown_categories(array('taxonomy' => 'outfitters','name' => $this->get_field_name('outfitters'), 'show_option_all' => __('None (all categories)'), 'hide_empty'=>0, 'hierarchical'=>1, 'selected'=>$instance['outfitters'])); ?></label></p>

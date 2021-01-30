@@ -16,6 +16,11 @@ span.alignright {
 
 .post-excerpt a, .post-excerpt :hover {
 	color: #2e3842;
+
+}
+
+.post-excerpt a.read-more-link {
+	color: #a01624;
 }
 
 .postexcerpt-title {

@@ -27,7 +27,6 @@ class TFSPostsAndExcerpts extends WP_Widget {
     parent::__construct('TFSPostsAndExcerpts', __('TFS Post And Excerpt', 'tfs_posts_excerpt'), $widget_ops);
   }
   
-  
   function widget( $args, $instance ) {
     extract( $args );
     
@@ -76,7 +75,7 @@ class TFSPostsAndExcerpts extends WP_Widget {
     $q = array('posts_per_page' => $instance['numposts']);
     $rpwe = new wp_query($q);
     $excerpts = $instance['numexcerpts'];
-    //$date = apply_filters('tfs_posts_excerpt_date_format', $instance['date']);
+    $date = apply_filters('tfs_posts_excerpt_date_format', $instance['date']);
     
     // the Loop
     if ($rpwe->have_posts()) :
@@ -85,10 +84,10 @@ class TFSPostsAndExcerpts extends WP_Widget {
         if ($excerpts > 0 && $instance['thumb'] && $instance['thumbposition'] == 'above')
           echo '<a href="'.get_permalink().'">'. get_the_post_thumbnail( get_the_id(), $instance['thumbsize']) .'</a>';
         
-        echo '<h4'.$h2_classes.'><a href="'.get_permalink().'">'.get_the_title().'</a></h4>';
+        echo '<h3'.$h2_classes.'><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
         
-        //if (!empty($date))
-        //echo '<h3 class="date">'.get_the_time($date).'</h3>';
+        if (!empty($date))
+        echo '<h4 class="date">Posted On: '.get_the_time($date).'</h4>';
         
         if ($excerpts > 0) { // show the excerpt
           if ($instance['thumb'] && $instance['thumbposition'] == 'between')
@@ -150,7 +149,7 @@ class TFSPostsAndExcerpts extends WP_Widget {
       'ignore_sticky_posts' => 1,
       'numexcerpts' => 5,
       'date' => get_option('date_format'),
-      'more_text' => __('more...', 'tfs_posts_excerpt'),
+      'more_text' => __('', 'tfs_posts_excerpt'),
       'words' => '55',
       'tags' => '<p><div><span><br><img><a><blockquote><cite><em><i><strong><b><h2><h3><h4><h5><h6>',
       'cat' => 0,
@@ -165,7 +164,6 @@ class TFSPostsAndExcerpts extends WP_Widget {
     
     <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'tfs_posts_excerpt'); ?></label>
       <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" /></p>
-    
     
     <p>
       <label for="<?php echo $this->get_field_id('postlink'); ?>"><?php _e('Link widget title to blog home page?', 'tfs_posts_excerpt'); ?></label>
@@ -185,17 +183,17 @@ class TFSPostsAndExcerpts extends WP_Widget {
     <p><label for="<?php echo $this->get_field_id('numexcerpts'); ?>"><?php _e('Number of excerpts to show:', 'tfs_posts_excerpt'); ?></label>
       <input class="widefat" id="<?php echo $this->get_field_id('numexcerpts'); ?>" name="<?php echo $this->get_field_name('numexcerpts'); ?>" type="text" value="<?php echo $instance['numexcerpts']; ?>" /></p>
     
-    <p>
-      <label for="<?php echo $this->get_field_id('more_text'); ?>"><?php _e('"More" link text:', 'tfs_posts_excerpt'); ?></label>
-      <input class="widefat" id="<?php echo $this->get_field_id('more_text'); ?>" name="<?php echo $this->get_field_name('more_text'); ?>" type="text" value="<?php echo $instance['more_text']; ?>" />
-      <br /><small><?php _e('Leave blank to omit "more" link', 'tfs_posts_excerpt'); ?></small>
-    </p>
+   <!-- <p>
+      <label for="<?php // echo $this->get_field_id('more_text'); ?>"><?php //_e('"More" link text:', 'tfs_posts_excerpt'); ?></label>
+      <input class="widefat" id="<?php //echo $this->get_field_id('more_text'); ?>" name="<?php //echo $this->get_field_name('more_text'); ?>" type="text" value="<?php //echo $instance['more_text']; ?>" />
+      <br /><small><?php // _e('Leave blank to omit "more" link', 'tfs_posts_excerpt'); ?></small>
+    </p> -->
     
-    <!-- <p>
+     <p>
        <label for="<?php echo $this->get_field_id('date'); ?>"><?php _e('Date format:', 'tfs_posts_excerpt'); ?></label>
        <input class="widefat" id="<?php echo $this->get_field_id('date'); ?>" name="<?php echo $this->get_field_name('date'); ?>" type="text" value="<?php echo $instance['date']; ?>" />
        <br /><small><?php _e('Leave blank to omit the date', 'tfs_posts_excerpt'); ?></small>
-       </p> -->
+     </p>
     
     <p><label for="<?php echo $this->get_field_id('cat'); ?>"><?php _e('Limit to category:', 'tfs_posts_excerpt'); ?>
         <?php wp_dropdown_categories(array('name' => $this->get_field_name('cat'), 'show_option_all' => __('None (all categories)'), 'hide_empty'=>0, 'hierarchical'=>1, 'selected'=>$instance['cat'])); ?></label></p>

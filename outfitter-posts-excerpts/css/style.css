@@ -18,6 +18,10 @@ span.alignright {
 	color: #2e3842;
 }
 
+.post-excerpt a.read-more-link {
+	color: #a01624;
+}
+
 .postexcerpt-title {
 	padding: 9px 0 0;
 }
