@@ -17,7 +17,7 @@ function tfs_custom_travel_meta() {
     if(!empty($post)){
         $pageTemplate = get_post_meta($post->ID, '_wp_page_template', true);
         if($pageTemplate == 'page-templates/travel-template.php') {
-            $types = array('post', 'page', 'travel_cpt', 'lower48');
+            $types = array('post', 'page', 'travel_cpt', 'lower48', 'travel-blog');
             foreach($types as $type) {
                 add_meta_box( 'sbm_meta', __( 'Travel Content Fields', 'tfs-travel-textdomain' ), 'tfs_travel_meta_callback',
                     $type, 'normal', 'high' );

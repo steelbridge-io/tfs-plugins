@@ -10,7 +10,7 @@ function sections_custom_meta() { global $post;
 	
 	if(!empty($post)) {
 		$pageTemplate = get_post_meta ($post -> ID, '_wp_page_template', true);
-		$types = array('post', 'page', 'travel_cpt', 'schools_cpt', 'adventures', 'guide_service', 'fishcamp_cpt');
+		$types = array('post', 'page', 'travel_cpt', 'schools_cpt', 'adventures', 'guide_service', 'fishcamp_cpt', 'travel-blog');
 		foreach ($types as $type) {
 		if($pageTemplate == 'page-templates/sections-template.php') {
 			add_meta_box ( 'sections_meta', __('Content &amp; Images', 'sections-textdomain' ), 'sections_meta_callback', $type, 'normal', 'high');
@@ -47,7 +47,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
 
 	</p>
 
-	<!-- **** 
+	<!-- ****
 	Tabbed section for optional carousel
 	**** -->
 	<div class="panel with-nav-tabs panel-default">
@@ -103,7 +103,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
 				</div>
 
 				<!-- ==== Image #2==== -->
-								
+				
 				<div role="tabpanel" class="tab-pane fade" id="sectionscselimage2">
 
 				<label for="sections-image" class="sections-row-title"><?php _e( '<h3>Carousel Image &#35;2</h3>', 'sections-textdomain' );?></label>
@@ -126,7 +126,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
 				</p>
 
 				</div>
-          
+        
         <!-- ==== Image #3 ==== -->
 								
 				<div role="tabpanel" class="tab-pane fade" id="sectionscselimage3">
@@ -149,9 +149,9 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
 				<input type="button" id="sections-csel-3-img-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'sections-textdomain' );?>" />
 
 				</p>
-           
+    
 				</div>
-           
+        
         <!-- ==== Image #4 ==== -->
 								
 				<div role="tabpanel" class="tab-pane fade" id="sectionscselimage4">
@@ -174,9 +174,9 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
 				<input type="button" id="sections-csel-4-img-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'sections-textdomain' );?>" />
 
 				</p>
-           
+    
 				</div>
-           
+        
         <!-- ==== Image #5 ==== -->
 								
 				<div role="tabpanel" class="tab-pane fade" id="sectionscselimage5">
@@ -199,9 +199,9 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
 				<input type="button" id="sections-csel-5-img-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'sections-textdomain' );?>" />
 
 				</p>
-           
+    
 				</div>
-           
+        
         <!-- ==== Image #5 ==== -->
 								
 				<div role="tabpanel" class="tab-pane fade" id="sectionscselimage6">
@@ -224,7 +224,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
 				<input type="button" id="sections-csel-6-img-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'sections-textdomain' );?>" />
 
 				</p>
-           
+    
 				</div>
 
 				</div><!-- ./tab-content -->
@@ -330,7 +330,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
 
         </p>
 
-        </div> <!-- /#sectionsimage1 -->   
+        </div> <!-- /#sectionsimage1 -->
         
     
         <!-- ==== SECTION #2 ==== -->
