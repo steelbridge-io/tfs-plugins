@@ -36,7 +36,10 @@ class ComposerStaticInite50e94685ae37e706badfcb05b92ef66
     public static $classMap = array (
         'Hummingbird\\Admin\\AJAX' => __DIR__ . '/../..' . '/admin/class-ajax.php',
         'Hummingbird\\Admin\\Admin' => __DIR__ . '/../..' . '/admin/class-admin.php',
+        'Hummingbird\\Admin\\Ajax\\Caching\\Browser' => __DIR__ . '/../..' . '/admin/ajax/caching/class-browser.php',
+        'Hummingbird\\Admin\\Ajax\\Caching\\Integrations' => __DIR__ . '/../..' . '/admin/ajax/caching/class-integrations.php',
         'Hummingbird\\Admin\\Ajax\\Gzip' => __DIR__ . '/../..' . '/admin/ajax/class-gzip.php',
+        'Hummingbird\\Admin\\Ajax\\Minify' => __DIR__ . '/../..' . '/admin/ajax/class-minify.php',
         'Hummingbird\\Admin\\Notices' => __DIR__ . '/../..' . '/admin/class-notices.php',
         'Hummingbird\\Admin\\Page' => __DIR__ . '/../..' . '/admin/class-page.php',
         'Hummingbird\\Admin\\Pages\\Advanced' => __DIR__ . '/../..' . '/admin/pages/class-advanced.php',
@@ -45,6 +48,7 @@ class ComposerStaticInite50e94685ae37e706badfcb05b92ef66
         'Hummingbird\\Admin\\Pages\\Minification' => __DIR__ . '/../..' . '/admin/pages/class-minification.php',
         'Hummingbird\\Admin\\Pages\\Performance' => __DIR__ . '/../..' . '/admin/pages/class-performance.php',
         'Hummingbird\\Admin\\Pages\\React\\Gzip' => __DIR__ . '/../..' . '/admin/pages/react/class-gzip.php',
+        'Hummingbird\\Admin\\Pages\\React\\Tutorials' => __DIR__ . '/../..' . '/admin/pages/react/class-tutorials.php',
         'Hummingbird\\Admin\\Pages\\Settings' => __DIR__ . '/../..' . '/admin/pages/class-settings.php',
         'Hummingbird\\Admin\\Pages\\Upgrade' => __DIR__ . '/../..' . '/admin/pages/class-upgrade.php',
         'Hummingbird\\Admin\\Pages\\Uptime' => __DIR__ . '/../..' . '/admin/pages/class-uptime.php',

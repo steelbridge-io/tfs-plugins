@@ -88,7 +88,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	printf(
 		/* translators: %1$s: opening a tag, %2$s: closing a tag */
 		esc_html__( 'You can also set scheduled pdf reports for your clients via %1$sThe Hub%2$s.', 'wphb' ),
-		'<a href="https://premium.wpmudev.org/hub/my-websites/" target="_blank">',
+		'<a href="https://wpmudev.com/hub2/" target="_blank">',
 		'</a>'
 	);
 	?>

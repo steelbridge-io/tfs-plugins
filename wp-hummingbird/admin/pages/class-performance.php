@@ -77,48 +77,9 @@ class Performance extends Page {
 			$this->admin_notices->show_floating( __( 'You have successfully ignored this performance test.', 'wphb' ) );
 		}
 
-		add_action( 'wphb_sui_header_sui_actions_right', array( $this, 'add_header_actions' ) );
-		add_action( 'wphb_performance_cool_down_notice', array( $this, 'render_cool_down_notice' ) );
+		add_filter( 'wphb_admin_after_flat_tab_' . $this->get_slug(), array( $this, 'after_flat_tab' ) );
 
 		parent::render_header();
-	}
-
-	/**
-	 * Add content to the header.
-	 *
-	 * @since 2.5.0
-	 */
-	public function add_header_actions() {
-		if ( ! Performance_Report::get_last_report() ) {
-			return;
-		}
-
-		$types = array(
-			'desktop' => __( 'Desktop', 'wphb' ),
-			'mobile'  => __( 'Mobile', 'wphb' ),
-		);
-		?>
-		<label for="wphb-performance-report-type" class="inline-label header-label sui-hidden-xs sui-hidden-sm">
-			<?php esc_html_e( 'Show results for', 'wphb' ); ?>
-		</label>
-		<select name="wphb-performance-report-type" class="sui-select sui-select-sm" id="wphb-performance-report-type" data-width="100px">
-			<?php foreach ( $types as $type => $label ) : ?>
-				<?php
-				$data_url = add_query_arg(
-					array(
-						'view'       => $this->get_current_tab(),
-						'data-range' => $type,
-					),
-					Utils::get_admin_menu_url( 'performance' )
-				);
-				?>
-				<option value="<?php echo esc_attr( $type ); ?>"
-					<?php selected( $this->type, $type ); ?> data-url="<?php echo esc_url( $data_url ); ?>">
-					<?php echo esc_html( $label ); ?>
-				</option>
-			<?php endforeach; ?>
-		</select>
-		<?php
 	}
 
 	/**
@@ -138,36 +99,42 @@ class Performance extends Page {
 	}
 
 	/**
-	 * Show a 5-minute cool down notice.
+	 * Add the test button.
 	 *
-	 * @since 2.7.1
+	 * @since 3.0.0
 	 */
-	public function render_cool_down_notice() {
+	public function after_flat_tab() {
 		if ( true === $this->can_run_test ) {
-			return;
-		}
-		?>
-		<div role="alert" class="sui-box sui-summary sui-summary-sm wphb-box-notice wphb-notice-info" aria-live="assertive" style="background-image: none">
-			<span class="sui-icon-info" aria-hidden="true"></span>
-			<div class="sui-summary-segment">
-				<div class="sui-summary-details sui-no-padding-left">
-					<span class="sui-summary-sub sui-no-margin-bottom">
-						<?php
-						printf( /* translators: %d: number of minutes. */
-							_n(
-								'Hummingbird is just catching her breath - you can run another test in %d minute.',
-								'Hummingbird is just catching her breath - you can run another test in %d minutes.',
-								$this->can_run_test,
-								'wphb'
-							),
-							number_format_i18n( $this->can_run_test )
-						);
-						?>
-					</span>
-				</div>
+			$run_url = add_query_arg( 'run', 'true', $this->get_page_url() );
+			$run_url = wp_nonce_url( $run_url, 'wphb-run-performance-test' );
+			?>
+			<div class="sui-actions-right">
+				<a href="<?php echo esc_url( $run_url ); ?>" class="sui-button sui-button-blue" id="performance-run-test">
+					<?php esc_html_e( 'New Test', 'wphb' ); ?>
+				</a>
 			</div>
-		</div>
-		<?php
+			<?php
+		} else {
+			$tooltip = sprintf(
+				/* translators: %d: number of minutes. */
+				_n(
+					'Hummingbird is just catching her breath - you can run another test in %d minute',
+					'Hummingbird is just catching her breath - you can run another test in %d minutes',
+					$this->can_run_test,
+					'wphb'
+				),
+				number_format_i18n( $this->can_run_test )
+			);
+			?>
+			<div class="sui-actions-right">
+				<span class="sui-tooltip sui-tooltip-bottom sui-tooltip-constrained sui-tooltip-bottom-right" disabled="disabled" data-tooltip="<?php echo esc_attr( $tooltip ); ?>" aria-hidden="true">
+					<a href="#" class="sui-button" disabled="disabled" aria-hidden="true">
+						<?php esc_html_e( 'New Test', 'wphb' ); ?>
+					</a>
+				</span>
+			</div>
+			<?php
+		}
 	}
 
 	/**
@@ -175,20 +142,13 @@ class Performance extends Page {
 	 */
 	public function on_load() {
 		$this->tabs = array(
-			'main'     => __( 'Score Metrics', 'wphb' ),
-			'audits'   => __( 'Audits', 'wphb' ),
-			'historic' => __( 'Historic Field Data', 'wphb' ),
+			'main'     => __( 'Performance Report', 'wphb' ),
 			'reports'  => __( 'Reporting', 'wphb' ),
 			'settings' => __( 'Settings', 'wphb' ),
 		);
 
 		if ( is_multisite() && ! is_network_admin() ) {
 			unset( $this->tabs['reports'] );
-		}
-
-		if ( $this->has_error ) {
-			unset( $this->tabs['audits'] );
-			unset( $this->tabs['historic'] );
 		}
 
 		if ( isset( $_GET['run'] ) ) { // Input var ok.
@@ -266,7 +226,7 @@ class Performance extends Page {
 			 */
 			$this->add_meta_box(
 				'performance/empty',
-				__( 'Performance test', 'wphb' ),
+				__( 'Performance Report', 'wphb' ),
 				null,
 				null,
 				null,
@@ -285,11 +245,8 @@ class Performance extends Page {
 			 */
 			$this->add_meta_box(
 				'performance/error',
-				__( 'Score Metrics', 'wphb' ),
-				array( $this, 'error_metabox' ),
-				null,
-				null,
-				'main'
+				__( 'Performance Report', 'wphb' ),
+				array( $this, 'error_metabox' )
 			);
 		}
 
@@ -315,14 +272,8 @@ class Performance extends Page {
 			 */
 			$this->add_meta_box(
 				'performance/metrics',
-				__( 'Score Metrics', 'wphb' ),
-				array( $this, 'metrics_metabox' ),
-				array( $this, 'reports_metabox_header' ),
-				null,
-				'main',
-				array(
-					'box_content_class' => false,
-				)
+				__( 'Performance Report', 'wphb' ),
+				array( $this, 'metrics_metabox' )
 			);
 
 			/**
@@ -332,9 +283,9 @@ class Performance extends Page {
 				'performance/audits/opportunities',
 				__( 'Opportunities', 'wphb' ),
 				array( $this, 'opportunities_audit_metaboxes' ),
-				array( $this, 'reports_metabox_header' ),
 				null,
-				'audits',
+				null,
+				'main',
 				array(
 					'box_content_class' => false,
 				)
@@ -346,7 +297,7 @@ class Performance extends Page {
 				array( $this, 'diagnostics_audit_metaboxes' ),
 				null,
 				null,
-				'audits',
+				'main',
 				array(
 					'box_content_class' => false,
 				)
@@ -358,22 +309,10 @@ class Performance extends Page {
 				array( $this, 'passed_audit_metaboxes' ),
 				null,
 				null,
-				'audits',
+				'main',
 				array(
 					'box_content_class' => false,
 				)
-			);
-
-			/**
-			 * Historic Field Data meta box.
-			 */
-			$this->add_meta_box(
-				'performance/field-data',
-				__( 'Historic Field Data', 'wphb' ),
-				array( $this, 'historic_field_data_metabox' ),
-				array( $this, 'reports_metabox_header' ),
-				null,
-				'historic'
 			);
 
 			if ( is_multisite() && is_network_admin() || ! is_multisite() ) {
@@ -405,18 +344,101 @@ class Performance extends Page {
 	 * Performance metrics meta box.
 	 */
 	public function metrics_metabox() {
-		$retry_url = wp_nonce_url(
-			add_query_arg( 'run', 'true', Utils::get_admin_menu_url( 'performance' ) ),
-			'wphb-run-performance-test'
-		);
+		$field_data = $this->report->data->{$this->type}->field_data;
+
+		$fcp_fast = $fcp_average = $fcp_slow = false;
+		$fid_fast = $fid_average = $fid_slow = false;
+
+		if ( $field_data ) {
+			$fcp_fast    = round( $field_data->FIRST_CONTENTFUL_PAINT_MS->distributions[0]->proportion * 100 );
+			$fcp_average = round( $field_data->FIRST_CONTENTFUL_PAINT_MS->distributions[1]->proportion * 100 );
+			$fcp_slow    = round( $field_data->FIRST_CONTENTFUL_PAINT_MS->distributions[2]->proportion * 100 );
+
+			$fid_fast    = round( $field_data->FIRST_INPUT_DELAY_MS->distributions[0]->proportion * 100 );
+			$fid_average = round( $field_data->FIRST_INPUT_DELAY_MS->distributions[1]->proportion * 100 );
+			$fid_slow    = round( $field_data->FIRST_INPUT_DELAY_MS->distributions[2]->proportion * 100 );
+
+			$i10n = array(
+				'fcp' => array(
+					'fast'         => $fcp_fast,
+					'fast_desc'    => sprintf(
+					/* translators: %d - number of percent */
+						esc_html__( '%d%% of loads for this page have a fast (< 1 s) First Contentful Paint (FCP).', 'wphb' ),
+						absint( $fcp_fast )
+					),
+					'average'      => $fcp_average,
+					'average_desc' => sprintf(
+					/* translators: %d - number of percent */
+						esc_html__( '%d%% of loads for this page have an average (1 s ~ 2.5 s) First Contentful Paint (FCP).', 'wphb' ),
+						absint( $fcp_average )
+					),
+					'slow'         => $fcp_slow,
+					'slow_desc'    => sprintf(
+					/* translators: %d - number of percent */
+						esc_html__( '%d%% of loads for this page have a slow (> 2.5 s) First Contentful Paint (FCP).', 'wphb' ),
+						absint( $fcp_slow )
+					),
+				),
+				'fid' => array(
+					'fast'         => $fid_fast,
+					'fast_desc'    => sprintf(
+					/* translators: %d - number of percent */
+						esc_html__( '%d%% of loads for this page have a fast (< 50 ms) First Input Delay (FID).', 'wphb' ),
+						absint( $fid_fast )
+					),
+					'average'      => $fid_average,
+					'average_desc' => sprintf(
+					/* translators: %d - number of percent */
+						esc_html__( '%d%% of loads for this page have an average (50 ms ~ 250 ms) First Input Delay (FID).', 'wphb' ),
+						absint( $fid_average )
+					),
+					'slow'         => $fid_slow,
+					'slow_desc'    => sprintf(
+					/* translators: %d - number of percent */
+						esc_html__( '%d%% of loads for this page have a slow (> 250 ms) First Input Delay (FID).', 'wphb' ),
+						absint( $fid_slow )
+					),
+				),
+			);
+
+			wp_localize_script( 'wphb-google-chart', 'wphbHistoricFieldData', $i10n );
+		}
 
 		$this->view(
 			'performance/metrics-meta-box',
 			array(
-				'last_test'        => $this->report->data->{$this->type},
-				'report_dismissed' => $this->dismissed,
 				'can_run_test'     => $this->can_run_test,
-				'retry_url'        => $retry_url,
+				'field_data'       => $field_data,
+				'historic_data'    => array(
+					'fcp_fast'    => $fcp_fast,
+					'fcp_average' => $fcp_average,
+					'fcp_slow'    => $fcp_slow,
+					'fid_fast'    => $fid_fast,
+					'fid_average' => $fid_average,
+					'fid_slow'    => $fid_slow,
+				),
+				'last_test'        => $this->report->data->{$this->type},
+				'links'            => array(
+					'speed-index'              => 'https://web.dev/speed-index/',
+					'first-contentful-paint'   => 'https://web.dev/first-contentful-paint/',
+					'largest-contentful-paint' => 'https://web.dev/lighthouse-largest-contentful-paint/',
+					'interactive'              => 'https://web.dev/interactive/',
+					'total-blocking-time'      => 'https://web.dev/lighthouse-total-blocking-time/',
+					'cumulative-layout-shift'  => 'https://web.dev/cls/',
+				),
+				'report_dismissed' => $this->dismissed,
+				'retry_url'        => wp_nonce_url(
+					add_query_arg( 'run', 'true', $this->get_page_url() ),
+					'wphb-run-performance-test'
+				),
+				'tooltips'         => array(
+					'speed-index'              => __( 'Speed Index (SI) shows how quickly the contents of your page are visibly populated. A good score is 4.3s or less.', 'wphb' ),
+					'first-contentful-paint'   => __( 'First Contentful Paint (LCP) marks the time at which the first text or image is rendered on your page. A good score is 2 or less.', 'wphb' ),
+					'largest-contentful-paint' => __( 'Largest Contentful Paint (LCP) marks the time at which the largest text or image is rendered on your page. A good score is 2.5 or less.', 'wphb' ),
+					'interactive'              => __( 'Time to Interactive (TTI) is the amount of time it takes for your page to become fully interactive. A good score is 3.8s or less.', 'wphb' ),
+					'total-blocking-time'      => __( 'Total Blocking Time (TBT)  measures the total amount of time, between FCP and TTI, that a page is blocked from responding to user input. A good score is 300ms or less.', 'wphb' ),
+					'cumulative-layout-shift'  => __( "Cumulative Layout Shift (CLS) measures how much your page's layout shifts as it loads. A good score is 0.1 or less.", 'wphb' ),
+				),
 				'type'             => $this->type,
 			)
 		);
@@ -428,7 +450,9 @@ class Performance extends Page {
 	public function summary_metabox() {
 		$last_report = $this->report;
 
-		$opportunities = $diagnostics = $passed_audits = '-';
+		$opportunities = '-';
+		$diagnostics   = '-';
+		$passed_audits = '-';
 
 		if ( $last_report && ! is_wp_error( $last_report ) ) {
 			$last_report = $last_report->data;
@@ -466,15 +490,11 @@ class Performance extends Page {
 	 * @since 1.7.1
 	 */
 	public function settings_metabox() {
-		$performance_settings = Settings::get_settings( 'performance' );
-
 		$this->view(
 			'performance/settings-meta-box',
 			array(
 				'dismissed'     => $this->dismissed,
-				'widget'        => $performance_settings['widget'],
-				'hub'           => $performance_settings['hub'],
-				'subsite_tests' => $performance_settings['subsite_tests'],
+				'subsite_tests' => Settings::get_setting( 'subsite_tests', 'performance' ),
 			)
 		);
 	}
@@ -514,7 +534,7 @@ class Performance extends Page {
 		}
 
 		$retry_url = wp_nonce_url(
-			add_query_arg( 'run', 'true', Utils::get_admin_menu_url( 'performance' ) ),
+			add_query_arg( 'run', 'true', $this->get_page_url() ),
 			'wphb-run-performance-test'
 		);
 
@@ -572,98 +592,6 @@ class Performance extends Page {
 				'last_test'        => $this->report->data->{$this->type}->audits->passed,
 				'report_dismissed' => $this->dismissed,
 				'type'             => 'passed',
-			)
-		);
-	}
-
-	/**
-	 * Historic Field Data met box.
-	 *
-	 * @since 2.0.0
-	 */
-	public function historic_field_data_metabox() {
-		$field_data = $this->report->data->{$this->type}->field_data;
-
-		$fcp_fast = $fcp_average = $fcp_slow = false;
-		$fid_fast = $fid_average = $fid_slow = false;
-
-		if ( $field_data ) {
-			$fcp_fast    = round( $field_data->FIRST_CONTENTFUL_PAINT_MS->distributions[0]->proportion * 100 );
-			$fcp_average = round( $field_data->FIRST_CONTENTFUL_PAINT_MS->distributions[1]->proportion * 100 );
-			$fcp_slow    = round( $field_data->FIRST_CONTENTFUL_PAINT_MS->distributions[2]->proportion * 100 );
-
-			$fid_fast    = round( $field_data->FIRST_INPUT_DELAY_MS->distributions[0]->proportion * 100 );
-			$fid_average = round( $field_data->FIRST_INPUT_DELAY_MS->distributions[1]->proportion * 100 );
-			$fid_slow    = round( $field_data->FIRST_INPUT_DELAY_MS->distributions[2]->proportion * 100 );
-
-			$i10n = array(
-				'fcp' => array(
-					'fast'         => $fcp_fast,
-					'fast_desc'    => sprintf(
-						/* translators: %d - number of percent */
-						esc_html__( '%d%% of loads for this page have a fast (< 1 s) First Contentful Paint (FCP).', 'wphb' ),
-						absint( $fcp_fast )
-					),
-					'average'      => $fcp_average,
-					'average_desc' => sprintf(
-						/* translators: %d - number of percent */
-						esc_html__( '%d%% of loads for this page have an average (1 s ~ 2.5 s) First Contentful Paint (FCP).', 'wphb' ),
-						absint( $fcp_average )
-					),
-					'slow'         => $fcp_slow,
-					'slow_desc'    => sprintf(
-						/* translators: %d - number of percent */
-						esc_html__( '%d%% of loads for this page have a slow (> 2.5 s) First Contentful Paint (FCP).', 'wphb' ),
-						absint( $fcp_slow )
-					),
-				),
-				'fid' => array(
-					'fast'         => $fid_fast,
-					'fast_desc'    => sprintf(
-						/* translators: %d - number of percent */
-						esc_html__( '%d%% of loads for this page have a fast (< 50 ms) First Input Delay (FID).', 'wphb' ),
-						absint( $fid_fast )
-					),
-					'average'      => $fid_average,
-					'average_desc' => sprintf(
-						/* translators: %d - number of percent */
-						esc_html__( '%d%% of loads for this page have an average (50 ms ~ 250 ms) First Input Delay (FID).', 'wphb' ),
-						absint( $fid_average )
-					),
-					'slow'         => $fid_slow,
-					'slow_desc'    => sprintf(
-						/* translators: %d - number of percent */
-						esc_html__( '%d%% of loads for this page have a slow (> 250 ms) First Input Delay (FID).', 'wphb' ),
-						absint( $fid_slow )
-					),
-				),
-			);
-
-			wp_localize_script( 'wphb-google-chart', 'wphbHistoricFieldData', $i10n );
-		}
-
-		$this->view(
-			'performance/field-data-meta-box',
-			compact( 'field_data', 'fcp_fast', 'fcp_average', 'fcp_slow', 'fid_fast', 'fid_average', 'fid_slow' )
-		);
-	}
-
-	/**
-	 * Common audits header meta box.
-	 */
-	public function reports_metabox_header() {
-		$run_url = add_query_arg( 'run', 'true', Utils::get_admin_menu_url( 'performance' ) );
-		$run_url = wp_nonce_url( $run_url, 'wphb-run-performance-test' );
-
-		$title = $this->get_tab_name( $this->get_current_tab() );
-		$title = 'Audits' === $title ? __( 'Opportunities', 'wphb' ) : $title;
-
-		$this->view(
-			'performance/report-meta-box-header',
-			array(
-				'can_run_test' => $this->can_run_test,
-				'run_url'      => $run_url,
-				'title'        => $title,
 			)
 		);
 	}

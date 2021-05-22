@@ -10,7 +10,7 @@ abstract class OAuthErrorException extends \Forminator\Stripe\Exception\ApiError
 {
     protected function constructErrorObject()
     {
-        if (is_null($this->jsonBody)) {
+        if (null === $this->jsonBody) {
             return null;
         }
 

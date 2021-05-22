@@ -3,10 +3,10 @@
 /**
  * Addon Name: E-Signature
  * Version: 1.0
- * Plugin URI:  https://premium.wpmudev.org/
+ * Plugin URI:  https://wpmudev.com/
  * Description: E-Signature field for Forminator
  * Author: WPMU DEV
- * Author URI: http://premium.wpmudev.org
+ * Author URI: http://wpmudev.com
  */
 
 class Forminator_E_Signature {
@@ -88,7 +88,7 @@ class Forminator_E_Signature {
 					// make image
 					$url = $string_value;
 					$file_name = basename( $url );
-					$file_name = ! empty( $file_name ) ? $file_name : __( '(no filename)', Forminator::DOMAIN );
+					$file_name = ! empty( $file_name ) ? $file_name : __( '(no filename)', 'forminator' );
 					//truncate
 					if ( strlen( $file_name ) > $truncate ) {
 						$file_name = substr( $file_name, 0, $truncate ) . '...';

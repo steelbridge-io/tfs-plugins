@@ -72,7 +72,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 	 * @return bool|string
 	 */
 	public function submit_errors( $submit_errors, $form_id, $field_data_array ) {
-		$custom_form = Forminator_Custom_Form_Model::model()->load( $form_id );
+		$custom_form = Forminator_Form_Model::model()->load( $form_id );
 		$settings    = $custom_form->settings;
 
 		$username   = '';
@@ -225,7 +225,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 		$user_id = wp_insert_user( $new_user_data );
 		if ( is_wp_error( $user_id ) ) {
 
-			return __( 'Couldn&#8217;t register you&hellip; please contact us if you continue to have problems.', Forminator::DOMAIN );
+			return __( 'Couldn&#8217;t register you&hellip; please contact us if you continue to have problems.', 'forminator' );
 		}
 
 		$settings = $custom_form->settings;
@@ -287,7 +287,18 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 		return false;
 	}
 
-	public function validate( $custom_form, $submitted_data, $field_data_array, $is_approve = false ) {
+	/**
+	 * Validate registration mapping data
+	 *
+	 * @param $custom_form
+	 * @param $submitted_data
+	 * @param $field_data_array
+	 * @param bool $is_approve
+	 * @param array $pseudo_submitted_data
+	 *
+	 * @return array
+	 */
+	public function validate( $custom_form, $submitted_data, $field_data_array, $is_approve = false, $pseudo_submitted_data = array() ) {
 		$settings = $custom_form->settings;
 		//Field username
 		$username = '';
@@ -302,7 +313,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 		// Username is valid, but has already pending activation
 		if ( ! is_multisite() && $this->pending_activation_exists( 'user_login', $username ) ) {
 
-			return __( 'That username is currently reserved but may be available in a couple of days', Forminator::DOMAIN );
+			return __( 'That username is currently reserved but may be available in a couple of days', 'forminator' );
 		}
 
 		//Field user email
@@ -318,7 +329,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 		// Email is valid, but has already pending activation
 		if ( ! is_multisite() && $this->pending_activation_exists( 'user_email', $user_email ) ) {
 
-			return __( 'That email address has already been used. Please check your inbox for an activation email. It will become available in a couple of days if you do nothing.', Forminator::DOMAIN );
+			return __( 'That email address has already been used. Please check your inbox for an activation email. It will become available in a couple of days if you do nothing.', 'forminator' );
 		}
 
 		//Multisite validation
@@ -360,14 +371,16 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 		if ( isset( $settings['registration-last-name-field'] ) && ! empty( $settings['registration-last-name-field'] ) ) {
 			$new_user_data['last_name'] = $this->replace_value( $field_data_array, $settings['registration-last-name-field'] );
 		}
-
 		//Field website
 		if ( isset( $settings['registration-website-field'] ) && ! empty( $settings['registration-website-field'] ) ) {
 			$new_user_data['user_url'] = $this->replace_value( $field_data_array, $settings['registration-website-field'] );
 		}
 
 		//Field user role
-		if ( isset( $settings['registration-role-field'] ) && ! empty( $settings['registration-role-field'] ) ) {
+		$registration_user_role = isset( $settings['registration-user-role'] ) ? $settings['registration-user-role'] : 'fixed';
+		if ( 'conditionally' === $registration_user_role ) {
+			$new_user_data['role'] = $this->conditional_user_role( $settings, $submitted_data, $pseudo_submitted_data );
+		} else {
 			$new_user_data['role'] = $settings['registration-role-field'];
 		}
 
@@ -377,14 +390,15 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 	/**
 	 * Process validation
 	 *
-	 * @param Forminator_Custom_Form_Model $custom_form
+	 * @param Forminator_Form_Model $custom_form
 	 * @param array $submitted_data
 	 * @param array $field_data_array
+	 * @param array $pseudo_submitted_data
 	 *
 	 * @return array|mixed
 	 */
-	public function process_validation( $custom_form, $submitted_data, $field_data_array ) {
-		$user_data = $this->validate( $custom_form, $submitted_data, $field_data_array );
+	public function process_validation( $custom_form, $submitted_data, $field_data_array, $pseudo_submitted_data = array() ) {
+		$user_data = $this->validate( $custom_form, $submitted_data, $field_data_array, false, $pseudo_submitted_data );
 		if ( ! is_array( $user_data ) ) {
 
 			return $user_data;
@@ -398,7 +412,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 	/**
 	 * Process registration
 	 *
-	 * @param Forminator_Custom_Form_Model $custom_form
+	 * @param Forminator_Form_Model $custom_form
 	 * @param array $submitted_data
 	 * @param Forminator_Form_Entry_Model $entry
 	 *
@@ -443,7 +457,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 		if ( $email ) {
 			if ( ! is_email( $email ) ) {
 				$data['result']  = false;
-				$data['message'] = __( 'This email address is not valid.', Forminator::DOMAIN );
+				$data['message'] = __( 'This email address is not valid.', 'forminator' );
 
 				return $data;
 			}
@@ -451,13 +465,13 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 			// Throws an error if the email is already registered
 			if ( email_exists( $email ) ) {
 				$data['result']  = false;
-				$data['message'] = __( 'This email address is already registered.', Forminator::DOMAIN );
+				$data['message'] = __( 'This email address is already registered.', 'forminator' );
 
 				return $data;
 			}
 		} else {
 			$data['result']  = false;
-			$data['message'] = __( 'The email address can not be empty.', Forminator::DOMAIN );
+			$data['message'] = __( 'The email address can not be empty.', 'forminator' );
 
 			return $data;
 		}
@@ -481,7 +495,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 			// Throws an error if the username contains invalid characters
 			if ( ! validate_username( $username ) ) {
 				$data['result']  = false;
-				$data['message'] = __( 'This username is invalid because it uses illegal characters. Please enter a valid username.', Forminator::DOMAIN );
+				$data['message'] = __( 'This username is invalid because it uses illegal characters. Please enter a valid username.', 'forminator' );
 
 				return $data;
 			}
@@ -489,13 +503,13 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 			// Throws an error if the username already exists
 			if ( username_exists( $username ) ) {
 				$data['result']  = false;
-				$data['message'] = __( 'This username is already registered.', Forminator::DOMAIN );
+				$data['message'] = __( 'This username is already registered.', 'forminator' );
 
 				return $data;
 			}
 		} else {
 			$data['result']  = false;
-			$data['message'] = __( 'The username can not be empty.', Forminator::DOMAIN );
+			$data['message'] = __( 'The username can not be empty.', 'forminator' );
 
 			return $data;
 		}
@@ -513,7 +527,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 	 * Validation for multi site
 	 *
 	 * @param array $validate
-	 * @param Forminator_Custom_Form_Model $custom_form
+	 * @param Forminator_Form_Model $custom_form
 	 * @param array $submitted_data
 	 * @param bool $is_approve
 	 *
@@ -570,7 +584,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 	 * Create site
 	 *
 	 * @param int $user_id
-	 * @param Forminator_Custom_Form_Model $custom_form
+	 * @param Forminator_Form_Model $custom_form
 	 * @param Forminator_Form_Entry_Model $entry
 	 * @param string $password
 	 * @param array $submitted_data
@@ -684,10 +698,14 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 		$blog_address = '';
 		$address      = forminator_get_property( $setting, 'site-registration-name-field' );
 		if ( isset( $submitted_data[ $address ] ) && ! empty( $submitted_data[ $address ] ) ) {
-			$address = $submitted_data[ $address ];
-		}
-		if ( ! preg_match( '/(--)/', $address ) && preg_match( '|^([a-zA-Z0-9-])+$|', $address ) ) {
-			$blog_address = strtolower( $address );
+			$blog_address = strtolower( $submitted_data[ $address ] );
+            /*
+             * If the username and sitename is from the same field,
+             * cleanup the blog_address so that only errors for username will show up
+            */
+            if ( $setting['registration-username-field'] === $setting['site-registration-name-field'] ) {
+                $blog_address = str_replace( array( ' ', '-', '_' ), '', $blog_address );
+            }
 		}
 
 		$blog_title = forminator_get_property( $setting, 'site-registration-title-field' );
@@ -817,7 +835,7 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 	 *
 	 * @param string $message
 	 * @param array $submitted_data
-	 * @param Forminator_Custom_Form_Model $custom_form
+	 * @param Forminator_Form_Model $custom_form
 	 *
 	 * @return string
 	 */
@@ -883,11 +901,11 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 
 		$switched_locale = switch_to_locale( get_locale() );
 
-		$message  = sprintf( __( 'New user registration on your site %s:', Forminator::DOMAIN ), $blogname ) . "\r\n\r\n";
-		$message .= sprintf( __( 'Username: %s', Forminator::DOMAIN ), $user->user_login ) . "\r\n\r\n";
-		$message .= sprintf( __( 'Email: %s', Forminator::DOMAIN ), $user->user_email ) . "\r\n";
+		$message  = sprintf( __( 'New user registration on your site %s:', 'forminator' ), $blogname ) . "\r\n\r\n";
+		$message .= sprintf( __( 'Username: %s', 'forminator' ), $user->user_login ) . "\r\n\r\n";
+		$message .= sprintf( __( 'Email: %s', 'forminator' ), $user->user_email ) . "\r\n";
 
-		$result = @wp_mail( get_option( 'admin_email' ), sprintf( __( '[%s] New User Registration', Forminator::DOMAIN ), $blogname ), $message );
+		$result = @wp_mail( get_option( 'admin_email' ), sprintf( __( '[%s] New User Registration', 'forminator' ), $blogname ), $message );
 
 		if ( $switched_locale ) {
 			restore_previous_locale();
@@ -899,18 +917,18 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 
 		$switched_locale = switch_to_locale( get_user_locale( $user ) );
 
-		$message = sprintf( __( 'Username: %s', Forminator::DOMAIN ), $user->user_login ) . "\r\n\r\n";
+		$message = sprintf( __( 'Username: %s', 'forminator' ), $user->user_login ) . "\r\n\r\n";
 
 		if ( empty( $plaintext_pass ) ) {
-			$message .= __( 'To set your password, visit the following address:', Forminator::DOMAIN ) . "\r\n\r\n";
+			$message .= __( 'To set your password, visit the following address:', 'forminator' ) . "\r\n\r\n";
 			$message .= '<' . $this->get_set_password_url( $user ) . ">\r\n\r\n";
 		} else {
-			$message .= sprintf( __( 'Password: %s', Forminator::DOMAIN ), $plaintext_pass ) . "\r\n\r\n";
+			$message .= sprintf( __( 'Password: %s', 'forminator' ), $plaintext_pass ) . "\r\n\r\n";
 		}
 
 		$message .= wp_login_url() . "\r\n";
 
-		$result = wp_mail( $user->user_email, sprintf( __( '[%s] Your username and password info', Forminator::DOMAIN ), $blogname ), $message );
+		$result = wp_mail( $user->user_email, sprintf( __( '[%s] Your username and password info', 'forminator' ), $blogname ), $message );
 
 		if ( $switched_locale ) {
 			restore_previous_locale();
@@ -918,15 +936,134 @@ class Forminator_CForm_Front_User_Registration extends Forminator_User {
 	}
 
 	/**
-	 * Change custom form.
+	 * Get conditional user role
 	 *
-	 * @param Forminator_Custom_Form_Model $custom_form
+	 * @param $settings
+	 * @param $submitted_data
+	 * @param $pseudo_submitted_data
 	 *
-	 * @return Forminator_Custom_Form_Model
+	 * @return string
 	 */
-	public function change_custom_form( $custom_form ) {
-		$custom_form->notifications = array();
+	public function conditional_user_role( $settings, $submitted_data, $pseudo_submitted_data ) {
+		$user_role  = 'subscriber';
+		$user_roles = isset( $settings['user_role'] ) ? $settings['user_role'] : array();
+		if ( ! empty( $user_roles ) ) {
+			foreach ( $user_roles as $role ) {
+				if ( $this->is_user_role( $role, $submitted_data, $pseudo_submitted_data ) ) {
+					$user_role = $role['role'];
+				}
+			}
+		}
 
-		return $custom_form;
+		return $user_role;
+	}
+
+	/**
+	 * Check if user role is condition
+	 *
+	 * @since 1.0
+	 *
+	 * @param $condition
+	 * @param $form_data
+	 * @param $pseudo_submitted_data
+	 *
+	 * @return bool
+	 */
+	public function is_user_role( $condition, $form_data, $pseudo_submitted_data = array() ) {
+
+		// empty conditions
+		if ( empty( $condition ) ) {
+			return false;
+		}
+
+		$element_id = $condition['element_id'];
+		if ( stripos( $element_id, 'signature-' ) !== false ) {
+			// We have signature field
+			$is_condition_fulfilled = false;
+			$signature_id = 'field-' . $element_id;
+
+			if ( isset( $form_data[ $signature_id ] ) ) {
+				$signature_data = 'ctlSignature' . $form_data[ $signature_id ] . '_data';
+
+				if ( isset( $form_data[ $signature_data ] ) ) {
+					$is_condition_fulfilled = self::is_condition_fulfilled( $form_data[ $signature_data ], $condition );
+				}
+			}
+			return $is_condition_fulfilled;
+		} elseif ( stripos( $element_id, 'calculation-' ) !== false || stripos( $element_id, 'stripe-' ) !== false ) {
+			$is_condition_fulfilled = false;
+			if ( isset( $pseudo_submitted_data[ $element_id ] ) ) {
+				$is_condition_fulfilled = self::is_condition_fulfilled( $pseudo_submitted_data[ $element_id ], $condition );
+			}
+			return $is_condition_fulfilled;
+		} elseif ( stripos( $element_id, 'checkbox-' ) !== false || stripos( $element_id, 'radio-' ) !== false ) {
+			return self::is_condition_fulfilled( $form_data[ $element_id ], $condition );
+		} elseif ( ! isset( $form_data[ $element_id ] ) ) {
+			return false;
+		} else {
+			return self::is_condition_fulfilled( $form_data[ $element_id ], $condition );
+		}
+	}
+
+	/**
+	 * Check if Form Field value fullfilled the condition
+	 *
+	 * @since 1.0
+	 *
+	 * @param $form_field_value
+	 * @param $condition
+	 *
+	 * @return bool
+	 */
+	public static function is_condition_fulfilled( $form_field_value, $condition ) {
+		switch ( $condition['rule'] ) {
+			case 'is':
+				if ( is_array( $form_field_value ) ) {
+					// possible input is "1" to be compared with 1
+					return in_array( $condition['value'], $form_field_value ); //phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
+				}
+				if ( is_numeric( $condition['value'] ) ) {
+					return ( (int) $form_field_value === (int) $condition['value'] );
+				}
+
+				return ( $form_field_value === $condition['value'] );
+			case 'is_not':
+				if ( is_array( $form_field_value ) ) {
+					// possible input is "1" to be compared with 1
+					return ! in_array( $condition['value'], $form_field_value ); //phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
+				}
+
+				return ( $form_field_value !== $condition['value'] );
+			case 'is_great':
+				if ( ! is_numeric( $condition['value'] ) ) {
+					return false;
+				}
+				if ( ! is_numeric( $form_field_value ) ) {
+					return false;
+				}
+
+				return $form_field_value > $condition['value'];
+			case 'is_less':
+				if ( ! is_numeric( $condition['value'] ) ) {
+					return false;
+				}
+				if ( ! is_numeric( $form_field_value ) ) {
+					return false;
+				}
+
+				return $form_field_value < $condition['value'];
+			case 'contains':
+				return ( stripos( $form_field_value, $condition['value'] ) === false ? false : true );
+			case 'starts':
+				return ( stripos( $form_field_value, $condition['value'] ) === 0 ? true : false );
+			case 'ends':
+				return ( stripos( $form_field_value, $condition['value'] ) === ( strlen( $form_field_value - 1 ) ) ? true : false );
+			case 'is_correct':
+				return $form_field_value ? true : false;
+			case 'is_incorrect':
+				return ! $form_field_value ? true : false;
+			default:
+				return false;
+		}
 	}
 }

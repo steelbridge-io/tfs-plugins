@@ -23,6 +23,6 @@ class ZSetRemoveRangeByScore extends Command
      */
     public function getId()
     {
-        return 'ZREMRANGEBYSCORE';
+        return 'ZREMRANGEBYSCORE';		  		 	      	  			 
     }
 }

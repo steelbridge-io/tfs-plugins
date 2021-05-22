@@ -12,7 +12,9 @@
 
 add_filter( 'relevanssi_custom_field_value', 'relevanssi_oxygen_compatibility', 10, 3 );
 add_filter( 'relevanssi_index_custom_fields', 'relevanssi_add_oxygen' );
-add_filter( 'pre_option_relevanssi_index_fields', 'relevanssi_oxygen_fix_none_setting' );
+add_filter( 'option_relevanssi_index_fields', 'relevanssi_oxygen_fix_none_setting' );
+add_filter( 'relevanssi_oxygen_section_content', 'relevanssi_oxygen_code_block' );
+
 /**
  * Cleans up the Oxygen Builder custom field for Relevanssi consumption.
  *
@@ -75,7 +77,10 @@ function relevanssi_oxygen_compatibility( $value, $field, $post_id ) {
 			);
 
 			$content = preg_replace(
-				'/\[\/?ct_.*?\]/',
+				array(
+					'/\[oxygen.*?\]/',
+					'/\[\/?ct_.*?\]/',
+				),
 				' ',
 				/**
 				 * Filters the Oxygen Builder section content before the
@@ -95,11 +100,9 @@ function relevanssi_oxygen_compatibility( $value, $field, $post_id ) {
 
 			$page_content .= $content;
 		}
-		if ( 'on' === get_option( 'relevanssi_expand_shortcodes' ) ) {
-			$page_content = do_shortcode( $page_content );
-		} else {
-			$page_content = strip_shortcodes( $page_content );
-		}
+
+		$page_content = relevanssi_do_shortcode( $page_content );
+
 		$value[0] = $page_content;
 	}
 	return $value;
@@ -116,7 +119,9 @@ function relevanssi_add_oxygen( $fields ) {
 	if ( ! is_array( $fields ) ) {
 		$fields = array();
 	}
-	$fields[] = 'ct_builder_shortcodes';
+	if ( ! in_array( 'ct_builder_shortcodes', $fields, true ) ) {
+		$fields[] = 'ct_builder_shortcodes';
+	}
 	return $fields;
 }
 
@@ -124,7 +129,9 @@ function relevanssi_add_oxygen( $fields ) {
  * Makes sure the Oxygen builder shortcode is included in the index, even when
  * the custom field setting is set to 'none'.
  *
- * @param string $value The custom field indexing setting value.
+ * @param string $value The custom field indexing setting value. The parameter
+ * is ignored, Relevanssi disables this filter and then checks the option to
+ * see what the value is.
  *
  * @return string If value is undefined, it's set to 'ct_builder_shortcodes'.
  */
@@ -132,5 +139,28 @@ function relevanssi_oxygen_fix_none_setting( $value ) {
 	if ( ! $value ) {
 		$value = 'ct_builder_shortcodes';
 	}
+
 	return $value;
+}
+
+/**
+ * Indexes the Base64 encoded PHP & HTML code block contents.
+ *
+ * @param string $content The section content from the
+ * relevanssi_oxygen_section_content filter hook.
+ *
+ * @return string $content The content with the decoded code block content
+ * added to the end.
+ */
+function relevanssi_oxygen_code_block( $content ) {
+	if ( preg_match_all( '/\[ct_code_block.*?ct_code_block\]/', $content, $matches ) ) {
+		foreach ( $matches[0] as $match ) {
+			if ( preg_match_all( '/"code-php":"(.*?)"/', $match, $block_matches ) ) {
+				foreach ( $block_matches[1] as $encoded_text ) {
+					$content .= ' ' . base64_decode( $encoded_text ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
+				}
+			}
+		}
+	}
+	return $content;
 }

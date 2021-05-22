@@ -87,6 +87,21 @@ function forminatorSignatureResize() {
 				}
 			});
 
+			// Trigger changes in mobile touchend event
+			$el.find( "#" + id ).on( "touchend", function() {
+				var sigCanvas = jQuery( this );
+						
+				setTimeout( function() {
+					
+					// Trigger change.
+					if ( "" !== jQuery( "#" + id + "_data" ).val() ) {
+						sigCanvas.closest( ".forminator-field-signature" ).change();
+						sigCanvas.closest( ".forminator-field" ).addClass( "forminator-is_filled" );
+					}
+					
+				}, 50 );
+			});
+
 			if ( width > 0 ) {
 				window.ResizeSignature( id, width, height );
 				window.ClearSignature( id );

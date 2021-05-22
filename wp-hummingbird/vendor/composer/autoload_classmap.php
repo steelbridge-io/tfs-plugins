@@ -8,7 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'Hummingbird\\Admin\\AJAX' => $baseDir . '/admin/class-ajax.php',
     'Hummingbird\\Admin\\Admin' => $baseDir . '/admin/class-admin.php',
+    'Hummingbird\\Admin\\Ajax\\Caching\\Browser' => $baseDir . '/admin/ajax/caching/class-browser.php',
+    'Hummingbird\\Admin\\Ajax\\Caching\\Integrations' => $baseDir . '/admin/ajax/caching/class-integrations.php',
     'Hummingbird\\Admin\\Ajax\\Gzip' => $baseDir . '/admin/ajax/class-gzip.php',
+    'Hummingbird\\Admin\\Ajax\\Minify' => $baseDir . '/admin/ajax/class-minify.php',
     'Hummingbird\\Admin\\Notices' => $baseDir . '/admin/class-notices.php',
     'Hummingbird\\Admin\\Page' => $baseDir . '/admin/class-page.php',
     'Hummingbird\\Admin\\Pages\\Advanced' => $baseDir . '/admin/pages/class-advanced.php',
@@ -17,6 +20,7 @@ return array(
     'Hummingbird\\Admin\\Pages\\Minification' => $baseDir . '/admin/pages/class-minification.php',
     'Hummingbird\\Admin\\Pages\\Performance' => $baseDir . '/admin/pages/class-performance.php',
     'Hummingbird\\Admin\\Pages\\React\\Gzip' => $baseDir . '/admin/pages/react/class-gzip.php',
+    'Hummingbird\\Admin\\Pages\\React\\Tutorials' => $baseDir . '/admin/pages/react/class-tutorials.php',
     'Hummingbird\\Admin\\Pages\\Settings' => $baseDir . '/admin/pages/class-settings.php',
     'Hummingbird\\Admin\\Pages\\Upgrade' => $baseDir . '/admin/pages/class-upgrade.php',
     'Hummingbird\\Admin\\Pages\\Uptime' => $baseDir . '/admin/pages/class-uptime.php',

@@ -63,7 +63,7 @@ class Forminator_Stripe extends Forminator_Field {
 	public function __construct() {
 		parent::__construct();
 
-		$this->name = __( 'Stripe', Forminator::DOMAIN );
+		$this->name = __( 'Stripe', 'forminator' );
 
 		try {
 			$stripe = new Forminator_Gateway_Stripe();
@@ -92,7 +92,7 @@ class Forminator_Stripe extends Forminator_Field {
 		}
 
 		return array(
-			'field_label'         => __( 'Credit / Debit Card', Forminator::DOMAIN ),
+			'field_label'         => __( 'Credit / Debit Card', 'forminator' ),
 			'mode'                => 'test',
 			'currency'            => $default_currency,
 			'amount_type'         => 'fixed',
@@ -267,11 +267,10 @@ class Forminator_Stripe extends Forminator_Field {
 	 *
 	 * @param $amount
 	 * @param $field
-	 * @param $submitted_data
 	 *
 	 * @return mixed
 	 */
-	public function generate_paymentIntent( $amount, $field, $submitted_data ) {
+	public function generate_paymentIntent( $amount, $field ) {
 		$currency    = self::get_property( 'currency', $field, $this->get_default_currency() );
 		$mode        = self::get_property( 'mode', $field, 'test' );
 		$metadata    = self::get_property( 'options', $field, array() );
@@ -305,8 +304,11 @@ class Forminator_Stripe extends Forminator_Field {
 
 		// Default options
 		$options = array(
-			'amount'   => $this->calculate_amount( $amount, $currency ),
-			'currency' => $currency,
+			'amount'       	    => $this->calculate_amount( $amount, $currency ),
+			'currency' 	     		 => $currency,
+			'capture_method'      => 'manual',
+			'confirmation_method' => 'manual',
+			'confirm'             => false,
 		);
 
 		// Check if metadata is not empty and add it to the options
@@ -323,9 +325,6 @@ class Forminator_Stripe extends Forminator_Field {
 		if ( ! empty( $description ) ) {
 			$options['description'] = $description;
 		}
-
-		// Give a possibility to change the Stripe setting before creating intent.
-		$options = apply_filters( 'forminator_field_stripe_intent_options', $options, $submitted_data );
 
 		try {
 			// Create Payment Intent object
@@ -424,7 +423,7 @@ class Forminator_Stripe extends Forminator_Field {
 
 		// Check if we already have payment ID, if not generate new one
 		if ( empty( $id ) ) {
-			$payment_intent = $this->generate_paymentIntent( $amount, $field, $submitted_data );
+			$payment_intent = $this->generate_paymentIntent( $amount, $field );
 
 			$id = $payment_intent->id;
 		}
@@ -433,7 +432,7 @@ class Forminator_Stripe extends Forminator_Field {
 			// Retrieve PI object
 			$intent = \Forminator\Stripe\PaymentIntent::retrieve( $id );
 		} catch ( Exception $e ) {
-			$payment_intent = $this->generate_paymentIntent( $amount, $field, $submitted_data );
+			$payment_intent = $this->generate_paymentIntent( $amount, $field );
 
 			$intent = \Forminator\Stripe\PaymentIntent::retrieve( $payment_intent->$id );
 		}
@@ -455,7 +454,7 @@ class Forminator_Stripe extends Forminator_Field {
 		// Throw error if payment ID is empty
 		if ( empty( $id ) || "" === $id ) {
 			$response = array(
-				'message' => __( 'Your Payment ID is empty, please reload the page and try again!', Forminator::DOMAIN ),
+				'message' => __( 'Your Payment ID is empty, please reload the page and try again!', 'forminator' ),
 				'errors' => array()
 			);
 
@@ -474,16 +473,22 @@ class Forminator_Stripe extends Forminator_Field {
 			try {
 				// Check payment amount
 				if ( 0 > $amount ) {
-					throw new Exception( __( 'Payment amount should be larger than 0.', Forminator::DOMAIN ) );
+					throw new Exception( __( 'Payment amount should be larger than 0.', 'forminator' ) );
 				}
 
 				// Check payment ID
 				if ( empty( $id ) ) {
-					throw new Exception( __( 'Your Payment ID is empty!', Forminator::DOMAIN ) );
+					throw new Exception( __( 'Your Payment ID is empty!', 'forminator' ) );
+				}
+
+				// Check payment method
+				if ( ! isset( $submitted_data['payment_method'] ) || is_null( $submitted_data['payment_method'] ) ) {
+					throw new Exception( __( 'Your Payment ID is empty!', 'forminator' ) );
 				}
 
 				$options = array(
-					'amount' => $this->calculate_amount( $amount, $currency ),
+					'amount' 		  => $this->calculate_amount( $amount, $currency ),
+					'payment_method' => $submitted_data['payment_method']
 				);
 
 				if ( ! empty( $metadata ) ) {
@@ -650,7 +655,7 @@ class Forminator_Stripe extends Forminator_Field {
 
 	/**
 	 * @param array                        $field
-	 * @param Forminator_Custom_Form_Model $custom_form
+	 * @param Forminator_Form_Model $custom_form
 	 * @param array                        $submitted_data
 	 * @param array                        $pseudo_submitted_data
 	 * @param array                        $field_data_array
@@ -670,26 +675,23 @@ class Forminator_Stripe extends Forminator_Field {
 		$mode     = self::get_property( 'mode', $field, 'test' );
 		$currency = self::get_property( 'currency', $field, $this->get_default_currency() );
 
-		// Check Stripe key
-		$key = $this->get_secret_key( 'test' !== $mode );
-
-		// Set Stripe key
-		\Forminator\Stripe\Stripe::setApiKey( $key );
-
-		Forminator_Gateway_Stripe::set_stripe_app_info();
-
 		try {
 			// Makue sure payment ID exist
 			if ( ! isset( $submitted_data['paymentid'] ) ) {
-				throw new Exception( __('Stripe Payment ID does not exist.', Forminator::DOMAIN ) );
+				throw new Exception( __('Stripe Payment ID does not exist.', 'forminator' ) );
 			}
 
-			// Check payment amount
-			$intent = \Forminator\Stripe\PaymentIntent::retrieve( $submitted_data['paymentid'] );
+			//Get Payment intent
+			$intent = $this->get_paymentIntent( $field, $submitted_data );
 
-			// Makue sure Payment Intent succeeded
-			if ( "succeeded" !== $intent->status ) {
-				throw new Exception( __('Stripe Token not found on submitted data.', Forminator::DOMAIN ) );
+			// Makue sure Payment Intent is object
+			if ( ! is_object( $intent ) ) {
+				throw new Exception( __('Payment Intent object is not valid Payment object.', 'forminator' ) );
+			}
+
+			// Check if the PaymentIntent is set or empty
+			if ( ! isset( $intent->id ) || empty( $intent->id ) ) {
+				throw new Exception( __('Payment Intent ID is not valid!', 'forminator' ) );
 			}
 
 			$charge_amount = $this->get_payment_amount( $field, $custom_form, $submitted_data, $pseudo_submitted_data );
@@ -707,7 +709,7 @@ class Forminator_Stripe extends Forminator_Field {
 			}
 
 			$entry_data['transaction_link'] = $transaction_link;
-			$entry_data['status']           = 'success';
+			$entry_data['status']           = 'fail';
 			$entry_data['transaction_id']   = $intent->id;
 		} catch ( Exception $e ) {
 			$entry_data['status']     = 'fail';
@@ -722,7 +724,7 @@ class Forminator_Stripe extends Forminator_Field {
 		 *
 		 * @param array                        $entry_data
 		 * @param array                        $field            field properties
-		 * @param Forminator_Custom_Form_Model $custom_form
+		 * @param Forminator_Form_Model $custom_form
 		 * @param array                        $submitted_data
 		 * @param array                        $field_data_array current entry meta
 		 *
@@ -765,12 +767,84 @@ class Forminator_Stripe extends Forminator_Field {
 	}
 
 	/**
+	 * Retrieve PaymentIntent object
+	 *
+	 * @param $field
+	 * @param $submitted_data
+	 *
+	 * @return mixed object|string
+	 */
+	public function get_paymentIntent( $field, $submitted_data ) {
+		$mode     = self::get_property( 'mode', $field, 'test' );
+		$currency = self::get_property( 'currency', $field, $this->get_default_currency() );
+
+		// Check Stripe key
+		$key = $this->get_secret_key( 'test' !== $mode );
+
+		// Set Stripe key
+		\Forminator\Stripe\Stripe::setApiKey( $key );
+
+		Forminator_Gateway_Stripe::set_stripe_app_info();
+
+		try {
+			// Makue sure payment ID exist
+			if ( ! isset( $submitted_data['paymentid'] ) ) {
+				throw new Exception( __('Stripe Payment ID does not exist.', 'forminator' ) );
+			}
+
+			// Check payment amount
+			$intent = \Forminator\Stripe\PaymentIntent::retrieve( $submitted_data['paymentid'] );
+
+			return $intent;
+		} catch ( Exception $e ) {
+			return $this->get_error( $e );
+		}
+	}
+
+	/**
+	*
+	* @param $intent
+	*
+	* @since 1.14.9
+	*
+	* @return object|WP_Error
+	*/
+	public function confirm_paymentIntent( $intent ) {
+		try {
+			return $intent->confirm();
+		} catch ( Exception $e ) {
+			return $this->get_error( $e );
+		}
+	}
+
+	/**
+	 * Get the exception error and return WP_Error
+	 *
+	 * @param $e
+	 *
+	 * @since 1.14.9
+	 *
+	 * @return WP_Error
+	 */
+	private function get_error( $e ) {
+		$code = $e->getCode();
+
+		if ( is_int( $code ) ) {
+			$code = ( 0 === $code ) ? 'zero' : $code;
+
+			return new WP_Error( $code, $e->getMessage() );
+		} else {
+			return new WP_Error( $e->getError()->code, $e->getMessage() );
+		}
+	}
+
+	/**
 	 * Get payment amount
 	 *
 	 * @since 1.7
 	 *
 	 * @param array                        $field
-	 * @param Forminator_Custom_Form_Model $custom_form
+	 * @param Forminator_Form_Model $custom_form
 	 * @param array                        $submitted_data
 	 * @param array                        $pseudo_submitted_data
 	 *
@@ -828,7 +902,7 @@ class Forminator_Stripe extends Forminator_Field {
 		 *
 		 * @param double                       $payment_amount
 		 * @param array                        $field field settings
-		 * @param Forminator_Custom_Form_Model $custom_form
+		 * @param Forminator_Form_Model $custom_form
 		 * @param array                        $submitted_data
 		 * @param array                        $pseudo_submitted_data
 		 */

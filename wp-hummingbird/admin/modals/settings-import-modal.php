@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</span>
 				</div>
 				<div class="sui-box">
-					<?php esc_html_e( 'Note : This will override your existing Hummingbird asset optimization configuration.', 'wphb' ) ?>
+					<?php esc_html_e( 'Note: This will override your existing Hummingbird asset optimization configuration.', 'wphb' ) ?>
 				</div>
 
 				<figure aria-hidden="true" style="padding: 0px; margin: 0px; height: 130px; overflow: hidden;text-align: center;">

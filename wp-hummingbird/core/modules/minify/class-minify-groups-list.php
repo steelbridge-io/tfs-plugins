@@ -299,7 +299,10 @@ class Minify_Groups_List {
 	}
 
 	/**
-	 * Mark the groups to be processed or not
+	 * Mark the groups to be processed or not.
+	 *
+	 * Groups that need to be processed will have an asset that either requires minification, combine or should be
+	 * served via CDN. Basically, anything that needs to be sent out to our API.
 	 */
 	public function preprocess_groups() {
 		foreach ( $this->get_groups() as $group ) {
@@ -321,7 +324,7 @@ class Minify_Groups_List {
 				// Delete file in case there's one (but is expired).
 				$group->delete_file();
 			} else {
-				// The group won't be processed
+				// The group won't be processed.
 				// Use the original handles and their URLs instead.
 				$this->set_group_status( $group->hash, 'only-handles' );
 			}

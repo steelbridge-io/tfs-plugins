@@ -51,6 +51,11 @@
       input[type="checkbox"]:checked + label {
         background-color: $accessible-light !important;
         border-color: $accessible-dark;
+
+        & > span[class^="sui-icon"]:before {
+          color: $accessible-dark !important;
+        }
+
         &:hover {
           background-color: $accessible-dark !important;
           & > span[class^="sui-icon"]:before {

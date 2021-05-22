@@ -27,20 +27,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<p class="sui-description" id="dialogDescription">
 					<?php
 					if ( 'speedy' === \Hummingbird\Core\Settings::get_setting( 'type', 'minify' ) ) {
-						printf(
-							/* translators: %1$s - <strong>, %2$s - </strong> */
-							esc_html__( 'The automatic %1$sSpeedy%2$s preset rules will be applied which will auto-compress and auto-combine your assets.You can always switch back to manual mode and reapply the configuration there.', 'wphb' ),
+						printf( /* translators: %1$s - <strong>, %2$s - </strong> */
+							esc_html__( 'The automatic %1$sSpeedy%2$s preset rules will be applied which will auto-compress and auto-combine your assets. This mode will inherit configurations from the current manual mode.', 'wphb' ),
 							'<strong>',
 							'</strong>'
 						);
 					} else {
-						printf(
-							/* translators: %1$s - <strong>, %2$s - </strong> */
-							esc_html__( 'The automatic %1$sBasic%2$s preset rules will be applied which will auto-compress your assets. You can always switch back to manual mode and reapply the configuration there.', 'wphb' ),
+						printf( /* translators: %1$s - <strong>, %2$s - </strong> */
+							esc_html__( 'The automatic %1$sBasic%2$s preset rules will be applied which will auto-compress your assets. This mode will inherit configurations from the current manual mode.', 'wphb' ),
 							'<strong>',
 							'</strong>'
 						);
 					}
+					?>
+				</p>
+
+				<p class="sui-description">
+					<?php
+					printf( /* translators: %1$s - <strong>, %2$s - </strong> */
+						esc_html__( 'Configurations that are unique to the manual mode (defer/inline etc.) will be discarded with this change and %1$swon’t be saved%2$s if you decide to switch back to manual.', 'wphb' ),
+						'<strong>',
+						'</strong>'
+					);
 					?>
 				</p>
 			</div>

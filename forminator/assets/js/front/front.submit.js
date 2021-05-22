@@ -147,7 +147,8 @@
 						// get the recatpcha widget
 						var recaptcha_widget = $captcha_field.data('forminator-recapchta-widget'),
 							recaptcha_size = $captcha_field.data('size'),
-							$captcha_response = window.grecaptcha.getResponse(recaptcha_widget);
+							$captcha_response = window.grecaptcha.getResponse(recaptcha_widget),
+							$captcha_parent = $captcha_field.parent( '.forminator-col' );
 
 						if (recaptcha_size === 'invisible') {
 							if ($captcha_response.length === 0) {
@@ -169,8 +170,20 @@
 							if (!$captcha_field.hasClass("error")) {
 								$captcha_field.addClass("error");
 							}
+
 							$target_message.html('<label class="forminator-label--error"><span>' + window.ForminatorFront.cform.captcha_error + '</span></label>');
-							self.focus_to_element($target_message);
+
+							if ( ! self.settings.inline_validation ) {
+								self.focus_to_element($target_message);
+							} else {
+
+								if ( ! $captcha_parent.hasClass( 'forminator-has_error' ) && $captcha_field.data( 'size' ) !== 'invisible' ) {
+									$captcha_parent.addClass( 'forminator-has_error' )
+										.append( '<span class="forminator-error-message" aria-hidden="true">' + window.ForminatorFront.cform.captcha_error + '</span>' );
+									self.focus_to_element( $captcha_parent );
+								}
+
+							}
 
 							return false;
 						}
@@ -190,7 +203,8 @@
 							// get the recatpcha widget
 							var recaptcha_widget = $captcha_field.data('forminator-recapchta-widget'),
 								recaptcha_size = $captcha_field.data('size'),
-								$captcha_response = window.grecaptcha.getResponse(recaptcha_widget);
+								$captcha_response = window.grecaptcha.getResponse(recaptcha_widget),
+								$captcha_parent = $captcha_field.parent( '.forminator-col' );
 
 							if (recaptcha_size === 'invisible') {
 								if ($captcha_response.length === 0) {
@@ -212,8 +226,20 @@
 								if (!$captcha_field.hasClass("error")) {
 									$captcha_field.addClass("error");
 								}
+									
 								$target_message.html('<label class="forminator-label--error"><span>' + window.ForminatorFront.cform.captcha_error + '</span></label>');
-								self.focus_to_element($target_message);
+								
+								if ( ! self.settings.inline_validation ) {
+									self.focus_to_element($target_message);
+								} else {
+									
+									if ( ! $captcha_parent.hasClass( 'forminator-has_error' ) && $captcha_field.data( 'size' ) !== 'invisible' ) {
+										$captcha_parent.addClass( 'forminator-has_error' )
+											.append( '<span class="forminator-error-message" aria-hidden="true">' + window.ForminatorFront.cform.captcha_error + '</span>' );
+										self.focus_to_element( $captcha_parent );
+									}
+									
+								}
 
 								return false;
 							}
@@ -339,7 +365,7 @@
 										.prop("tabindex", "-1")
 										.addClass($label_class + ' forminator-show');
 									self.focus_to_element($target_message, $label_class === 'forminator-success');
-									$target_message.html('<p>' + data.message + '</p>');
+									$target_message.html( data.message );
 
 									if(!data.data.success && data.data.errors.length) {
 										var errors_html = '<ul class="forminator-screen-reader-only">';
@@ -357,7 +383,7 @@
 									if (typeof data.data !== "undefined") {
 										var isShowSuccessMessage = true;
 										//Remove background of the success message if form behaviour is redirect and the success message is empty
-										if ( typeof data.data.url !== 'undefined' && '' === $.trim(data.data.message) ) {
+										if ( typeof data.data.url !== 'undefined' ) {
 											isShowSuccessMessage = false;
 										}
 										if ( isShowSuccessMessage ) {
@@ -365,7 +391,7 @@
 												.prop("tabindex", "-1")
 												.addClass($label_class + ' forminator-show');
 											self.focus_to_element($target_message, $label_class === 'forminator-success');
-											$target_message.html('<p>' + data.data.message + '</p>');
+											$target_message.html( data.data.message );
 										}
 
 										if(!data.data.success && typeof data.data.errors !== 'undefined' && data.data.errors.length) {
@@ -380,6 +406,10 @@
 											});
 											errors_html += '</ul>';
 											$target_message.append(errors_html);
+										}
+
+										if ( typeof data.data.stripe3d !== "undefined" ) {
+											$this.trigger('forminator:form:submit:stripe:3dsecurity', data.data.secret);
 										}
 									}
 								}
@@ -537,6 +567,7 @@
 
 				return false;
 			});
+
 		},
 
 		handle_submit_quiz: function( data ) {
@@ -653,8 +684,7 @@
 										parent  = self.$el.find( '#' + key ),
 										result  = parent.find( '.forminator-question--result' ),
 										submit  = parent.find( '.forminator-submit-rightaway' ),
-										answer  = parent.find( '[id|="' + data.data.result[key].answer + '"]' ).closest( '.forminator-answer' ),
-										answers = parent.find( '.forminator-answer input' )
+                                        answers = parent.find( '.forminator-answer input' )
 										;
 
 									// Check if selected answer is right or wrong.
@@ -672,20 +702,44 @@
 									submit.attr( 'disabled', true );
 									submit.attr( 'aria-disabled', true );
 
-									// Prevent user from changing answer.
-									answers.attr( 'disabled', true );
-									answers.attr( 'aria-disabled', true );
+                                    // Prevent user from changing answer.
+                                    answers.attr( 'disabled', true );
+                                    answers.attr( 'aria-disabled', true );
 
-									// Check if selected answer is right or wrong.
-									answer.addClass( responseClass );
-									if ( 0 === answer.find( '.forminator-answer--status' ).html().length ) {
-										answer.find( '.forminator-answer--status' ).html( responseIcon );
-									} else {
+                                    // For multiple answers per question
+                                    if ( undefined === data.data.result[key].answer ) {
+                                        var answersArray = data.data.result[key].answers;
+                                        
+                                        for ( var $i = 0; $i < answersArray.length; $i++ ) {
+                                            var answer = parent.find( '[id|="' + answersArray[$i].id + '"]' ).closest( '.forminator-answer' );
+                                            
+                                            // Check if selected answer is right or wrong.
+                                            answer.addClass( responseClass );
+                                            if ( 0 === answer.find( '.forminator-answer--status' ).html().length ) {
+                                                answer.find( '.forminator-answer--status' ).html( responseIcon );
+                                            } else {
 
-										if ( 0 !== answer.find( '.forminator-answer--status .forminator-icon-loader' ).length ) {
-											answer.find( '.forminator-answer--status' ).html( responseIcon );
-										}
-									}
+                                                if ( 0 !== answer.find( '.forminator-answer--status .forminator-icon-loader' ).length ) {
+                                                    answer.find( '.forminator-answer--status' ).html( responseIcon );
+                                                }
+                                            }
+                                        }
+                                        
+                                    // For single answer per question
+                                    } else {
+                                        var answer = parent.find( '[id|="' + data.data.result[key].answer + '"]' ).closest( '.forminator-answer' );
+                                        
+                                        // Check if selected answer is right or wrong.
+                                        answer.addClass( responseClass );
+                                        if ( 0 === answer.find( '.forminator-answer--status' ).html().length ) {
+                                            answer.find( '.forminator-answer--status' ).html( responseIcon );
+                                        } else {
+
+                                            if ( 0 !== answer.find( '.forminator-answer--status .forminator-icon-loader' ).length ) {
+                                                answer.find( '.forminator-answer--status' ).html( responseIcon );
+                                            }
+                                        }
+                                    }
 
 								});
 							}

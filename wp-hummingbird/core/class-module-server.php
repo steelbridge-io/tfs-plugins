@@ -128,8 +128,14 @@ abstract class Module_Server extends Module {
 				$type = 'apache';
 			} else {
 				$server = strtolower( wp_remote_retrieve_header( $response, 'server' ) );
-				// Could be LiteSpeed too.
-				$type = strpos( $server, 'nginx' ) !== false ? 'nginx' : 'apache';
+
+				if ( false !== strpos( $server, 'nginx' ) ) {
+					$type = 'nginx';
+				} elseif ( false !== strpos( $server, 'litespeed' ) ) {
+					$type = 'litespeed';
+				} else {
+					$type = 'apache';
+				}
 			}
 		} elseif ( $is_nginx ) {
 			$type = 'nginx';
@@ -153,7 +159,7 @@ abstract class Module_Server extends Module {
 	 */
 	public static function get_servers() {
 		return array(
-			'apache'     => 'Apache',
+			'apache'     => 'Apache/LiteSpeed',
 			'nginx'      => 'NGINX',
 			'iis'        => 'IIS',
 			'cloudflare' => 'Cloudflare',

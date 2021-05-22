@@ -24,26 +24,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	if ( 'opportunities' === $type ) {
 		$description = __(
-			'Each suggestion in this section is an opportunity to improve your page load speed and estimates
-			how much faster the page will load if the improvement is implemented.',
+			'Each suggestion in this section is an opportunity to improve your page load speed and estimates how much faster the page will load if the improvement is implemented. Although they are <strong>not directly affect</strong> your Performance Score, improving the audits here can help as a starting point for overall performance score gains.',
 			'wphb'
 		);
+
 	} elseif ( 'diagnostics' === $type ) {
 		$description = __(
-			'This section provides additional information about how your page adheres to best practices of web
-			development. These improvements may not directly impact the load speed, however, help to improve the
-			overall performance score of your page.',
+			'This section provides additional information about how your page adheres to best practices of web development. These improvements may <strong>not directly impact</strong> your performance score, however, can help as a starting point for overall performance score gains.',
 			'wphb'
 		);
 	} else {
 		$description = __(
-			'This section lists the audits with a score of 90 or more. There are still opportunities to improve
-			the overall performance score by aiming for a score of 100 for all the passed audits.',
+			'This section lists the audits with a score of 90 or more. There are still opportunities to improve the overall performance score by aiming for a score of 100 for all the passed audits.',
 			'wphb'
 		);
 	}
 	?>
-	<p><?php echo esc_html( $description ); ?></p>
+	<p><?php echo wp_kses_post( $description ); ?></p>
 
 	<?php if ( empty( $last_test ) ) : ?>
 		<?php $this->admin_notices->show_inline( esc_html__( 'Nice! All tests passed.', 'wphb' ) ); ?>
@@ -65,6 +62,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 					$impact_score_class = 'warning';
 					$impact_icon_class  = 'warning-alert';
 				}
+
+				// These audits are informative only.
+				if ( 'layout-shift-elements' === $rule ) {
+					$impact_score_class = 'default';
+					$impact_icon_class  = 'info';
+				}
 			}
 			?>
 			<div class="sui-accordion-item sui-<?php echo esc_attr( $impact_score_class ); ?>" id="<?php echo esc_attr( $rule ); ?>">
@@ -74,7 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php echo esc_html( $rule_result->title ); ?>
 					</div>
 					<div>
-						<?php $gray_class = isset( $rule_result->score ) && 0 === $rule_result->score ? 'wphb-gray-color' : ''; ?>
+						<?php $gray_class = ! isset( $rule_result->score ) || ( isset( $rule_result->score ) && 0 === $rule_result->score ) ? 'wphb-gray-color' : ''; ?>
 						<div class="sui-circle-score sui-grade-<?php echo esc_attr( $impact_score_class ) . ' ' . esc_attr( $gray_class ); ?>" data-score="<?php echo isset( $rule_result->score ) ? absint( $rule_result->score * 100 ) : 0; ?>"></div>
 					</div>
 					<div>

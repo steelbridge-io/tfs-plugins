@@ -1,17 +1,14 @@
 /* global WPHB_Admin */
 /* global SUI */
-/* global wphbDashboardStrings */
-/* global wphbPerformanceStrings */
 
 import Fetcher from '../utils/fetcher';
+import { getString } from '../utils/helpers';
 
 ( function ( $ ) {
 	WPHB_Admin.dashboard = {
 		module: 'dashboard',
 
 		init() {
-			if ( wphbDashboardStrings ) this.strings = wphbDashboardStrings;
-
 			$( '.wphb-performance-report-item' ).on( 'click', function () {
 				const url = $( this ).data( 'performance-url' );
 				if ( url ) {
@@ -87,10 +84,8 @@ import Fetcher from '../utils/fetcher';
 			);
 
 			window.WPHB_Admin.Tracking.track( 'plugin_scan_started', {
-				score_mobile_previous:
-					wphbPerformanceStrings.previousScoreMobile,
-				score_desktop_previous:
-					wphbPerformanceStrings.previousScoreDesktop,
+				score_mobile_previous: getString( 'previousScoreMobile' ),
+				score_desktop_previous: getString( 'previousScoreDesktop' ),
 			} );
 
 			this.skipSetup( false );

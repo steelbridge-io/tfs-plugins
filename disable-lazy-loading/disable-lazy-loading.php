@@ -9,9 +9,9 @@
 	Donate link: https://monzillamedia.com/donate.html
 	Contributors: specialk
 	Requires at least: 5.4
-	Tested up to: 5.6
-	Stable tag: 1.2
-	Version: 1.2
+	Tested up to: 5.7
+	Stable tag: 1.3
+	Version: 1.3
 	Requires PHP: 5.6.20
 	Text Domain: disable-lazy-loading
 	Domain Path: /languages
@@ -32,7 +32,7 @@
 	You should have received a copy of the GNU General Public License
 	with this program. If not, visit: https://www.gnu.org/licenses/
 	
-	Copyright 2020 Monzilla Media. All rights reserved.
+	Copyright 2021 Monzilla Media. All rights reserved.
 */
 
 if (!defined('ABSPATH')) die();

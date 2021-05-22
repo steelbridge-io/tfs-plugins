@@ -9,9 +9,9 @@ Author URI: https://plugin-planet.com/
 Donate link: https://monzillamedia.com/donate.html
 Contributors: specialk
 Requires at least: 5.4
-Tested up to: 5.6
-Stable tag: 1.2
-Version: 1.2
+Tested up to: 5.7
+Stable tag: 1.3
+Version: 1.3
 Requires PHP: 5.6.20
 Text Domain: disable-lazy-loading
 Domain Path: /languages
@@ -46,6 +46,7 @@ Because there are plugins that already implement lazy loading. So when upgrading
 For more information about the new WP Sitemap functionality:
 
 * [Lazy-loading of images is in core](https://make.wordpress.org/core/2020/04/08/lazy-loading-of-images-is-in-core/)
+* [WordPress Plugin: Disable Lazy Load](https://perishablepress.com/wordpress-disable-lazy-loading/)
 
 
 **Privacy**
@@ -62,7 +63,7 @@ This plugin is developed and maintained by [Jeff Starr](https://twitter.com/peri
 
 Activate like any other plugin and done. There are no settings, works automatically.
 
-More info on [installing WP plugins](https://wordpress.org/support/article/managing-plugins/#installing-plugins)
+More info on [installing WP plugins](https://wordpress.org/support/article/managing-plugins/#installing-plugins).
 
 
 **Uninstalling**
@@ -94,6 +95,11 @@ Send any questions or feedback via my [contact form](https://perishablepress.com
 
 If you like Disable Lazy Load, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/disable-lazy-loading/reviews/?rate=5#new-post). It helps to keep the plugin going strong, and is greatly appreciated.
 
+
+**1.3 (2021/02/08)**
+
+* Tests on PHP 7.4 and 8.0
+* Tests on WordPress 5.7
 
 **1.2 (2020/11/09)**
 

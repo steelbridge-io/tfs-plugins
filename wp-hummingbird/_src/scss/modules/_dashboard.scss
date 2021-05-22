@@ -98,6 +98,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            & > div {
+                width: 62px;
+            }
         }
 
         span[class^=sui-icon] {
@@ -115,12 +118,10 @@
 
     .sui-box-footer { border-top: 0 !important; }
 
-    .wphb-metrics-widget,
-    .wphb-historic-widget {
+    .wphb-metrics-widget {
         padding-bottom: 0 !important;
         .sui-notice { margin: 20px 0; }
     }
-    .wphb-audits-widget { padding-bottom: 20px !important; }
 }
 
 .wpmud .wphb-border-frame .wphb-caching-summary-item-type,
@@ -321,4 +322,14 @@
 .wpmud #clear-cache-modal {
     label.sui-checkbox { margin: 0 0 5px }
     span.sui-checkbox-description { margin-bottom: 10px }
+}
+
+/**
+ * Tutorials
+ *
+ * @since 2.8.0
+ */
+.wpmud #wphb-dashboard-tutorials > .sui-notice,
+.wpmud .sui-tutorials-slider-box {
+    margin-bottom: 30px !important;
 }

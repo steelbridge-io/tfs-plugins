@@ -38,11 +38,16 @@ if ( 'performance' === $module ) {
 	<div class="sui-box-settings-row <?php echo $enabled ? '' : 'wphb-first-of-type'; ?>">
 		<div class="sui-box-settings-col-1">
 			<span class="sui-settings-label">
-				<?php esc_html_e( 'Configure', 'wphb' ); ?>
+				<?php esc_html_e( 'Email Reports', 'wphb' ); ?>
 			</span>
 			<span class="sui-description">
 				<?php esc_html_e( 'Choose from daily, weekly or monthly email reports.', 'wphb' ); ?>
 			</span>
+			<?php if ( 'uptime' === $module && is_network_admin() ) : ?>
+				<span class="sui-description">
+					<?php esc_html_e( 'Note: Scheduled uptime reports are only available for network sites and not subsites. This is because the network sites and subsites are located on the same server, meaning that subsite uptime reports would be redundant.', 'wphb' ); ?>
+				</span>
+			<?php endif; ?>
 		</div>
 		<div class="sui-box-settings-col-2">
 			<div class="sui-form-field">
@@ -126,10 +131,10 @@ if ( 'performance' === $module ) {
 						</select>
 					</div>
 					<div class="sui-col sui-form-field sui-no-margin-bottom days-container sui-hidden" data-type="month">
-						<label class="sui-label" for="report-day">
+						<label class="sui-label" for="report-day-month">
 							<?php esc_html_e( 'Day of the month', 'wphb' ); ?>
 						</label>
-						<select name="report-day-month" id="report-day" class="sui-select" data-width="250">
+						<select name="report-day-month" id="report-day-month" class="sui-select" data-width="250">
 							<?php
 							$days = range( 1, 28 );
 							if ( ! in_array( $send_day, $days ) ) {

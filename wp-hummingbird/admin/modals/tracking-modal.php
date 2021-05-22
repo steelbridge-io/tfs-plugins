@@ -70,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							printf(
 								/* translators: %1$s - <a>, %2$s - </a> */
 								esc_html__( 'You can read about what data will be collected %1$shere%2$s.', 'wphb' ),
-								'<a href="https://premium.wpmudev.org/docs/privacy/our-plugins/#usage-tracking" target="_blank">',
+								'<a href="https://wpmudev.com/docs/privacy/our-plugins/#usage-tracking" target="_blank">',
 								'</a>'
 							);
 							?>

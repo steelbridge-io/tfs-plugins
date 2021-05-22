@@ -68,7 +68,7 @@
     button
         .add(draft_button)
         .add('.row-actions.visible .activate a, .row-actions.visible .deactivate a')
-        .click( function( event ) {
+        .on( 'click', function(e) {
             saveScrollbarCookies();
         });
 

@@ -1,7 +1,7 @@
-/* global wphb */
 /* global WPHB_Admin */
 
 import Fetcher from '../utils/fetcher';
+import { getLink } from '../utils/helpers';
 
 ( function ( $ ) {
 	'use strict';
@@ -167,7 +167,7 @@ import Fetcher from '../utils/fetcher';
 		confirmReset: () => {
 			Fetcher.common.call( 'wphb_reset_settings' ).then( () => {
 				Fetcher.common.call( 'wphb_redis_disconnect' );
-				window.location.href = wphb.urls.resetSettings;
+				window.location.href = getLink( 'resetSettings' );
 			} );
 		},
 	};

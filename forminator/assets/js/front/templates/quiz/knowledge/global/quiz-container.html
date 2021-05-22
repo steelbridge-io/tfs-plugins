@@ -49,8 +49,14 @@
 			<?php } else { ?>
 				background-color: rgba(0,0,0,0);
 			<?php } ?>
+			<?php if ( forminator_array_value_exists( $properties, 'container-border-color' ) ) { ?>
+				border-color: <?php echo $properties['container-border-color'] ?>;
+			<?php } else { ?>
+				border-color: #000000;
+			<?php } ?>
 		<?php } else { ?>
 			background-color: rgba(0,0,0,0);
+			border-color: #000000;
 		<?php } ?>
 	}
 
@@ -115,7 +121,7 @@
 		<?php } ?>
 	}
 <?php } else { ?>
-	.forminator-ui.forminator-quiz-<?php echo $properties['form_id'] ?> {
+	.forminator-ui.forminator-quiz#forminator-module-<?php echo $properties['form_id'] ?> {
 		width: 100%;
 		<?php if ( forminator_array_value_exists( $properties, 'quiz-size' ) ) { ?>
 			<?php if ( 'custom' == $properties['quiz-size'] ) { ?>
@@ -165,8 +171,14 @@
 			<?php } else { ?>
 				background-color: transparent;
 			<?php } ?>
+			<?php if ( forminator_array_value_exists( $properties, 'container-border-color' ) ) { ?>
+				border-color: <?php echo $properties['container-border-color'] ?>;
+			<?php } else { ?>
+				border-color: #000000;
+			<?php } ?>
 		<?php } else { ?>
 			background-color: transparent;
+			border-color: #000000;
 		<?php } ?>
 	}
 <?php } ?>

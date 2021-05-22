@@ -10,7 +10,6 @@ namespace Hummingbird\Core\Modules;
 use Hummingbird\Core\Filesystem;
 use Hummingbird\Core\Module;
 use Hummingbird\Core\Settings;
-use Hummingbird\Core\Utils;
 use WP_Customize_Manager;
 use WP_Scripts;
 use WP_Styles;
@@ -87,6 +86,25 @@ class Minify extends Module {
 	);
 
 	/**
+	 * Exclusion list.
+	 *
+	 * @since 2.7.2  Added 'lodash' script. It has an inlined script 'window.lodash = _.noConflict();' that prevents
+	 *               errors in browser console. Without that line, many core WordPress scripts will error out.
+	 * @see https://incsub.atlassian.net/browse/HUM-404
+	 *
+	 * @var array $exclude_combine
+	 */
+	private $exclude_combine = array( 'lodash' );
+
+	/**
+	 * Google fonts collection.
+	 *
+	 * @since 3.0.0
+	 * @var array $fonts
+	 */
+	private $fonts = array();
+
+	/**
 	 * Initializes the module. Always executed even if the module is deactivated.
 	 *
 	 * We need the scanner module to be always active, because HB uses is_scanning to detect
@@ -96,15 +114,20 @@ class Minify extends Module {
 		$this->scanner = new Minify\Scanner();
 
 		add_filter( 'wp_hummingbird_is_active_module_minify', array( $this, 'minify_module_status' ) );
+
 		add_filter( 'wphb_block_resource', array( $this, 'filter_resource_block' ), 10, 5 );
-		add_filter( 'wphb_minify_resource', array( $this, 'filter_resource_minify' ), 10, 3 );
-		// Do not minify files that already are named with .min.
-		add_filter( 'wphb_minify_resource', array( $this, 'filter_minified_files' ), 15, 4 );
+		add_filter( 'wphb_minify_resource', array( $this, 'filter_resource_minify' ), 10, 4 );
 		add_filter( 'wphb_combine_resource', array( $this, 'filter_resource_combine' ), 10, 3 );
 		add_filter( 'wphb_defer_resource', array( $this, 'filter_resource_defer' ), 10, 3 );
 		add_filter( 'wphb_inline_resource', array( $this, 'filter_resource_inline' ), 10, 3 );
 		add_filter( 'wphb_send_resource_to_footer', array( $this, 'filter_resource_to_footer' ), 10, 3 );
 		add_filter( 'wphb_cdn_resource', array( $this, 'filter_resource_cdn' ), 10, 3 );
+
+		// Remove files from AO UI.
+		add_filter( 'wphb_minification_display_enqueued_file', array( $this, 'exclude_from_ao_ui' ), 10, 3 );
+
+		// Remove -rtl from CDN links.
+		add_filter( 'style_loader_tag', array( $this, 'remove_rtl_prefix_on_cdn' ) );
 	}
 
 	/**
@@ -165,6 +188,12 @@ class Minify extends Module {
 		add_filter( 'print_styles_array', array( $this, 'filter_styles' ), 5 );
 		add_filter( 'print_scripts_array', array( $this, 'filter_scripts' ), 5 );
 		add_action( 'wp_footer', array( $this, 'trigger_process_queue_cron' ), 10000 );
+
+		// Google fonts optimization.
+		$options     = $this->get_options();
+		$this->fonts = $options['fonts'];
+		add_filter( 'wp_resource_hints', array( $this, 'prefetch_fonts' ), 10, 2 );
+		add_filter( 'style_loader_tag', array( $this, 'preload_fonts' ), 10, 3 );
 	}
 
 	/**
@@ -271,10 +300,30 @@ class Minify extends Module {
 			return $handles;
 		}
 
+		$return_to_wp = array();
+
 		// Collect the handles information to use in admin later.
 		foreach ( $handles as $key => $handle ) {
+			/**
+			 * Not registered for some reason - return to WP.
+			 *
+			 * This has been added and removed from time to time. Not sure if this is the best way to do it, so I
+			 * will try to history of commits.
+			 *
+			 * @since 2.7.1  Reverted the previous fix.
+			 * @see https://incsub.atlassian.net/browse/HUM-294
+			 *
+			 * @since 2.7.2  Brought this back in a new updated way.
+			 * @see https://incsub.atlassian.net/browse/HUM-482
+			 */
+			if ( ! isset( $wp_dependencies->registered[ $handle ] ) ) {
+				$return_to_wp = array_merge( $return_to_wp, array( $handle ) );
+				unset( $handles[ $key ] );
+				continue;
+			}
+
 			// Only show items that have a handle and a source.
-			if ( isset( $wp_dependencies->registered[ $handle ] ) && ! empty( $wp_dependencies->registered[ $handle ]->src ) ) {
+			if ( ! empty( $wp_dependencies->registered[ $handle ]->src ) ) {
 				$this->sources_collector->add_to_collection( $wp_dependencies->registered[ $handle ], $type );
 			}
 
@@ -286,8 +335,6 @@ class Minify extends Module {
 		}
 
 		$handles = array_values( $handles );
-
-		$return_to_wp = array();
 
 		if ( self::is_in_footer() && ! empty( $this->to_footer[ $type ] ) ) {
 			// This is done to remove script, that are dequeued later.
@@ -370,16 +417,15 @@ class Minify extends Module {
 			$group_status = $groups_list->get_group_status( $group->hash );
 			$deps         = $groups_list->get_group_dependencies( $group->hash );
 
+			// The group has its file and is ready to be enqueued.
 			if ( 'ready' === $group_status ) {
-				// The group has its file and is ready to be enqueued.
 				$group->enqueue( self::is_in_footer(), $deps );
 				$return_to_wp = array_merge( $return_to_wp, array( $group->group_id ) );
 			} else {
-				// The group has not yet a file attached or it cannot be processed
-				// for some reason.
+				// The group has not yet a file attached or it cannot be processed for some reason.
 				foreach ( $group->get_handles() as $handle ) {
-					$new_id       = $group->enqueue_one_handle( $handle, self::is_in_footer(), $deps );
-					$return_to_wp = array_merge( $return_to_wp, array( $new_id ) );
+					$group->enqueue_one_handle( $handle, self::is_in_footer(), $deps );
+					$return_to_wp = array_merge( $return_to_wp, array( $handle ) );
 				}
 
 				if ( 'process' === $group_status ) {
@@ -790,14 +836,31 @@ class Minify extends Module {
 		}
 
 		if ( ! ( defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON ) ) {
-			$new_queue = array_values( $new_queue );
 			if ( ! empty( $new_queue ) ) {
 				// Still needs processing.
 				self::schedule_process_queue_cron();
 			}
 		}
 
-		delete_transient( 'wphb-processing' );
+		if ( empty( $new_queue ) ) {
+			// Finish processing.
+			delete_transient( 'wphb-processing' );
+			if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
+				/**
+				 * Unfortunately, during cron we are not able to detect the first page load, so it will get cached.
+				 * Page load -> page caching and cron are triggered at the same time, but this is the limitation,
+				 * that page cache will not have the wphb-processing transient at this stage. To counter this,
+				 * we will purge all cache when Asset Optimization is done.
+				 *
+				 * @since 3.0.0
+				 * @see Page_Cache::cache_request() for transient check without cron.
+				 */
+				do_action( 'wphb_clear_page_cache' );
+			}
+		} else {
+			// Refresh transient.
+			set_transient( 'wphb-processing', true, 60 );
+		}
 	}
 
 	/**
@@ -913,13 +976,14 @@ class Minify extends Module {
 
 			// Reset the minification settings.
 			if ( $reset_minify ) {
-				$options['dont_minify'] = $default_options['minify']['dont_minify'];
+				$options['dont_minify']  = $default_options['minify']['dont_minify'];
+				$options['dont_combine'] = $default_options['minify']['dont_combine'];
 			}
-			$options['block']        = $default_options['minify']['block'];
-			$options['dont_combine'] = $default_options['minify']['dont_combine'];
-			$options['position']     = $default_options['minify']['position'];
-			$options['defer']        = $default_options['minify']['defer'];
-			$options['inline']       = $default_options['minify']['inline'];
+			$options['block']    = $default_options['minify']['block'];
+			$options['position'] = $default_options['minify']['position'];
+			$options['defer']    = $default_options['minify']['defer'];
+			$options['inline']   = $default_options['minify']['inline'];
+			$options['fonts']    = $default_options['minify']['fonts'];
 			$this->update_options( $options );
 		}
 
@@ -969,12 +1033,12 @@ class Minify extends Module {
 		$minify_default = $default[ $this->get_slug() ];
 
 		// Settings that need to be reset.
-		$ao_settings = array(
-			'use_cdn',
-			'nocdn',
-			'file_path',
-			'log',
-		);
+		$ao_settings = array( 'do_assets', 'view', 'type', 'use_cdn', 'nocdn' );
+
+		// These settings are only valid for single sites or network admin.
+		if ( ! is_multisite() || is_network_admin() ) {
+			$ao_settings = array_merge( $ao_settings, array( 'file_path', 'log' ) );
+		}
 
 		$ao_settings_default = array_intersect_key( $minify_default, array_flip( $ao_settings ) );
 
@@ -1041,35 +1105,23 @@ class Minify extends Module {
 	 * @param bool   $value   Current value.
 	 * @param string $handle  Resource handle.
 	 * @param string $type    Script or style.
+	 * @param string $url     Script URL.
 	 *
 	 * @return bool
 	 */
-	public function filter_resource_minify( $value, $handle, $type ) {
+	public function filter_resource_minify( $value, $handle, $type, $url ) {
 		$options = $this->get_options();
 		$minify  = $options['dont_minify'][ $type ];
 		if ( is_array( $minify ) && in_array( $handle, $minify, true ) ) {
 			return false;
 		}
 
-		return $value;
-	}
-
-	/**
-	 * Filter already minified resources.
-	 *
-	 * @param bool   $minify  Current value.
-	 * @param string $handle  Resource handle.
-	 * @param string $type    Script or style.
-	 * @param string $url     Script URL.
-	 *
-	 * @return bool
-	 */
-	public function filter_minified_files( $minify, $handle, $type, $url ) {
+		// Filter already minified resources.
 		if ( preg_match( '/\.min\.(css|js)/', basename( $url ) ) ) {
 			return false;
 		}
 
-		return $minify;
+		return $value;
 	}
 
 	/**
@@ -1085,6 +1137,10 @@ class Minify extends Module {
 		$options = $this->get_options();
 		$combine = $options['dont_combine'][ $type ];
 		if ( in_array( $handle, $combine, true ) ) {
+			return false;
+		}
+
+		if ( in_array( $handle, $this->exclude_combine, true ) ) {
 			return false;
 		}
 
@@ -1171,6 +1227,29 @@ class Minify extends Module {
 	}
 
 	/**
+	 * Exclude files from the AO list.
+	 *
+	 * @since 2.7.2
+	 *
+	 * @param bool         $action  Exclude or not.
+	 * @param array|string $handle  Handle.
+	 * @param string       $type    Asset type: styles or scripts.
+	 *
+	 * @return bool
+	 */
+	public function exclude_from_ao_ui( $action, $handle, $type ) {
+		if ( is_array( $handle ) && isset( $handle['handle'] ) ) {
+			$handle = $handle['handle'];
+		}
+
+		if ( 'scripts' === $type && in_array( $handle, $this->exclude_combine, true ) ) {
+			return false;
+		}
+
+		return $action;
+	}
+
+	/**
 	 * *************************
 	 * HELPER FUNCTIONS
 	 ***************************/
@@ -1203,6 +1282,9 @@ class Minify extends Module {
 		}
 
 		wp_cache_delete( 'wphb_minify_groups' );
+
+		// Clear all the page cache.
+		do_action( 'wphb_clear_page_cache' );
 	}
 
 	/**
@@ -1390,21 +1472,6 @@ class Minify extends Module {
 	}
 
 	/**
-	 * Improved HTTP2 check method.
-	 *
-	 * @since 2.4.0  Refactored from Utils::get_http2_status()
-	 *
-	 * @return bool
-	 */
-	public function is_http2() {
-		if ( 'HTTP/2.0' === wp_get_server_protocol() ) {
-			return true;
-		}
-
-		return Utils::get_api()->minify->is_http2();
-	}
-
-	/**
 	 * Return a list of fields used on the wp_postmeta table.
 	 *
 	 * @since 2.7.0
@@ -1432,6 +1499,81 @@ class Minify extends Module {
 			'_url',
 			'_expires',
 		);
+	}
+
+	/**
+	 * CDN does not support -rtl suffixes, so we remove those from style links
+	 *
+	 * @since 2.7.2
+	 *
+	 * @param string $rtl_tag  Style tag.
+	 *
+	 * @return string
+	 */
+	public function remove_rtl_prefix_on_cdn( $rtl_tag ) {
+		// If not from Hummingbird CDN - skip.
+		if ( false === strpos( $rtl_tag, 'hb.wpmucdn.com' ) ) {
+			return $rtl_tag;
+		}
+
+		// If does not contain -rtl prefix - skip.
+		if ( false === strpos( $rtl_tag, '-rtl.' ) ) {
+			return $rtl_tag;
+		}
+
+		$rtl_tag = str_replace( '-rtl.', '.', $rtl_tag );
+
+		return $rtl_tag;
+	}
+
+	/**
+	 * Replace Google fonts with a preloaded version.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param string $tag     The link tag for the enqueued style.
+	 * @param string $handle  The style's registered handle.
+	 * @param string $href    The stylesheet's source URL.
+	 *
+	 * @return string
+	 */
+	public function preload_fonts( $tag, $handle, $href ) {
+		if ( ! in_array( $handle, $this->fonts, true ) ) {
+			return $tag;
+		}
+
+		$fonts  = '<link rel="preload" as="style" href="' . $href . '" />';
+		$fonts .= str_replace( "media='all'", "media='print' onload='this.media=\"all\"'", $tag );
+
+		return $fonts;
+	}
+
+	/**
+	 * Prefetch Google fonts.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param array  $hints          URLs to print for resource hints.
+	 * @param string $relation_type  The relation type the URLs are printed for, e.g. 'preconnect' or 'prerender'.
+	 *
+	 * @return array
+	 */
+	public function prefetch_fonts( $hints, $relation_type ) {
+		if ( 'preconnect' !== $relation_type ) {
+			return $hints;
+		}
+
+		// TODO: we need a way to add crossorigin attribute.
+
+		if ( ! in_array( 'https://fonts.gstatic.com', $hints, true ) ) {
+			$hints[] = 'https://fonts.gstatic.com';
+		}
+
+		if ( ! in_array( 'https://fonts.googleapis.com', $hints, true ) ) {
+			$hints[] = 'https://fonts.googleapis.com';
+		}
+
+		return $hints;
 	}
 
 }

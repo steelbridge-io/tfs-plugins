@@ -91,7 +91,7 @@ class Forminator_Admin_Import_CF7 extends Forminator_Import_Mediator {
 			'enable-ajax'          => 'true',
 			'autoclose'            => 'true',
 			'submission-indicator' => 'show',
-			'indicator-label'      => __( 'Submitting...', Forminator::DOMAIN ),
+			'indicator-label'      => __( 'Submitting...', 'forminator' ),
 			'paginationData'       => array(
 				'pagination-header-design' => 'show',
 				'pagination-header'        => 'nav',
@@ -124,7 +124,11 @@ class Forminator_Admin_Import_CF7 extends Forminator_Import_Mediator {
 			$blank_options    = array();
 			$type             = $this->get_thirdparty_field_type( $field->basetype );
 
-			if ( empty( $type ) ) {
+			if ( 'honeypot' === $type && in_array( 'honeypot', $cf7_addons, true ) ) {
+				$honeypot = true;
+			}
+
+			if ( 'honeypot' === $type || empty( $type ) ) {
 				continue;
 			}
 
@@ -195,10 +199,6 @@ class Forminator_Admin_Import_CF7 extends Forminator_Import_Mediator {
 					$gdpr = true;
 				}
 
-				if ( 'honeypot' === $type && in_array( 'honeypot', $cf7_addons, true ) ) {
-					$honeypot = true;
-				}
-
 				if ( isset( $field['options'] ) ) {
 					$classes = preg_grep( "/^class:/", $field['options'] );
 
@@ -235,7 +235,7 @@ class Forminator_Admin_Import_CF7 extends Forminator_Import_Mediator {
 				if ( 'captcha' === $type ) {
 					$global['captchaV2'] = true;
 					$condition           = array();
-					$field_name          = esc_html__( 'reCaptcha', Forminator::DOMAIN );
+					$field_name          = esc_html__( 'reCaptcha', 'forminator' );
 				} else {
 					$field_name = esc_html( $this->get_label_cf7( $field->name, $form_html ) );
 				}

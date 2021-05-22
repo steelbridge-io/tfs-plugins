@@ -73,28 +73,4 @@ class Minify extends Service {
 		return json_decode( wp_remote_retrieve_body( $result ) );
 	}
 
-	/**
-	 * Get HTTP2 status.
-	 *
-	 * @return bool
-	 */
-	public function is_http2() {
-		define( 'WPHB_USE_LOCAL_SITE', true );
-
-		$response = $this->request->head( $this->request->get_this_site(), array() ); // get_this_site() doesn't really matter here.
-
-		$code = wp_remote_retrieve_response_code( $response );
-
-		if ( 200 === $code && isset( $response['http_response'] ) && $response['http_response'] instanceof \WP_HTTP_Requests_Response ) {
-			if ( method_exists( $response['http_response'], 'get_response_object' ) ) {
-				$protocol_version = $response['http_response']->get_response_object()->protocol_version;
-				return 2 === $protocol_version || 2.0 === $protocol_version;
-			}
-
-			return false;
-		}
-
-		return false;
-	}
-
 }

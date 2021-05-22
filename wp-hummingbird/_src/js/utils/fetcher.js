@@ -152,11 +152,12 @@ function Fetcher() {
 			 * @param {string} host
 			 * @param {number} port
 			 * @param {string} password
+			 * @param {number} db
 			 */
-			redisSaveSettings( host, port, password ) {
+			redisSaveSettings( host, port, password, db ) {
 				return request(
 					actionPrefix + 'redis_save_settings',
-					{ host, port, password },
+					{ host, port, password, db },
 					'POST'
 				);
 			},
@@ -200,14 +201,16 @@ function Fetcher() {
 			/**
 			 * Connect to Cloudflare.
 			 *
-			 * @param {string} step
-			 * @param {string} formData
-			 * @param {Array}  cfData
+			 * @since 3.0.0
+			 *
+			 * @param {string} email
+			 * @param {string} key
+			 * @param {string} zone
 			 */
-			connect: ( step, formData, cfData ) => {
+			connect: ( email, key, zone ) => {
 				return request(
 					actionPrefix + 'cloudflare_connect',
-					{ step, formData, cfData },
+					{ email, key, zone },
 					'POST'
 				).then( ( response ) => {
 					return response;
@@ -256,12 +259,11 @@ function Fetcher() {
 			 * Toggle minification advanced mode.
 			 *
 			 * @param {string}  value
-			 * @param {boolean} clear
 			 * @param {boolean} hide
 			 */
-			toggleView: ( value, clear, hide ) => {
+			toggleView: ( value, hide ) => {
 				const action = actionPrefix + 'minification_toggle_view';
-				return request( action, { value, clear, hide }, 'POST' );
+				return request( action, { value, hide }, 'POST' );
 			},
 
 			/**
@@ -362,21 +364,6 @@ function Fetcher() {
 			updateExcludeList: ( data ) => {
 				const action = actionPrefix + 'minification_save_exclude_list';
 				return request( action, { data }, 'POST' );
-			},
-
-			/**
-			 * Save auto asset optimization settings.
-			 *
-			 * @since 2.6.0
-			 *
-			 * @param {Object} settings
-			 */
-			saveSettings: ( settings ) => {
-				return request(
-					actionPrefix + 'minification_save_settings',
-					{ settings },
-					'POST'
-				);
 			},
 		},
 

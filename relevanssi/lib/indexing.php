@@ -361,7 +361,7 @@ function relevanssi_build_index( $extend_offset = false, $verbose = null, $post_
 
 	if ( ( 0 === $size ) || ( count( $content ) < $size ) ) {
 		$complete = true;
-		update_option( 'relevanssi_indexed', 'done', false );
+		update_option( 'relevanssi_indexed', 'done' );
 
 		// To prevent empty indices.
 		$wpdb->query( "ANALYZE TABLE $relevanssi_table" ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -483,8 +483,9 @@ function relevanssi_index_doc( $index_post, $remove_first = false, $custom_field
 	 * can be a boolean, or a string containing an explanation for the
 	 * exclusion. Default false.
 	 * @param int            The post ID.
+	 * @param WP_Post        The post object.
 	 */
-	$do_not_index = apply_filters( 'relevanssi_do_not_index', false, $post->ID );
+	$do_not_index = apply_filters( 'relevanssi_do_not_index', false, $post->ID, $post );
 	if ( $do_not_index ) {
 		// Filter says no.
 		if ( true === $do_not_index ) {
@@ -541,7 +542,7 @@ function relevanssi_index_doc( $index_post, $remove_first = false, $custom_field
 	}
 
 	if ( 'on' === get_option( 'relevanssi_index_author' ) ) {
-		$n += relevanssi_index_author( $insert_data, $post->post_author, $min_word_length, $debug );
+		$n += relevanssi_index_author( $insert_data, $post->post_author, $min_word_length, $debug, $post );
 	}
 
 	$n += relevanssi_index_custom_fields( $insert_data, $post->ID, $custom_fields, $min_word_length, $debug );
@@ -615,7 +616,7 @@ function relevanssi_index_taxonomy_terms( &$insert_data, $post_id, $taxonomy, $d
 	$min_word_length     = get_option( 'relevanssi_min_word_length', 3 );
 	$post_taxonomy_terms = get_the_terms( $post_id, $taxonomy );
 
-	if ( false === $post_taxonomy_terms ) {
+	if ( false === $post_taxonomy_terms || is_wp_error( $post_taxonomy_terms ) ) {
 		return $n;
 	}
 
@@ -631,12 +632,24 @@ function relevanssi_index_taxonomy_terms( &$insert_data, $post_id, $taxonomy, $d
 	/**
 	 * Filters the taxonomy term content before indexing.
 	 *
-	 * @param string The taxonomy term content.
-	 * @param string The taxonomy term name.
-	 * @param string The taxonomy.
-	 * @param int    The post ID.
+	 * The taxonomy term content is presented as a string of term names
+	 * separated by spaces. If you want to edit this, it's probably best to just
+	 * reconstruct it from the taxonomy term objects contained in the second
+	 * parameter.
+	 *
+	 * @param string The taxonomy term content as a string.
+	 * @param array  An array containing the taxonomy term objects for this
+	 * taxonomy.
+	 * @param string The taxonomy name.
+	 * @param int    The post ID for the current post.
 	 */
-	$term_string = apply_filters( 'relevanssi_tag_before_tokenize', trim( $term_string ), $post_term, $taxonomy, $post_id );
+	$term_string = apply_filters(
+		'relevanssi_tag_before_tokenize',
+		trim( $term_string ),
+		$post_taxonomy_terms,
+		$taxonomy,
+		$post_id
+	);
 
 	/** This filter is documented in lib/indexing.php */
 	$term_tokens = apply_filters(
@@ -708,9 +721,10 @@ function relevanssi_update_child_posts( $new_status, $old_status, $post ) {
 	/**
 	 * Filters the attachment and revision post types.
 	 *
-	 * If you want attachment indexing to cover other post types than just
-	 * attachment, you need to include the new post type in the array with
-	 * this filter.
+	 * When Relevanssi indexes posts, it also looks at the child posts. However,
+	 * if the indexed post is a revision or an attachment, the child posts are
+	 * not checked. You may extend this behaviour to other post types with this
+	 * hook.
 	 *
 	 * @param array Array of post types, default 'attachment' and 'revision'.
 	 */
@@ -1131,8 +1145,8 @@ function relevanssi_index_comments( &$insert_data, $post_id, $min_word_length, $
 	$post_comments = relevanssi_get_comments( $post_id );
 	if ( ! empty( $post_comments ) ) {
 		$post_comments = relevanssi_strip_invisibles( $post_comments );
-		$post_comments = preg_replace( '/<[a-zA-Z\/][^>]*>/', ' ', $post_comments );
-		$post_comments = wp_strip_all_tags( $post_comments );
+		$post_comments = relevanssi_strip_all_tags( $post_comments );
+
 		if ( $debug ) {
 			relevanssi_debug_echo( "Comment content: $post_comments" );
 		}
@@ -1166,12 +1180,22 @@ function relevanssi_index_comments( &$insert_data, $post_id, $min_word_length, $
  * @param int     $post_author     The post author id.
  * @param int     $min_word_length The minimum word length.
  * @param boolean $debug           If true, print out debug notices.
+ * @param WP_Post $post            The post object.
  *
  * @return int The number of tokens added to the data.
  */
-function relevanssi_index_author( &$insert_data, $post_author, $min_word_length, $debug ) {
+function relevanssi_index_author( &$insert_data, $post_author, $min_word_length, $debug, $post ) {
 	$n            = 0;
 	$display_name = get_the_author_meta( 'display_name', $post_author );
+
+	/**
+	 * Filters the post author display_name before indexing it.
+	 *
+	 * @param string  $post_author The author display_name.
+	 * @param WP_Post $post        The post object.
+	 */
+	$display_name = apply_filters( 'relevanssi_post_author', $display_name, $post );
+
 	/** This filter is documented in lib/indexing.php */
 	$name_tokens = apply_filters(
 		'relevanssi_indexing_tokens',
@@ -1254,6 +1278,10 @@ function relevanssi_index_custom_fields( &$insert_data, $post_id, $custom_fields
 
 			if ( $debug ) {
 				relevanssi_debug_echo( "\tKey: " . $field . ' - value: ' . $value );
+			}
+
+			if ( ! $value ) {
+				continue;
 			}
 
 			$context      = 'custom_field';
@@ -1437,8 +1465,8 @@ function relevanssi_index_content( &$insert_data, $post_object, $min_word_length
 	 *
 	 * @author Alexander Gieg
 	 *
-	 * @param string              The additional content.
-	 * @param object $post_object The post object.
+	 * @param string               The additional content.
+	 * @param WP_Post $post_object The post object.
 	 */
 	$additional_content = trim( apply_filters( 'relevanssi_content_to_index', '', $post_object ) );
 	if ( ! empty( $additional_content ) ) {
@@ -1449,35 +1477,7 @@ function relevanssi_index_content( &$insert_data, $post_object, $min_word_length
 		}
 	}
 
-	if ( 'on' === get_option( 'relevanssi_expand_shortcodes' ) ) {
-		// TablePress support.
-		if ( function_exists( 'relevanssi_enable_tablepress_shortcodes' ) ) {
-			$tablepress_controller = relevanssi_enable_tablepress_shortcodes();
-		}
-
-		relevanssi_disable_shortcodes();
-
-		/**
-		 * This needs to be global here, otherwise the safety mechanism doesn't
-		 * work correctly.
-		 */
-		global $post;
-
-		$global_post_before_shortcode = null;
-		if ( isset( $post ) ) {
-			$global_post_before_shortcode = $post;
-		}
-
-		$contents = do_shortcode( $contents );
-
-		if ( $global_post_before_shortcode ) {
-			$post = $global_post_before_shortcode; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-		}
-
-		unset( $tablepress_controller );
-	} else {
-		$contents = strip_shortcodes( $contents );
-	}
+	$contents = relevanssi_do_shortcode( $contents );
 
 	remove_shortcode( 'noindex' );
 	add_shortcode( 'noindex', 'relevanssi_noindex_shortcode' );
@@ -1501,8 +1501,7 @@ function relevanssi_index_content( &$insert_data, $post_object, $min_word_length
 		$contents = relevanssi_process_internal_links( $contents, $post_object->ID );
 	}
 
-	$contents = preg_replace( '/<[a-zA-Z\/][^>]*>/', ' ', $contents );
-	$contents = wp_strip_all_tags( $contents );
+	$contents = relevanssi_strip_all_tags( $contents );
 
 	/**
 	 * Filters the post content in indexing before tokenization.

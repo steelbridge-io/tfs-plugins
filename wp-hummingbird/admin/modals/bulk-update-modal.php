@@ -107,7 +107,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		// Remove background class.
 		modal.find('label[for="filter-minify"]').removeClass('toggle-label-background');
 		modal.find('label[for="filter-combine"]').removeClass('toggle-label-background');
-		modal.find('label[for="filter-position-footer"]').removeClass('toggle-label-background');		  		 	      	  			 
+		modal.find('label[for="filter-position-footer"]').removeClass('toggle-label-background');
 		modal.find('label[for="filter-defer"]').removeClass('toggle-label-background');
 		modal.find('label[for="filter-inline"]').removeClass('toggle-label-background');
 

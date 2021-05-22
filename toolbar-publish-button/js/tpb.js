@@ -93,7 +93,7 @@
 
 
 
-    $('#wpadminbar .wpuxss-tpb a').click(function(e)
+    $('#wpadminbar .wpuxss-tpb a').on( 'click', function(e)
     {
         e.preventDefault();
         $('#'+$(this).attr('for')).click();

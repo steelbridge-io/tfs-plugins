@@ -50,6 +50,11 @@ function relevanssi_drop_database_tables() {
  * @global object $wpdb The WordPress database interface.
  */
 function relevanssi_uninstall_free() {
+	if ( defined( 'RELEVANSSI_PREMIUM' ) && RELEVANSSI_PREMIUM && ! defined( 'UNINSTALLING_RELEVANSSI_PREMIUM' ) ) {
+		// Relevanssi Premium exists, do not drop the tables.
+		return;
+	}
+
 	delete_option( 'relevanssi_admin_search' );
 	delete_option( 'relevanssi_bg_col' );
 	delete_option( 'relevanssi_cat' );
@@ -100,6 +105,7 @@ function relevanssi_uninstall_free() {
 	delete_option( 'relevanssi_post_type_weights' );
 	delete_option( 'relevanssi_punctuation' );
 	delete_option( 'relevanssi_respect_exclude' );
+	delete_option( 'relevanssi_seo_noindex' );
 	delete_option( 'relevanssi_show_matches' );
 	delete_option( 'relevanssi_show_matches_text' );
 	delete_option( 'relevanssi_show_post_controls' );

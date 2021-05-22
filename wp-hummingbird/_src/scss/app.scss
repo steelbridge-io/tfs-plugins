@@ -77,12 +77,12 @@ $sui-font-path: '~@wpmudev/shared-ui/dist/fonts/';
 @import "components/pills";
 @import "components/border_frame";
 @import "components/accordions";
+@import "components/performance_summary";
 
 // Modules
 @import "modules/dashboard";
 @import "modules/performance";
 @import "modules/caching";
-@import "modules/gzip";
 @import "modules/minification";
 @import "modules/uptime";
 @import "modules/advanced";

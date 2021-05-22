@@ -164,19 +164,25 @@ class Core {
 	public function admin_bar_menu( $admin_bar ) {
 		$menu = array();
 
-		$pc_module = Utils::get_module( 'page_cache' );
-		$options   = $pc_module->get_options();
-		if ( $pc_module->is_active() && $options['control'] ) {
-			$menu['wphb-clear-cache'] = array( 'title' => __( 'Clear page cache', 'wphb' ) );
-		}
+		if ( Utils::get_module( 'page_cache' )->is_active() ) {
+			$options = Utils::get_module( 'page_cache' )->get_options();
+			if ( $options['control'] && ( ! is_multisite() || ! is_network_admin() ) ) {
+				$menu['wphb-clear-cache'] = array( 'title' => __( 'Clear page cache', 'wphb' ) );
+			}
 
-		if ( $pc_module->is_active() && is_multisite() && is_network_admin() ) {
-			$menu['wphb-clear-cache-network-wide'] = array( 'title' => __( 'Clear page cache on all subsites', 'wphb' ) );
+			if ( is_multisite() && is_network_admin() ) {
+				$menu['wphb-clear-cache-network-wide'] = array( 'title' => __( 'Clear page cache on all subsites', 'wphb' ) );
+			}
 		}
 
 		if ( ! is_admin() ) {
-			$avoid_minify = filter_input( INPUT_GET, 'avoid-minify', FILTER_VALIDATE_BOOLEAN );
+			if ( Utils::get_module( 'cloudflare' )->is_connected() && Utils::get_module( 'cloudflare' )->is_zone_selected() ) {
+				$menu['wphb-clear-cloudflare'] = array( 'title' => __( 'Clear Cloudflare cache', 'wphb' ) );
+			}
+
 			if ( Utils::get_module( 'minify' )->is_active() ) {
+				$avoid_minify = filter_input( INPUT_GET, 'avoid-minify', FILTER_VALIDATE_BOOLEAN );
+
 				$menu['wphb-page-minify'] = array(
 					'title' => $avoid_minify ? __( 'See this page minified', 'wphb' ) : __( 'See this page unminified', 'wphb' ),
 					'href'  => $avoid_minify ? remove_query_arg( 'avoid-minify' ) : add_query_arg( 'avoid-minify', 'true' ),

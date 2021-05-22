@@ -8,6 +8,7 @@
  *
  * @var \Hummingbird\Admin\Page $this
  *
+ * @var string $fonts_rows       Table rows for Google fonts.
  * @var int    $error_time_left  Time left before next scan is possible.
  * @var bool   $is_server_error  Server error status.
  * @var string $scripts_rows     Table rows for minified scripts.
@@ -25,14 +26,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="wphb-minification-files">
 	<div class="wphb-minification-files-header">
-		<?php
-		$this->view(
-			'minification/common/header',
-			array(
-				'type' => 'advanced',
-			)
-		);
-		?>
+
+		<p class="sui-margin-bottom">
+			<?php esc_html_e( 'Optimizing your assets will compress and organize them in a way that improves page load times. You can choose to use our automated options, or manually configure each file yourself.', 'wphb' ); ?>
+		</p>
+
+		<div class="sui-actions" style="float: right">
+			<small>
+				<a href="#" id="wphb-advanced-hdiw-link" data-modal-open="manual-ao-hdiw-modal-content" data-modal-mask="true">
+					<?php esc_html_e( 'How Does it Work?', 'wphb' ); ?>
+				</a>
+			</small>
+		</div>
+
+		<div class="sui-side-tabs">
+			<div class="sui-tabs-menu">
+				<label id="wphb-ao-auto-label" for="wphb-ao-auto" class="sui-tab-item">
+					<input type="radio" name="asset_optimization_mode" value="auto" id="wphb-ao-auto">
+					<?php esc_html_e( 'Automatic', 'wphb' ); ?>
+				</label>
+				<label id="wphb-ao-manual-label" for="wphb-ao-manual" class="sui-tab-item active">
+					<input type="radio" name="asset_optimization_mode" value="manual" id="wphb-ao-manual" checked="checked">
+					<?php esc_html_e( 'Manual', 'wphb' ); ?>
+				</label>
+			</div>
+		</div>
 
 		<p><?php esc_html_e( 'Compress, inline, combine, defer or move your files and then publish your changes.', 'wphb' ); ?></p>
 	</div>
@@ -156,6 +174,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="wphb-minification-files-table wphb-minification-files-advanced">
 			<?php echo $others_rows; ?>
+		</div>
+	<?php endif; ?>
+
+	<?php if ( '' !== $fonts_rows ) : ?>
+		<div class="wphb-minification-files-select">
+			<label for="minification-bulk-file-font" class="screen-reader-text"><?php esc_html_e( 'Select all Google fonts', 'wphb' ); ?></label>
+			<label class="sui-checkbox">
+				<input type="checkbox" id="minification-bulk-file-font" name="minification-bulk-files" class="wphb-minification-bulk-file-selector" data-type="FONT">
+				<span aria-hidden="true"></span>
+			</label>
+			<h3><?php esc_html_e( 'Google Fonts', 'wphb' ); ?></h3>
+		</div>
+
+		<div class="wphb-minification-files-table wphb-minification-files-advanced">
+			<?php echo $fonts_rows; ?>
 		</div>
 	<?php endif; ?>
 </div><!-- end wphb-minification-files -->

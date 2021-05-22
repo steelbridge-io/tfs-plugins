@@ -53,7 +53,7 @@ class Forminator_Section extends Forminator_Field {
 	public function __construct() {
 		parent::__construct();
 
-		$this->name = __( 'Section', Forminator::DOMAIN );
+		$this->name = __( 'Section', 'forminator' );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Forminator_Section extends Forminator_Field {
 	 */
 	public function defaults() {
 		return array(
-			'section_title'              => __( 'Form Section', Forminator::DOMAIN ),
+			'section_title'              => __( 'Form Section', 'forminator' ),
 			'cform-section-border-style' => 'none',
 		);
 	}
@@ -151,6 +151,6 @@ class Forminator_Section extends Forminator_Field {
 	 * @return mixed
 	 */
 	public function sanitize_output( $content ) {
-		return htmlentities( $content, ENT_QUOTES );
+		return esc_html( $content );
 	}
 }

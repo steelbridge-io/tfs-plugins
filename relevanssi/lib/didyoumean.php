@@ -69,7 +69,7 @@ function relevanssi_simple_didyoumean( $query, $pre, $post, $n = 5 ) {
 
 	$result = null;
 	if ( $suggestion ) {
-		$url = get_bloginfo( 'url' );
+		$url = trailingslashit( get_bloginfo( 'url' ) );
 		$url = esc_attr(
 			add_query_arg(
 				array( 's' => rawurlencode( $suggestion ) ),
@@ -142,6 +142,11 @@ function relevanssi_simple_generate_suggestion( $query ) {
 	$q = 'SELECT query, count(query) as c, AVG(hits) as a FROM '
 		. $relevanssi_variables['log_table'] . ' WHERE hits > ' . $count
 		. ' GROUP BY query ORDER BY count(query) DESC';
+	/**
+	 * Filters the MySQL query used to fetch potential suggestions from the log.
+	 *
+	 * @param string $q MySQL query for fetching the suggestions.
+	 */
 	$q = apply_filters( 'relevanssi_didyoumean_query', $q );
 
 	$data = get_transient( 'relevanssi_didyoumean_query' );

@@ -63,7 +63,7 @@ class Forminator_Currency extends Forminator_Field {
 	public function __construct() {
 		parent::__construct();
 
-		$this->name = __( 'Currency', Forminator::DOMAIN );
+		$this->name = __( 'Currency', 'forminator' );
 	}
 
 	/**
@@ -81,8 +81,8 @@ class Forminator_Currency extends Forminator_Field {
 				'limit_min'    => 1,
 				'limit_max'    => 150,
 				'currency'     => 'USD',
-				'field_label'  => __( 'Currency', Forminator::DOMAIN ),
-				'placeholder'  => __( 'E.g., 10', Forminator::DOMAIN ),
+				'field_label'  => __( 'Currency', 'forminator' ),
+				'placeholder'  => __( 'E.g. 10', 'forminator' ),
 			)
 		);
 	}
@@ -156,7 +156,7 @@ class Forminator_Currency extends Forminator_Field {
 		$placeholder         = $this->sanitize_value( self::get_property( 'placeholder', $field ) );
 		$value               = esc_html( self::get_post_data( $name, self::get_property( 'default_value', $field ) ) );
 		$label               = esc_html( self::get_property( 'field_label', $field, '' ) );
-		$description         = esc_html( self::get_property( 'description', $field, '' ) );
+		$description         = self::get_property( 'description', $field, '' );
 		$design              = $this->get_form_style( $settings );
 		$min                 = esc_html( self::get_property( 'limit_min', $field, false ) );
 		$max                 = esc_html( self::get_property( 'limit_max', $field, false ) );
@@ -182,6 +182,7 @@ class Forminator_Currency extends Forminator_Field {
 			'data-decimals' => $precision,
 			'aria-required' => $required,
 		);
+
 
 		if ( false !== $min && is_numeric( $min ) ) {
 			$number_attr['min'] = $min;
@@ -261,7 +262,7 @@ class Forminator_Currency extends Forminator_Field {
 		$messages = '"' . $this->get_id( $field ) . '": {' . "\n";
 
 		if ( $this->is_required( $field ) ) {
-			$required_validation_message = self::get_property( 'required_message', $field, __( 'This field is required. Please enter number.', Forminator::DOMAIN ) );
+			$required_validation_message = self::get_property( 'required_message', $field, __( 'This field is required. Please enter number.', 'forminator' ) );
 			$required_validation_message = apply_filters(
 				'forminator_field_currency_required_validation_message',
 				$required_validation_message,
@@ -272,7 +273,7 @@ class Forminator_Currency extends Forminator_Field {
 
 		$number_validation_message = apply_filters(
 			'forminator_field_currency_number_validation_message',
-			__( 'This is not valid number.', Forminator::DOMAIN ),
+			__( 'This is not valid number.', 'forminator' ),
 			$field
 		);
 		$messages                 .= '"number": "' . forminator_addcslashes( $number_validation_message ) . '",' . "\n";
@@ -281,7 +282,7 @@ class Forminator_Currency extends Forminator_Field {
 			$min_validation_message = self::get_property( 'limit_min_message', $field );
 			$min_validation_message = apply_filters(
 				'forminator_field_currency_min_validation_message',
-				$custom_message && $min_validation_message ? $min_validation_message : __( 'Please enter a value greater than or equal to {0}.', Forminator::DOMAIN ),
+				$custom_message && $min_validation_message ? $min_validation_message : __( 'Please enter a value greater than or equal to {0}.', 'forminator' ),
 				$field
 			);
 			$messages              .= '"min": "' . forminator_addcslashes( $min_validation_message ) . '",' . "\n";
@@ -290,7 +291,7 @@ class Forminator_Currency extends Forminator_Field {
 			$max_validation_message = self::get_property( 'limit_max_message', $field );
 			$max_validation_message = apply_filters(
 				'forminator_field_currency_max_validation_message',
-				$custom_message && $max_validation_message ? $max_validation_message : __( 'Please enter a value less than or equal to {0}.', Forminator::DOMAIN ),
+				$custom_message && $max_validation_message ? $max_validation_message : __( 'Please enter a value less than or equal to {0}.', 'forminator' ),
 				$field
 			);
 			$messages              .= '"max": "' . forminator_addcslashes( $max_validation_message ) . '",' . "\n";
@@ -324,7 +325,7 @@ class Forminator_Currency extends Forminator_Field {
 		if ( $this->is_required( $field ) ) {
 
 			if ( empty( $data ) && '0' !== $data ) {
-				$required_validation_message     = self::get_property( 'required_message', $field, __( 'This field is required. Please enter number.', Forminator::DOMAIN ) );
+				$required_validation_message     = self::get_property( 'required_message', $field, __( 'This field is required. Please enter number.', 'forminator' ) );
 				$this->validation_message[ $id ] = apply_filters(
 					'forminator_field_currency_required_field_validation_message',
 					$required_validation_message,
@@ -335,11 +336,10 @@ class Forminator_Currency extends Forminator_Field {
 				);
 			}
 		}
-
 		if ( ! is_numeric( $data ) && ! empty( $data ) ) {
 			$this->validation_message[ $id ] = apply_filters(
 				'forminator_field_currency_numeric_validation_message',
-				__( 'Only numbers allowed.', Forminator::DOMAIN ),
+				__( 'Only numbers allowed.', 'forminator' ),
 				$id,
 				$field,
 				$data,
@@ -353,7 +353,7 @@ class Forminator_Currency extends Forminator_Field {
 				//Note : do not compare max or min if that settings field is blank string ( not zero )
 				if ( $min_len !== 0 && $data < $min ) {
 					$min_validation_message          = self::get_property( 'limit_min_message', $field );
-					$min_validation_message          = $custom_message && $min_validation_message ? $min_validation_message : __( 'The number should be less than %1$d and greater than %2$d.', Forminator::DOMAIN );
+					$min_validation_message          = $custom_message && $min_validation_message ? $min_validation_message : __( 'The number should be less than %1$d and greater than %2$d.', 'forminator' );
 					$this->validation_message[ $id ] = sprintf(
 						apply_filters(
 							'forminator_field_currency_max_min_validation_message',
@@ -368,7 +368,7 @@ class Forminator_Currency extends Forminator_Field {
 					);
 				} elseif ( $max_len !== 0 && $data > $max ) {
 					$max_validation_message          = self::get_property( 'limit_max_message', $field );
-					$max_validation_message          = $custom_message && $max_validation_message ? $max_validation_message : __( 'The number should be less than %1$d and greater than %2$d.', Forminator::DOMAIN );
+					$max_validation_message          = $custom_message && $max_validation_message ? $max_validation_message : __( 'The number should be less than %1$d and greater than %2$d.', 'forminator' );
 					$this->validation_message[ $id ] = sprintf(
 						apply_filters(
 							'forminator_field_currency_max_min_validation_message',

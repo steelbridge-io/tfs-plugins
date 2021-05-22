@@ -6,7 +6,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Author: Hoang Ngo
  */
-class Forminator_Quiz_Form_Model extends Forminator_Base_Form_Model {
+class Forminator_Quiz_Model extends Forminator_Base_Form_Model {
+
+	/**
+	 * Module slug
+	 *
+	 * @var string
+	 */
+	protected static $module_slug = 'quiz';
 
 	/**
 	 * @var string
@@ -206,26 +213,14 @@ class Forminator_Quiz_Form_Model extends Forminator_Base_Form_Model {
 	}
 
 	/**
-	 * Load preview
+	 * Prepare data for preview
 	 *
-	 * @since 1.0
+	 * @param object $form_model Model.
+	 * @param array  $data Passed data.
 	 *
-	 * @param $id
-	 * @param $data
-	 *
-	 * @return bool|Forminator_Base_Form_Model
+	 * @return object
 	 */
-	public function load_preview( $id, $data ) {
-		$form_model = $this->load( $id, true );
-
-		// If bool, abort
-		if ( is_bool( $form_model ) ) {
-			return false;
-		}
-
-		$form_model->clear_fields();
-		$form_model->set_var_in_array( 'name', 'formName', $data );
-
+	public static function prepare_data_for_preview( $form_model, $data ) {
 		if ( isset( $data['type'] ) ) {
 			$form_model->quiz_type = $data['type'];
 		}
@@ -239,93 +234,32 @@ class Forminator_Quiz_Form_Model extends Forminator_Base_Form_Model {
 
 		$form_model->questions = $questions;
 
-		//build the settings
-		if ( isset( $data['settings'] ) ) {
-			$settings             = $data['settings'];
-			$form_model->settings = $settings;
-		}
-
 		return $form_model;
 	}
 
 	/**
-	 * @since 1.0
+	 * Export integrations setting
 	 *
-	 * @param int|string $class_name
-	 *
-	 * @return Forminator_Quiz_Form_Model
+	 * @param $exportable_data
+	 * @return array
 	 */
-	public static function model( $class_name = __CLASS__ ) { // phpcs:ignore
-		return parent::model( $class_name );
+	public function export_integrations_data( $exportable_data ) {
+		return $exportable_data;
 	}
 
 	/**
-	 * Flag if module should be loaded via ajax
+	 * Import Integrations data model
 	 *
-	 * @since 1.6.1
+	 * @since 1.4
 	 *
-	 * @param bool $force
+	 * @param $model
+	 * @param $import_data
+	 * @param $module
 	 *
-	 * @return bool
+	 * @return Forminator_Base_Form_Model
 	 */
-	public function is_ajax_load( $force = false ) {
-		$quiz_id        = (int) $this->id;
-		$form_settings  = $this->settings;
-		$global_enabled = parent::is_ajax_load( $force );
-
-		$enabled = isset( $form_settings['use_ajax_load'] ) ? $this->settings['use_ajax_load'] : false;
-		$enabled = filter_var( $enabled, FILTER_VALIDATE_BOOLEAN );
-
-		$enabled = $global_enabled || $enabled;
-
-		/**
-		 * Filter is ajax load for Quiz
-		 *
-		 * @since 1.6.1
-		 *
-		 * @param bool  $enabled
-		 * @param bool  $global_enabled
-		 * @param int   $quiz_id
-		 * @param array $form_settings
-		 *
-		 * @return bool
-		 */
-		$enabled = apply_filters( 'forminator_quiz_is_ajax_load', $enabled, $global_enabled, $quiz_id, $form_settings );
-
-		return $enabled;
-	}
-
-	/**
-	 * Flag to use `DONOTCACHEPAGE`
-	 *
-	 * @since 1.6.1
-	 * @return bool
-	 */
-	public function is_use_donotcachepage_constant() {
-		$quiz_id        = (int) $this->id;
-		$form_settings  = $this->settings;
-		$global_enabled = parent::is_use_donotcachepage_constant();
-
-		$enabled = isset( $form_settings['use_donotcachepage'] ) ? $this->settings['use_donotcachepage'] : false;
-		$enabled = filter_var( $enabled, FILTER_VALIDATE_BOOLEAN );
-
-		$enabled = $global_enabled || $enabled;
-
-		/**
-		 * Filter use `DONOTCACHEPAGE` Quiz
-		 *
-		 * @since 1.6.1
-		 *
-		 * @param bool  $enabled
-		 * @param bool  $global_enabled
-		 * @param int   $quiz_id
-		 * @param array $form_settings
-		 *
-		 * @return bool
-		 */
-		$enabled = apply_filters( 'forminator_quiz_is_use_donotcachepage_constant', $enabled, $global_enabled, $quiz_id, $form_settings );
-
-		return $enabled;
+	public static function import_integrations_data( $model, $import_data, $module ) {
+		return $model;
 	}
 
 	/**
@@ -425,37 +359,6 @@ class Forminator_Quiz_Form_Model extends Forminator_Base_Form_Model {
 	}
 
 	/**
-	 * Get status of prevent_store
-	 *
-	 * @since 1.6.2
-	 *
-	 * @return boolean
-	 */
-	public function is_prevent_store() {
-		$quiz_id       = (int) $this->id;
-		$quiz_settings = $this->settings;
-
-		// default is always store
-		$is_prevent_store = false;
-
-		$is_prevent_store = isset( $this->settings['store'] ) ? $this->settings['store'] : $is_prevent_store;
-		$is_prevent_store = filter_var( $is_prevent_store, FILTER_VALIDATE_BOOLEAN );
-
-		/**
-		 * Filter is_prevent_store flag of a quiz
-		 *
-		 * @since 1.6.2
-		 *
-		 * @param bool  $is_prevent_store
-		 * @param int   $quiz_id
-		 * @param array $quiz_settings
-		 */
-		$is_prevent_store = apply_filters( 'forminator_quiz_is_prevent_store', $is_prevent_store, $quiz_id, $quiz_settings );
-
-		return $is_prevent_store;
-	}
-
-	/**
 	 * Check whether answer is correct for a question on Knowledge Quiz
 	 *
 	 * @since 1.6.2
@@ -501,6 +404,7 @@ class Forminator_Quiz_Form_Model extends Forminator_Base_Form_Model {
 					$answers = $question['answers'];
 					foreach ( $answers as $k => $answer ) {
 						if ( isset( $answer['toggle'] ) && filter_var( $answer['toggle'], FILTER_VALIDATE_BOOLEAN ) === true ) {
+                            $answer['id']      = $k;
 							$correct_answers[] = $answer;
 						}
 					}
@@ -542,5 +446,26 @@ class Forminator_Quiz_Form_Model extends Forminator_Base_Form_Model {
 		$enabled = apply_filters( 'forminator_quiz_is_result_share_enabled', $enabled, $global_enabled, $quiz_id, $quiz_settings );
 
 		return $enabled;
+	}
+
+	/**
+	 * Get the count of answered questions for multi-answer questions
+	 *
+	 * @since ?
+	 * @return int
+	 */
+	public function count_answered_questions( $questions, $user_answers ) {
+        $answered_questions = 0;
+
+		foreach ( $questions as $key => $val ) {
+            foreach ( $user_answers as $a_key => $a_val ) {
+                if ( false !== strpos( $a_key, $val['slug'] ) ) {
+                    $answered_questions ++;
+                    break;
+                }
+            }
+        }
+
+		return $answered_questions;
 	}
 }

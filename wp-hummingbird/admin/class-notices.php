@@ -65,15 +65,20 @@ class Notices {
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
+		add_action( 'upgrader_process_complete', array( $this, 'plugin_changed' ) );
+		add_action( 'activated_plugin', array( $this, 'plugin_changed' ) );
+		add_action( 'deactivated_plugin', array( $this, 'plugin_changed' ) );
+		add_action( 'after_switch_theme', array( $this, 'plugin_changed' ) );
+
+		// This will show notice on both multisite and single site.
+		add_action( 'admin_notices', array( $this, 'clear_cache' ) );
+		add_action( 'network_admin_notices', array( $this, 'clear_cache' ) );
+
 		// Only show notices to users who can do something about it (update, for example).
 		$cap = is_multisite() ? 'manage_network_plugins' : 'update_plugins';
 		if ( ! current_user_can( $cap ) ) {
 			return;
 		}
-
-		// This will show notice on both multisite and single site.
-		add_action( 'admin_notices', array( $this, 'clear_cache' ) );
-		add_action( 'network_admin_notices', array( $this, 'clear_cache' ) );
 
 		if ( is_multisite() ) {
 			add_action( 'network_admin_notices', array( $this, 'upgrade_to_pro' ) );
@@ -86,11 +91,6 @@ class Notices {
 			add_action( 'admin_notices', array( $this, 'free_version_rate' ) );
 			add_action( 'admin_notices', array( $this, 'plugin_compat_check' ) );
 		}
-
-		add_action( 'upgrader_process_complete', array( $this, 'plugin_changed' ) );
-		add_action( 'activated_plugin', array( $this, 'plugin_changed' ) );
-		add_action( 'deactivated_plugin', array( $this, 'plugin_changed' ) );
-		add_action( 'after_switch_theme', array( $this, 'plugin_changed' ) );
 	}
 
 	/**

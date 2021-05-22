@@ -1,18 +1,22 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Forminator\Stripe\Terminal;
 
 /**
- * Class Location
+ * A Location represents a grouping of readers.
  *
- * @property string $id
- * @property string $object
+ * Related guide: <a
+ * href="https://stripe.com/docs/terminal/readers/fleet-management#create">Fleet
+ * Management</a>.
+ *
+ * @property string $id Unique identifier for the object.
+ * @property string $object String representing the object's type. Objects of the same type share the same value.
  * @property \Forminator\Stripe\StripeObject $address
- * @property string $display_name
- * @property bool $livemode
- * @property \Forminator\Stripe\StripeObject $metadata
- *
- * @package Forminator\Stripe\Terminal
+ * @property string $display_name The display name of the location.
+ * @property bool $livemode Has the value <code>true</code> if the object exists in live mode or the value <code>false</code> if the object exists in test mode.
+ * @property \Forminator\Stripe\StripeObject $metadata Set of <a href="https://stripe.com/docs/api/metadata">key-value pairs</a> that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
  */
 class Location extends \Forminator\Stripe\ApiResource
 {

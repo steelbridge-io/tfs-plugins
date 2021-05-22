@@ -124,22 +124,6 @@ import PerfScanner from '../scanners/PerfScanner';
 			}
 
 			/**
-			 * Parse dashboard widget device setting change.
-			 *
-			 * @since 2.0.0
-			 */
-			$( 'input[name=desktop-report]' ).on( 'change', function ( e ) {
-				const otherClass =
-					'desktop_report-true' === e.target.id
-						? 'desktop_report-false'
-						: 'desktop_report-true';
-				e.target.parentNode.classList.add( 'active' );
-				document
-					.getElementById( otherClass )
-					.parentNode.classList.remove( 'active' );
-			} );
-
-			/**
 			 * Parse subsite settings change.
 			 *
 			 * @since 2.0.0
@@ -171,18 +155,22 @@ import PerfScanner from '../scanners/PerfScanner';
 			} );
 
 			/**
-			 * Refresh page, when selecting a report type.
+			 * Performance doughnut chart hover states.
 			 *
-			 * @since 2.0.0
+			 * @since 3.0.0
 			 */
-			$( 'select[name=wphb-performance-report-type]' ).on(
-				'change',
-				function ( e ) {
-					const url = new URL( window.location );
-					url.searchParams.set( 'type', e.target.value );
-					window.location = url;
-				}
-			);
+			$( 'g.metric' ).on( {
+				mouseenter() {
+					$( '.wphb-gauge__wrapper' ).addClass( 'state--highlight' );
+					$( this ).addClass( 'metric--highlight' );
+				},
+				mouseleave() {
+					$( '.wphb-gauge__wrapper' ).removeClass(
+						'state--highlight'
+					);
+					$( this ).removeClass( 'metric--highlight' );
+				},
+			} );
 
 			return this;
 		},

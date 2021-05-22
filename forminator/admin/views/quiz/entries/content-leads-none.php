@@ -54,7 +54,7 @@ if ( $page_number > 1 ) {
 
 						<div class="fui-entries-block">
 
-							<h3 class="fui-entries-subtitle"><?php esc_html_e( 'Lead Details', Forminator::DOMAIN ); ?></h3>
+							<h3 class="fui-entries-subtitle"><?php esc_html_e( 'Lead Details', 'forminator' ); ?></h3>
 
 							<table class="fui-entries-table" data-design="ghost">
 
@@ -82,25 +82,31 @@ if ( $page_number > 1 ) {
 					<?php // ROW: Quiz Results. ?>
 					<div class="fui-entries-block">
 
-						<h3 class="fui-entries-subtitle"><?php esc_html_e( 'Quiz Results', Forminator::DOMAIN ); ?></h3>
+						<h3 class="fui-entries-subtitle"><?php esc_html_e( 'Quiz Results', 'forminator' ); ?></h3>
 
 						<?php if ( 'knowledge' === $form_type ) { ?>
 
 							<?php
 							$meta  = $entry->meta_data['entry']['value'];
-							$total = 0;
+							$total = count( $meta );
 							$right = 0;
+
+                            foreach( $meta as $key => $val ) {
+                                if ( isset( $val['isCorrect'] ) && boolval( $val['isCorrect'] ) ) {
+                                    $right ++;
+                                }
+                            }
 							?>
 
-							<p class="sui-description"><?php echo sprintf( __( 'You got %s/%s correct answers.', Forminator::DOMAIN ), $right, $total ); // phpcs:ignore ?></p>
+							<p class="sui-description"><?php echo sprintf( __( 'You got %s/%s correct answers.', 'forminator' ), $right, $total ); // phpcs:ignore ?></p>
 
 							<table class="fui-entries-table">
 
 								<thead>
 
 									<tr>
-										<th><?php esc_html_e( 'Question', Forminator::DOMAIN ); ?></th>
-										<th><?php esc_html_e( 'Answer', Forminator::DOMAIN ); ?></th>
+										<th><?php esc_html_e( 'Questions', 'forminator' ); ?></th>
+										<th><?php esc_html_e( 'Answers', 'forminator' ); ?></th>
 									</tr>
 
 								</thead>
@@ -116,17 +122,33 @@ if ( $page_number > 1 ) {
 											$right ++;
 										}
 
-										$user_answer = $answer['answer'];
+                                        if ( isset( $answer['answer'] ) ) {
+                                            $user_answer = $answer['answer'];
+                                        } else {
+                                            $user_answer = $answer['answers'];
+                                        }
 										?>
 
 										<tr>
 											<td><strong><?php echo esc_html( $answer['question'] ); ?></strong></td>
 											<td>
-												<?php if ( $answer['isCorrect'] ) {
-													echo '<span class="sui-tag sui-tag-success">' . esc_html( $user_answer ) . '</span>';
-												} else {
-													echo '<span class="sui-tag sui-tag-error">' . esc_html( $user_answer ) . '</span>';
-												} ?>
+												<?php
+                                                    if ( is_array( $user_answer ) ) {
+                                                        foreach( $user_answer as $val ) {
+                                                            if ( $answer['isCorrect'] ) {
+                                                                echo '<span class="sui-tag sui-tag-success">' . esc_html( $val ) . '</span>';
+                                                            } else {
+                                                                echo '<span class="sui-tag sui-tag-error">' . esc_html( $val ) . '</span>';
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if ( $answer['isCorrect'] ) {
+                                                            echo '<span class="sui-tag sui-tag-success">' . esc_html( $user_answer ) . '</span>';
+                                                        } else {
+                                                            echo '<span class="sui-tag sui-tag-error">' . esc_html( $user_answer ) . '</span>';
+                                                        }
+                                                    }
+                                                ?>
 											</td>
 										</tr>
 
@@ -142,9 +164,9 @@ if ( $page_number > 1 ) {
 
 											<div class="fui-entries-table-legend">
 
-												<p class="correct"><?php esc_html_e( 'Correct', Forminator::DOMAIN ); ?></p>
+												<p class="correct"><?php esc_html_e( 'Correct', 'forminator' ); ?></p>
 
-												<p class="incorrect"><?php esc_html_e( 'Incorrect', Forminator::DOMAIN ); ?></p>
+												<p class="incorrect"><?php esc_html_e( 'Incorrect', 'forminator' ); ?></p>
 
 											</div>
 
@@ -167,8 +189,8 @@ if ( $page_number > 1 ) {
 									<thead>
 
 										<tr>
-											<th><?php esc_html_e( 'Question', Forminator::DOMAIN ); ?></th>
-											<th><?php esc_html_e( 'Answer', Forminator::DOMAIN ); ?></th>
+											<th><?php esc_html_e( 'Question', 'forminator' ); ?></th>
+											<th><?php esc_html_e( 'Answer', 'forminator' ); ?></th>
 										</tr>
 
 									</thead>
@@ -190,7 +212,7 @@ if ( $page_number > 1 ) {
 
 										<tr>
 
-											<td colspan="2"><?php printf( __( '<strong>Quiz Result:</strong> %s', Forminator::DOMAIN ), $meta['result']['title'] ); // phpcs:ignore ?></td>
+											<td colspan="2"><?php printf( __( '<strong>Quiz Result:</strong> %s', 'forminator' ), $meta['result']['title'] ); // phpcs:ignore ?></td>
 
 										</tr>
 

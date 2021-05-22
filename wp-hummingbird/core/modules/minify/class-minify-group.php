@@ -183,44 +183,7 @@ class Minify_Group {
 			}
 		}
 
-		$group = new self( $vars );
-		return $group;
-	}
-
-	/**
-	 * Get an instance of Minify_Group based on wphb_minify_group CPT ID
-	 *
-	 * @param string $hash  Hash.
-	 * @param string $type  scripts|styles.
-	 *
-	 * @return Minify_Group|false
-	 */
-	public static function get_instance_by_hash_and_type( $hash, $type ) {
-		$posts = self::get_minify_groups();
-
-		$found = false;
-		foreach ( $posts as $post ) {
-			if ( $post->post_title === $hash . '-' . $type ) {
-				$found = $post;
-				break;
-			}
-		}
-
-		if ( $found ) {
-			$_vars = get_class_vars( 'Hummingbird\\Core\\Modules\\Minify\\Minify_Group' );
-			$vars  = array();
-			foreach ( $_vars as $_var_name => $_var_default ) {
-				$value = get_post_meta( $found->ID, '_' . $_var_name, true );
-				if ( false !== $value ) {
-					$vars[ $_var_name ] = $value;
-				} else {
-					$vars[ $_var_name ] = $_var_default;
-				}
-			}
-			return new self( $vars );
-		} else {
-			return false;
-		}
+		return new self( $vars );
 	}
 
 	/**
@@ -388,7 +351,7 @@ class Minify_Group {
 	 */
 	public function is_deferred() {
 		// All assets should be deferred to defer the whole group.
-		return ( 'scripts' === $this->type && count( $this->get_handles() ) === count( $this->defer ) );
+		return 'scripts' === $this->type && count( $this->get_handles() ) === count( $this->defer );
 	}
 
 	/**
@@ -690,15 +653,12 @@ class Minify_Group {
 	public function get_handle_url( $handle ) {
 		// RTL compatibility.
 		if ( 'styles' === $this->type ) {
-			// We don't use global $wp_styles, because it is not there during cron.
-			$wp_styles = wp_styles();
-
-			if ( isset( $wp_styles->text_direction ) && 'rtl' === $wp_styles->text_direction && isset( $this->extra['rtl'] ) && $this->extra['rtl'] ) {
+			if ( isset( wp_styles()->text_direction ) && 'rtl' === wp_styles()->text_direction && isset( $this->extra['rtl'] ) && $this->extra['rtl'] ) {
 				if ( is_bool( $this->extra['rtl'] ) || 'replace' === $this->extra['rtl'] ) {
 					$suffix    = isset( $this->extra['suffix'] ) ? $this->extra['suffix'] : '';
-					$file_path = str_replace( "{$suffix}.css", "-rtl{$suffix}.css", $wp_styles->_css_href( $this->handle_urls[ $handle ], $this->handle_versions[ $handle ], "$handle-rtl" ) );
+					$file_path = str_replace( "{$suffix}.css", "-rtl{$suffix}.css", wp_styles()->_css_href( $this->handle_urls[ $handle ], '', "$handle-rtl" ) );
 				} else {
-					$file_path = $wp_styles->_css_href( $this->extra['rtl'], $this->handle_versions[ $handle ], "$handle-rtl" );
+					$file_path = wp_styles()->_css_href( $this->extra['rtl'], '', "$handle-rtl" );
 				}
 
 				return $file_path;
@@ -906,6 +866,15 @@ class Minify_Group {
 	 * @return string
 	 */
 	public function get_sources_hash() {
+		if ( 'styles' === $this->type && isset( $GLOBALS['text_direction'] ) && 'rtl' === $GLOBALS['text_direction'] ) {
+			if ( isset( $this->extra['rtl'] ) && 'replace' === $this->extra['rtl'] ) {
+				$handles = $this->handle_urls;
+				array_push( $handles, 'replace' );
+				return self::hash( $handles );
+			}
+		}
+
+
 		return self::hash( $this->handle_urls );
 	}
 
@@ -965,7 +934,7 @@ class Minify_Group {
 				continue;
 			}
 
-			$minify_module->log( 'localProcessing Group : ' . $this->group_id );
+			$minify_module->log( 'Processing group: ' . $this->group_id . ' (handles: ' . implode( ', ', $handles ) . ')' );
 
 			// Get the full URL.
 			if ( ! preg_match( '|^(https?:)?//|', $src ) ) {
@@ -1018,7 +987,7 @@ class Minify_Group {
 				 * Possibly clear errors.
 				 * $minification_module->errors_controller->clear_handle_error( $handle, $this->type );
 				 */
-				$minify_module->log( 'Asset (handle: ' . $handle . ') in group ' . $this->type . ' has been successfully processed.' );
+				$minify_module->log( 'Asset ' . $handle . ' [' . $this->type . '] has been successfully processed.' );
 			}
 
 			/**
@@ -1030,9 +999,9 @@ class Minify_Group {
 
 			// Concatenate and minify scripts/styles!
 			if ( 'scripts' === $this->type ) {
-				$minify_module->log( 'Do not rewrite URLs in scripts.' );
+				$minify_module->log( 'Minify script ' . $handle );
 			} elseif ( 'styles' === $this->type ) {
-				$minify_module->log( 'Minify style' );
+				$minify_module->log( 'Minify style ' . $handle );
 				if ( $is_local ) {
 					/**
 					 * Previously we tried replacing relative URLs here.
@@ -1108,11 +1077,24 @@ class Minify_Group {
 		$result = call_user_func_array( $minify_callback, array( $files_data, $upload_to_cdn, $this ) );
 
 		if ( is_wp_error( $result ) ) {
-			// Save error.
+			// Something happened to compression on the API, but it's probably not a server error.
+			if ( 2001 === $result->get_error_code() ) {
+				$action  = 1 < count( $handles ) ? array( 'combine' ) : array( 'minify' );
+				$disable = 1 < count( $handles ) ? array() : array( 'minify' );
+
+				foreach ( $handles as $handle ) {
+					$minify_module->log( 'Error compressing handle ' . $handle . ': ' . $result->get_error_message() );
+					$minify_module->errors_controller->add_error( $handle, $this->type, 'after-compression', $result->get_error_message(), $action, $disable );
+				}
+				return false;
+			}
+
+			// Save server error (will disable minification after a certain threshold).
 			return $result;
 		}
 
 		$result = (array) $result;
+		$minify_module->log( 'Group optimized, hash: ' . $result['hash'] );
 		self::insert_group( $this, $result );
 		return true;
 	}
@@ -1281,6 +1263,10 @@ class Minify_Group {
 			return $upload;
 		}
 
+		if ( false !== $upload->files[0]->error && ! empty( $upload->files[0]->message ) ) {
+			return new WP_Error( '2001', $upload->files[0]->message );
+		}
+
 		return $upload->files[0];
 	}
 
@@ -1326,7 +1312,14 @@ class Minify_Group {
 					return file_get_contents( $path );
 				}
 			} else {
-				return file_get_contents( $source );
+				$response = wp_remote_get( set_url_scheme( $source ) );
+				if ( is_wp_error( $response ) ) {
+					return false;
+				}
+
+				if ( isset( $response['body'] ) ) {
+					return $response['body'];
+				}
 			}
 		}
 
@@ -1366,12 +1359,13 @@ class Minify_Group {
 	public function should_process_group() {
 		$minify = Utils::get_module( 'minify' );
 
+		$handles = $this->get_handles();
+
 		// Always process group if CDN is enabled.
-		if ( $minify->get_cdn_status() ) {
+		if ( $minify->get_cdn_status() && $this->is_handle_local( $handles[0] ) ) {
 			return true;
 		}
 
-		$handles       = $this->get_handles();
 		$handles_count = count( $handles );
 		if ( 1 === $handles_count && ! $this->should_do_handle( $handles[0], 'minify' ) ) {
 			return false;
@@ -1447,12 +1441,20 @@ class Minify_Group {
 	 *
 	 * @since  1.7.0
 	 * @access private
-	 * @param  bool $in_footer  Is in footer or not.
+	 *
+	 * @param bool $in_footer     Is in footer or not.
+	 * @param bool $rewrite_urls  Rewrite URLs (only required for inlining assets that are not processed by minify engine).
+	 *
 	 * @return bool True if successful, false if not.
 	 */
-	private function inline_group( $in_footer ) {
+	private function inline_group( $in_footer, $rewrite_urls = false ) {
 		// Get file content.
 		$content = $this->get_group_post_content();
+
+		if ( $rewrite_urls ) {
+			$path    = $this->get_handle_url( $this->group_id );
+			$content = URI_Rewriter::prepend( $content, trailingslashit( dirname( $path ) ) );
+		}
 
 		// If content is empty - return back to enqueue the file.
 		if ( empty( $content ) ) {
@@ -1466,23 +1468,15 @@ class Minify_Group {
 			$tag  = 'style';
 		}
 
-		if ( $in_footer ) {
-			add_action(
-				'wp_footer',
-				function() use ( $tag, $type, $content ) {
-					echo '<' . $tag . ' type="' . $type . '">' . htmlspecialchars_decode( $content ) . '</' . $tag . '>';
-				},
-				999
-			);
-		} else {
-			add_action(
-				'wp_head',
-				function() use ( $tag, $type, $content ) {
-					echo '<' . $tag . ' type="' . $type . '">' . htmlspecialchars_decode( $content ) . '</' . $tag . '>';
-				},
-				999
-			);
-		}
+		$action = $in_footer ? 'wp_footer' : 'wp_head';
+
+		add_action(
+			$action,
+			function() use ( $tag, $type, $content ) {
+				echo '<' . esc_attr( $tag ) . ' type="' . esc_attr( $type ) . '">' . htmlspecialchars_decode( $content ) . '</' . esc_attr( $tag ) . '>';
+			},
+			999
+		);
 
 		return true;
 	}
@@ -1501,21 +1495,13 @@ class Minify_Group {
 			wp_dequeue_script( $this->group_id );
 			wp_deregister_script( $this->group_id );
 
-			// If set to inline, try to inline.
-			$inlined = false;
-			if ( $this->is_inlined() ) {
-				$inlined = $this->inline_group( $in_footer );
-			}
-			// Do not enqueue if set to inline or if inline failed.
-			if ( ! $this->is_inlined() || ! $inlined ) {
-				wp_enqueue_script(
-					$this->group_id,
-					set_url_scheme( $this->get_group_src() ),
-					$dependencies,
-					null,
-					$in_footer
-				);
-			}
+			wp_enqueue_script(
+				$this->group_id,
+				set_url_scheme( $this->get_group_src() ),
+				$dependencies,
+				null,
+				$in_footer
+			);
 
 			$group_id = $this->group_id;
 
@@ -1612,6 +1598,9 @@ class Minify_Group {
 
 			// Make sure that single handles from this group are not enqueued.
 			foreach ( $this->get_handles() as $handle ) {
+				// The single style.
+				wp_dequeue_style( $handle );
+
 				// It could have been enqueued with a different ID by this group before
 				// This would mostly happen during Unit Testing, we can remove it safely.
 				wp_dequeue_style( $this->group_id . '-' . $handle );
@@ -1619,7 +1608,7 @@ class Minify_Group {
 
 			$group_id = $this->group_id;
 			$handles  = $this->get_handles();
-			// Make sure that this element is makred as done once WordPress has enqueued it.
+			// Make sure that this element is marked as done once WordPress has enqueued it.
 			add_action(
 				'wp_head',
 				function() use ( $handles, $group_id ) {
@@ -1652,40 +1641,24 @@ class Minify_Group {
 	 * @param string $handle        Handle.
 	 * @param bool   $in_footer     If must be enqueued on footer.
 	 * @param array  $dependencies  List of dependencies.
-	 *
-	 * @return string
 	 */
 	public function enqueue_one_handle( $handle, $in_footer, $dependencies = array() ) {
-		if ( count( $this->get_handles() ) === 1 ) {
-			$new_id = $this->group_id;
-		} else {
-			$new_id = $this->group_id . '-' . $handle;
-		}
-
 		if ( 'scripts' === $this->type ) {
-			$wp_sources = wp_scripts();
+			wp_enqueue_script(
+				$handle,
+				set_url_scheme( $this->get_handle_url( $handle ) ),
+				$dependencies,
+				null,
+				$in_footer
+			);
 
-			// If set to inline, try to inline.
-			$inlined = false;
-			if ( $this->is_inlined() ) {
-				$inlined = $this->inline_group( $in_footer );
-			}
-			// Do not enqueue if set to inline or if inline failed.
-			if ( ! $this->is_inlined() || ! $inlined ) {
-				wp_enqueue_script(
-					$new_id,
-					set_url_scheme( $this->get_handle_url( $handle ) ),
-					$dependencies,
-					null,
-					$in_footer
-				);
-			}
+			$group_id = $this->group_id;
 
 			if ( $this->is_deferred() ) {
 				add_filter(
 					'script_loader_tag',
-					function( $tag, $handle ) use ( $new_id ) {
-						if ( $new_id !== $handle ) {
+					function( $tag, $handle ) use ( $group_id ) {
+						if ( $group_id !== $handle ) {
 							return $tag;
 						}
 						return str_replace( ' src', ' defer src', $tag );
@@ -1694,103 +1667,26 @@ class Minify_Group {
 					2
 				);
 			}
-
-			// A hack to avoid tons of warnings the first time we calculate things.
-			wp_scripts()->groups[ $new_id ] = $in_footer ? 1 : 0;
-
-			// Add extras to the dependency.
-			foreach ( $this->get_extra() as $extra_key => $extra_value ) {
-				if ( 'data' === $extra_key ) {
-					continue;
-				}
-				$wp_sources->add_data( $new_id, $extra_key, $extra_value );
-			}
-
-			if ( $this->get_data() ) {
-				$data = implode( ';;', $this->get_data() );
-				$wp_sources->add_data( $new_id, 'data', $data );
-			}
-
-			// Make sure that this element is marked as done once WordPress has enqueued it.
-			add_action(
-				'wp_head',
-				function() use ( $handle, $new_id ) {
-					$wp_styles = wp_scripts();
-					if ( in_array( $new_id, $wp_styles->done, true ) ) {
-						// If the new ID is done it means that the handle is done too.
-						$wp_styles->done[] = $handle;
-					}
-				},
-				999
-			);
-
-			add_action(
-				'wp_footer',
-				function() use ( $handle, $new_id ) {
-					$wp_styles = wp_scripts();
-					if ( in_array( $new_id, $wp_styles->done, true ) ) {
-						// If the new ID is done it means that the handle is done too.
-						$wp_styles->done[] = $handle;
-					}
-				},
-				999
-			);
 		} elseif ( 'styles' === $this->type ) {
-			$wp_sources = wp_styles();
-
 			// If set to inline, try to inline.
 			$inlined = false;
 			if ( $this->is_inlined() ) {
 				wp_dequeue_style( $this->group_id );
 				wp_deregister_style( $this->group_id );
-				$inlined = $this->inline_group( $in_footer );
+				$inlined = $this->inline_group( $in_footer, true );
 			}
+
 			// Enqueue generated asset if not inlined.
 			if ( ! $this->is_inlined() || ! $inlined ) {
 				wp_enqueue_style(
-					$new_id,
+					$handle,
 					set_url_scheme( $this->get_handle_url( $handle ) ),
 					$dependencies,
 					null,
 					$this->get_args()
 				);
 			}
-
-			// A hack to avoid tons of warnings the first time we calculate things.
-			wp_styles()->groups[ $new_id ] = $in_footer ? 1 : 0;
-
-			// Add extras to the dependency.
-			foreach ( $this->get_extra() as $extra_key => $extra_value ) {
-				$wp_sources->add_data( $new_id, $extra_key, $extra_value );
-			}
-
-			// Make sure that this element is marked as done once WordPress has enqueued it.
-			add_action(
-				'wp_head',
-				function() use ( $handle, $new_id ) {
-					$wp_styles = wp_styles();
-					if ( in_array( $new_id, $wp_styles->done, true ) ) {
-						// If the new ID is done it means that the handle is done too.
-						$wp_styles->done[] = $handle;
-					}
-				},
-				999
-			);
-
-			add_action(
-				'wp_footer',
-				function() use ( $handle, $new_id ) {
-					$wp_styles = wp_styles();
-					if ( in_array( $new_id, $wp_styles->done, true ) ) {
-						// If the new ID is done it means that the handle is done too.
-						$wp_styles->done[] = $handle;
-					}
-				},
-				999
-			);
 		}
-
-		return $new_id;
 	}
 
 	/**
@@ -1844,8 +1740,8 @@ class Minify_Group {
 		$parsed_site_url = wp_parse_url( $home_url );
 		$parsed_src      = wp_parse_url( $src );
 
+		// Probably not local but who knows.
 		if ( ! $parsed_src ) {
-			// Probably not local but who knows.
 			return false;
 		}
 
@@ -1860,7 +1756,7 @@ class Minify_Group {
 		}
 
 		if ( is_multisite() && defined( 'DOMAINMAP_BASEFILE' ) ) {
-			return $parsed_src['host'] === self::check_mapped_domain();
+			return self::check_mapped_domain() === $parsed_src['host'];
 		}
 
 		// Not local.

@@ -66,7 +66,7 @@ class Forminator_Signature_Field extends Forminator_Field {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name = __( 'E-Signature', Forminator::DOMAIN );
+		$this->name = __( 'E-Signature', 'forminator' );
 	}
 
 	/**
@@ -78,8 +78,8 @@ class Forminator_Signature_Field extends Forminator_Field {
 	public function defaults() {
 		return array(
 			'field_type' => 'signature',
-			'field_label' => __( 'Signature', Forminator::DOMAIN ),
-			'placeholder' => __( 'Start signing your signature here', Forminator::DOMAIN ),
+			'field_label' => __( 'Signature', 'forminator' ),
+			'placeholder' => __( 'Start signing your signature here', 'forminator' ),
 			'filetype' => 'png',
 			'height' => 180,
 			'thickness' => 2,
@@ -401,7 +401,7 @@ class Forminator_Signature_Field extends Forminator_Field {
 				$html .= '<div id="' . $id . '_Container" class="forminator-signature--container">';
 
 					$html .= '<canvas id="' . $id . '" class="forminator-signature-canvas" height="' . $height . '" tabindex="-1">';
-						$html .= '<p>' . esc_html__( 'Your browser does not support e-Signature field.', Forminator::DOMAIN ) . '</p>';
+						$html .= '<p>' . esc_html__( 'Your browser does not support e-Signature field.', 'forminator' ) . '</p>';
 					$html .= '</canvas>';
 
 				$html .= '</div>';
@@ -454,7 +454,7 @@ class Forminator_Signature_Field extends Forminator_Field {
 			$settings_required_message = self::get_property( 'required_message', $field, '' );
 			$required_message = apply_filters(
 				'forminator_signature_field_required_validation_message',
-				( ! empty( $settings_required_message ) ? $settings_required_message : __( 'This field is required. Please sign.', Forminator::DOMAIN ) ),
+				( ! empty( $settings_required_message ) ? $settings_required_message : __( 'This field is required. Please sign.', 'forminator' ) ),
 				$id,
 				$field
 			);
@@ -483,7 +483,14 @@ class Forminator_Signature_Field extends Forminator_Field {
 			if ( empty( $data ) ) {
 				$this->validation_message[ $id ] = apply_filters(
 					'forminator_signature_field_required_validation_message',
-					( ! empty( $required_message ) ? $required_message : __( 'This field is required. Please sign.', Forminator::DOMAIN ) ),
+					( ! empty( $required_message ) ? $required_message : __( 'This field is required. Please sign.', 'forminator' ) ),
+					$id,
+					$field
+				);
+			} elseif ( isset( $data['success'] ) && false === $data['success'] ) {
+				$this->validation_message[ $id ] = apply_filters(
+					'forminator_signature_field_upload_failed_message',
+					__( 'Error saving signature. Upload error.', 'forminator' ),
 					$id,
 					$field
 				);
@@ -572,7 +579,7 @@ class Forminator_Signature_Field extends Forminator_Field {
 			} else {
 				return array(
 					'success' => false,
-					'message' => __( 'Error saving signature. Upload error. ', Forminator::DOMAIN ),
+					'message' => __( 'Error saving signature. Upload error. ', 'forminator' ),
 				);
 			}
 		}

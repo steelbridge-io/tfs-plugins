@@ -226,7 +226,7 @@ abstract class Background_Process extends Async_Request {
 	 * Check whether the current process is already running
 	 * in a background process.
 	 */
-	protected function is_process_running() {
+	public function is_process_running() {
 		if ( get_site_transient( $this->identifier . '_process_lock' ) ) {
 			// Process already running.
 			return true;

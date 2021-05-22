@@ -2,16 +2,16 @@
 /**
  * Hummingbird Redis Object Cache
  *
- * @link    https://premium.wpmudev.org/project/wp-hummingbird/
+ * @link    https://wpmudev.com/project/wp-hummingbird/
  * @since   2.5.0
  * @package Hummingbird
  *
  * @wordpress-plugin
  * Plugin Name:       Hummingbird Redis Object Cache
- * Plugin URI:        https://premium.wpmudev.org/project/wp-hummingbird/
+ * Plugin URI:        https://wpmudev.com/project/wp-hummingbird/
  * Description:       Hummingbird object cache powered by Redis.
  * Author:            WPMU DEV
- * Author URI:        https://premium.wpmudev.org/
+ * Author URI:        https://wpmudev.com/
  *
  * Based on Eric Mann's and Erick Hitter's Redis Object Cache: https://github.com/ericmann/Redis-Object-Cache
  */
@@ -370,7 +370,13 @@ class WP_Object_Cache {
 			$client = defined( 'HHVM_VERSION' ) ? 'hhvm' : 'pecl';
 		}
 
+		$scheme = filter_var( $parameters['host'], FILTER_VALIDATE_IP ) ? 'tcp' : 'unix';
+
 		try {
+			if ( 'unix' === $scheme && ( 'hhvm' === $client || 'pecl' === $client ) ) {
+				$parameters['port'] = null;
+			}
+
 			if ( 'hhvm' === $client ) {
 				$this->redis_client = sprintf( 'HHVM Extension (v%s)', constant( 'HHVM_VERSION' ) );
 
@@ -396,6 +402,10 @@ class WP_Object_Cache {
 
 			if ( ( 'hhvm' === $client || 'pecl' === $client ) && defined( 'WPHB_REDIS_PASSWORD' ) ) {
 				$this->redis->auth( WPHB_REDIS_PASSWORD );
+			}
+
+			if ( ( 'hhvm' === $client || 'pecl' === $client ) && defined( 'WPHB_REDIS_DB_ID' ) ) {
+				$this->redis->select( WPHB_REDIS_DB_ID );
 			}
 
 			if ( 'predis' === $client ) {
@@ -426,6 +436,13 @@ class WP_Object_Cache {
 
 				$options = array();
 
+				if ( 'unix' === $scheme ) {
+					$parameters['scheme'] = $scheme;
+					$parameters['path']   = $parameters['host'];
+					unset( $parameters['host'] );
+					unset( $parameters['port'] );
+				}
+
 				if ( $parameters['read_timeout'] ) {
 					$parameters['read_write_timeout'] = $parameters['read_timeout'];
 				}
@@ -434,7 +451,12 @@ class WP_Object_Cache {
 					$options['parameters']['password'] = WPHB_REDIS_PASSWORD;
 				}
 
+				if ( defined( 'WPHB_REDIS_DB_ID' ) ) {
+					$options['parameters']['database'] = WPHB_REDIS_DB_ID;
+				}
+
 				$this->redis = new Predis\Client( $parameters, $options );
+
 				$this->redis->connect();
 
 				$this->redis_client .= sprintf( ' (v%s)', Predis\Client::VERSION );

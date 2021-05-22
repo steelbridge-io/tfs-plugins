@@ -1,9 +1,9 @@
 === Toolbar Publish Button ===
 Contributors: webbistro
-Tags: ux, user experience, wp-admin, admin, publish, toolbar, save, button, update, post, page, settings, scrollbar, scrolling, admin bar, backend, admin menu, sticky menu
+Tags: save button, publish button, scroll, scroll less, wp admin, classic editor, update button, post button, admin bar, toolbar ux, user experience, scrollbar, scrolling
 Requires at least: 4.6
-Tested up to: 5.5.1
-Stable tag: 1.7
+Tested up to: 5.7
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,6 +64,14 @@ Assistance with translating is highly appreciated! If you'd like to be a transla
 
 == Changelog ==
 
+= 1.7.1 =
+*Release Date - March 09, 2021*
+
+= Compatibility =
+* WordPress 5.7 compatibility ensured.
+
+
+&nbsp;
 = 1.7 =
 *Release Date - October 14, 2020*
 

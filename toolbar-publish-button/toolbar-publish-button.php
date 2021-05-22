@@ -4,14 +4,14 @@
  * Plugin Name: Toolbar Publish Button
  * Plugin URI: https://wpUXsolutions.com
  * Description: Save a lot of your time by scrolling less in WP admin! A small UX improvement that keeps Publish button within reach and retains the scrollbar position after saving in WordPress admin.
- * Version: 1.7
+ * Version: 1.7.1
  * Author: wpUXsolutions
  * Author URI: https://wpUXsolutions.com
  * License: GPL2+ - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Text Domain: toolbar-publish-button
  * Domain Path: /languages/
  *
- * Copyright 2013-2018  wpUXsolutions  (email : wpUXsolutions@gmail.com)
+ * Copyright 2013-2021  wpUXsolutions  (email : wpUXsolutions@gmail.com)
  */
 
 
@@ -31,7 +31,7 @@ class tpb {
      *
      * @var string
      */
-    public $version = '1.7';
+    public $version = '1.7.1';
 
 
 

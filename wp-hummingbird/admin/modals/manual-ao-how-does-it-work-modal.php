@@ -92,7 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						printf( /* translators: %1$s - space, %2$s - link */
 							__( '%1$sFor more detailed information, please check out our in-depth <a href="%2$s" target="_blank" >documentation</a>.', 'wphb' ),
 							'&nbsp;',
-							'https://premium.wpmudev.org/docs/wpmu-dev-plugins/hummingbird/#asset-optimization'
+							'https://wpmudev.com/docs/wpmu-dev-plugins/hummingbird/#asset-optimization'
 						);
 					}
 					?>
@@ -231,13 +231,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<h4><?php esc_html_e( 'Related Articles', 'wphb' ); ?></h4>
 
 					<p class="sui-description">
-						<a href="https://premium.wpmudev.org/docs/wpmu-dev-setting-configurations/wpmu-dev-performance-optimization-guide/" target="_blank">
+						<a href="https://wpmudev.com/docs/wpmu-dev-setting-configurations/wpmu-dev-performance-optimization-guide/" target="_blank">
 							<?php esc_html_e( 'WPMU DEV Performance Optimization Guide', 'wphb' ); ?>
 						</a><br>
-						<a href="https://premium.wpmudev.org/docs/wpmu-dev-plugins/hummingbird/#performance-test" target="_blank">
+						<a href="https://wpmudev.com/docs/wpmu-dev-plugins/hummingbird/#performance-test" target="_blank">
 							<?php esc_html_e( 'How to Measure Page Speed', 'wphb' ); ?>
 						</a><br>
-						<a href="https://premium.wpmudev.org/docs/wpmu-dev-plugins/hummingbird/#caching" target="_blank">
+						<a href="https://wpmudev.com/docs/wpmu-dev-plugins/hummingbird/#caching" target="_blank">
 							<?php esc_html_e( 'Everything You Need To Know About Caching', 'wphb' ); ?>
 						</a>
 					</p>
@@ -246,7 +246,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php
 						printf(
 							__( 'Didn\'t find the answer you were looking for? Check out our detailed <a href="%s" target="_blank" >documentation</a> or contact our support team for further assistance.', 'wphb' ),
-							'https://premium.wpmudev.org/docs/wpmu-dev-plugins/hummingbird/#asset-optimization'
+							'https://wpmudev.com/docs/wpmu-dev-plugins/hummingbird/#asset-optimization'
 						);
 						?>
 					</p>

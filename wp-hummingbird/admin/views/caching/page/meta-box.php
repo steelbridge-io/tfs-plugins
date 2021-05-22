@@ -7,6 +7,7 @@
  * @var bool          $admins_can_disable  Blog admins can disable page caching.
  * @var bool          $blog_is_frontpage   Is the Blog set as the Frontpage.
  * @var bool          $can_compress        Can enable compression.
+ * @var bool          $cdn_active          Asset optimization CDN status.
  * @var array         $clear_interval      Clear interval array. Format [ (int) hours, (string) hours|days ].
  * @var array         $custom_post_types   Array of custom post types.
  * @var string        $deactivate_url      Deactivate URL.
@@ -31,7 +32,7 @@ if ( is_wp_error( $error ) ) {
 	$this->admin_notices->show_inline( $error->get_error_message(), 'error' );
 } else {
 	$notice = esc_html__( 'Page caching is currently active.', 'wphb' );
-	if ( $minify_active ) {
+	if ( $minify_active && $cdn_active ) {
 		$notice = esc_html__( 'Page caching is currently active. You are storing your assets on the CDN in the Asset Optimization module. Hummingbird will automatically purge your cache when assets on the CDN expire (after every two months).', 'wphb' );
 	}
 
@@ -43,7 +44,6 @@ if ( is_wp_error( $error ) ) {
 	<div class="sui-box-settings-col-1">
 		<span class="sui-settings-label"><?php esc_html_e( 'Page Types', 'wphb' ); ?></span>
 		<span class="sui-description">
-			<?php esc_html_e( 'Select which page types you wish to cache.', 'wphb' ); ?>
 			<?php ( ! is_multisite() ) ? esc_html_e( ' Select which page types you wish to cache.', 'wphb' ) : false; ?>
 		</span>
 		<?php if ( is_multisite() ) : ?>
@@ -101,7 +101,7 @@ if ( is_wp_error( $error ) ) {
 	<div class="sui-box-settings-col-1">
 		<span class="sui-settings-label"><?php esc_html_e( 'Preload caching', 'wphb' ); ?></span>
 		<span class="sui-description">
-			<?php esc_html_e( 'By default, Hummingbird waits until someone visits your page before generating a cached version. Enable this feature to automatically create cached versions of your homepage or any page or post.', 'wphb' ); ?>
+			<?php esc_html_e( 'Enable this feature to automatically create cached versions of your homepage or any page or post. This can be a resource-intensive operation, so use it only when required.', 'wphb' ); ?>
 		</span>
 	</div>
 	<div class="sui-box-settings-col-2">
@@ -298,15 +298,8 @@ if ( is_wp_error( $error ) ) {
 					<?php esc_html_e( 'If you’re having issues with page caching, turn on the debug log to get insight into what’s going on.', 'wphb' ); ?>
 				</span>
 			</label>
-			<div class="sui-toggle-content sui-border-frame with-padding wphb-logging-box <?php echo $settings['settings']['debug_log'] ? '' : 'sui-hidden'; ?>">
-				<?php
-				esc_html_e(
-					'Debug logging is active. Logs are stored for 30 days, you can download the
-					log file below.',
-					'wphb'
-				);
-				?>
-
+			<div class="sui-description sui-toggle-content sui-border-frame with-padding wphb-logging-box <?php echo $settings['settings']['debug_log'] ? '' : 'sui-hidden'; ?>">
+				<?php esc_html_e( 'Debug logging is active. Logs are stored for 30 days, you can download the log file below.', 'wphb' ); ?>
 				<div class="wphb-logging-buttons">
 					<a href="<?php echo esc_url( $download_url ); ?>" class="sui-button sui-button-ghost" <?php disabled( ! $logs_link, true ); ?>>
 						<span class="sui-icon-download" aria-hidden="true"></span>
@@ -317,10 +310,6 @@ if ( is_wp_error( $error ) ) {
 						<?php esc_html_e( 'Clear', 'wphb' ); ?>
 					</a>
 				</div>
-
-				<?php if ( $logs_link ) : ?>
-					<!--<a href="<?php echo esc_url( $logs_link ); ?>" target="_blank"><?php echo esc_url( $logs_link ); ?></a>-->
-				<?php endif; ?>
 			</div>
 		</div>
 
@@ -400,10 +389,10 @@ if ( is_wp_error( $error ) ) {
 				<input type="checkbox" name="settings[cache_headers]" id="cache_headers" value="1" aria-labelledby="cache_headers-label" <?php checked( $settings['settings']['cache_headers'] ); ?>>
 				<span class="sui-toggle-slider" aria-hidden="true"></span>
 				<span id="cache_headers-label" class="sui-toggle-label">
-					<?php esc_html_e( 'Cache headers', 'wphb' ); ?>
+					<?php esc_html_e( 'Cache HTTP headers', 'wphb' ); ?>
 				</span>
 				<span class="sui-description sui-toggle-description">
-					<?php esc_html_e( "By default, Hummingbird won't cache headers. Enable this feature to include them.", 'wphb' ); ?>
+					<?php esc_html_e( "By default, Hummingbird won't cache HTTP headers. Enable this feature to include them.", 'wphb' ); ?>
 				</span>
 			</label>
 		</div>

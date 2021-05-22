@@ -63,6 +63,10 @@ class Forminator_Settings_Page extends Forminator_Admin_Page {
 		switch ( $action ) {
 			case 'reset_plugin_settings':
 				forminator_reset_settings();
+				$query_args = array(
+					'section'           => 'data',
+					'forminator_notice' => 'settings_reset',
+				);
 				break;
 			case 'disconnect_stripe':
 				if ( class_exists( 'Forminator_Gateway_Stripe' ) ) {
@@ -79,15 +83,21 @@ class Forminator_Settings_Page extends Forminator_Admin_Page {
 		}
 
 		if ( $is_redirect ) {
-			//todo add messaging as flash
-			$fallback_redirect = admin_url( 'admin.php' );
-			$fallback_redirect = add_query_arg(
-				array(
-					'page' => $this->get_admin_page(),
-				),
-				$fallback_redirect
+			$to_referer = true;
+
+			$args = array(
+				'page' => $this->get_admin_page(),
 			);
-			$this->maybe_redirect_to_referer( $fallback_redirect );
+			if ( ! empty( $query_args ) ) {
+				$args       = array_merge( $args, $query_args );
+				$to_referer = false;
+			}
+			$fallback_redirect = add_query_arg(
+				$args,
+				admin_url( 'admin.php' )
+			);
+
+			$this->maybe_redirect_to_referer( $fallback_redirect, $to_referer );
 		}
 
 		exit;

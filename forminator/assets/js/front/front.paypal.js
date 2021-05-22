@@ -27,6 +27,7 @@
 	function ForminatorFrontPayPal(element, options) {
 		this.element = element;
 		this.$el     = $(this.element);
+		this.forminator_selector = '#' + this.$el.attr('id') + '[data-forminator-render="' + this.$el.data('forminator-render') + '"]';
 
 		// jQuery has an extend method which merges the contents of two or
 		// more objects, storing the result in the first object. The first object
@@ -46,10 +47,9 @@
 				return;
 			}
 
-			var self         = this;
-			this.paypalData = self.settings.paymentEl;
+			this.paypalData = this.settings.paymentEl;
 
-			this.render_paypal_button();
+			this.render_paypal_button( this.element );
 		},
 
 		is_data_valid: function() {
@@ -76,8 +76,8 @@
 			return isValid;
 		},
 
-		render_paypal_button: function () {
-			var $form = this.$el,
+		render_paypal_button: function ( form ) {
+			var $form = $( form ),
 				self = this,
 				paypalData = this.configurePayPal(),
 				$target_message = $form.find('.forminator-response-message'),
@@ -109,8 +109,15 @@
 					$form.find('input, select, textarea').change( function() {
 						if ( self.is_data_valid() && self.is_form_valid() ) {
 							actions.enable();
-						}
+						} else {
+                            actions.disable();
+                        }
 					});
+
+                    // Check if form has error to disable actions
+                    $form.on( 'validation:error', function() {
+                        actions.disable();
+                    });
 
 					// Check if the form is valid on init
 					if ( self.is_data_valid() && self.is_form_valid() ) {
@@ -129,7 +136,11 @@
 						$target_message.removeClass('forminator-accessible').addClass('forminator-error').html('').removeAttr( 'aria-hidden' );
 						$target_message.html('<label class="forminator-label--error"><span>' + generalMessage.payment_require_ssl_error + '</span></label>');
 						self.focus_to_element($target_message);
-					}
+					} else if ( ! $form.valid() ) {
+						$target_message.removeClass('forminator-accessible').addClass('forminator-error').html('').removeAttr( 'aria-hidden' );
+						$target_message.html('<label class="forminator-label--error"><span>' + generalMessage.form_has_error + '</span></label>');
+						self.focus_to_element($target_message);
+                    }
 
 					if ( paypalData.amount_type === 'variable' && paypalData.variable !== '' ) {
 						paypalData.amount = self.get_field_calculation( paypalData.variable );

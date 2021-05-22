@@ -8,7 +8,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0
  */
-class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
+class Forminator_Quiz_Front_Action extends Forminator_Front_Action {
+
+	/**
+	 * Module slug
+	 *
+	 * @var string
+	 */
+	protected static $module_slug = 'quiz';
 
 	/**
 	 * Entry type
@@ -45,13 +52,22 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 
 		$id = isset( $post_data['form_id'] ) ? $post_data['form_id'] : null;
 
-		/** @var  Forminator_Quiz_Form_Model $model */
-		$this->model = Forminator_Quiz_Form_Model::model()->load( $id );
+		/** @var  Forminator_Quiz_Model $model */
+		$this->model = Forminator_Quiz_Model::model()->load( $id );
 
 		if ( ! is_object( $this->model ) ) {
 			wp_send_json_error(
 				array(
-					'error' => apply_filters( 'forminator_submit_quiz_error_not_found', __( "Form not found", Forminator::DOMAIN ) ),
+					'error' => apply_filters( 'forminator_submit_quiz_error_not_found', __( "Form not found", 'forminator' ) ),
+				)
+			);
+		}
+
+		// disable submissions if not published.
+		if ( Forminator_Quiz_Model::STATUS_PUBLISH !== $this->model->status ) {
+			wp_send_json_error(
+				array(
+					'error' => __( 'Quiz submissions disabled.', 'forminator' ),
 				)
 			);
 		}
@@ -59,7 +75,7 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 		/**
 		 * Action called before submit quizzes
 		 *
-		 * @param Forminator_Quiz_Form_Model $model - the quiz model
+		 * @param Forminator_Quiz_Model $model - the quiz model
 		 * @param bool                       $is_preview
 		 */
 		do_action( 'forminator_before_submit_quizzes', $this->model, $is_preview );
@@ -67,7 +83,13 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 		if ( 'nowrong' === $this->model->quiz_type ) {
 			$this->_process_nowrong_submit( $this->model, $is_preview );
 		} else {
-			$this->_process_knowledge_submit( $this->model, $is_preview );
+            // Real time results - 1 answer only
+            if ( ! isset( $this->model->settings['results_behav'] ) || 'end' !== $this->model->settings['results_behav'] ) {
+                $this->_process_knowledge_submit( $this->model, $is_preview );
+            // On submission results - multiple answers
+            } else {
+                $this->_process_knowledge_submit_multiple_answers( $this->model, $is_preview );
+            }
 		}
 	}
 
@@ -77,19 +99,10 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 	 * @since 1.0
 	 * @since 1.6.2 add $is_preview as arg
 	 *
-	 * @param Forminator_Quiz_Form_Model $model
+	 * @param Forminator_Quiz_Model $model
 	 * @param bool                       $is_preview
 	 */
 	private function _process_nowrong_submit( $model, $is_preview = false ) {
-		// disable submissions if not published
-		if ( Forminator_Quiz_Form_Model::STATUS_PUBLISH !== $model->status ) {
-			wp_send_json_error(
-				array(
-					'error' => __( "Quiz submissions disabled.", Forminator::DOMAIN ),
-				)
-			);
-		}
-
 		//counting the result
 		$results     = array();
 		$result_data = array();
@@ -151,7 +164,7 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 
 		// Email
 		$forminator_mail_sender = new Forminator_Quiz_Front_Mail();
-		$forminator_mail_sender->process_mail( $model, $post_data, $entries );
+		$forminator_mail_sender->process_mail( $model, $post_data, $entries, $final_res );
 
 		// dont push history on preview
 		$result_url = ! $is_preview ? $result->build_permalink() : '';
@@ -180,7 +193,7 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 	 *
 	 * @since 1.0
 	 *
-	 * @param Forminator_Quiz_Form_Model      $model
+	 * @param Forminator_Quiz_Model      $model
 	 * @param    array                        $result
 	 * @param    array                        $data
 	 * @param    Forminator_Form_Entry_Model  $entry
@@ -206,7 +219,7 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
         }
 		?>
 
-		<?php if ( 'clean' === $theme ) { ?>
+		<?php if ( 'none' === $theme ) { ?>
 
 			<div class="forminator-result" role="group">
 
@@ -222,7 +235,7 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 
 				<button class="forminator-result--retake" type="button">
 					<span class="forminator-icon-refresh" aria-hidden="true"></span>
-					<span><?php esc_html_e( "Retake Quiz", Forminator::DOMAIN ); ?></span>
+					<span><?php esc_html_e( "Retake Quiz", 'forminator' ); ?></span>
 				</button>
 
 			</div>
@@ -247,7 +260,7 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 
 						<hr />
 
-						<button class="forminator-result--retake" type="button"><?php esc_html_e( 'Retake Quiz', Forminator::DOMAIN ); ?></button>
+						<button class="forminator-result--retake" type="button"><?php esc_html_e( 'Retake Quiz', 'forminator' ); ?></button>
 
 					</div>
 
@@ -259,7 +272,7 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 
 						<button class="forminator-result--retake" type="button">
 							<span class="forminator-icon-refresh" aria-hidden="true"></span>
-							<span><?php esc_html_e( "Retake Quiz", Forminator::DOMAIN ); ?></span>
+							<span><?php esc_html_e( "Retake Quiz", 'forminator' ); ?></span>
 						</button>
 
 					</div>
@@ -301,31 +314,31 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
                 $result_message = forminator_get_social_message( $model->settings, $model->settings['formName'], $result['title'], $data );
 				?>
 				<div class="forminator-quiz--social">
-					<p class="forminator-social--text"><?php esc_html_e( "Share your results", Forminator::DOMAIN ); ?></p>
+					<p class="forminator-social--text"><?php esc_html_e( "Share your results", 'forminator' ); ?></p>
 					<ul class="forminator-social--icons"
 						data-message="<?php echo esc_html( $result_message ); ?>"
                         data-url="<?php echo isset( $data['current_url'] ) ? esc_url( $data['current_url'] ) : forminator_get_current_url(); ?>">
 						<?php if ( $is_fb ): ?>
 							<li class="forminator-social--icon">
-								<a href="#" data-social="facebook" aria-label="<?php esc_html_e( 'Share on Facebook', Forminator::DOMAIN ); ?>">
+								<a href="#" data-social="facebook" aria-label="<?php esc_html_e( 'Share on Facebook', 'forminator' ); ?>">
 									<i class="forminator-icon-social-facebook" aria-hidden="true"></i>
-									<span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on Facebook', Forminator::DOMAIN ); ?></span>
+									<span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on Facebook', 'forminator' ); ?></span>
 								</a>
 							</li>
 						<?php endif; ?>
 						<?php if ( $is_tw ): ?>
 							<li class="forminator-social--icon">
-								<a href="#" data-social="twitter" aria-label="<?php esc_html_e( 'Share on Twitter', Forminator::DOMAIN ); ?>">
+								<a href="#" data-social="twitter" aria-label="<?php esc_html_e( 'Share on Twitter', 'forminator' ); ?>">
 									<i class="forminator-icon-social-twitter" aria-hidden="true"></i>
-									<span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on Twitter', Forminator::DOMAIN ); ?></span>
+									<span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on Twitter', 'forminator' ); ?></span>
 								</a>
 							</li>
 						<?php endif; ?>
 						<?php if ( $is_li ): ?>
 							<li class="forminator-social--icon">
-								<a href="#" data-social="linkedin" aria-label="<?php esc_html_e( 'Share on LinkedIn', Forminator::DOMAIN ); ?>">
+								<a href="#" data-social="linkedin" aria-label="<?php esc_html_e( 'Share on LinkedIn', 'forminator' ); ?>">
 									<i class="forminator-icon-social-linkedin" aria-hidden="true"></i>
-									<span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on LinkedIn', Forminator::DOMAIN ); ?></span>
+									<span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on LinkedIn', 'forminator' ); ?></span>
 								</a>
 							</li>
 						<?php endif; ?>
@@ -345,21 +358,12 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 		 * @since 1.6.2 change $final_res to $result with property
 		 *
 		 * @param string                     $nowrong_result_html - the return html
-		 * @param Forminator_Quiz_Form_Model $model               - the model
+		 * @param Forminator_Quiz_Model $model               - the model
 		 * @param string                     $result              - the final result
 		 *
 		 * @return string $nowrong_result_html
 		 */
 		return apply_filters( 'forminator_quizzes_render_nowrong_result', $nowrong_result_html, $model, $result );
-	}
-
-	/**
-	 * Update payment amount
-	 *
-	 * @since 1.7.3
-	 */
-	public function update_payment_amount() {
-		// Update payment amount
 	}
 
 	/**
@@ -373,33 +377,24 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 	 * @param bool $is_preview
 	 */
 	private function _process_knowledge_submit( $model, $is_preview = false ) {
-		// disable submissions if not published
-		if ( Forminator_Quiz_Form_Model::STATUS_PUBLISH !== $model->status ) {
-			wp_send_json_error(
-				array(
-					'error' => __( "Quiz submissions disabled.", Forminator::DOMAIN ),
-				)
-			);
-		}
-
 		$post_data = $this->get_post_data();
 		$answers   = isset( $post_data['answers'] ) ? $post_data['answers'] : null;
 		if ( ! is_array( $answers ) || 0 === count( $answers ) ) {
 			wp_send_json_error(
 				array(
-					'error' => apply_filters( 'forminator_quizzes_process_knowledge_submit_no_answer_error', __( "You haven't answered any questions", Forminator::DOMAIN ) ),
+					'error' => apply_filters( 'forminator_quizzes_process_knowledge_submit_no_answer_error', __( "You haven't answered any questions", 'forminator' ) ),
 				)
 			);
 		}
 		$results   = array();
 		$is_finish = true;
-		/** @var Forminator_Quiz_Form_Model $model */
+		/** @var Forminator_Quiz_Model $model */
 		if ( count( $model->questions ) !== count( $answers ) ) {
 			if ( 'end' === $model->settings['results_behav'] ) {
 				//need to check if all the questions are answered
 				wp_send_json_error(
 					array(
-						'error' => apply_filters( 'forminator_quizzes_process_knowledge_submit_answer_all_error', __( "Please answer all the questions", Forminator::DOMAIN ) ),
+						'error' => apply_filters( 'forminator_quizzes_process_knowledge_submit_answer_all_error', __( "Please answer all the questions", 'forminator' ) ),
 					)
 				);
 			} else {
@@ -539,6 +534,209 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 	}
 
 	/**
+	 * Process knowledge quiz - multiple answers
+	 *
+	 * @since 1.14.2
+	 *
+	 * @param      $model
+	 * @param bool $is_preview
+	 */
+	private function _process_knowledge_submit_multiple_answers( $model, $is_preview = false ) {
+		$post_data = $this->get_post_data();
+		$user_answers = isset( $post_data['answers'] ) ? $post_data['answers'] : null;
+		if ( ! is_array( $user_answers ) || 0 === count( $user_answers ) ) {
+			wp_send_json_error(
+				array(
+					'error' => apply_filters( 'forminator_quizzes_process_knowledge_submit_no_answer_error', __( "You haven't answered any questions", 'forminator' ) ),
+				)
+			);
+		}
+
+        /**
+         * Since we are allowing multiple answers for each question,
+         * we should count the answered questions
+         */
+		$questions          = $model->questions;
+        $answered_questions = $model->count_answered_questions( $questions, $user_answers );
+
+        if ( count( $questions ) > $answered_questions ) {
+            //need to check if all the questions are answered
+            wp_send_json_error(
+                array(
+                    'error' => apply_filters( 'forminator_quizzes_process_knowledge_submit_answer_all_error', __( "Please answer all the questions", 'forminator' ) ),
+                )
+            );
+        }
+
+		//todo need to have a filter for answers if we use the result when chose
+		$results       = array();
+		$result_data   = array();
+		$final_text    = isset( $model->settings['msg_count'] ) ? $model->settings['msg_count'] : '';
+		$is_finish     = true;
+        $total_counter = 0;
+
+		foreach ( $questions as $question ) {
+            $question_slug   = $question['slug'];
+            $question        = $model->getQuestion( $question_slug );
+            $correct_answers = $model->get_correct_answers_for_question( $question_slug );
+            $correct_text    = isset( $model->settings['msg_correct'] ) ? $model->settings['msg_correct'] : '';
+            $incorrect_text  = isset( $model->settings['msg_incorrect'] ) ? $model->settings['msg_incorrect'] : '';
+            $meta            = array( 'question' => $question['title'], );
+            $right_counter   = 0;
+            $wrong_counter   = 0;
+            $index_counter   = 0; // We need this because $id is not an index
+
+            foreach ( $user_answers as $id => $pick ) {
+                $question_id   = preg_replace( '/(-\d+$)/', '', $id );
+
+                if ( $question_slug !== $question_id ) { continue; }
+
+                //$correct_answers = $model->get_correct_answers_for_question( $question_id );
+                $is_correct  = $model->is_correct_answer_for_question( $question_id, $pick );
+                $user_answer = $model->getAnswer( $question_id, $pick );
+
+					 if ( ! isset(  $results[ $question_id ]['answers'] ) ) {
+						 $results[ $question_id ]['answers'] = array();
+					 }
+
+                if ( $is_correct ) {
+
+                    /*if ( isset( $user_answer['title'] ) ) {
+                        $correct_text = str_replace(
+                            '%UserAnswer%',
+                            $user_answer['title'],
+                            $correct_text
+                        );
+                    }*/
+                    if ( ! in_array( $id, $results[ $question_id ]['answers'] ) ) {
+                        $results[ $question_id ]['answers'][$index_counter]['id'] = $id;
+                        $meta['answers'][] = $user_answer['title'];
+                    }
+
+                    $right_counter ++;
+
+                } else {
+                    /*if ( isset( $user_answer['title'] ) ) {
+                        $incorrect_text = str_replace(
+                            '%UserAnswer%',
+                            $user_answer['title'],
+                            $incorrect_text
+                        );
+                    }*/
+                    if ( ! in_array( $id, $results[ $question_id ]['answers'] ) ) {
+                        $results[ $question_id ]['answers'][$index_counter]['id'] = $id;
+                        $meta['answers'][] = $user_answer['title'];
+                    }
+
+                    $wrong_counter ++;
+                }
+                $index_counter ++;
+            }
+
+            // make sure correct answer exists before pluck it
+            if ( ! empty( $correct_answers ) && is_array( $correct_answers ) ) {
+                $answer_titles = implode( ', ', wp_list_pluck( $correct_answers, 'title' ) );
+                if ( count( $correct_answers ) > 1 ) {
+                    $answer_titles = preg_replace('/(,(?!.*,))/', __( ' and', 'forminator' ), $answer_titles);
+                }
+            }
+
+            // If all answers to current questin
+            if ( count( $correct_answers ) === $right_counter && 0 === $wrong_counter ) {
+                $total_counter ++;
+
+                // make sure correct answer exists before pluck it
+                if ( ! empty( $correct_answers ) && is_array( $correct_answers ) ) {
+                    $correct_text = str_replace(
+                        '%UserAnswer%',
+                        $answer_titles,
+                        $correct_text
+                    );
+                }
+
+                $results[ $question_slug ]['message']   = $correct_text;
+                $results[ $question_slug ]['isCorrect'] = true;
+
+                $meta['isCorrect'] = true;
+
+            } else {
+                // make sure correct answer exists before pluck it
+                if ( ! empty( $correct_answers ) && is_array( $correct_answers ) ) {
+                    $incorrect_text = str_replace(
+                        '%CorrectAnswer%',
+                        $answer_titles,
+                        $incorrect_text
+                    );
+                }
+
+                $results[ $question_slug ]['message']   = $incorrect_text;
+                $results[ $question_slug ]['isCorrect'] = false;
+
+                $meta['isCorrect'] = false;
+
+            }
+            $result_data[] = $meta;
+        }
+
+		//ADDON on_form_submit
+		$addon_error = $this->attach_addons_on_quiz_submit( $model->id, $model );
+		if ( true !== $addon_error ) {
+			wp_send_json_error(
+				array(
+					'error' => $addon_error,
+				)
+			);
+		}
+
+		$entry    = null;
+		$entries  = null;
+		$entry_id = 0;
+
+		if ( $is_finish ) {
+			$entry    = $this->_save_entry( $model, $result_data, $is_preview, $post_data );
+			$entries  = new Forminator_Form_Entry_Model( $entry->entry_id );
+			$entry_id = $entry->entry_id;
+		}
+
+		$result = new Forminator_QForm_Result();
+		$result->set_entry( $entry_id );
+		$result->set_postdata( $post_data );
+
+		$post_data['final_result'] = $total_counter;
+
+		if ( $is_finish && ! is_null( $entry ) ) {
+			// Email
+			$forminator_mail_sender = new Forminator_Quiz_Front_Mail();
+			$forminator_mail_sender->process_mail( $model, $post_data, $entries );
+			// replace quiz form data
+			$final_text = forminator_replace_quiz_form_data( $final_text, $model, $post_data, $entry );
+		}
+
+		// dont push history on preview
+		$result_url = ! $is_preview ? $result->build_permalink() : '';
+		//store the
+		wp_send_json_success(
+			array(
+				'result'     => $results,
+				'type'       => 'knowledge',
+				'entry'      => $entry_id,
+				'result_url' => $result_url,
+				'finalText'  => $is_finish ? $this->_render_knowledge_result(
+					str_replace(
+						'%YourNum%',
+						$total_counter,
+						str_replace( '%Total%', count( $results ), $final_text )
+					),
+					$model,
+					$total_counter,
+					count( $results ),
+					$post_data
+				) : '',
+			)
+		);
+	}
+
+	/**
 	 * Render knowledge result
 	 *
 	 * @since 1.0
@@ -553,7 +751,13 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 		ob_start();
 		?>
 
-		<div role="alert" class="forminator-quiz--summary"><?php echo wpautop( $text, true ); // WPCS: XSS ok. ?></div>
+		<div role="alert" class="forminator-quiz--summary">
+            <?php echo wpautop( $text, true ); // WPCS: XSS ok. ?>
+            <button class="forminator-result--retake" type="button">
+                <span class="forminator-icon-refresh" aria-hidden="true"></span>
+                <span><?php esc_html_e( "Retake Quiz", 'forminator' ); ?></span>
+            </button>
+        </div>
 
 		<?php
 		$is_enabled = true;
@@ -573,31 +777,31 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
                 $result_message = forminator_get_social_message( $model->settings, $model->settings['formName'], $result, $data );
 				?>
                 <div class="forminator-quiz--social">
-                    <p class="forminator-social--text"><?php esc_html_e( "Share your results", Forminator::DOMAIN ); ?></p>
+                    <p class="forminator-social--text"><?php esc_html_e( "Share your results", 'forminator' ); ?></p>
                     <ul class="forminator-social--icons"
                         data-message="<?php echo esc_textarea( $result_message ); ?>"
                         data-url="<?php echo isset( $data['current_url'] ) ? esc_url( $data['current_url'] ) : forminator_get_current_url(); ?>">
                         <?php if ( $is_fb ): ?>
                             <li class="forminator-social--icon">
-                                <a href="#" data-social="facebook" aria-label="<?php esc_html_e( 'Share on Facebook', Forminator::DOMAIN ); ?>">
+                                <a href="#" data-social="facebook" aria-label="<?php esc_html_e( 'Share on Facebook', 'forminator' ); ?>">
                                     <i class="forminator-icon-social-facebook" aria-hidden="true"></i>
-                                    <span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on Facebook', Forminator::DOMAIN ); ?></span>
+                                    <span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on Facebook', 'forminator' ); ?></span>
                                 </a>
                             </li>
                         <?php endif; ?>
                         <?php if ( $is_tw ): ?>
                             <li class="forminator-social--icon">
-                                <a href="#" data-social="twitter" aria-label="<?php esc_html_e( 'Share on Twitter', Forminator::DOMAIN ); ?>">
+                                <a href="#" data-social="twitter" aria-label="<?php esc_html_e( 'Share on Twitter', 'forminator' ); ?>">
                                     <i class="forminator-icon-social-twitter" aria-hidden="true"></i>
-                                    <span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on Twitter', Forminator::DOMAIN ); ?></span>
+                                    <span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on Twitter', 'forminator' ); ?></span>
                                 </a>
                             </li>
                         <?php endif; ?>
                         <?php if ( $is_li ): ?>
                             <li class="forminator-social--icon">
-                                <a href="#" data-social="linkedin" aria-label="<?php esc_html_e( 'Share on LinkedIn', Forminator::DOMAIN ); ?>">
+                                <a href="#" data-social="linkedin" aria-label="<?php esc_html_e( 'Share on LinkedIn', 'forminator' ); ?>">
                                     <i class="forminator-icon-social-linkedin" aria-hidden="true"></i>
-                                    <span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on LinkedIn', Forminator::DOMAIN ); ?></span>
+                                    <span class="forminator-screen-reader-only"><?php esc_html_e( 'Share on LinkedIn', 'forminator' ); ?></span>
                                 </a>
                             </li>
                         <?php endif; ?>
@@ -618,7 +822,7 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 		 *
 		 * @param string                     $knowledge_result_html - the return html
 		 * @param string                     $text                  - the summary text
-		 * @param Forminator_Quiz_Form_Model $model                 - the model
+		 * @param Forminator_Quiz_Model $model                 - the model
 		 *
 		 * @return string $knowledge_result_html
 		 */
@@ -651,7 +855,7 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 	 * @since 1.6.2 change 1st arg from form_id to quiz model
 	 *        - Add $is_preview as func arg
 	 *
-	 * @param Forminator_Quiz_Form_Model $quiz
+	 * @param Forminator_Quiz_Model $quiz
 	 * @param                            $field_data
 	 * @param bool                       $is_preview
 	 * @param array                      $data
@@ -717,8 +921,9 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 		return $entry;
 	}
 
-	public function handle_submit() {
-	}
+	public function footer_message() {}
+
+	public function handle_submit() {}
 
 	/**
 	 * Executor On quiz submit for attached addons
@@ -727,11 +932,11 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 	 * @since 1.6.2
 	 *
 	 * @param                              $quiz_id
-	 * @param Forminator_Quiz_Form_Model   $quiz_model
+	 * @param Forminator_Quiz_Model   $quiz_model
 	 *
 	 * @return bool true on success|string error message from addon otherwise
 	 */
-	private function attach_addons_on_quiz_submit( $quiz_id, Forminator_Quiz_Form_Model $quiz_model ) {
+	private function attach_addons_on_quiz_submit( $quiz_id, Forminator_Quiz_Model $quiz_model ) {
 		$submitted_data = forminator_addon_format_quiz_submitted_data( $_POST, $_FILES );// WPCS: CSRF ok. its already validated before.
 		//find is_form_connected
 		$connected_addons = forminator_get_addons_instance_connected_with_quiz( $quiz_id );
@@ -755,68 +960,16 @@ class Forminator_Quizz_Front_Action extends Forminator_Front_Action {
 	}
 
 	/**
-	 * Executor to add more entry fields for attached addons
+	 * Get submitted data
 	 *
-	 * @see   Forminator_Addon_Quiz_Hooks_Abstract::add_entry_fields()
-	 *
-	 * @since 1.6.2
-	 *
-	 * @param                              $quiz_id
-	 * @param Forminator_Quiz_Form_Model   $quiz_form_model
-	 * @param array                        $current_entry_fields
-	 *
-	 * @return array added fields to entry
+	 * @param type $module_model Model.
+	 * @param type $current_entry_fields Fields.
+	 * @return array
 	 */
-	private function attach_addons_add_entry_fields( $quiz_id, Forminator_Quiz_Form_Model $quiz_form_model, $current_entry_fields ) {
-		$additional_fields_data = array();
-		$submitted_data         = forminator_addon_format_quiz_submitted_data( $_POST, $_FILES );// WPCS: CSRF ok. its already validated before.
-		//find is_quiz_connected
-		$connected_addons = forminator_get_addons_instance_connected_with_quiz( $quiz_id );
+	protected static function get_submitted_data( $module_model, $current_entry_fields ) {
+		$submitted_data = forminator_addon_format_quiz_submitted_data( $_POST, $_FILES );
 
-		foreach ( $connected_addons as $connected_addon ) {
-			try {
-				$quiz_hooks = $connected_addon->get_addon_quiz_hooks( $quiz_id );
-				if ( $quiz_hooks instanceof Forminator_Addon_Quiz_Hooks_Abstract ) {
-					$addon_fields = $quiz_hooks->add_entry_fields( $submitted_data, $current_entry_fields );
-					//reformat additional fields
-					$addon_fields           = self::format_addon_additional_fields( $connected_addon, $addon_fields );
-					$additional_fields_data = array_merge( $additional_fields_data, $addon_fields );
-				}
-			} catch ( Exception $e ) {
-				forminator_addon_maybe_log( $connected_addon->get_slug(), 'failed to quiz add_entry_fields', $e->getMessage() );
-			}
-
-		}
-
-		return $additional_fields_data;
-	}
-
-
-	/**
-	 * Executor action for attached addons after entry saved on storage
-	 *
-	 * @see   Forminator_Addon_Quiz_Hooks_Abstract::after_entry_saved()
-	 *
-	 * @since 1.6.2
-	 *
-	 * @param                             $quiz_id
-	 * @param Forminator_Form_Entry_Model $entry_model
-	 */
-	private function attach_addons_after_entry_saved( $quiz_id, Forminator_Form_Entry_Model $entry_model ) {
-		//find is_form_connected
-		$connected_addons = forminator_get_addons_instance_connected_with_quiz( $quiz_id );
-
-		foreach ( $connected_addons as $connected_addon ) {
-			try {
-				$quiz_hooks = $connected_addon->get_addon_quiz_hooks( $quiz_id );
-				if ( $quiz_hooks instanceof Forminator_Addon_Quiz_Hooks_Abstract ) {
-					$quiz_hooks->after_entry_saved( $entry_model );// run and forget
-				}
-			} catch ( Exception $e ) {
-				forminator_addon_maybe_log( $connected_addon->get_slug(), 'failed to quiz attach_addons_after_entry_saved', $e->getMessage() );
-			}
-
-		}
+		return $submitted_data;
 	}
 
 	/**

@@ -4,6 +4,7 @@
  *
  * @package Hummingbird
  *
+ * @var bool          $cdn_active        Asset optimization CDN status.
  * @var string        $deactivate_url    Deactivate URL.
  * @var bool|WP_Error $error             Error if present.
  * @var bool          $can_deactivate    Is deactivating page caching on subsites enabled.
@@ -22,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$this->admin_notices->show_inline( $error->get_error_message(), 'error' );
 	} else {
 		$notice = esc_html__( 'Page caching is currently active.', 'wphb' );
-		if ( $minify_active ) {
+		if ( $minify_active && $cdn_active ) {
 			$notice = esc_html__( 'Page caching is currently active. You are storing your assets on the CDN in the Asset Optimization module. Hummingbird will automatically purge your cache when assets on the CDN expire (after every two months).', 'wphb' );
 		}
 

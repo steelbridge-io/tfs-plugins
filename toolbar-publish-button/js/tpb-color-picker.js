@@ -16,7 +16,7 @@
             clear: function() {
                 
                 $('#wpadminbar .wpuxss-tpb .ab-item').css( 'background-color', '' );
-            },
+            }
         };
         
         $('.wpuxss-tpb-button-color').wpColorPicker( wpColorOptions );

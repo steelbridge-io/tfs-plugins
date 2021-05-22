@@ -51,7 +51,7 @@ $branded_image = apply_filters( 'wpmudev_branding_hero_image', '' );
 			<span class="sui-list-label"><?php esc_html_e( 'Filesize reductions', 'wphb' ); ?></span>
 			<span class="sui-list-detail">
 				<?php if ( 'basic' === $this->mode && 0 === (int) $compressed_size ) : ?>
-					<?php esc_html_e( 'Files are compressed', 'wphb' ); ?> <span class="sui-icon-check-tick sui-lg" aria-hidden="true"></span>
+					<?php esc_html_e( 'Files are compressed', 'wphb' ); ?> <span class="sui-icon-check-tick sui-md" aria-hidden="true"></span>
 				<?php else : ?>
 					<?php echo $compressed_size; ?>kb
 				<?php endif; ?>

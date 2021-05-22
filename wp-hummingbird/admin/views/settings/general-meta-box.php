@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php
 						printf(
 							__( "Note: Usage tracking is completely anonymous. We are only tracking what features you are/aren't using to make our feature decision more informed. You can read about what data will be collected <a href='%s' target='_blank'>here</a>.", 'wphb' ),
-							'https://premium.wpmudev.org/docs/privacy/our-plugins/#usage-tracking'
+							'https://wpmudev.com/docs/privacy/our-plugins/#usage-tracking'
 						);
 						?>
 					</span>

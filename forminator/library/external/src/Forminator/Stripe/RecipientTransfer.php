@@ -3,7 +3,7 @@
 namespace Forminator\Stripe;
 
 /**
- * Class RecipientTransfer
+ * Class RecipientTransfer.
  *
  * @property string $id
  * @property string $object
@@ -20,17 +20,15 @@ namespace Forminator\Stripe;
  * @property string $failure_code
  * @property string $failure_message
  * @property bool $livemode
- * @property StripeObject $metadata
+ * @property \Forminator\Stripe\StripeObject $metadata
  * @property string $method
  * @property string $recipient
- * @property mixed $reversals
+ * @property \Forminator\Stripe\Collection $reversals
  * @property bool $reversed
  * @property string $source_type
  * @property string $statement_descriptor
  * @property string $status
  * @property string $type
- *
- * @package Stripe
  */
 class RecipientTransfer extends ApiResource
 {

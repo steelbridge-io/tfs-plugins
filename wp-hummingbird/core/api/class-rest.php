@@ -79,7 +79,7 @@ class Rest {
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'clear_module_cache' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( $this, 'check_permissions' ),
 				'module'              => array(
 					'required'          => true,
 					'sanitize_callback' => 'sanitize_key',
@@ -98,6 +98,29 @@ class Rest {
 				},
 				'permission_callback' => '__return_true',
 			)
+		);
+	}
+
+	/**
+	 * Check if user has proper permissions (minimum edit_posts capability) to use the endpoints.
+	 *
+	 * @since 2.7.3
+	 *
+	 * @return bool|WP_Error
+	 */
+	public function check_permissions() {
+		if ( defined( 'WPHB_SKIP_REST_API_AUTH' ) && WPHB_SKIP_REST_API_AUTH ) {
+			return true;
+		}
+
+		if ( current_user_can( 'edit_posts' ) ) {
+			return true;
+		}
+
+		return new WP_Error(
+			'rest_forbidden',
+			esc_html__( 'Not enough permissions to access the endpoint.', 'wphb' ),
+			array( 'status' => 401 )
 		);
 	}
 

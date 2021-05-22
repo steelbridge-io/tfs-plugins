@@ -3,7 +3,7 @@
 namespace Forminator\Stripe\Issuing;
 
 /**
- * Class CardDetails
+ * Class CardDetails.
  *
  * @property string $id
  * @property string $object
@@ -12,8 +12,6 @@ namespace Forminator\Stripe\Issuing;
  * @property int $exp_month
  * @property int $exp_year
  * @property string $number
- *
- * @package Forminator\Stripe\Issuing
  */
 class CardDetails extends \Forminator\Stripe\ApiResource
 {

@@ -13,6 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $this->do_meta_boxes( 'main' ); ?>
 
+<?php if ( ! apply_filters( 'wpmudev_branding_hide_doc_link', false ) && ! get_option( 'wphb-hide-tutorials' ) ) : ?>
+	<div id="wphb-dashboard-tutorials"></div>
+<?php endif; ?>
+
 <div class="sui-row">
 	<div class="sui-col-lg-6"><?php $this->do_meta_boxes( 'box-dashboard-left' ); ?></div>
 	<div class="sui-col-lg-6"><?php $this->do_meta_boxes( 'box-dashboard-right' ); ?></div>

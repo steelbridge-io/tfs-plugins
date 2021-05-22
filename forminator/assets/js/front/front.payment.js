@@ -96,13 +96,35 @@
 				self.validateStripe(e, formData);
 			});
 
+			this.$el.on("forminator:form:submit:stripe:3dsecurity", function(e, secret) {
+				self.validate3d(e, secret);
+			});
+
 			// Listen for fields change to update ZIP mapping
 			this.$el.find(
-				'input.forminator-input, .forminator-select, .forminator-checkbox, .forminator-radio, .forminator-select2'
+				'input.forminator-input, .forminator-checkbox, .forminator-radio, select.forminator-select2'
 			).each(function () {
 				$(this).on('change', function (e) {
 					self.mapZip(e);
 				});
+			});
+		},
+
+		validate3d: function( e, secret ) {
+			var self = this;
+
+			this._stripe.retrievePaymentIntent(
+				secret
+			).then(function(result) {
+				if ( result.paymentIntent.status === 'requires_action' ||  result.paymentIntent.status === 'requires_source_action' ) {
+					self._stripe.handleCardAction(
+						secret
+					).then(function(result) {
+						if (self._beforeSubmitCallback) {
+							self._beforeSubmitCallback.call();
+						}
+					});
+				}
 			});
 		},
 
@@ -114,7 +136,13 @@
 					self.showCardError(result.error.message, true);
 				} else {
 					self.hideCardError();
-					self.updateAmount(e, formData);
+
+					self._stripe.createPaymentMethod('card', self._cardElement, self.getBillingData()).then(function (result) {
+						var paymentMethod = self.getObjectValue(result, 'paymentMethod');
+
+						self._stripeData['paymentMethod'] = self.getObjectValue(paymentMethod, 'id');
+						self.updateAmount(e, formData, result);
+					});
 				}
 			});
 		},
@@ -141,13 +169,16 @@
 			return $form;
 		},
 
-		updateAmount: function(e, formData) {
+		updateAmount: function(e, formData, result) {
 			e.preventDefault();
 			var self = this;
 			var updateFormData = formData;
+			var paymentMethod = this.getObjectValue(result, 'paymentMethod');
+
 			//Method set() doesn't work in IE11
 			updateFormData.append( 'action', 'forminator_update_payment_amount' );
 			updateFormData.append( 'paymentid', this.getStripeData('paymentid') );
+			updateFormData.append( 'payment_method', this.getObjectValue(paymentMethod, 'id') );
 			$.ajax({
 				type: 'POST',
 				url: window.ForminatorFront.ajaxUrl,
@@ -180,6 +211,7 @@
 						if (typeof data.data !== 'undefined' && typeof data.data.paymentid !== 'undefined') {
 							self.$el.find('#forminator-stripe-paymentid').val(data.data.paymentid);
 							self._stripeData['paymentid'] = data.data.paymentid;
+							self._stripeData['secret'] = data.data.paymentsecret;
 
 							self.handleCardPayment(data, e, formData);
 						} else {
@@ -428,9 +460,7 @@
 			}
 
 			return {
-				payment_method_data: {
-					billing_details: billingObject
-				}
+				billing_details: billingObject
 			}
 		},
 
@@ -438,19 +468,8 @@
 			var self = this;
 			var secret = data.data.paymentsecret || false;
 
-			// Check if we already tried to pay
-			if(this._paymentIntent !== null) {
-				if(typeof this._paymentIntent.paymentIntent !== "undefined") {
-					// Check if payment was successful
-					if(this._paymentIntent.paymentIntent.status === "succeeded") {
-						// Success, submit the form
-						if (self._beforeSubmitCallback) {
-							self._beforeSubmitCallback.call();
-						}
-
-						return;
-					}
-				}
+			if (self._beforeSubmitCallback) {
+				self._beforeSubmitCallback.call();
 			}
 
 			var receipt = this.getStripeData('receipt');
@@ -462,26 +481,6 @@
 					receipt_email: this.get_field_value(receiptEmail) || ''
 				};
 			}
-
-			// Handle card payment
-			this._stripe.handleCardPayment(
-				secret, this._cardElement, Object.assign(
-					receiptObject,
-					this.getBillingData()
-				)
-			).then(function(result) {
-				if (result.error) {
-					self.show_error(result.error.message);
-				} else {
-					// Capture Payment Intent object
-					self._paymentIntent = result;
-
-					// Success, submit the form
-					if (self._beforeSubmitCallback) {
-						self._beforeSubmitCallback.call();
-					}
-				}
-			});
 		},
 
 		mountCardField: function () {
@@ -515,7 +514,7 @@
 			if (fontFamily && customFonts) {
 				stripeObject.fonts = [
 					{
-						cssSrc: 'https://fonts.googleapis.com/css?family=' + fontFamily,
+						cssSrc: 'https://fonts.googleapis.om/css?family=' + fontFamily,
 					}
 				];
 			}
@@ -546,6 +545,9 @@
 							},
 							':hover': {
 								iconColor: this.getStripeData( 'iconColorHover' ),
+							},
+							':focus': {
+								iconColor: this.getStripeData( 'iconColorFocus' ),
 							}
 						},
 						invalid: {
@@ -621,6 +623,14 @@
 		getStripeData: function (key) {
 			if (typeof this._stripeData[key] !== 'undefined') {
 				return this._stripeData[key];
+			}
+
+			return null;
+		},
+
+		getObjectValue: function(object, key) {
+			if (typeof object[key] !== 'undefined') {
+				return object[key];
 			}
 
 			return null;

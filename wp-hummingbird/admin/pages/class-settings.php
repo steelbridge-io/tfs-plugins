@@ -25,10 +25,10 @@ class Settings extends Page {
 	 */
 	public function on_load() {
 		$this->tabs = array(
-			'general' 		=> __( 'General', 'wphb' ),
+			'general'       => __( 'General', 'wphb' ),
 			'import_export' => __( 'Import / Export', 'wphb' ),
-			'data'    		=> __( 'Data & Settings', 'wphb' ),
-			'main'    		=> __( 'Accessibility', 'wphb' ),
+			'data'          => __( 'Data & Settings', 'wphb' ),
+			'main'          => __( 'Accessibility', 'wphb' ),
 		);
 	}
 
@@ -112,7 +112,7 @@ class Settings extends Page {
 	 * @since 2.2.0
 	 */
 	public function general_metabox() {
-		$link = Utils::is_member() ? 'https://premium.wpmudev.org/translate/projects/wphb' : 'https://translate.wordpress.org/projects/wp-plugins/wp-hummingbird';
+		$link = Utils::is_member() ? 'https://wpmudev.com/translate/projects/wphb' : 'https://translate.wordpress.org/projects/wp-plugins/wp-hummingbird';
 
 		$site_locale = get_locale();
 

@@ -234,10 +234,6 @@ abstract class Page {
 		// Styles.
 		wp_enqueue_style( 'wphb-admin', WPHB_DIR_URL . 'admin/assets/css/wphb-app.min.css', array(), WPHB_VERSION );
 
-		if ( version_compare( $wp_version, '5.2', '<' ) ) {
-			wp_enqueue_script( 'clipboard', WPHB_DIR_URL . 'admin/assets/js/wphb-clipboard.min.js', array(), WPHB_VERSION, true );
-		}
-
 		// Scripts.
 		wp_enqueue_script(
 			'wphb-wpmudev-sui',
@@ -250,7 +246,7 @@ abstract class Page {
 
 		// Google visualization library for Uptime and Historic Field Data Page.
 		// @see https://core.trac.wordpress.org/ticket/18857 for explanation on why.
-		if ( sanitize_title( __( 'Hummingbird Pro', 'wphb' ) ) . '_page_wphb-uptime' === $hook || 'historic' === $this->get_current_tab() ) {
+		if ( sanitize_title( __( 'Hummingbird Pro', 'wphb' ) ) . '_page_wphb-uptime' === $hook || 'main' === $this->get_current_tab() ) {
 			wp_enqueue_script( 'wphb-google-chart', 'https://www.gstatic.com/charts/loader.js', array(), WPHB_VERSION, true );
 		}
 
@@ -437,14 +433,14 @@ abstract class Page {
 
 			<?php if ( ! $hide_footer ) : ?>
 				<ul class="sui-footer-nav">
-					<li><a href="https://premium.wpmudev.org/hub/" target="_blank"><?php esc_html_e( 'The Hub', 'wphb' ); ?></a></li>
-					<li><a href="https://premium.wpmudev.org/projects/category/plugins/" target="_blank"><?php esc_html_e( 'Plugins', 'wphb' ); ?></a></li>
-					<li><a href="https://premium.wpmudev.org/roadmap/" target="_blank"><?php esc_html_e( 'Roadmap', 'wphb' ); ?></a></li>
-					<li><a href="https://premium.wpmudev.org/hub/support/" target="_blank"><?php esc_html_e( 'Support', 'wphb' ); ?></a></li>
-					<li><a href="https://premium.wpmudev.org/docs/" target="_blank"><?php esc_html_e( 'Docs', 'wphb' ); ?></a></li>
-					<li><a href="https://premium.wpmudev.org/hub/community/" target="_blank"><?php esc_html_e( 'Community', 'wphb' ); ?></a></li>
-					<li><a href="https://premium.wpmudev.org/academy/" target="_blank"><?php esc_html_e( 'Academy', 'wphb' ); ?></a></li>
-					<li><a href="https://premium.wpmudev.org/terms-of-service/" target="_blank"><?php esc_html_e( 'Terms of Service', 'wphb' ); ?></a></li>
+					<li><a href="https://wpmudev.com/hub2/" target="_blank"><?php esc_html_e( 'The Hub', 'wphb' ); ?></a></li>
+					<li><a href="https://wpmudev.com/projects/category/plugins/" target="_blank"><?php esc_html_e( 'Plugins', 'wphb' ); ?></a></li>
+					<li><a href="https://wpmudev.com/roadmap/" target="_blank"><?php esc_html_e( 'Roadmap', 'wphb' ); ?></a></li>
+					<li><a href="https://wpmudev.com/hub2/support/" target="_blank"><?php esc_html_e( 'Support', 'wphb' ); ?></a></li>
+					<li><a href="https://wpmudev.com/docs/" target="_blank"><?php esc_html_e( 'Docs', 'wphb' ); ?></a></li>
+					<li><a href="https://wpmudev.com/hub2/community/" target="_blank"><?php esc_html_e( 'Community', 'wphb' ); ?></a></li>
+					<li><a href="https://wpmudev.com/academy/" target="_blank"><?php esc_html_e( 'Academy', 'wphb' ); ?></a></li>
+					<li><a href="https://wpmudev.com/terms-of-service/" target="_blank"><?php esc_html_e( 'Terms of Service', 'wphb' ); ?></a></li>
 					<li><a href="https://incsub.com/privacy-policy/" target="_blank"><?php esc_html_e( 'Privacy Policy', 'wphb' ); ?></a></li>
 				</ul>
 			<?php endif; ?>
@@ -453,12 +449,12 @@ abstract class Page {
 
 			<ul class="sui-footer-nav">
 				<li><a href="https://profiles.wordpress.org/wpmudev#content-plugins" target="_blank"><?php esc_html_e( 'Free Plugins', 'wphb' ); ?></a></li>
-				<li><a href="https://premium.wpmudev.org/features/" target="_blank"><?php esc_html_e( 'Membership', 'wphb' ); ?></a></li>
-				<li><a href="https://premium.wpmudev.org/roadmap/" target="_blank"><?php esc_html_e( 'Roadmap', 'wphb' ); ?></a></li>
+				<li><a href="https://wpmudev.com/features/" target="_blank"><?php esc_html_e( 'Membership', 'wphb' ); ?></a></li>
+				<li><a href="https://wpmudev.com/roadmap/" target="_blank"><?php esc_html_e( 'Roadmap', 'wphb' ); ?></a></li>
 				<li><a href="https://wordpress.org/support/plugin/hummingbird-performance" target="_blank"><?php esc_html_e( 'Support', 'wphb' ); ?></a></li>
-				<li><a href="https://premium.wpmudev.org/docs/" target="_blank"><?php esc_html_e( 'Docs', 'wphb' ); ?></a></li>
-				<li><a href="https://premium.wpmudev.org/hub-welcome/" target="_blank"><?php esc_html_e( 'The Hub', 'wphb' ); ?></a></li>
-				<li><a href="https://premium.wpmudev.org/terms-of-service/" target="_blank"><?php esc_html_e( 'Terms of Service', 'wphb' ); ?></a></li>
+				<li><a href="https://wpmudev.com/docs/" target="_blank"><?php esc_html_e( 'Docs', 'wphb' ); ?></a></li>
+				<li><a href="https://wpmudev.com/hub-welcome/" target="_blank"><?php esc_html_e( 'The Hub', 'wphb' ); ?></a></li>
+				<li><a href="https://wpmudev.com/terms-of-service/" target="_blank"><?php esc_html_e( 'Terms of Service', 'wphb' ); ?></a></li>
 				<li><a href="https://incsub.com/privacy-policy/" target="_blank"><?php esc_html_e( 'Privacy Policy', 'wphb' ); ?></a></li>
 			</ul>
 
@@ -541,12 +537,10 @@ abstract class Page {
 				$url = '';
 			}
 
-			$url = esc_url( $url );
-
-			return $url;
-		} else {
-			return menu_page_url( $this->slug, false );
+			return esc_url( $url );
 		}
+
+		return menu_page_url( $this->slug, false );
 	}
 
 	/**
@@ -585,6 +579,20 @@ abstract class Page {
 	public function show_tabs() {
 		$this->view(
 			'tabs',
+			array(
+				'tabs' => $this->get_tabs(),
+			)
+		);
+	}
+
+	/**
+	 * Show flat (horizontal) layout tabs.
+	 *
+	 * @since 3.0.0
+	 */
+	public function show_tabs_flat() {
+		$this->view(
+			'tabs-flat',
 			array(
 				'tabs' => $this->get_tabs(),
 			)

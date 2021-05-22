@@ -15,6 +15,11 @@ button.notice-dismiss {
     cursor: pointer !important;
 }
 
+// Fix select overlapping other elements.
+.wpmud .sui-select.sui-select-dropdown-container--open {
+    z-index: 999;
+}
+
 .wpmud .wphb-dismiss {
     float: right;
 }
@@ -61,3 +66,10 @@ button.notice-dismiss {
 
 /* Upgrade page button issue */
 .wpmud .sui-wrap .sui-upgrade-page .sui-upgrade-page-cta__inner .sui-button-purple:hover { color: #fff; }
+
+.wpmud .box-dashboard-welcome .sui-summary-segment,
+.wrap-wphb-minification .box-minification-summary-meta-box .sui-summary-segment,
+.wpmud .box-performance-welcome .sui-summary-segment,
+.wpmud #wphb-box-summary .sui-summary-segment {
+    overflow: visible !important;
+}

@@ -27,11 +27,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php esc_html_e( 'View Full Report', 'wphb' ); ?>
 	</a>
 <?php endif; ?>
-
-<div class="sui-actions-right">
-	<span class="status-text">
-		<a href="<?php echo esc_url( $url . '&view=settings' ); ?>">
-			<?php esc_html_e( 'Customize widget', 'wphb' ); ?>
-		</a>
-	</span>
-</div>

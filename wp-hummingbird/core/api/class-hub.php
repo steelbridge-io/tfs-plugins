@@ -107,6 +107,11 @@ class Hub {
 		if ( ! is_array( $status ) ) {
 			$result['browser-caching'] = new WP_Error( 'browser-caching-status-not-found', 'There is not Browser Caching data yet' );
 		} else {
+			// We have a Cloudflare connection.
+			if ( Utils::get_module( 'cloudflare' )->is_connected() && Utils::get_module( 'cloudflare' )->is_zone_selected() ) {
+				$status = array_fill_keys( array_keys( $status ), Utils::get_module( 'cloudflare' )->get_caching_expiration() );
+			}
+
 			$result['browser-caching'] = array();
 			foreach ( $status as $status_name => $status_value ) {
 				$result['browser-caching']['status'][ strtolower( $status_name ) ] = $status_value;
@@ -184,7 +189,7 @@ class Hub {
 		$options = $module->get_options();
 
 		$result['db-cleanup']['status']    = $options['db_cleanups'];
-		$result['db-cleanup']['frequency'] = $options['db_frequency'];
+		$result['db-cleanup']['frequency'] = isset( $options['db_frequency'] ) ? $options['db_frequency'] : 7;
 
 		/**
 		 * Advanced tools.
@@ -201,8 +206,6 @@ class Hub {
 		$performance_module    = Utils::get_module( 'performance' );
 		$options               = $performance_module->get_options();
 		$performance_is_active = $options['reports']['enabled'];
-
-		$result['performance'] = $options['hub'];
 
 		$uptime_is_active     = Utils::get_module( 'uptime' )->is_active();
 		$uptime_reporting     = Settings::get_setting( 'reports', 'uptime' );
