@@ -30,4 +30,36 @@ function news_template_meta_save( $post_id ) {
   if( isset( $_POST[ 'news-template-select-post' ] ) ) {
     update_post_meta( $post_id, 'news-template-select-post', $_POST[ 'news-template-select-post' ] );
   }
+  
+  if( isset( $_POST[ 'news-template-read-more-cat-one' ] ) ) {
+    update_post_meta( $post_id, 'news-template-read-more-cat-one', $_POST[ 'news-template-read-more-cat-one' ] );
+  }
+  
+  if( isset( $_POST[ 'read-more-image-one' ] ) ) {
+    update_post_meta( $post_id, 'read-more-image-one', $_POST[ 'read-more-image-one' ] );
+  }
+  
+  if( isset( $_POST[ 'news-template-read-more-cat-two' ] ) ) {
+    update_post_meta( $post_id, 'news-template-read-more-cat-two', $_POST[ 'news-template-read-more-cat-two' ] );
+  }
+  
+  if( isset( $_POST[ 'read-more-image-two' ] ) ) {
+    update_post_meta( $post_id, 'read-more-image-two', $_POST[ 'read-more-image-two' ] );
+  }
+  
+  if( isset( $_POST[ 'news-template-read-more-cat-three' ] ) ) {
+    update_post_meta( $post_id, 'news-template-read-more-cat-three', $_POST[ 'news-template-read-more-cat-three' ] );
+  }
+  
+  if( isset( $_POST[ 'read-more-image-three' ] ) ) {
+    update_post_meta( $post_id, 'read-more-image-three', $_POST[ 'read-more-image-three' ] );
+  }
+  
+  if( isset( $_POST[ 'news-template-read-more-cat-four' ] ) ) {
+    update_post_meta( $post_id, 'news-template-read-more-cat-four', $_POST[ 'news-template-read-more-cat-four' ] );
+  }
+  
+  if( isset( $_POST[ 'read-more-image-four' ] ) ) {
+    update_post_meta( $post_id, 'read-more-image-four', $_POST[ 'read-more-image-four' ] );
+  }
 }

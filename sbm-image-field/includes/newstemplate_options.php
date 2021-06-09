@@ -66,6 +66,61 @@ $news_template_stored_meta = get_post_meta( $post->ID );?>
     <strong><label for="news-template-description" class="news-template-description"><?php _e( 'Hero Image Description', 'The_Fly_Shop' )?></label></strong>
     <textarea style="width: 100%;" rows="4" name="news-template-description" id="news-template-description"><?php if ( isset ( $news_template_stored_meta['news-template-description'] ) ) echo $news_template_stored_meta['news-template-description'][0]; ?></textarea>
   </p>
-
-
+ 
+  <hr>
+ 
+  <p> <!-- ==== Read More Category Link #1 ==== -->
+   <strong><label for="news-template-read-more-cat-one" class="news-template-read-more-cat-one"><?php _e('<h3>Read More From This Category Link #1</h3>', 'The_Fly_Shop')?></label></strong>
+   <input style="width: 100%;" type="url" name="news-template-read-more-cat-one" id="news-template-read-more-cat-one" value="<?php if (isset($news_template_stored_meta['news-template-read-more-cat-one'])) echo $news_template_stored_meta['news-template-read-more-cat-one'][0]; ?>" />
+  </p>
+ 
+  <p> <!-- ==== Read More Background Image #1 ==== -->
+   <label for="read-more-image-one" class="read-more-image-one"><?php _e( '<h3>Read More Image #1</h3>', 'The_Fly_Shop' );?></label>
+   <input type="text" name="read-more-image-one" id="read-more-image-one" value="<?php if ( isset ( $news_template_stored_meta['read-more-image-one'] ) ) echo $news_template_stored_meta['read-more-image-one'][0];?>" />
+   <input type="button" id="read-more-image-one-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'The_Fly_Shop' );?>" />
+  </p>
+ 
+  <hr>
+ 
+  <p> <!-- ==== Read More Category Link #2 ==== -->
+   <strong><label for="news-template-read-more-cat-two" class="news-template-read-more-cat-two"><?php _e('<h3>Read More From This Category Link #2</h3>', 'The_Fly_Shop')?></label></strong>
+   <input style="width: 100%;" type="url" name="news-template-read-more-cat-two" id="news-template-read-more-cat-two" value="<?php if (isset($news_template_stored_meta['news-template-read-more-cat-two'])) echo $news_template_stored_meta['news-template-read-more-cat-two'][0]; ?>" />
+  </p>
+ 
+  
+  <p> <!-- ==== Read More Background Image #2 ==== -->
+   <label for="read-more-image-two" class="read-more-image-two"><?php _e( '<h3>Read More Image #2</h3>', 'The_Fly_Shop' );?></label>
+   <input type="text" name="read-more-image-two" id="read-more-image-two" value="<?php if ( isset ( $news_template_stored_meta['read-more-image-two'] ) ) echo $news_template_stored_meta['read-more-image-two'][0];?>" />
+   <input type="button" id="read-more-image-two-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'The_Fly_Shop' );?>" />
+  </p>
+ 
+  <hr>
+ 
+  <p> <!-- ==== Read More Category Link #3 ==== -->
+   <strong><label for="news-template-read-more-cat-three" class="news-template-read-more-cat-three"><?php _e('<h3>Read More From This Category Link #3</h3>', 'The_Fly_Shop')?></label></strong>
+   <input style="width: 100%;" type="url" name="news-template-read-more-cat-three" id="news-template-read-more-cat-three" value="<?php if (isset($news_template_stored_meta['news-template-read-more-cat-three'])) echo $news_template_stored_meta['news-template-read-more-cat-three'][0]; ?>" />
+  </p>
+ 
+ 
+  <p> <!-- ==== Read More Background Image #3 ==== -->
+   <label for="read-more-image-three" class="read-more-image-three"><?php _e( '<h3>Read More Image #3</h3>', 'The_Fly_Shop' );?></label>
+   <input type="text" name="read-more-image-three" id="read-more-image-three" value="<?php if ( isset ( $news_template_stored_meta['read-more-image-three'] ) ) echo $news_template_stored_meta['read-more-image-three'][0];?>" />
+   <input type="button" id="read-more-image-three-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'The_Fly_Shop' );?>" />
+  </p>
+ 
+  <hr>
+ 
+  <p> <!-- ==== Read More Category Link #4 ==== -->
+   <strong><label for="news-template-read-more-cat-four" class="news-template-read-more-cat-four"><?php _e('<h3>Read More From This Category Link #4</h3>', 'The_Fly_Shop')?></label></strong>
+   <input style="width: 100%;" type="url" name="news-template-read-more-cat-four" id="news-template-read-more-cat-four" value="<?php if (isset($news_template_stored_meta['news-template-read-more-cat-four'])) echo $news_template_stored_meta['news-template-read-more-cat-four'][0]; ?>" />
+  </p>
+ 
+  
+ 
+  <p> <!-- ==== Read More Background Image #4 ==== -->
+   <label for="read-more-image-four" class="read-more-image-four"><?php _e( '<h3>Read More Image #4</h3>', 'The_Fly_Shop' );?></label>
+   <input type="text" name="read-more-image-four" id="read-more-image-four" value="<?php if ( isset ( $news_template_stored_meta['read-more-image-four'] ) ) echo $news_template_stored_meta['read-more-image-four'][0];?>" />
+   <input type="button" id="read-more-image-four-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'The_Fly_Shop' );?>" />
+  </p>
+ 
 <?php  }
