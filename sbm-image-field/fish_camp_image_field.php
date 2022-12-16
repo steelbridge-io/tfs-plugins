@@ -55,10 +55,9 @@ function fish_camp_meta_callback( $post ) {
 		
 		<label for="feature-fc1-video" class="fish-camp-row-title"><?php _e( '<strong>Paste implicit video URL here. You can also paste the embed Google Map URL here:</strong>', 'fish-camp-textdomain' )?></label>
 		<input type="url" style="width:50%;" name="feature-fc1-video" id="feature-fc1-video" value="<?php if ( isset ( $fish_camp_stored_meta['feature-fc1-video'] ) ) echo $fish_camp_stored_meta['feature-fc1-video'][0]; ?>" />
-		  
-    </p>
-    
-    <p> <!-- ==== FISH CAMP VIDEO/IMAGE OPTION ==== -->
+		</p>
+
+		<p> <!-- ==== FISH CAMP VIDEO/IMAGE OPTION ==== -->
 
 		<span class="fish-camp-row-title"><?php _e( '<strong>Image or Video?</strong>', 'fish-camp-textdomain' )?></span>
 		<div class="fish-camp-row-content">
@@ -82,8 +81,8 @@ function fish_camp_meta_callback( $post ) {
 		
 		<label for="feature-fc2-video" class="fish-camp-row-title"><?php _e( '<strong>Paste implicit video URL here. You can also paste the embed Google Map URL here:</strong>', 'fish-camp-textdomain' )?></label>
 		<input type="url" style="width:50%;" name="feature-fc2-video" id="feature-fc2-video" value="<?php if ( isset ( $fish_camp_stored_meta['feature-fc2-video'] ) ) echo $fish_camp_stored_meta['feature-fc2-video'][0]; ?>" />
-        
-    </p>
+
+		</p>
 	
 		<p> <!-- ==== FISH CAMP DATES VIDEO/IMAGE OPTION ==== -->
 
@@ -112,9 +111,8 @@ function fish_camp_meta_callback( $post ) {
 		
 		<label for="feature-fc3-video" class="fish-camp-row-title"><?php _e( '<strong>Paste implicit video URL here. You can also paste the embed Google Map URL here:</strong>', 'fish-camp-textdomain' )?></label>
 		<input type="url" style="width:50%;" name="feature-fc3-video" id="feature-fc3-video" value="<?php if ( isset ( $fish_camp_stored_meta['feature-fc3-video'] ) ) echo $fish_camp_stored_meta['feature-fc3-video'][0]; ?>" />
-        
-    </p>
-    
+		</p>
+
 		<p> <!-- ==== FISH CAMP LODGING VIDEO/IMAGE OPTION ==== -->
 
 		<span class="fish-camp-row-title"><?php _e( '<strong>Image or Video?</strong>', 'fish-camp-textdomain' )?></span>
@@ -140,9 +138,9 @@ function fish_camp_meta_callback( $post ) {
 		
 		<label for="feature-fc4-video" class="fish-camp-row-title"><?php _e( '<strong>Paste implicit video URL here. You can also paste the embed Google Map URL here:</strong>', 'fish-camp-textdomain' )?></label>
 		<input type="url" style="width:50%;" name="feature-fc4-video" id="feature-fc4-video" value="<?php if ( isset ( $fish_camp_stored_meta['feature-fc4-video'] ) ) echo $fish_camp_stored_meta['feature-fc4-video'][0]; ?>" />
-        
-    </p>
-    
+
+		</p>
+
 		<p> <!-- ==== FISH CAMP GETTING THERE VIDEO/IMAGE OPTION ==== -->
 
 		<span class="fish-camp-row-title"><?php _e( '<strong>Image or Video?</strong>', 'fish-camp-textdomain' )?></span>
@@ -169,9 +167,9 @@ function fish_camp_meta_callback( $post ) {
 		
 		<label for="feature-fc5-video" class="fish-camp-row-title"><?php _e( '<strong>Paste implicit video URL here. You can also paste the embed Google Map URL here:</strong>', 'fish-camp-textdomain' )?></label>
 		<input type="url" style="width:50%;" name="feature-fc5-video" id="feature-fc5-video" value="<?php if ( isset ( $fish_camp_stored_meta['feature-fc5-video'] ) ) echo $fish_camp_stored_meta['feature-fc5-video'][0]; ?>" />
-        
-    </p>
-    
+
+		</p>
+
 		<p> <!-- ==== FISH CAMP ITINERARY VIDEO/IMAGE OPTION ==== -->
 
 		<span class="fish-camp-row-title"><?php _e( '<strong>Image or Video?</strong>', 'fish-camp-textdomain' )?></span>

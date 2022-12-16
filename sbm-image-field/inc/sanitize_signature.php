@@ -1319,6 +1319,231 @@ function signature_meta_save( $post_id ) {
 		update_post_meta( $post_id, 'signature-image-43-caption', $_POST[ 'signature-image-43-caption' ] );
 	}
 	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-44-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-44-title', $_POST[ 'signature-image-44-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-44-title-link' ]) ) {
+		update_post_meta( $post_id, 'signature-image-44-title-link', $_POST[ 'signature-image-44-title-link' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-44' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-44', $_POST[ 'signature-image-44' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-44-sub-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-44-sub-title', $_POST[ 'signature-image-44-sub-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-44-caption' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-44-caption', $_POST[ 'signature-image-44-caption' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-45-title'] ) ) {
+		update_post_meta( $post_id, 'signature-image-45-title', $_POST['signature-image-45-title'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-45-title-link'] ) ) {
+		update_post_meta( $post_id, 'signature-image-45-title-link', $_POST['signature-image-45-title-link'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-45'] ) ) {
+		update_post_meta( $post_id, 'signature-image-45', $_POST['signature-image-45'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-45-sub-title'] ) ) {
+		update_post_meta( $post_id, 'signature-image-45-sub-title', $_POST['signature-image-45-sub-title'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-45-caption'] ) ) {
+		update_post_meta( $post_id, 'signature-image-45-caption', $_POST['signature-image-45-caption'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-46-title'] ) ) {
+		update_post_meta( $post_id, 'signature-image-46-title', $_POST['signature-image-46-title'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-46-title-link'] ) ) {
+		update_post_meta( $post_id, 'signature-image-46-title-link', $_POST['signature-image-46-title-link'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-46'] ) ) {
+		update_post_meta( $post_id, 'signature-image-46', $_POST['signature-image-46'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-46-sub-title'] ) ) {
+		update_post_meta( $post_id, 'signature-image-46-sub-title', $_POST['signature-image-46-sub-title'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['signature-image-46-caption'] ) ) {
+		update_post_meta( $post_id, 'signature-image-46-caption', $_POST['signature-image-46-caption'] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-47-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-47-title', $_POST[ 'signature-image-47-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-47-title-link' ]) ) {
+		update_post_meta( $post_id, 'signature-image-47-title-link', $_POST[ 'signature-image-47-title-link' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-47' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-47', $_POST[ 'signature-image-47' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-47-sub-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-47-sub-title', $_POST[ 'signature-image-47-sub-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-47-caption' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-47-caption', $_POST[ 'signature-image-47-caption' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-48-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-48-title', $_POST[ 'signature-image-48-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-48-title-link' ]) ) {
+		update_post_meta( $post_id, 'signature-image-48-title-link', $_POST[ 'signature-image-48-title-link' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-48' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-48', $_POST[ 'signature-image-48' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-48-sub-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-48-sub-title', $_POST[ 'signature-image-48-sub-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-48-caption' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-48-caption', $_POST[ 'signature-image-48-caption' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-49-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-49-title', $_POST[ 'signature-image-49-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-49-title-link' ]) ) {
+		update_post_meta( $post_id, 'signature-image-49-title-link', $_POST[ 'signature-image-49-title-link' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-49' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-49', $_POST[ 'signature-image-49' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-49-sub-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-49-sub-title', $_POST[ 'signature-image-49-sub-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-49-caption' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-49-caption', $_POST[ 'signature-image-49-caption' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-50-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-50-title', $_POST[ 'signature-image-50-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-50-title-link' ]) ) {
+		update_post_meta( $post_id, 'signature-image-50-title-link', $_POST[ 'signature-image-50-title-link' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-50' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-50', $_POST[ 'signature-image-50' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-50-sub-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-50-sub-title', $_POST[ 'signature-image-50-sub-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-50-caption' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-50-caption', $_POST[ 'signature-image-50-caption' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-51-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-51-title', $_POST[ 'signature-image-51-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-51-title-link' ]) ) {
+		update_post_meta( $post_id, 'signature-image-51-title-link', $_POST[ 'signature-image-51-title-link' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-51' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-51', $_POST[ 'signature-image-51' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-51-sub-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-51-sub-title', $_POST[ 'signature-image-51-sub-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-51-caption' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-51-caption', $_POST[ 'signature-image-51-caption' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-52-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-52-title', $_POST[ 'signature-image-52-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-52-title-link' ]) ) {
+		update_post_meta( $post_id, 'signature-image-52-title-link', $_POST[ 'signature-image-52-title-link' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-52' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-52', $_POST[ 'signature-image-52' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-52-sub-title' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-52-sub-title', $_POST[ 'signature-image-52-sub-title' ] );
+	}
+	
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'signature-image-52-caption' ] ) ) {
+		update_post_meta( $post_id, 'signature-image-52-caption', $_POST[ 'signature-image-52-caption' ] );
+	}
+	
 	// Checks for input and saves for centered final image
 		if( isset( $_POST[ 'signature-1-checkbox' ] ) ) {
 				update_post_meta( $post_id, 'signature-1-checkbox', 'yes' );
