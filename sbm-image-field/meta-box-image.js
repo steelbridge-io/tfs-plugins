@@ -9797,6 +9797,366 @@ jQuery(document).ready( function($){ "use strict";
         signature_image_52_frame.open();
     });
 
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_53_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-53-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_53_frame ) {
+            signature_image_53_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_53_frame = wp.media.frames.signature_image_53_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_53_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_53_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-53').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_53_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_54_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-54-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_54_frame ) {
+            signature_image_54_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_54_frame = wp.media.frames.signature_image_54_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_54_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_54_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-54').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_54_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_55_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-55-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_55_frame ) {
+            signature_image_55_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_55_frame = wp.media.frames.signature_image_55_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_55_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_55_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-55').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_55_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_56_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-56-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_56_frame ) {
+            signature_image_56_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_56_frame = wp.media.frames.signature_image_56_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_56_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_56_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-56').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_56_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_57_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-57-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_57_frame ) {
+            signature_image_57_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_57_frame = wp.media.frames.signature_image_57_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_57_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_57_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-57').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_57_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_58_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-58-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_58_frame ) {
+            signature_image_58_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_58_frame = wp.media.frames.signature_image_58_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_58_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_58_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-58').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_58_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_59_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-59-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_59_frame ) {
+            signature_image_59_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_59_frame = wp.media.frames.signature_image_59_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_59_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_59_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-59').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_59_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_60_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-60-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_60_frame ) {
+            signature_image_60_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_60_frame = wp.media.frames.signature_image_60_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_60_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_60_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-60').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_60_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_61_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-61-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_61_frame ) {
+            signature_image_61_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_61_frame = wp.media.frames.signature_image_61_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_61_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_61_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-61').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_61_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var signature_image_62_frame;
+
+    // Runs when the image button is clicked.
+    $('#signature-image-62-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( signature_image_62_frame ) {
+            signature_image_62_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        signature_image_62_frame = wp.media.frames.signature_image_62_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        signature_image_62_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = signature_image_62_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#signature-image-62').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        signature_image_62_frame.open();
+    });
+
 });
 
 jQuery(document).ready( function($){ "use strict";
