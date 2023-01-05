@@ -56,7 +56,7 @@ function esb_lodge() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
-		'rewrite' => array('slug' => 'esbLodge', 'with_front' => false ),
+		'rewrite' => array('slug' => 'esb-lodge', 'with_front' => false ),
 	);
 	register_post_type( 'esb_lodge', $args );
 
