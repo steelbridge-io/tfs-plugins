@@ -53,12 +53,10 @@ function schools_meta_callback( $post ) {
 		
 		<p> <!-- ==== FEATURE #1 / SCHOOLS WATERS TEXT/VIDEO ==== -->
 		
-		<label for="feature-sch1-video" class="schools-row-title"><?php _e( '<strong>Paste implicit video URL here. No shortened versions:</strong>', 'schools-textdomain' )?></label>
+		<label for="feature-sch1-video" class="schools-row-title"><?php _e( '<strong>Enter Public URL</strong>', 'schools-textdomain' )?></label>
 		<input type="url" name="feature-sch1-video" id="feature-sch1-video" value="<?php if ( isset ( $schools_stored_meta['feature-sch1-video'] ) ) echo $schools_stored_meta['feature-sch1-video'][0]; ?>" />
-		  
-    </p>
-    
-    <p> <!-- ==== FEATURE #1 / SCHOOLS VIDEO/IMAGE OPTION ==== -->
+		</p>
+		<p> <!-- ==== FEATURE #1 / SCHOOLS VIDEO/IMAGE OPTION ==== -->
 
 		<span class="schools-row-title"><?php _e( '<strong>Image or Video?</strong>', 'schools-textdomain' )?></span>
 		<div class="schools-row-content">
@@ -81,10 +79,9 @@ function schools_meta_callback( $post ) {
 		
 		<p> <!-- ==== SCHOOLS DATES TEXT/VIDEO ==== -->
 		
-		<label for="feature-sch2-video" class="schools-row-title"><?php _e( '<strong>Paste implicit video URL here. No shortened versions:</strong>', 'schools-textdomain' )?></label>
+		<label for="feature-sch2-video" class="schools-row-title"><?php _e( '<strong>Enter Public URL</strong>', 'schools-textdomain' )?></label>
 		<input type="url" name="feature-sch2-video" id="feature-sch2-video" value="<?php if ( isset ( $schools_stored_meta['feature-sch2-video'] ) ) echo $schools_stored_meta['feature-sch2-video'][0]; ?>" />
-        
-    </p>
+		</p>
 	
 		<p> <!-- ==== SCHOOL DATES VIDEO/IMAGE OPTION ==== -->
 
@@ -98,11 +95,7 @@ function schools_meta_callback( $post ) {
 		</div>
 		
 		</p>
-
-
-
-
-
+	
   <!-- ITINERARY SECTION -------------------------------------------------------------------- -->
 
     <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
@@ -117,11 +110,10 @@ function schools_meta_callback( $post ) {
 		
 		<p> <!-- ==== LODGING TEXT/VIDEO ==== -->
 		
-		<label for="feature-sch5-video" class="schools-row-title"><?php _e( '<strong>Paste implicit video URL here. No shortened versions:</strong>', 'schools-textdomain' )?></label>
+		<label for="feature-sch5-video" class="schools-row-title"><?php _e( '<strong>Enter Public URL</strong>', 'schools-textdomain' )?></label>
 		<input type="url" name="feature-sch5-video" id="feature-sch5-video" value="<?php if ( isset ( $schools_stored_meta['feature-sch5-video'] ) ) echo $schools_stored_meta['feature-sch5-video'][0]; ?>" />
-        
-    </p>
-    
+		</p>
+
 		<p> <!-- ==== LODGING VIDEO/IMAGE OPTION ==== -->
 
 		<span class="schools-row-title"><?php _e( '<strong>Image or Video?</strong>', 'schools-textdomain' )?></span>
@@ -147,11 +139,10 @@ function schools_meta_callback( $post ) {
 		
 		<p> <!-- ==== GETTING THERE TEXT/VIDEO ==== -->
 		
-		<label for="feature-sch4-video" class="schools-row-title"><?php _e( '<strong>Paste implicit video URL here. No shortened versions:</strong>', 'schools-textdomain' )?></label>
+		<label for="feature-sch4-video" class="schools-row-title"><?php _e( '<strong>Enter Public URL</strong>', 'schools-textdomain' )?></label>
 		<input type="url" name="feature-sch4-video" id="feature-sch4-video" value="<?php if ( isset ( $schools_stored_meta['feature-sch4-video'] ) ) echo $schools_stored_meta['feature-sch4-video'][0]; ?>" />
-        
-    </p>
-    
+		</p>
+
 		<p> <!-- ==== GETTING THERE VIDEO/IMAGE OPTION ==== -->
 
 		<span class="schools-row-title"><?php _e( '<strong>Image or Video?</strong>', 'schools-textdomain' )?></span>
