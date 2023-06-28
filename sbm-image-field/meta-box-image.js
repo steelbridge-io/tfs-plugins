@@ -11540,3 +11540,260 @@ jQuery(document).ready( function($){ "use strict";
         hero_temp_header_image_frame.open();
     });
 });
+
+
+jQuery(document).ready( function($){ "use strict";
+
+// Instantiates the variable that holds the media library frame.
+    var pdf_upload_travel_1_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#travel-pdf-upload-1-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( pdf_upload_travel_1_image_frame ) {
+            pdf_upload_travel_1_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        pdf_upload_travel_1_image_frame = wp.media.frames.pdf_upload_travel_1_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            /*library: { type: 'image' }*/
+        });
+
+        // Runs when an image is selected.
+        pdf_upload_travel_1_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = pdf_upload_travel_1_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#travel-pdf-upload-1').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        pdf_upload_travel_1_image_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var pdf_upload_travel_2_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#travel-pdf-upload-2-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( pdf_upload_travel_2_image_frame ) {
+            pdf_upload_travel_2_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        pdf_upload_travel_2_image_frame = wp.media.frames.pdf_upload_travel_2_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            /*library: { type: 'image' }*/
+        });
+
+        // Runs when an image is selected.
+        pdf_upload_travel_2_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = pdf_upload_travel_2_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#travel-pdf-upload-2').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        pdf_upload_travel_2_image_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var pdf_upload_travel_3_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#travel-pdf-upload-3-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( pdf_upload_travel_3_image_frame ) {
+            pdf_upload_travel_3_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        pdf_upload_travel_3_image_frame = wp.media.frames.pdf_upload_travel_3_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            /*library: { type: 'image' }*/
+        });
+
+        // Runs when an image is selected.
+        pdf_upload_travel_3_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = pdf_upload_travel_3_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#travel-pdf-upload-3').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        pdf_upload_travel_3_image_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var pdf_upload_travel_4_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#travel-pdf-upload-4-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( pdf_upload_travel_4_image_frame ) {
+            pdf_upload_travel_4_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        pdf_upload_travel_4_image_frame = wp.media.frames.pdf_upload_travel_4_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            /*library: { type: 'image' }*/
+        });
+
+        // Runs when an image is selected.
+        pdf_upload_travel_4_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = pdf_upload_travel_4_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#travel-pdf-upload-4').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        pdf_upload_travel_4_image_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var pdf_upload_travel_5_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#travel-pdf-upload-5-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( pdf_upload_travel_5_image_frame ) {
+            pdf_upload_travel_5_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        pdf_upload_travel_5_image_frame = wp.media.frames.pdf_upload_travel_5_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            /*library: { type: 'image' }*/
+        });
+
+        // Runs when an image is selected.
+        pdf_upload_travel_5_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = pdf_upload_travel_5_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#travel-pdf-upload-5').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        pdf_upload_travel_5_image_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var pdf_upload_travel_6_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#travel-pdf-upload-6-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( pdf_upload_travel_6_image_frame ) {
+            pdf_upload_travel_6_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        pdf_upload_travel_6_image_frame = wp.media.frames.pdf_upload_travel_6_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            /*library: { type: 'image' }*/
+        });
+
+        // Runs when an image is selected.
+        pdf_upload_travel_6_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = pdf_upload_travel_6_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#travel-pdf-upload-6').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        pdf_upload_travel_6_image_frame.open();
+    });
+
+    // Instantiates the variable that holds the media library frame.
+    var travel_sidebar_img_upload_6_image_frame;
+
+    // Runs when the image button is clicked.
+    $('#travel-sidebar-img-upload-6-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( travel_sidebar_img_upload_6_image_frame ) {
+            travel_sidebar_img_upload_6_image_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        travel_sidebar_img_upload_6_image_frame = wp.media.frames.travel_sidebar_img_upload_6_image_frame = wp.media({
+            title: meta_image.title,
+            button: { text:  meta_image.button },
+            /*library: { type: 'image' }*/
+        });
+
+        // Runs when an image is selected.
+        travel_sidebar_img_upload_6_image_frame.on('select', function(){
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = travel_sidebar_img_upload_6_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#travel-sidebar-img-upload-6').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        travel_sidebar_img_upload_6_image_frame.open();
+    });
+
+});
