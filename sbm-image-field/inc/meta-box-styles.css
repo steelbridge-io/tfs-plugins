@@ -1,6 +1,12 @@
 @charset "UTF-8";
 /* CSS Document */
 
+.travel-row-title strong {
+	float: right;
+	margin-top: 7px;
+	margin-right: 5px;
+}
+
 #travel_meta{
 overflow: hidden;
 padding-bottom: 1em;
@@ -17,7 +23,7 @@ width: 200px;
 }
 
 .travel-row-content{
-float: left;
+width: 100%;
 padding-bottom: 1em;
 }
 
