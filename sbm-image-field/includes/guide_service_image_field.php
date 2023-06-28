@@ -59,7 +59,7 @@ function guideservice_meta_callback( $post ) {
   
   <p> <!-- ==== RESERVATIONS-RATES / GUIDE SERVICE / THE FISHING VIDEO ==== -->
     
-    <label for="guideservice-gs1-video" class="guideservice-row-title"><?php _e( '<strong>Paste implicit video URL here. No shortened versions:</strong>', 'guideservice-textdomain' )?></label>
+    <label for="guideservice-gs1-video" class="guideservice-row-title"><?php _e( '<strong>Enter Public URL:</strong>', 'guideservice-textdomain' )?></label>
     <input type="url" name="guideservice-gs1-video" id="guideservice-gs1-video" value="<?php if ( isset ( $guideservice_stored_meta['guideservice-gs1-video'] ) ) echo $guideservice_stored_meta['guideservice-gs1-video'][0]; ?>" />
     
   </p>
@@ -78,7 +78,7 @@ function guideservice_meta_callback( $post ) {
   
   <p> <!-- ==== SEASONS / GUIDE SERVICE TEXT/VIDEO ==== -->
     
-    <label for="feature-gs2-video" class="guideservice-row-title"><?php _e( '<strong>Paste implicit video URL here. No shortened versions:</strong>', 'guideservice-textdomain' )?></label>
+    <label for="feature-gs2-video" class="guideservice-row-title"><?php _e( '<strong>Enter Public URL:</strong>', 'guideservice-textdomain' )?></label>
     <input type="url" name="feature-gs2-video" id="feature-gs2-video" value="<?php if ( isset ( $guideservice_stored_meta['feature-gs2-video'] ) ) echo $guideservice_stored_meta['feature-gs2-video'][0]; ?>" />
   </p>
  
@@ -115,7 +115,7 @@ function guideservice_meta_callback( $post ) {
   
   <p> <!-- ==== LODGING / LODGING TEXT/VIDEO ==== -->
     
-    <label for="feature-gs4-video" class="guideservice-row-title"><?php _e( '<strong>Paste implicit video URL here. No shortened versions:</strong>', 'guideservice-textdomain' )?></label>
+    <label for="feature-gs4-video" class="guideservice-row-title"><?php _e( '<strong>Enter Public URL:</strong>', 'guideservice-textdomain' )?></label>
     <input type="url" name="feature-gs4-video" id="feature-gs4-video" value="<?php if ( isset ( $guideservice_stored_meta['feature-gs4-video'] ) ) echo $guideservice_stored_meta['feature-gs4-video'][0]; ?>" />
     
   </p>
@@ -133,7 +133,7 @@ function guideservice_meta_callback( $post ) {
   
   <p> <!-- ==== GETTING THERE / FISHING TEXT/VIDEO ==== -->
     
-    <label for="feature-gs5-video" class="guideservice-row-title"><?php _e( '<strong>Paste implicit video URL here. No shortened versions:</strong>', 'guideservice-textdomain' )?></label>
+    <label for="feature-gs5-video" class="guideservice-row-title"><?php _e( '<strong>Enter Public URL:</strong>', 'guideservice-textdomain' )?></label>
     <input type="url" name="feature-gs5-video" id="feature-gs5-video" value="<?php if ( isset ( $guideservice_stored_meta['feature-gs5-video'] ) ) echo $guideservice_stored_meta['feature-gs5-video'][0]; ?>" />
     
   </p>
