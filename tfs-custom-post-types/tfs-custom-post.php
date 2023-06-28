@@ -22,7 +22,9 @@ include_once('post-types/fish-camp-cpt.php');
 include_once('post-types/outfitters-blog-cpt.php');
 include_once('post-types/lower-48-travel.php');
 include_once('post-types/lower-48-blog.php');
-include_once('post-types/esb-lodge.php');
+include_once('post-types/fish-report.php');
+//include_once('post-types/esb-lodge.php');
+include_once('post-types/traveldocs-cpt.php');
 
 add_action( 'after_switch_theme', 'tfspw_rewrite_flush' );
 function tfspw_rewrite_flush()
