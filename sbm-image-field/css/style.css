@@ -1,5 +1,47 @@
 /* CSS Document - Loads on admin */
 /*=======================================================+++======================*/
+.mt-1 {margin-top: 1.618em; !important;}
+.mt-2 {margin-top: 2.618em; !important;}
+.mt-3 {margin-top: 3.618em; !important;}
+.mt-4 {margin-top: 4.618em; !important;}
+.mt-5 {margin-top: 5.618em; !important;}
+
+.pt-1 {padding-top: 1.618em; !important;}
+.pt-2 {padding-top: 2.618em; !important;}
+.pt-3 {padding-top: 3.618em; !important;}
+.pt-4 {padding-top: 4.618em; !important;}
+.pt-5 {padding-top: 5.618em; !important;}
+
+#pdf-upload-options input,
+#pdf-upload-options textarea {
+    width: 100%;
+}
+
+.fly-list.btn.btn-danger {
+    background-color: #A01623;
+    padding: 1em;
+    width: 100%;
+    color: #f5f5f5;
+}
+
+
+.inside #pdf-upload-options.container {
+    width: 100%;
+}
+
+#questionaire-side-image.container,
+#questionaire-side-image .container {
+    width: 100%;
+}
+
+.width-100 {
+    width: 100% !important;
+}
+
+.button.mt-1.width-100 {
+    margin-top: 1em !important;
+}
+
 pre {
     white-space: pre-line;
 }
