@@ -37,6 +37,11 @@ function tfs_basic_blog_meta_callback( $post ) {
   </div>
   
   <div class="container">
+   <p>
+    <!-- Hero Video URL -->
+    <strong><label for="hero-video-url" class="holiday-row-title"><?php _e( 'Add Video URL', 'the-fly-shop' );?></label></strong>
+    <input style="width: 100%;" type="url" name="hero-video-url" id="hero-video-url" value="<?php if ( isset ( $tfs_basic_blog_template_meta['hero-video-url'] ) ) echo $tfs_basic_blog_template_meta['hero-video-url'][0]; ?>" />
+   </p>
     <div class="row">
       <div class="col-md-2">
       <p>
