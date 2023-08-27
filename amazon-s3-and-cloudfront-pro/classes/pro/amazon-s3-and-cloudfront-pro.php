@@ -839,6 +839,17 @@ class Amazon_S3_And_CloudFront_Pro extends Amazon_S3_And_CloudFront {
 	}
 
 	/**
+	 * Get UTM content for WP Engine URL.
+	 *
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	protected static function get_wpe_url_utm_content( $content = 'plugin_footer_text' ) {
+		return 'ome_pro_' . $content;
+	}
+
+	/**
 	 * Get licence information that is safe to display.
 	 *
 	 * @param bool $skip_transient_check
