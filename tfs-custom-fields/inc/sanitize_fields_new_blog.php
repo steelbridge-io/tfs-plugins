@@ -13,6 +13,10 @@ $is_valid_nonce_new = ( isset( $_POST[ 'new_blog_nonce' ] ) && wp_verify_nonce( 
 if ( $is_autosave_new || $is_revision_new || !$is_valid_nonce_new ) {
 return;
 }
+
+		if( isset( $_POST[ 'hero-video-url' ] ) ) {
+				update_post_meta( $post_id, 'hero-video-url', $_POST[ 'hero-video-url' ] );
+		}
   
   if( isset( $_POST[ 'blog-template-logo' ] ) ) {
     update_post_meta( $post_id, 'blog-template-logo', sanitize_text_field( $_POST[ 'blog-template-logo' ] ) );

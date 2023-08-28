@@ -35,8 +35,14 @@ function tfs_newblog_callback( $post ) {
   <div style="margin-top: 1.618em;">
     <h1>Blog Template Custom Content</h1>
   </div>
+
+    <p>
+        <!-- Hero Video URL -->
+        <strong><label for="hero-video-url" class="holiday-row-title"><?php _e( 'Add Video URL', 'the-fly-shop' );?></label></strong>
+        <input style="width: 100%;" type="url" name="hero-video-url" id="hero-video-url" value="<?php if ( isset ( $sbm_stored_blog_meta['hero-video-url'] ) ) echo $sbm_stored_blog_meta['hero-video-url'][0]; ?>" />
+    </p>
   
-  <p>
+    <p>
     <label for="select-sidebar" class="prfx-row-title"><h3><?php _e( 'Sidebar Select', 'The_Fly_Shop' )?></h3></label>
     <select name="select-sidebar" id="select-sidebar">
       <option value="" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], '' ); ?>><?php _e( 'Default', 'The_Fly_Shop' )?></option>';
@@ -49,40 +55,39 @@ function tfs_newblog_callback( $post ) {
       <option value="survey" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'survey' ); ?>><?php _e( 'Survey', 'The_Fly_Shop' )?></option>';
       <option value="travel" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'travel' ); ?>><?php _e( 'Travel', 'The_Fly_Shop' )?></option>';
     </select>
-  </p>
+    </p>
   
-  <p> <!-- ==== TFS LOGO ==== -->
-    
+    <p> <!-- ==== TFS LOGO ==== -->
+
     <label for="blog-template-logo" class="fish-camp-row-title"><?php _e( '<h3>TFS Logo</h3>', 'the-fly-shop' );?></label>
     <input type="text" style="width:50%;" name="blog-template-logo" id="blog-template-logo" value="<?php if ( isset ( $sbm_stored_blog_meta['blog-template-logo'] ) ) echo $sbm_stored_blog_meta['blog-template-logo'][0];?>" />
     <input type="button" id="blog-template-logo-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
-  
-  </p>
+
+    </p>
   
   <!-- description -->
-  <p>
-    
+    <p>
+
     <strong><label for="blog-description-new" class="blog-row-title"><?php _e('Blog Description','tfs-blog-textdomain')?></label></strong>
     <input style="width: 100%;" type="text" name="blog-description-new" id="blog-description-new" value="<?php if (isset($sbm_stored_blog_meta['blog-description-new'])) echo $sbm_stored_blog_meta['blog-description-new'][0]; ?>" />
-  </p>
-  
-  <p>
+    </p>
+
   
   <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
   
   <!-- Blog CTA title -->
-  <p>
-    
+    <p>
+
     <strong><label for="blog-cta-title-new" class="blog-row-title"><?php _e('Call To Action Tilte','tfs-blog-textdomain')?></label></strong>
     <input style="width: 100%;" type="text" name="blog-cta-title-new" id="blog-cta-title-new" value="<?php if (isset($sbm_stored_blog_meta['blog-cta-title-new'])) echo $sbm_stored_blog_meta['blog-cta-title-new'][0]; ?>" />
-  </p>
+    </p>
   
-  <p>
-    
+    <p>
+
     <!-- CTA content -->
     <strong><label for="blog-cta-content-new" class="basic-row-title"><?php _e( 'Blog CTA Content', 'tfs-blog-textdomain' )?></label></strong>
     <textarea style="width: 100%;" rows="4" name="blog-cta-content-new" id="blog-cta-content-new"><?php if ( isset ( $sbm_stored_blog_meta['blog-cta-content-new'] ) ) echo $sbm_stored_blog_meta['blog-cta-content-new'][0]; ?></textarea>
-  
-  </p>
+
+    </p>
 
 <?php }
