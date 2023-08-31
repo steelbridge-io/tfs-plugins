@@ -13,6 +13,11 @@ function outfitters_meta_save( $post_id ) {
   if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
     return;
   }
+
+		// Checks for input and saves if needed
+  if( isset( $_POST[ 'hero-video-url' ] ) ) {
+		  update_post_meta( $post_id, 'hero-video-url', $_POST[ 'hero-video-url' ] );
+  }
   
   // Checks for input and saves if needed
   if( isset( $_POST[ 'outfitters-logo' ] ) ) {

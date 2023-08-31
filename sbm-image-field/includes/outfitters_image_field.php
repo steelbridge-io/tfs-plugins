@@ -28,8 +28,14 @@ add_action( 'add_meta_boxes', 'outfitters_blog_custom_meta' );
 function outfittersblog_meta_callback( $post ) {
 wp_nonce_field( basename( __FILE__ ), 'outfittersblog_nonce' );
 $outfittersblog_stored_meta = get_post_meta( $post->ID );?>
-  
-  <p>
+
+    <p>
+        <!-- Hero Video URL -->
+        <strong><label for="hero-video-url" class="holiday-row-title"><?php _e( 'Add Video URL', 'the-fly-shop' );?></label></strong>
+        <input style="width: 100%;" type="url" name="hero-video-url" id="hero-video-url" value="<?php if ( isset ( $outfittersblog_stored_meta['hero-video-url'] ) ) echo $outfittersblog_stored_meta['hero-video-url'][0]; ?>" />
+    </p>
+
+    <p>
     <label for="outfitters-select-sidebar" class="prfx-row-title"><h3><?php _e( 'Sidebar Select', 'The_Fly_Shop' )?></h3></label>
     <select name="outfitters-select-sidebar" id="outfitters-select-sidebar">
       <option value="" <?php if ( isset ( $outfittersblog_stored_meta['outfitters-select-sidebar'] ) ) selected( $outfittersblog_stored_meta['outfitters-select-sidebar'][0], '' ); ?>><?php _e( 'Default', 'The_Fly_Shop' )?></option>';
@@ -42,7 +48,7 @@ $outfittersblog_stored_meta = get_post_meta( $post->ID );?>
       <option value="survey" <?php if ( isset ( $outfittersblog_stored_meta['outfitters-select-sidebar'] ) ) selected( $outfittersblog_stored_meta['outfitters-select-sidebar'][0], 'survey' ); ?>><?php _e( 'Survey', 'The_Fly_Shop' )?></option>';
       <option value="travel" <?php if ( isset ( $outfittersblog_stored_meta['outfitters-select-sidebar'] ) ) selected( $outfittersblog_stored_meta['outfitters-select-sidebar'][0], 'travel' ); ?>><?php _e( 'Travel', 'The_Fly_Shop' )?></option>';
     </select>
-  </p>
+    </p>
   
   <p> <!-- ==== Blog Logo ==== -->
     <label for="outfitters-logo" class="travel-row-title"><?php _e( '<h3>TFS Logo</h3>', 'the-fly-shop' );?></label>
