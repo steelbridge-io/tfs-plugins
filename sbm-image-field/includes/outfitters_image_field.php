@@ -34,6 +34,35 @@ $outfittersblog_stored_meta = get_post_meta( $post->ID );?>
         <strong><label for="hero-video-url" class="holiday-row-title"><?php _e( 'Add Video URL', 'the-fly-shop' );?></label></strong>
         <input style="width: 100%;" type="url" name="hero-video-url" id="hero-video-url" value="<?php if ( isset ( $outfittersblog_stored_meta['hero-video-url'] ) ) echo $outfittersblog_stored_meta['hero-video-url'][0]; ?>" />
     </p>
+    <p>
+    <?php
+       // Retrieve the custom field value
+    $custom_range_value = get_post_meta($post->ID, 'opacity-range', true);
+
+    // Set a default value if the custom field is empty
+    if (empty($custom_range_value)) {
+        $custom_range_value = 0.5; // Set your desired default value here
+    }
+
+    // Output the HTML for the custom range input
+    ?>
+    <label for="custom_range_value">Custom Range Value:</label>
+    <input type="range" name="opacity-range" id="opacity-range" min="0.1" max="1" step="0.01" value="<?php echo esc_attr($custom_range_value); ?>">
+    <span id="range_value_display"><?php echo esc_attr($custom_range_value); ?></span>
+
+    </p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rangeInput = document.getElementById('opacity-range');
+            const rangeValueDisplay = document.getElementById('range_value_display');
+
+            rangeInput.addEventListener('input', function() {
+                rangeValueDisplay.textContent = rangeInput.value;
+            });
+        });
+    </script>
+
 
     <p>
     <label for="outfitters-select-sidebar" class="prfx-row-title"><h3><?php _e( 'Sidebar Select', 'The_Fly_Shop' )?></h3></label>
