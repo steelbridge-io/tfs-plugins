@@ -20,6 +20,10 @@ function sbm_basic_meta_save($post_id) {
   if (isset($_POST['hero-video-url'])) {
 	  update_post_meta($post_id, 'hero-video-url', $_POST['hero-video-url']);
   }
+
+		if (isset($_POST['basic-opacity-range'])) {
+				update_post_meta($post_id, 'basic-opacity-range', sanitize_text_field($_POST['basic-opacity-range']));
+		}
   
   // Checks for input and sanitizes/saves if needed
   if (isset($_POST['travel-description'])) {
