@@ -41,7 +41,7 @@ $outfittersblog_stored_meta = get_post_meta( $post->ID );?>
 
     // Set a default value if the custom field is empty
     if (empty($custom_range_value)) {
-        $custom_range_value = 0.5; // Set your desired default value here
+        $custom_range_value = 0.1; // Set your desired default value here
     }
 
     // Output the HTML for the custom range input
