@@ -144,9 +144,11 @@ function load_opacity_range_css() {
 		$custom_range_value = get_post_meta(get_the_ID(), 'opacity-range', true);
 
 		$css_overlay_opacity .='
-				#heroheader .overlay,
 		  #outfitters-jumbotron .overlay {
 						opacity: ' . $custom_range_value . ';
+				}
+				#heroheader .overlay {
+					opacity: ' . $custom_range_value . ';
 				}
 		';
 		return $css_overlay_opacity;

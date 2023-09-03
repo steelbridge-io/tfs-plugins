@@ -1,8 +1,6 @@
 <?php
 
- function load_tfs_custom_fields_css()
- {
-
+ function load_tfs_custom_fields_css() {
 
 		 if (is_page_template('page-templates/blog-template-basic.php')) {
 
@@ -13,8 +11,14 @@
 				 $basic_blog_fullpagebg_color = get_post_meta(get_the_ID(), 'basic-blog-fullpage-bg-color', true);
 				 $basic_blog_fullpage_txt_color = get_post_meta(get_the_ID(), 'basic-blog-fullpage-txt-color', true);
 				 $basic_blog_sidebar_bg_color = get_post_meta(get_the_ID(), 'basic-blog-sidebar-bg-color', true);
+				 $blog_basic_range_value = get_post_meta(get_the_ID(), 'blog-basic-opacity-range', true);
 
 				 $basic_css_custom_fields .= '
+				 
+				 	#heroheader .overlay,
+						#blog-template-basic-hero-image .overlay {
+							opacity: ' . $blog_basic_range_value . ';
+						}
 	 
      .blog-template-class .wrapper .container #primary.content-area #main.site-main {
         background-color: ' . $basic_blog_bg_color . ';
@@ -93,10 +97,8 @@
     }
 		
   ';
-
 				 return $css_custom_fields;
 		 }
-
 		 if (is_page_template('page-templates/basic-page-template.php')) {
 				 $basic_range_value = get_post_meta(get_the_ID(), 'basic-opacity-range', true);
 				 $basic_template_css = '';

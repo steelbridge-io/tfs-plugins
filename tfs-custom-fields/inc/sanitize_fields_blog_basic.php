@@ -21,8 +21,11 @@ function sbm_basic_template_save($post_id)
   if (isset($_POST['hero-video-url'])) {
 	  update_post_meta($post_id, 'hero-video-url', $_POST['hero-video-url']);
   }
-  
-  // Checks for input and saves if needed
+
+		if (isset($_POST['blog-basic-opacity-range'])) {
+				update_post_meta($post_id, 'blog-basic-opacity-range', sanitize_text_field($_POST['blog-basic-opacity-range']));
+		}
+
   if (isset($_POST['basic-blog-template-bg-color'])) {
     update_post_meta($post_id, 'basic-blog-template-bg-color', $_POST['basic-blog-template-bg-color']);
   }

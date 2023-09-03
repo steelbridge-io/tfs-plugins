@@ -37,11 +37,48 @@ function tfs_basic_blog_meta_callback( $post ) {
   </div>
   
   <div class="container">
-   <p>
+    <p>
     <!-- Hero Video URL -->
     <strong><label for="hero-video-url" class="holiday-row-title"><?php _e( 'Add Video URL', 'the-fly-shop' );?></label></strong>
     <input style="width: 100%;" type="url" name="hero-video-url" id="hero-video-url" value="<?php if ( isset ( $tfs_basic_blog_template_meta['hero-video-url'] ) ) echo $tfs_basic_blog_template_meta['hero-video-url'][0]; ?>" />
-   </p>
+    </p>
+
+    <div>
+      <!-- Overlay Opacity Range Selector -->
+      <?php
+      // Retrieve the custom field value
+      $blog_temp_basic_value = get_post_meta($post->ID, 'blog-basic-opacity-range', true);
+
+      // Set a default value if the custom field is empty
+      if (empty($blog_temp_basic_value)) {
+              $blog_temp_basic_value = 0.1; // Set your desired default value here
+      }
+      // Output the HTML for the custom range input
+      ?>
+      <label for="blog_temp_basic_value"><b>Custom Range Value</b></label>
+      <div style="background-color: #f5f5f5; padding: 1em;">
+          <div>
+              <span>The "Custom Range Value" below selects the opacity of the image or video overlay. Setting this value helps contrast logo, title, telephone against the background media.</span>
+          </div>
+          <label for="blog_temp_basic_value"><b>Custom Range Value:</b></label>
+          <input type="range" name="blog-basic-opacity-range" id="blog-basic-opacity-range" min="0.1" max="1" step="0.01" value="<?php echo esc_attr($blog_temp_basic_value); ?>">
+          <span id="blog_range_value_display"><?php echo esc_attr($blog_temp_basic_value); ?></span>
+      </div>
+
+    </div>
+
+    <!-- Script renders range selector value to the right of range selector -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const rangeInput = document.getElementById('blog-basic-opacity-range');
+          const rangeValueDisplay = document.getElementById('blog_range_value_display');
+
+          rangeInput.addEventListener('input', function() {
+              rangeValueDisplay.textContent = rangeInput.value;
+          });
+      });
+    </script>
+
     <div class="row">
       <div class="col-md-2">
       <p>
