@@ -41,6 +41,47 @@ function tfs_newblog_callback( $post ) {
         <strong><label for="hero-video-url" class="holiday-row-title"><?php _e( 'Add Video URL', 'the-fly-shop' );?></label></strong>
         <input style="width: 100%;" type="url" name="hero-video-url" id="hero-video-url" value="<?php if ( isset ( $sbm_stored_blog_meta['hero-video-url'] ) ) echo $sbm_stored_blog_meta['hero-video-url'][0]; ?>" />
     </p>
+ 
+ <div>
+	 <?php
+		 // Retrieve the custom field value
+		 $custom_range_value = get_post_meta($post->ID, 'opacity-range-new-travel', true);
+		 
+		 // Set a default value if the custom field is empty
+		 if (empty($custom_range_value)) {
+			 $custom_range_value = 0.1; // Set your desired default value here
+		 }
+		 
+		 // Output the HTML for the custom range input
+	 ?>
+  <label for="custom_range_value"><b>Custom Range Value</b></label>
+  <div style="background-color: #f5f5f5; padding: 1em;">
+   <div>
+    <span>The "Custom Range Value" below selects the opacity of the image or video overlay. Setting this value helps contrast logo, title, telephone against the background media.</span>
+   </div>
+   <label for="custom_range_value">Custom Range Value:</label>
+   <input type="range" name="opacity-range-new-travel" id="opacity-range-new-travel" min="0.1" max="1" step="0.01" value="<?php echo esc_attr($custom_range_value); ?>">
+   <span id="blog_new_range_value_display"><?php echo esc_attr($custom_range_value); ?></span>
+  </div>
+ 
+ </div>
+ 
+ <script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const rangeInput = document.getElementById('opacity-range-new-travel');
+			const rangeValueDisplay = document.getElementById('blog_new_range_value_display');
+			
+			rangeInput.addEventListener('input', function() {
+				rangeValueDisplay.textContent = rangeInput.value;
+			});
+		});
+ </script>
+ 
+ 
+ 
+ 
+ 
+ 
   
     <p>
     <label for="select-sidebar" class="prfx-row-title"><h3><?php _e( 'Sidebar Select', 'The_Fly_Shop' )?></h3></label>
