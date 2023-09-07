@@ -119,8 +119,8 @@
 			 
 			 $blog_template_rangevalue .='
 			 #heroheader .overlay,
-			 .inner .overlay {
-			    opacity: ' . $blog_template_range_value . ' !important;
+			 #blog-travel-template-hero .overlay {
+			    opacity: ' . $blog_template_range_value . ';
 			    position: absolute;
 			    top: 0;
 			    left: 0;
