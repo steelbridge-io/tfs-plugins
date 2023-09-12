@@ -58,7 +58,7 @@ function private_meta_callback( $post ) {
   
   <p> <!-- ==== FEATURE #1 / PRIVATE WATERS TEXT/VIDEO ==== -->
     
-    <label for="feature-pw1-video" class="private-row-title"><?php _e( '<strong>Enter Public URL</strong>', 'private-textdomain' )?></label>
+    <label for="feature-pw1-video" class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>', 'private-textdomain' )?></label>
     <input type="url" name="feature-pw1-video" id="feature-pw1-video" value="<?php if ( isset ( $private_stored_meta['feature-pw1-video'] ) ) echo $private_stored_meta['feature-pw1-video'][0]; ?>" />
   </p>
   
@@ -73,7 +73,7 @@ function private_meta_callback( $post ) {
   
   <p> <!-- ==== FEATURE #2 / TRAVEL TEXT/VIDEO ==== -->
     
-    <label for="feature-pw2-video" class="private-row-title"><?php _e( '<strong>Enter Public URL</strong>', 'private-textdomain' )?></label>
+    <label for="feature-pw2-video" class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>', 'private-textdomain' )?></label>
     <input type="url" name="feature-pw2-video" id="feature-pw2-video" value="<?php if ( isset ( $private_stored_meta['feature-pw2-video'] ) ) echo $private_stored_meta['feature-pw2-video'][0]; ?>" />
     
   </p>
@@ -89,7 +89,7 @@ function private_meta_callback( $post ) {
   
   <p> <!-- ==== FEATURE #3 / GETTING TO TEXT/VIDEO ==== -->
     
-    <label for="feature-pw3-video" class="private-row-title"><?php _e( '<strong>Paste implicit video URL here. You can also paste the embed Google Map URL here. No shortened versions:</strong>', 'private-textdomain' )?></label>
+    <label for="feature-pw3-video" class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>', 'private-textdomain' )?></label>
     <input type="url" name="feature-pw3-video" id="feature-pw3-video" value="<?php if ( isset ( $private_stored_meta['feature-pw3-video'] ) ) echo $private_stored_meta['feature-pw3-video'][0]; ?>" />
     
   </p>
@@ -105,7 +105,7 @@ function private_meta_callback( $post ) {
   
   <p> <!-- ==== FEATURE #4 / LODGING TEXT/VIDEO ==== -->
     
-    <label for="feature-pw4-video" class="private-row-title"><?php _e( '<strong>Enter Public URL</strong>', 'private-textdomain' )?></label>
+    <label for="feature-pw4-video" class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>', 'private-textdomain' )?></label>
     <input type="url" name="feature-pw4-video" id="feature-pw4-video" value="<?php if ( isset ( $private_stored_meta['feature-pw4-video'] ) ) echo $private_stored_meta['feature-pw4-video'][0]; ?>" />
     
   </p>
@@ -121,7 +121,7 @@ function private_meta_callback( $post ) {
   
   <p> <!-- ==== FEATURE #5 / FISHING TEXT/VIDEO ==== -->
     
-    <label for="feature-pw5-video" class="private-row-title"><?php _e( '<strong>Enter Public URL</strong>', 'private-textdomain' )?></label>
+    <label for="feature-pw5-video" class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>', 'private-textdomain' )?></label>
     <input type="url" name="feature-pw5-video" id="feature-pw5-video" value="<?php if ( isset ( $private_stored_meta['feature-pw5-video'] ) ) echo $private_stored_meta['feature-pw5-video'][0]; ?>" />
     
   </p>
