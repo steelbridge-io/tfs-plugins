@@ -17,15 +17,15 @@ include( plugin_dir_path( __FILE__ ) . '../inc/sanitize_signature.php');
 
 // Adds a meta box to the post editing screen on the template named signature-template
 function signature_custom_meta() { global $post;
-	  if(!empty($post)) {
-		  $pageTemplate = get_post_meta($post->ID, '_wp_page_template', true);
-		  if($pageTemplate == 'page-templates/signature-template.php') {
-				$types = array('post', 'page', 'travel_cpt', 'schools_cpt', 'adventures', 'guide_service', 'fishcamp_cpt', 'lower48');
-				foreach($types as $type) {
-				add_meta_box( 'signature_meta', __( 'Signature Destinations', 'signature-textdomain' ), 'signature_meta_callback', $type, 'normal', 'high' );
-			}
-		}
+  if(!empty($post)) {
+   $pageTemplate = get_post_meta($post->ID, '_wp_page_template', true);
+   if($pageTemplate == 'page-templates/signature-template.php') {
+   $types = array('post', 'page', 'travel_cpt', 'schools_cpt', 'adventures', 'guide_service', 'fishcamp_cpt', 'lower48');
+    foreach($types as $type) {
+    add_meta_box( 'signature_meta', __( 'Signature Template Options', 'signature-textdomain' ), 'signature_meta_callback', $type, 'normal', 'high' );
+   }
   }
+ }
 }
 add_action( 'add_meta_boxes', 'signature_custom_meta' );
 
@@ -40,8 +40,50 @@ function signature_meta_callback( $post ) {
 ?>
  
 	<!-- ==== START META CONTENT ==== -->
-	
-  <!-- TFS Logo -->
+ <!-- Hero Video URL -->
+ <p>
+ <strong><label for="hero-video-url" class="holiday-row-title"><?php _e( 'Add Video URL', 'the-fly-shop' );?></label></strong>
+ <input style="width: 100%;" type="url" name="hero-video-url" id="hero-video-url" value="<?php if ( isset ( $signature_stored_meta['signature-hero-video-url'] ) ) echo $signature_stored_meta['signature-hero-video-url'][0]; ?>" />
+ </p>
+ 
+ <div>
+  <!-- Overlay Opacity Range Selector -->
+	 <?php
+		 // Retrieve the custom field value
+		 $blog_temp_basic_value = get_post_meta($post->ID, 'signature-temp-opacity-range', true);
+		 
+		 // Set a default value if the custom field is empty
+		 if (empty($blog_temp_basic_value)) {
+			 $blog_temp_basic_value = 0.1; // Set your desired default value here
+		 }
+		 // Output the HTML for the custom range input
+	 ?>
+  <label for="blog_temp_basic_value"><b>Custom Range Value</b></label>
+  <div style="background-color: #f5f5f5; padding: 1em;">
+   <div>
+    <span>The "Custom Range Value" below selects the opacity of the image or video overlay. Setting this value helps contrast logo, title, telephone against the background media.</span>
+   </div>
+   <label for="blog_temp_basic_value"><b>Custom Range Value:</b></label>
+   <input type="range" name="signature-temp-opacity-range" id="signature-temp-opacity-range" min="0.1" max="1" step="0.01" value="<?php echo esc_attr($blog_temp_basic_value); ?>">
+   <span id="signature_range_value_display"><?php echo esc_attr($blog_temp_basic_value); ?></span>
+  </div>
+ 
+ </div>
+ 
+ <!-- Script renders range selector value to the right of range selector -->
+ <script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const rangeInput = document.getElementById('signature-temp-opacity-range');
+			const rangeValueDisplay = document.getElementById('signature_range_value_display');
+			
+			rangeInput.addEventListener('input', function() {
+				rangeValueDisplay.textContent = rangeInput.value;
+			});
+		});
+ </script>
+ 
+ 
+ <!-- TFS Logo -->
 	<p>
 
 		<strong><label for="sig-logo" class="signature-row-title"><?php _e( 'Signature Template Logo', 'signature-textdomain' );?></label></strong><br>

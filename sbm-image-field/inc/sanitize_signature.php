@@ -14,6 +14,16 @@ function signature_meta_save( $post_id ) {
     }
 	
 	// Checks for input and saves if needed
+		if( isset( $_POST[ 'signature-hero-video-url' ] ) ) {
+			update_post_meta( $post_id, 'signature-hero-video-url', esc_url($_POST[ 'signature-hero-video-url' ] ) );
+		}
+	
+	// Checks for input and saves if needed
+		if (isset($_POST['signature-temp-opacity-range'])) {
+			update_post_meta($post_id, 'signature-temp-opacity-range', sanitize_text_field($_POST['signature-temp-opacity-range']));
+		}
+		
+	// Checks for input and saves if needed
 		if( isset( $_POST[ 'sig-logo' ] ) ) {
 				update_post_meta( $post_id, 'sig-logo', $_POST[ 'sig-logo' ] );
 		}
@@ -23,7 +33,7 @@ function signature_meta_save( $post_id ) {
 				update_post_meta( $post_id, 'signature-description', $_POST[ 'signature-description' ] );
 		}
 	
-	// Checks for input and saves for carousel 
+	// Checks for input and saves for carousel
 		if( isset( $_POST[ 'signature-csel-checkbox' ] ) ) {
 				update_post_meta( $post_id, 'signature-csel-checkbox', 'yes' );
 		} else {
@@ -1881,6 +1891,6 @@ function signature_meta_save( $post_id ) {
 	// Checks for input and saves if needed
 		if( isset( $_POST[ 'signature-centered-r-caption' ] ) ) {
 				update_post_meta( $post_id, 'signature-centered-r-caption', $_POST[ 'signature-centered-r-caption' ] );
-		}	
+		}
 }
 add_action( 'save_post', 'signature_meta_save' );
