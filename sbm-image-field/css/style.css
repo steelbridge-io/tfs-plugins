@@ -12,6 +12,11 @@
 .pt-4 {padding-top: 4.618em; !important;}
 .pt-5 {padding-top: 5.618em; !important;}
 
+.fish-report-terms {
+    padding: 1.618em;
+    background: #eee;
+}
+
 #pdf-upload-options input,
 #pdf-upload-options textarea {
     width: 100%;
