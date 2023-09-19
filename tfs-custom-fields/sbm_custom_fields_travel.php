@@ -32,13 +32,31 @@ add_action( 'add_meta_boxes', 'tfs_custom_travel_meta' );
 function tfs_travel_meta_callback( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'tfs_nonce' );
     $sbm_stored_travel_meta = get_post_meta( $post->ID );
-    ?>
-
+    // Retrieve the selected term ID, if it exists
+    $selected_term = get_post_meta($post->ID, 'selected_term', true);
+	
+    // Get the terms from your custom taxonomy
+    $terms = get_terms(array(
+    'taxonomy'    => 'report-category', // Replace with your custom taxonomy name
+    'hide_empty'  => false,
+	  ));
+	
+    if ( $terms ) {
+      echo '<div class="fish-report-terms">';
+      echo '<h3>Show Fishing Reports</h3>';
+      echo '<p>Select a fishing report category below. The category selected will return two posts in the section below the sign-up input on the front end.</p>';
+      echo '<label for="selected_term"><strong>Select a fishing report category:</strong>&nbsp;</label>';
+      echo '<select name="selected_term" id="selected_term">';
+      echo '<option value="">Select a term</option>';
+      foreach ( $terms as $term ) {
+        echo '<option value="' . esc_attr( $term->term_id ) . '" ' . selected( $selected_term, $term->term_id, false ) . '>' . esc_html( $term->name ) . '</option>';
+      }
+      echo '</select>';
+      echo '</div>';
+    }
+	?>
+ 
     <!-- ====== Travel Details ====== -->
-
-    <div style="margin-top: 1.618em;">
-        <?php echo 'Travel Details' ?>
-    </div>
 
     <!-- TRAVEL DESCRIPTION -->
     <h3><?php echo 'Travel Description' ?></h3>

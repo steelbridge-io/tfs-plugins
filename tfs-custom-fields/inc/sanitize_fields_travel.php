@@ -17,6 +17,11 @@ return;
 }
 
 // Checks for input and sanitizes/saves if needed
+if( isset( $_POST[ 'selected_term' ] ) ) {
+update_post_meta( $post_id, 'selected_term', sanitize_text_field( $_POST[ 'selected_term' ] ) );
+}
+
+// Checks for input and sanitizes/saves if needed
 if( isset( $_POST[ 'travel-description' ] ) ) {
 update_post_meta( $post_id, 'travel-description', sanitize_text_field( $_POST[ 'travel-description' ] ) );
 }
