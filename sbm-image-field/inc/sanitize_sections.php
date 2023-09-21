@@ -555,5 +555,37 @@ function sections_meta_save( $post_id ) {
 		if( isset( $_POST[ 'sections-10-readmore' ] ) ) {
 				update_post_meta( $post_id, 'sections-10-readmore', $_POST[ 'sections-10-readmore' ] );
 		}
+		
+		if( isset( $_POST[ 'galleryphoto-1-image' ] ) ) {
+			update_post_meta( $post_id, 'galleryphoto-1-image', $_POST[ 'galleryphoto-1-image' ] );
+		}
+	
+		if( isset( $_POST[ 'galleryphoto-2-image' ] ) ) {
+			update_post_meta( $post_id, 'galleryphoto-2-image', $_POST[ 'galleryphoto-2-image' ] );
+		}
+	
+		if( isset( $_POST[ 'galleryphoto-3-image' ] ) ) {
+			update_post_meta( $post_id, 'galleryphoto-3-image', $_POST[ 'galleryphoto-3-image' ] );
+		}
+	
+		if( isset( $_POST[ 'galleryphoto-4-image' ] ) ) {
+			update_post_meta( $post_id, 'galleryphoto-4-image', $_POST[ 'galleryphoto-4-image' ] );
+		}
+	
+		if( isset( $_POST[ 'galleryphoto-5-image' ] ) ) {
+			update_post_meta( $post_id, 'galleryphoto-5-image', $_POST[ 'galleryphoto-5-image' ] );
+		}
+	
+		if( isset( $_POST[ 'galleryphoto-6-image' ] ) ) {
+			update_post_meta( $post_id, 'galleryphoto-6-image', $_POST[ 'galleryphoto-6-image' ] );
+		}
+	
+		if( isset( $_POST[ 'galleryphoto-7-image' ] ) ) {
+			update_post_meta( $post_id, 'galleryphoto-7-image', $_POST[ 'galleryphoto-7-image' ] );
+		}
+	
+		if( isset( $_POST[ 'galleryphoto-8-image' ] ) ) {
+			update_post_meta( $post_id, 'galleryphoto-8-image', $_POST[ 'galleryphoto-8-image' ] );
+		}
 
   }
