@@ -1080,7 +1080,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
             
             <p> <!-- ==== SECTION #1 IMAGE ==== -->
               
-              <label for="galleryphoto-1-image" class="galleryphoto-1-image"><?php _e( '<strong>Section &#35;1 Image</strong>', 'the-fly-shop' );?></label><br>
+              <label for="galleryphoto-1-image" class="galleryphoto-1-image"><?php _e( '<strong>Gallery Photo &#35;1</strong>', 'the-fly-shop' );?></label><br>
               <input type="text" style="width: 75%;" name="galleryphoto-1-image" id="galleryphoto-1-image" value="<?php if ( isset ( $sections_stored_meta['galleryphoto-1-image'] ) ) echo $sections_stored_meta['galleryphoto-1-image'][0];?>" /><br><br>
               <input type="button" id="galleryphoto-1-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
             
@@ -1093,7 +1093,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
             
             <p> <!-- ==== SECTION #2 IMAGE ==== -->
               
-              <label for="galleryphoto-2-image" class="galleryphoto-2-image"><?php _e( '<strong>Section &#35;2 Image</strong>', 'the-fly-shop' );?></label><br>
+              <label for="galleryphoto-2-image" class="galleryphoto-2-image"><?php _e( '<strong>Gallery Photo &#35;2</strong>', 'the-fly-shop' );?></label><br>
               <input type="text" style="width: 75%;" name="galleryphoto-2-image" id="galleryphoto-2-image" value="<?php if ( isset ( $sections_stored_meta['galleryphoto-2-image'] ) ) echo $sections_stored_meta['galleryphoto-2-image'][0];?>" /><br><br>
               <input type="button" id="galleryphoto-2-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
             
@@ -1106,7 +1106,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
             
             <p> <!-- ==== SECTION #3 IMAGE ==== -->
               
-              <label for="galleryphoto-3-image" class="galleryphoto-3-image"><?php _e( '<strong>Section &#35;3 Image</strong>', 'the-fly-shop' );?></label><br>
+              <label for="galleryphoto-3-image" class="galleryphoto-3-image"><?php _e( '<strong>Gallery Photo &#35;3</strong>', 'the-fly-shop' );?></label><br>
               <input type="text" style="width: 75%;" name="galleryphoto-3-image" id="galleryphoto-3-image" value="<?php if ( isset ( $sections_stored_meta['galleryphoto-3-image'] ) ) echo $sections_stored_meta['galleryphoto-3-image'][0];?>" /><br><br>
               <input type="button" id="galleryphoto-3-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
             
@@ -1119,7 +1119,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
             
             <p> <!-- ==== SECTION #4 IMAGE ==== -->
               
-              <label for="galleryphoto-4-image" class="galleryphoto-4-image"><?php _e( '<strong>Section &#35;4 Image</strong>', 'the-fly-shop' );?></label><br>
+              <label for="galleryphoto-4-image" class="galleryphoto-4-image"><?php _e( '<strong>Gallery Photo &#35;4</strong>', 'the-fly-shop' );?></label><br>
               <input type="text" style="width: 75%;" name="galleryphoto-4-image" id="galleryphoto-4-image" value="<?php if ( isset ( $sections_stored_meta['galleryphoto-4-image'] ) ) echo $sections_stored_meta['galleryphoto-4-image'][0];?>" /><br><br>
               <input type="button" id="galleryphoto-4-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
             
@@ -1132,7 +1132,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
             
             <p> <!-- ==== SECTION #5 IMAGE ==== -->
               
-              <label for="galleryphoto-5-image" class="galleryphoto-5-image"><?php _e( '<strong>Section &#35;5 Image</strong>', 'the-fly-shop' );?></label><br>
+              <label for="galleryphoto-5-image" class="galleryphoto-5-image"><?php _e( '<strong>Gallery Photo &#35;5</strong>', 'the-fly-shop' );?></label><br>
               <input type="text" style="width: 75%;" name="galleryphoto-5-image" id="galleryphoto-5-image" value="<?php if ( isset ( $sections_stored_meta['galleryphoto-5-image'] ) ) echo $sections_stored_meta['galleryphoto-5-image'][0];?>" /><br><br>
               <input type="button" id="galleryphoto-5-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
             
@@ -1145,7 +1145,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
             
             <p> <!-- ==== SECTION #6 IMAGE ==== -->
               
-              <label for="galleryphoto-6-image" class="galleryphoto-6-image"><?php _e( '<strong>Section &#35;6 Image</strong>', 'the-fly-shop' );?></label><br>
+              <label for="galleryphoto-6-image" class="galleryphoto-6-image"><?php _e( '<strong>Gallery Photo &#35;6</strong>', 'the-fly-shop' );?></label><br>
               <input type="text" style="width: 75%;" name="galleryphoto-6-image" id="galleryphoto-6-image" value="<?php if ( isset ( $sections_stored_meta['galleryphoto-6-image'] ) ) echo $sections_stored_meta['galleryphoto-6-image'][0];?>" /><br><br>
               <input type="button" id="galleryphoto-6-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
             
@@ -1158,7 +1158,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
             
             <p> <!-- ==== SECTION #7 IMAGE ==== -->
               
-              <label for="galleryphoto-7-image" class="galleryphoto-7-image"><?php _e( '<strong>Section &#35;7 Image</strong>', 'the-fly-shop' );?></label><br>
+              <label for="galleryphoto-7-image" class="galleryphoto-7-image"><?php _e( '<strong>Gallery Photo &#35;7</strong>', 'the-fly-shop' );?></label><br>
               <input type="text" style="width: 75%;" name="galleryphoto-7-image" id="galleryphoto-7-image" value="<?php if ( isset ( $sections_stored_meta['galleryphoto-7-image'] ) ) echo $sections_stored_meta['galleryphoto-7-image'][0];?>" /><br><br>
               <input type="button" id="galleryphoto-7-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
             
@@ -1171,7 +1171,7 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
             
             <p> <!-- ==== SECTION #8 IMAGE ==== -->
               
-              <label for="galleryphoto-8-image" class="galleryphoto-8-image"><?php _e( '<strong>Section &#35;8 Image</strong>', 'the-fly-shop' );?></label><br>
+              <label for="galleryphoto-8-image" class="galleryphoto-8-image"><?php _e( '<strong>Gallery Photo &#35;8</strong>', 'the-fly-shop' );?></label><br>
               <input type="text" style="width: 75%;" name="galleryphoto-8-image" id="galleryphoto-8-image" value="<?php if ( isset ( $sections_stored_meta['galleryphoto-8-image'] ) ) echo $sections_stored_meta['galleryphoto-8-image'][0];?>" /><br><br>
               <input type="button" id="galleryphoto-8-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
             
