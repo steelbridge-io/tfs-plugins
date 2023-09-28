@@ -29,6 +29,14 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
   <div style="margin-top: 1.618em;">
   <h1>Sections Template Content</h1>
   </div>
+  
+  <p> <!-- ==== SECTIONS HERO IMAGE ==== -->
+    
+    <strong><label for="sections-hero-image" class="sections-row-title"><?php _e( 'Sections Template Hero Image', 'the-fly-shop' );?></label></strong><br>
+    <input style="width:75%;" type="text" name="sections-hero-image" id="sections-hero-image" value="<?php if ( isset ( $sections_stored_meta['sections-hero-image'] ) ) echo $sections_stored_meta['sections-hero-image'][0];?>" />
+    <input type="button" id="sections-hero-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
+  
+  </p>
 	
   <!-- TFS Logo -->
 	<p>
