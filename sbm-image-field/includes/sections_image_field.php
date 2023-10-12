@@ -30,6 +30,11 @@ $sections_stored_meta = get_post_meta( $post->ID ); ?>
   <h1>Sections Template Content</h1>
   </div>
   
+  <p>
+    <strong><label for="sections-vide0" class="sections-row-title"><?php _e( 'Hero Video URL', 'the-fly-shop' );?></label></strong>
+    <input style="width:100%;" type="url" name="sections-video" id="sections-video" value="<?php if ( isset ( $sections_stored_meta['sections-video'] ) ) echo $sections_stored_meta['sections-video'][0];?>" />
+  </p>
+ 
   <p> <!-- ==== SECTIONS HERO IMAGE ==== -->
     
     <strong><label for="sections-hero-image" class="sections-row-title"><?php _e( 'Sections Template Hero Image', 'the-fly-shop' );?></label></strong><br>

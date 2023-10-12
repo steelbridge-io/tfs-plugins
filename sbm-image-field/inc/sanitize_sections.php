@@ -13,7 +13,11 @@ function sections_meta_save( $post_id ) {
     if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
         return;
     }
-	
+ 
+		// Checks for input and saves if needed
+		if( isset( $_POST[ 'sections-video' ] ) ) {
+		 update_post_meta( $post_id, 'sections-video', $_POST[ 'sections-video' ] );
+		}
 		// Checks for input and saves if needed
 		if( isset( $_POST[ 'sections-hero-image' ] ) ) {
 			update_post_meta( $post_id, 'sections-hero-image', $_POST[ 'sections-hero-image' ] );
