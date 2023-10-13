@@ -118,7 +118,6 @@ function load_guide_service_css() {
  
 	if(!empty($sections_hero_video)) {
 	 $css_section_hero_video .='
-	 
 			#sections-background-video {
 			display: initial;
 			width: 100vw;
@@ -129,7 +128,7 @@ function load_guide_service_css() {
 			right: 0;
 			top: 0;
 			bottom: 0;
-			z-index: -1;
+			z-index: 0;
 			}
 			.section-template-content {
 			background-color: #f5f5f5;
