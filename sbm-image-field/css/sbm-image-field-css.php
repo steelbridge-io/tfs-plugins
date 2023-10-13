@@ -117,6 +117,7 @@ function load_guide_service_css() {
  $sections_hero_video = get_post_meta(get_the_ID(), 'sections-video', true);
  
 	if(!empty($sections_hero_video)) {
+		
 	 $css_section_hero_video .='
 			#sections-background-video {
 			display: initial;

@@ -19,6 +19,10 @@ function sections_meta_save( $post_id ) {
 		 update_post_meta( $post_id, 'sections-video', $_POST[ 'sections-video' ] );
 		}
 		// Checks for input and saves if needed
+		if( isset( $_POST[ 'sections-video-poster' ] ) ) {
+		 update_post_meta( $post_id, 'sections-video-poster', $_POST[ 'sections-video-poster' ] );
+		}
+		// Checks for input and saves if needed
 		if( isset( $_POST[ 'sections-hero-image' ] ) ) {
 			update_post_meta( $post_id, 'sections-hero-image', $_POST[ 'sections-hero-image' ] );
 		}
