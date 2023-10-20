@@ -29,32 +29,29 @@
 
      <!-- ==== START META CONTENT ==== -->
 
-     <div style="margin-top: 1.618em;">
-         <h1>Sections Template Content</h1>
-     </div>
-
-     <p>
-         <strong><label for="sections-video" class="sections-row-title"><?php _e('Hero Video URL', 'the-fly-shop'); ?></label></strong>
-         <input style="width:100%;" type="url" name="sections-video" id="sections-video"
-                value="<?php if (isset ($sections_stored_meta['sections-video'])) echo $sections_stored_meta['sections-video'][0]; ?>"/>
-     </p>
-
-     <p>
-         <strong><label for="sections-video-poster" class="sections-row-title"><?php _e('Hero Video Poster', 'the-fly-shop'); ?></label></strong><br>
-         <input style="width:75%;" type="text" name="sections-video-poster" id="sections-video-poster" value="<?php if (isset ($sections_stored_meta['sections-video-poster'])) echo $sections_stored_meta['sections-video-poster'][0]; ?>"/>
-         <input type="button" id="sections-video-poster-button" class="button" value="<?php _e('Choose or Upload an Image', 'the-fly-shop'); ?>"/>
-     </p>
-
-     <p> <!-- ==== SECTIONS HERO IMAGE ==== -->
-
-         <strong><label for="sections-hero-image"
-                        class="sections-row-title"><?php _e('Sections Template Hero Image', 'the-fly-shop'); ?></label></strong><br>
-         <input style="width:75%;" type="text" name="sections-hero-image" id="sections-hero-image"
-                value="<?php if (isset ($sections_stored_meta['sections-hero-image'])) echo $sections_stored_meta['sections-hero-image'][0]; ?>"/>
-         <input type="button" id="sections-hero-image-button" class="button" value="<?php _e('Choose or Upload an Image', 'the-fly-shop'); ?>"/>
-
-     </p>
-
+    <div style="margin-top: 1.618em;">
+        <h1>Sections Template Content</h1>
+    </div>
+    <div class="sections-meta-cont">
+        <strong><label for="sections-video" class="sections-row-title"><?php _e('Hero Video URL', 'the-fly-shop'); ?></label></strong>
+        <input style="width:100%;" type="url" name="sections-video" id="sections-video" value="<?php if (isset ($sections_stored_meta['sections-video'])) echo $sections_stored_meta['sections-video'][0]; ?>"/>
+        <p class="meta-description">Add video url here. Video url is associated with media stored in a bucket at AWS or Google Cloud. Do not enter YouTube or Vimeo urls. Ensure featured image is empty as well as Sections Template Hero Image.</p>
+    </div>
+    <div class="sections-meta-cont">
+        <strong><label for="sections-video-poster" class="sections-row-title"><?php _e('Hero Video Poster', 'the-fly-shop'); ?></label></strong><br>
+        <input style="width:75%;" type="text" name="sections-video-poster" id="sections-video-poster" value="<?php if (isset ($sections_stored_meta['sections-video-poster'])) echo $sections_stored_meta['sections-video-poster'][0]; ?>"/>
+        <input type="button" id="sections-video-poster-button" class="button" value="<?php _e('Choose or Upload an Image', 'the-fly-shop'); ?>"/>
+        <p class="meta-description">Add an image here that is used on mobile devices. Mobile devices do not auto-play video. The "Poster" image is returned on mobile devices when a video is presented on tablets and desktop.</p>
+    </div>
+    <div class="sections-meta-cont">
+    <!-- ==== SECTIONS HERO IMAGE ==== -->
+        <strong><label for="sections-hero-image" class="sections-row-title"><?php _e('Sections Template Hero Image', 'the-fly-shop'); ?></label></strong><br>
+        <input style="width:75%;" type="text" name="sections-hero-image" id="sections-hero-image" value="<?php if (isset ($sections_stored_meta['sections-hero-image'])) echo $sections_stored_meta['sections-hero-image'][0]; ?>"/>
+        <input type="button" id="sections-hero-image-button" class="button" value="<?php _e('Choose or Upload an Image', 'the-fly-shop'); ?>"/>
+        <p class="meta-description">For best results, make sure a Featured Image is not present and the Hero Video input is empty.</p>
+    </div>
+    
+     <div class="sections-meta-cont">
      <!-- TFS Logo -->
      <p>
 
@@ -73,6 +70,7 @@
                 value="<?php if (isset ($sections_stored_meta['sections-description'])) echo $sections_stored_meta['sections-description'][0]; ?>"/>
 
      </p>
+     </div>
 
      <!-- ****
 	 Tabbed section for optional carousel
