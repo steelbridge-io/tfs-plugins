@@ -12176,6 +12176,55 @@ jQuery(document).ready( function($){ "use strict";
         // Opens the media library frame.
         sections_video_poster_frame.open();
     });
+
+
+
+
+
+
+    // Instantiates the variable that holds the media library frame.
+    var travel_temp_video_poster_frame;
+
+    // Runs when the image button is clicked.
+    $('#travel-temp-video-poster-button').click(function(e) {
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if (travel_temp_video_poster_frame) {
+            travel_temp_video_poster_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        travel_temp_video_poster_frame = wp.media.frames.travel_temp_video_poster_frame = wp.media({
+            title: meta_image.title,
+            button: {text: meta_image.button},
+            /*library: { type: 'image' }*/
+        });
+
+        // Runs when an image is selected.
+        travel_temp_video_poster_frame.on('select', function () {
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = travel_temp_video_poster_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#travel-temp-video-poster').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        travel_temp_video_poster_frame.open();
+    });
+
+
+
+
+
+
+
+
 });
 
 

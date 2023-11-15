@@ -129,7 +129,7 @@ function load_guide_service_css() {
 			right: 0;
 			top: 0;
 			bottom: 0;
-			z-index: 0;
+			z-index: -1;
 			}
 			.section-template-content {
 			background-color: #f5f5f5;
