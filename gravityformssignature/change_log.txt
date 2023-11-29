@@ -1,3 +1,7 @@
+### 4.6 | 2023-11-16
+- Updated the signature field to be compatible with Compact View in Gravity Forms 2.8.
+- Fixed a PHP 8.1 notice on form submission.
+
 ### 4.5 | 2023-06-21
 - Fixed an issue that makes the signature reset button hard to press using mobile browsers.
 

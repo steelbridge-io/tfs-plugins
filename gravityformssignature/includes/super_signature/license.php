@@ -1,5 +1,4 @@
 <?php
-
 $SignWidth=300;
 $SignHeight=200;
 $SignThick=4;
@@ -8,7 +7,6 @@ $SignPenColor;
 $SignTransparent=False;
 $SignPoints=0;
 $SignControl="";
-
 
 function GetSignatureImageSmooth($signDataSmooth)
 {
@@ -47,12 +45,9 @@ function GetSignatureImage($signData)
 		$SignPoints = (integer)$explode_firstRow[6];
 		$SignControl = $explode_firstRow[7];
 
+		$im = imagecreatetruecolor((int)$SignWidth,(int)$SignHeight);
 
-
-
-		$im = imagecreatetruecolor($SignWidth,$SignHeight);
-
-		$colBack = imagecolorallocate($im, $SignBackGround[0], $SignBackGround[1], $SignBackGround[2]);
+		$colBack = imagecolorallocate($im, (int)$SignBackGround[0], (int)$SignBackGround[1], (int)$SignBackGround[2]);
 
 		imagefill($im, 0, 0, $colBack);
 
@@ -76,7 +71,7 @@ function GetSignatureImage($signData)
 				$SignThick = $exploded_FirstPointData[0];
 				$SignPenColor = Html2RGB($exploded_FirstPointData[1]);
 
-				$penColor = imagecolorallocate($im, $SignPenColor[0], $SignPenColor[1], $SignPenColor[2]);
+				$penColor = imagecolorallocate($im, (int)$SignPenColor[0], (int)$SignPenColor[1], (int)$SignPenColor[2]);
 
 
 				// Now run loop for rest of the points
@@ -84,7 +79,7 @@ function GetSignatureImage($signData)
 				if(count($exploded_PointData) == 2)
 				{
 					$coXY = explode(',', trim($exploded_PointData[1]));
-					ImageFilledArc($im, $coXY[0],  $coXY[1], 2 * $SignThick, 2 * $SignThick, 0, 360, $penColor, IMG_ARC_PIE);
+					ImageFilledArc($im, (int)$coXY[0], (int)$coXY[1], (int)(2 * $SignThick), (int)(2 * $SignThick), 0, 360, $penColor, IMG_ARC_PIE);
 				}
 				else
 				{
@@ -121,10 +116,10 @@ function imgdrawLine($image,$x0, $y0,$x1, $y1,$color,$radius)
 	$ddF_y = -2 * $radius;
 	$x= 0;
 	$y = $radius;
-	imageline($image,$x0, $y0 + $radius,$x1, $y1 + $radius,$color);
-	imageline($image,$x0, $y0 - $radius,$x1, $y1 - $radius,$color);
-	imageline($image,$x0 + $radius, $y0,$x1 + $radius, $y1,$color);
-	imageline($image,$x0 - $radius, $y0,$x1 - $radius, $y1,$color);
+	imageline($image,(int)$x0, (int)($y0 + $radius),(int)$x1, (int)($y1 + $radius),(int)$color);
+	imageline($image,(int)$x0, (int)($y0 - $radius),(int)$x1, (int)($y1 - $radius),(int)$color);
+	imageline($image,(int)($x0 + $radius), (int)$y0,(int)($x1 + $radius), (int)$y1,(int)$color);
+	imageline($image,(int)($x0 - $radius), (int)$y0,(int)($x1 - $radius), (int)$y1,(int)$color);
 
 	while($x< $y)
 	{
@@ -137,14 +132,14 @@ function imgdrawLine($image,$x0, $y0,$x1, $y1,$color,$radius)
 		$x++;
 		$ddF_x+= 2;
 		$f += $ddF_x;
-		imageline($image,$x0 + $x, $y0 + $y,$x1 + $x, $y1+ $y,$color);
-		imageline($image,$x0 - $x, $y0 + $y,$x1 - $x, $y1 + $y,$color);
-		imageline($image,$x0 + $x, $y0 - $y,$x1 + $x, $y1 - $y,$color);
-		imageline($image,$x0 - $x, $y0 - $y,$x1 - $x, $y1 - $y,$color);
-		imageline($image,$x0 + $y, $y0 + $x,$x1 + $y, $y1 + $x,$color);
-		imageline($image,$x0 - $y, $y0 + $x,$x1 - $y, $y1 + $x,$color);
-		imageline($image,$x0 + $y, $y0 - $x,$x1 + $y, $y1 - $x,$color);
-		imageline($image,$x0 - $y, $y0 - $x,$x1 - $y, $y1 - $x,$color);
+		imageline($image,$x0 + $x, (int)($y0 + $y),$x1 + $x, (int)($y1+ $y),(int)$color);
+		imageline($image,$x0 - $x, (int)($y0 + $y),$x1 - $x, (int)($y1 + $y),(int)$color);
+		imageline($image,$x0 + $x, (int)($y0 - $y),$x1 + $x, (int)($y1 - $y),(int)$color);
+		imageline($image,$x0 - $x, (int)($y0 - $y),$x1 - $x, (int)($y1 - $y),(int)$color);
+		imageline($image,(int)($x0 + $y), $y0 + $x,(int)($x1 + $y), $y1 + $x,(int)$color);
+		imageline($image,(int)($x0 - $y), $y0 + $x,(int)($x1 - $y), $y1 + $x,(int)$color);
+		imageline($image,(int)($x0 + $y), $y0 - $x,(int)($x1 + $y), $y1 - $x,(int)$color);
+		imageline($image,(int)($x0 - $y), $y0 - $x,(int)($x1 - $y), $y1 - $x,(int)$color);
 
 	}
 }
@@ -167,6 +162,3 @@ function Html2RGB($color)
 
 	return array($r, $g, $b);
 }
-
-
-?>

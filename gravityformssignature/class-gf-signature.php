@@ -110,6 +110,14 @@ class GFSignature extends GFAddOn {
 
 		$styles = array(
 			array(
+				'handle'  => 'gform_signature_editor_css',
+				'src'     => $base_url . "/assets/css/dist/admin{$min}.css",
+				'version' => $this->_version,
+				'enqueue' => array(
+					array( 'admin_page' => array( 'form_editor' ) ),
+				)
+			),
+			array(
 				'handle'  => 'gform_signature_foundation',
 				'src'     => $base_url . "/assets/css/dist/theme{$min}.css",
 				'version' => $this->_version,
