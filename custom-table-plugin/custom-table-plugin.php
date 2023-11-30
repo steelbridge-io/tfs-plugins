@@ -42,7 +42,6 @@
 							<p>In #1, Find 6 options for uploading associated PDF travel documents made avaialble in the browser for vistors to open and download. Each PDF option includes a title and description input informing visotrs about the PDF content.</p>
 							<p>#2 includes 12 months where in each a list of recommended flies can be added. It is important to know that for each fly a row must be added. <strong>For proper result add required row(s) first then click the editor update, save as draft or publish button. Once updated, enter the fly patterns as needed and click the editor update/save as draft button upon completion.</strong>.</p>
 							<p>Each section will render in the browser once content inputs are populated.</p>
-							<p>To limit the editor to only the relevant months, scroll all the way up, look in the upper right corner of the browser window for "Screen Options" -> Click to open -> Check/uncheck the months or other options needed/not needed.</p>
 							</div>';
 			}
 		}
