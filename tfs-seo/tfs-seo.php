@@ -21,7 +21,7 @@ include_once('tfs-google-analytics.php');
  * Adds SEO meta box to the post editing screen
  */
 function seotfs_custom_meta() {
-		$seotypes = array('post', 'page', 'adventures', 'fishcamp_cpt', 'guide_service', 'schools_cpt', 'travel_cpt', 'espresso_venues', 'espresso_events', 'espresso_people', 'travel-blog', 'flyfishing-news', 'lower48', 'lower48blog' );
+		$seotypes = array('post', 'page', 'adventures', 'fishcamp_cpt', 'guide_service', 'schools_cpt', 'travel_cpt', 'espresso_venues', 'espresso_events', 'espresso_people', 'travel-blog', 'flyfishing-news', 'lower48', 'lower48blog', 'fish_report' );
     add_meta_box( 'seotfs_meta', __( 'TFS SEO', 'seotfs-textdomain' ), 'seotfs_meta_callback', $seotypes, 'normal', 'high');
 }
 add_action( 'add_meta_boxes', 'seotfs_custom_meta' );
