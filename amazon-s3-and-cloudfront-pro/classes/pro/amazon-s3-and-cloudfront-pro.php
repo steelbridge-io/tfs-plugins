@@ -659,7 +659,7 @@ class Amazon_S3_And_CloudFront_Pro extends Amazon_S3_And_CloudFront {
 			foreach ( $jobs as $job ) {
 				$output .= $job->{$column};
 				$output .= "\r\n";
-				$output .= print_r( maybe_unserialize( $job->{$value_column} ), true ); // phpcs:ignore
+				$output .= print_r( AS3CF_Utils::maybe_unserialize( $job->{$value_column} ), true ); // @phpcs:ignore
 				$output .= "\r\n";
 			}
 		}
