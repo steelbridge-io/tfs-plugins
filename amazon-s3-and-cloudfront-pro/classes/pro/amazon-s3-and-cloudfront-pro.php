@@ -83,7 +83,7 @@ class Amazon_S3_And_CloudFront_Pro extends Amazon_S3_And_CloudFront {
 		$this->plugin_menu_title = __( 'WP Offload Media', 'amazon-s3-and-cloudfront' );
 
 		// Licence and updates handler
-		if ( is_admin() || AS3CF_Utils::is_rest_api() ) {
+		if ( is_admin() || is_network_admin() || AS3CF_Utils::is_rest_api() || ( defined( 'WP_CLI' ) && class_exists( 'WP_CLI' ) ) ) {
 			$this->licence = new AS3CF_Pro_Licences_Updates( $this );
 		}
 
