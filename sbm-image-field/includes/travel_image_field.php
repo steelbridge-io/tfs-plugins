@@ -50,8 +50,8 @@ function travel_meta_callback( $post ) {
                value="<?php _e( 'Choose or Upload an Image',
 			       'the-fly-shop' ); ?>"/>
     </p>
-    
-    <div class="sections-meta-cont"> <!-- ==== HERO VIDEO URL ==== -->
+    <!-- ==== HERO VIDEO URL ==== -->
+    <div class="sections-meta-cont">
         <strong><label for="travel-temp-video"
                        class="travel-temp-video"><?php _e( 'Hero Video URL',
 					'the-fly-shop' ); ?></label></strong>

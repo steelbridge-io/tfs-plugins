@@ -12,6 +12,27 @@ function private_meta_save( $post_id ) {
     if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
         return;
     }
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['private-hero-opacity-range'] ) ) {
+		update_post_meta( $post_id,
+			'private-hero-opacity-range',
+			sanitize_text_field( $_POST['private-hero-opacity-range'] ) );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['private-temp-video-poster'] ) ) {
+		update_post_meta( $post_id,
+			'private-temp-video-poster',
+			$_POST['private-temp-video-poster'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['private-temp-video'] ) ) {
+		update_post_meta( $post_id,
+			'private-temp-video',
+			$_POST['private-temp-video'] );
+	}
 
 	// Checks for input and saves if needed
 		if( isset( $_POST[ 'private-logo' ] ) ) {

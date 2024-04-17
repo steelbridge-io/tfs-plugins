@@ -44,7 +44,7 @@ function tfs_private_meta_callback($post) {
   <div style="margin-top: 1.618em;">
     <h1>Private Water Details</h1>
   </div>
-  
+    
   <!-- PRIVATE WATERS DESCRIPTION -->
   <h3><?php echo 'Private Waters Description' ?></h3>
   

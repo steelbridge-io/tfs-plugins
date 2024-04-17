@@ -37,6 +37,85 @@ function private_meta_callback( $post ) {
     <input type="button" id="private-logo-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'private-textdomain' );?>" />
   
   </p>
+    
+    <!-- HERO VIDEO -->
+
+
+    <!-- ==== HERO VIDEO URL ==== -->
+    <div class="sections-meta-cont">
+        <strong><label for="private-temp-video"
+                       class="private-temp-video"><?php _e( 'Hero Video URL',
+					'the-fly-shop' ); ?></label></strong>
+        <input style="width:100%;" type="url" name="private-temp-video"
+               id="private-temp-video"
+               value="<?php if ( isset ( $private_stored_meta['private-temp-video'] ) ) {
+			       echo $private_stored_meta['private-temp-video'][0];
+		       } ?>"/>
+        <p class="meta-description">Add video url here. Video url is associated
+            with media stored in a bucket at AWS or Google Cloud. Do not enter
+            YouTube or Vimeo urls. Ensure featured image is empty as well as
+            Sections Template Hero Image.</p>
+    </div>
+
+    <div>
+        <!-- Overlay Opacity Range Selector -->
+		<?php
+		// Retrieve the custom field value
+		$private_hero_opacity = get_post_meta( $post->ID,
+			'private-hero-opacity-range',
+			TRUE );
+		
+		// Set a default value if the custom field is empty
+		if ( empty( $private_hero_opacity ) ) {
+			$private_hero_opacity = 0.1; // Set your desired default value here
+		}
+		// Output the HTML for the custom range input
+		?>
+        <label for="private_hero_opacity"><b>Custom Range Value</b></label>
+        <div style="background-color: #f5f5f5; padding: 1em;">
+            <div>
+                <span>The "Custom Range Value" below selects the opacity of the image or video overlay. Setting this value helps contrast logo, title, telephone against the background media.</span>
+            </div>
+            <label for="private_hero_opacity"><b>Custom Range Value:</b></label>
+            <input type="range" name="private-hero-opacity-range"
+                   id="private-hero-opacity-range" min="0.1" max="1" step="0.01"
+                   value="<?php echo esc_attr( $private_hero_opacity ); ?>">
+            <span id="private_hero_range_value_display"><?php echo esc_attr
+				( $private_hero_opacity ); ?></span>
+        </div>
+    </div>
+
+    <!-- Script renders range selector value to the right of range selector -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const rangeInput = document.getElementById('private-hero-opacity-range');
+            const rangeValueDisplay = document.getElementById('private_hero_range_value_display');
+
+            rangeInput.addEventListener('input', function () {
+                rangeValueDisplay.textContent = rangeInput.value;
+            });
+        });
+    </script>
+
+    <div class="sections-meta-cont">
+        <strong><label for="private-temp-video-poster"
+                       class="sections-row-title"><?php _e( 'Hero Video Poster',
+					'the-fly-shop' ); ?></label></strong><br>
+        <input style="width:75%;" type="text" name="private-temp-video-poster"
+               id="private-temp-video-poster"
+               value="<?php if ( isset ( $private_stored_meta['private-temp-video-poster'] ) ) {
+			       echo $private_stored_meta['private-temp-video-poster'][0];
+		       } ?>"/>
+        <input type="button" id="private-temp-video-poster-button" class="button"
+               value="<?php _e( 'Choose or Upload an Image',
+			       'the-fly-shop' ); ?>"/>
+        <p class="meta-description">Add an image here that is used on mobile
+            devices. Mobile devices do not auto-play video. The "Poster" image
+            is returned on mobile devices when a video is presented on tablets
+            and desktop.</p>
+    </div>
+    
+    <!-- /HERO VIDEO -->
   
   <p> <!-- ==== PRIVATE HERO IMAGE ==== -->
     
