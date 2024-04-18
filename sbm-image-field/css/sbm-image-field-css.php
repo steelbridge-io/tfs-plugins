@@ -200,3 +200,26 @@ function load_opacity_range_css() {
 		';
 		return $css_overlay_opacity;
 }
+
+function load_opacity_range_css_private_waters() {
+	if (is_page_template('page-templates/private-template.php')) {
+		$private_hero_opacity_range = get_post_meta(get_the_ID(), 'private-hero-opacity-range', true);
+		$private_template_opacity_range = '';
+		
+		$private_template_opacity_range .='
+			 #banner.private-temp-hero-overlay .overlay,
+			 #banner.private-template-banner .overlay {
+			    opacity: ' . $private_hero_opacity_range . ';
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    height: 100%;
+			    width: 100%;
+			    background-color: black;
+			    z-index: 1;
+			 }
+			 ';
+		
+		return $private_template_opacity_range;
+	}
+}
