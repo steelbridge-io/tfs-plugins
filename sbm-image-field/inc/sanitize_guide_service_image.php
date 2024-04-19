@@ -12,6 +12,27 @@ function guideservice_meta_save( $post_id ) {
     if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
         return;
     }
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['guidesvc-hero-opacity-range'] ) ) {
+		update_post_meta( $post_id,
+			'guidesvc-hero-opacity-range',
+			sanitize_text_field( $_POST['guidesvc-hero-opacity-range'] ) );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['guidesvc-temp-video-poster'] ) ) {
+		update_post_meta( $post_id,
+			'guidesvc-temp-video-poster',
+			$_POST['guidesvc-temp-video-poster'] );
+	}
+	
+	// Checks for input and saves if needed
+	if ( isset( $_POST['guidesvc-temp-video'] ) ) {
+		update_post_meta( $post_id,
+			'guidesvc-temp-video',
+			$_POST['guidesvc-temp-video'] );
+	}
 
 	// Checks for input and saves if needed
 		if( isset( $_POST[ 'guideservice-logo' ] ) ) {

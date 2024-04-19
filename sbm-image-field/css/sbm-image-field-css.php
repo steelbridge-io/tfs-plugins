@@ -222,4 +222,25 @@ function load_opacity_range_css_private_waters() {
 		
 		return $private_template_opacity_range;
 	}
+	
+	if (is_page_template('page-templates/guide-service-template.php')) {
+		$guidesvc_hero_opacity_range = get_post_meta(get_the_ID(), 'guidesvc-hero-opacity-range', true);
+		$guidesvc_template_opacity_range = '';
+		
+		$guidesvc_template_opacity_range .='
+			 #banner.guidesvc-temp-hero-overlay .overlay,
+			 #banner.guidesvc-template-banner .overlay {
+			    opacity: ' . $guidesvc_hero_opacity_range . ';
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    height: 100%;
+			    width: 100%;
+			    background-color: black;
+			    z-index: 1;
+			 }
+			 ';
+		
+		return $guidesvc_template_opacity_range;
+	}
 }
