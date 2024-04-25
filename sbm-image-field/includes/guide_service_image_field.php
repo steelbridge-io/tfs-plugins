@@ -12,7 +12,7 @@ include( plugin_dir_path( __FILE__ )
 
 function guideservice_custom_meta() {
 	global $post;
-	
+
 	if ( ! empty( $post ) ) {
 		$pageTemplate = get_post_meta( $post->ID, '_wp_page_template', TRUE );
 		$types        = array( 'guide_service' );
@@ -44,7 +44,7 @@ function guideservice_meta_callback( $post ) {
 
     <div class="sections-meta-cont">
         <strong><label for="guidesvc-temp-video"
-                       class="guidesvc-temp-video"><?php _e( 'Hero Video URL',
+                       class="guidesvc-temp-video"><?php _e( 'Hero Video URL (Requires Hero Video Poster image. See Hero Video Poster Image selector below Custom Range Value) )',
 					'the-fly-shop' ); ?></label></strong>
         <input style="width:100%;" type="url" name="guidesvc-temp-video"
                id="guidesvc-temp-video"
@@ -53,21 +53,20 @@ function guideservice_meta_callback( $post ) {
 		       } ?>"/>
         <p class="meta-description">Add video url here. Video url is associated
             with media stored in a bucket at AWS or Google Cloud. Do not enter
-            YouTube or Vimeo urls. Ensure <b>Guide Service Hero Image</b> is
-            empty.</p>
+            YouTube or Vimeo urls.</p>
     </div>
 
-    <div>
+    <div class="sections-meta-cont">
 		<?php
-		
+
 		$private_hero_opacity = get_post_meta( $post->ID,
 			'guidesvc-hero-opacity-range',
 			TRUE );
-		
+
 		if ( empty( $private_hero_opacity ) ) {
 			$private_hero_opacity = 0.1;
 		}
-		
+
 		?>
         <!-- Custom Range Value Meta Field -->
         <label for="private_hero_opacity"><b>Custom Range Value</b></label>
@@ -110,10 +109,7 @@ function guideservice_meta_callback( $post ) {
                class="button"
                value="<?php _e( 'Choose or Upload an Image',
 			       'the-fly-shop' ); ?>"/>
-        <p class="meta-description">Add an image here that is used on mobile
-            devices. Mobile devices do not auto-play video. The "Poster" image
-            is returned on mobile devices when a video is presented on tablets
-            and desktop.</p>
+        <p class="meta-description">A "Poster" image replaces the video in the event the browser does not support video auto-play.</p>
     </div>
 
     <p> <!-- ==== TFS LOGO ==== -->
@@ -166,7 +162,7 @@ function guideservice_meta_callback( $post ) {
     <p><!-- ==== RESERVATIONS-RATES / GUIDE SERVICE / THE FISHING VIDEO ==== -->
 
         <label for="guideservice-gs1-video"
-               class="guideservice-row-title"><?php _e( '<strong>Enter Public URL:</strong>',
+               class="guideservice-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'guideservice-textdomain' ) ?></label>
         <input type="url" name="guideservice-gs1-video"
                id="guideservice-gs1-video"
@@ -198,7 +194,7 @@ function guideservice_meta_callback( $post ) {
     <p> <!-- ==== SEASONS / GUIDE SERVICE TEXT/VIDEO ==== -->
 
         <label for="feature-gs2-video"
-               class="guideservice-row-title"><?php _e( '<strong>Enter Public URL:</strong>',
+               class="guideservice-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'guideservice-textdomain' ) ?></label>
         <input type="url" name="feature-gs2-video" id="feature-gs2-video"
                value="<?php if ( isset ( $guideservice_stored_meta['feature-gs2-video'] ) ) {
@@ -259,7 +255,7 @@ function guideservice_meta_callback( $post ) {
     <p> <!-- ==== LODGING / LODGING TEXT/VIDEO ==== -->
 
         <label for="feature-gs4-video"
-               class="guideservice-row-title"><?php _e( '<strong>Enter Public URL:</strong>',
+               class="guideservice-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'guideservice-textdomain' ) ?></label>
         <input type="url" name="feature-gs4-video" id="feature-gs4-video"
                value="<?php if ( isset ( $guideservice_stored_meta['feature-gs4-video'] ) ) {
@@ -289,7 +285,7 @@ function guideservice_meta_callback( $post ) {
     <p> <!-- ==== GETTING THERE / FISHING TEXT/VIDEO ==== -->
 
         <label for="feature-gs5-video"
-               class="guideservice-row-title"><?php _e( '<strong>Enter Public URL:</strong>',
+               class="guideservice-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'guideservice-textdomain' ) ?></label>
         <input type="url" name="feature-gs5-video" id="feature-gs5-video"
                value="<?php if ( isset ( $guideservice_stored_meta['feature-gs5-video'] ) ) {

@@ -7,7 +7,7 @@ include( plugin_dir_path( __FILE__ ) . '../inc/sanitize_travel_image.php' );
 
 function travel_custom_meta() {
 	global $post;
-	
+
 	if ( ! empty( $post ) ) {
 		$pageTemplate = get_post_meta( $post->ID, '_wp_page_template', TRUE );
 		$types        = array(
@@ -37,23 +37,10 @@ function travel_meta_callback( $post ) {
 	wp_nonce_field( basename( __FILE__ ), 'travel_nonce' );
 	$travel_stored_meta = get_post_meta( $post->ID ); ?>
 
-    <p> <!-- ==== TFS LOGO ==== -->
-        <label for="travel-logo"
-               class="travel-row-title"><?php _e( '<h3>TFS Logo</h3>',
-				'the-fly-shop' ); ?></label>
-
-        <input type="text" name="travel-logo" id="travel-logo"
-               value="<?php if ( isset ( $travel_stored_meta['travel-logo'] ) ) {
-			       echo $travel_stored_meta['travel-logo'][0];
-		       } ?>"/>
-        <input type="button" id="travel-logo-button" class="button"
-               value="<?php _e( 'Choose or Upload an Image',
-			       'the-fly-shop' ); ?>"/>
-    </p>
     <!-- ==== HERO VIDEO URL ==== -->
     <div class="sections-meta-cont">
         <strong><label for="travel-temp-video"
-                       class="travel-temp-video"><?php _e( 'Hero Video URL',
+                       class="travel-temp-video"><?php _e( 'Hero Video URL (Requires Hero Video Poster image. See Hero Video Poster Image selector below Custom Range Value)',
 					'the-fly-shop' ); ?></label></strong>
         <input style="width:100%;" type="url" name="travel-temp-video"
                id="travel-temp-video"
@@ -65,15 +52,15 @@ function travel_meta_callback( $post ) {
             YouTube or Vimeo urls. Ensure featured image is empty as well as
             Sections Template Hero Image.</p>
     </div>
-    
-    <div>
+
+    <div class="sections-meta-cont">
         <!-- Overlay Opacity Range Selector -->
 		<?php
 		// Retrieve the custom field value
 		$travel_hero_opacity = get_post_meta( $post->ID,
 			'travel-hero-opacity-range',
 			TRUE );
-		
+
 		// Set a default value if the custom field is empty
 		if ( empty( $travel_hero_opacity ) ) {
 			$travel_hero_opacity = 0.1; // Set your desired default value here
@@ -118,11 +105,22 @@ function travel_meta_callback( $post ) {
         <input type="button" id="travel-temp-video-poster-button" class="button"
                value="<?php _e( 'Choose or Upload an Image',
 			       'the-fly-shop' ); ?>"/>
-        <p class="meta-description">Add an image here that is used on mobile
-            devices. Mobile devices do not auto-play video. The "Poster" image
-            is returned on mobile devices when a video is presented on tablets
-            and desktop.</p>
+        <p class="meta-description">A "Poster" image replaces the video in the event the browser does not support video auto-play.</p>
     </div>
+
+    <p> <!-- ==== TFS LOGO ==== -->
+        <label for="travel-logo"
+               class="travel-row-title"><?php _e( '<h3>TFS Logo</h3>',
+                'the-fly-shop' ); ?></label>
+
+        <input type="text" name="travel-logo" id="travel-logo"
+               value="<?php if ( isset ( $travel_stored_meta['travel-logo'] ) ) {
+                   echo $travel_stored_meta['travel-logo'][0];
+               } ?>"/>
+        <input type="button" id="travel-logo-button" class="button"
+               value="<?php _e( 'Choose or Upload an Image',
+                   'the-fly-shop' ); ?>"/>
+    </p>
 
 
     <p> <!-- ==== TRAVEL HERO IMAGE ==== -->
@@ -155,7 +153,7 @@ function travel_meta_callback( $post ) {
 
     <p> <!-- ==== COST / TRAVEL TEXT/VIDEO ==== -->
         <label for="feature-1-video"
-               class="travel-row-title"><?php _e( '<strong>Video (Enter Public URL):</strong>',
+               class="travel-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'the-fly-shop' ) ?></label>
         <input type="url" name="feature-1-video" id="feature-1-video"
                value="<?php if ( isset ( $travel_stored_meta['feature-1-video'] ) ) {
@@ -163,7 +161,7 @@ function travel_meta_callback( $post ) {
 		       } ?>"/>
     </p>
 
-    <!-- ==== COST / TAVEL VIDEO/IMAGE OPTION ==== -->
+    <!-- ==== COST / TRAVEL VIDEO/IMAGE OPTION ==== -->
     <!-- <span class="travel-row-title"> //_e( '<strong>Image or Video?</strong>', 'the-fly-shop' )?></span>
     <div class="travel-row-content">
       <label for="feature-1-checkbox">
@@ -190,7 +188,7 @@ function travel_meta_callback( $post ) {
 
     <p> <!-- ==== SEASONS / TRAVEL TEXT/VIDEO ==== -->
         <label for="feature-2-video"
-               class="travel-row-title"><?php _e( '<strong>Video (Enter Public URL):</strong>',
+               class="travel-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'the-fly-shop' ) ?></label>
         <input type="url" name="feature-2-video" id="feature-2-video"
                value="<?php if ( isset ( $travel_stored_meta['feature-2-video'] ) ) {
@@ -198,7 +196,7 @@ function travel_meta_callback( $post ) {
 		       } ?>"/>
     </p>
 
-    <!-- ==== SEASONS / TAVEL VIDEO/IMAGE OPTION ==== -->
+    <!-- ==== SEASONS / TRAVEL VIDEO/IMAGE OPTION ==== -->
     <!-- <span class="travel-row-title"> //_e( '<strong>Image or Video?</strong>', 'the-fly-shop' )?></span>
     <div class="travel-row-content">
       <label for="feature-2-checkbox">
@@ -226,7 +224,7 @@ function travel_meta_callback( $post ) {
 
     <p> <!-- ==== GETTING TO / TRAVEL TEXT/VIDEO ==== -->
         <label for="feature-3-video"
-               class="travel-row-title"><?php _e( '<strong>Video (Enter Public URL):</strong>',
+               class="travel-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'the-fly-shop' ) ?></label>
         <input type="url" name="feature-3-video" id="feature-3-video"
                value="<?php if ( isset ( $travel_stored_meta['feature-3-video'] ) ) {
@@ -234,7 +232,7 @@ function travel_meta_callback( $post ) {
 		       } ?>"/>
     </p>
 
-    <!-- ==== GETTING TO / TAVEL VIDEO/IMAGE OPTION ==== -->
+    <!-- ==== GETTING TO / TRAVEL VIDEO/IMAGE OPTION ==== -->
     <!-- <span class="travel-row-title">// _e( '<strong>Image or Video?</strong>', 'the-fly-shop' )?></span>
 <div class="travel-row-content">
   <label for="feature-3-checkbox">
@@ -262,7 +260,7 @@ function travel_meta_callback( $post ) {
 
     <p> <!-- ==== LODGING / TRAVEL TEXT/VIDEO ==== -->
         <label for="feature-4-video"
-               class="travel-row-title"><?php _e( '<strong>Video (Enter Public URL):</strong>',
+               class="travel-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'the-fly-shop' ) ?></label>
         <input type="url" name="feature-4-video" id="feature-4-video"
                value="<?php if ( isset ( $travel_stored_meta['feature-4-video'] ) ) {
@@ -270,7 +268,7 @@ function travel_meta_callback( $post ) {
 		       } ?>"/>
     </p>
 
-    <!-- ==== LODGING / TAVEL VIDEO/IMAGE OPTION ==== -->
+    <!-- ==== LODGING / TRAVEL VIDEO/IMAGE OPTION ==== -->
     <!-- <span class="travel-row-title">// _e( '<strong>Image or Video?</strong>', 'the-fly-shop' )?></span>
     <div class="travel-row-content">
       <label for="feature-4-checkbox">
@@ -297,7 +295,7 @@ function travel_meta_callback( $post ) {
 
     <p> <!-- ==== FISHING / TRAVEL TEXT/VIDEO ==== -->
         <label for="feature-5-video"
-               class="travel-row-title"><?php _e( '<strong>Video (Enter Public URL):</strong>',
+               class="travel-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'the-fly-shop' ) ?></label>
         <input type="url" name="feature-5-video" id="feature-5-video"
                value="<?php if ( isset ( $travel_stored_meta['feature-5-video'] ) ) {
@@ -305,7 +303,7 @@ function travel_meta_callback( $post ) {
 		       } ?>"/>
     </p>
 
-    <!-- ==== FISHING / TAVEL VIDEO/IMAGE OPTION ==== -->
+    <!-- ==== FISHING / TRAVEL VIDEO/IMAGE OPTION ==== -->
 
     <!-- <span class="travel-row-title">// _e( '<strong>Image or Video?</strong>', 'the-fly-shop' )?></span>
     <div class="travel-row-content">
