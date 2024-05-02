@@ -53,8 +53,7 @@ function guideservice_meta_callback( $post ) {
 		       } ?>"/>
         <p class="meta-description">Add video url here. Video url is associated
             with media stored in a bucket at AWS or Google Cloud. Do not enter
-            YouTube or Vimeo urls. Ensure <b>Guide Service Hero Image</b> is
-            empty.</p>
+            YouTube or Vimeo urls.</p>
     </div>
 
     <div>
@@ -113,7 +112,7 @@ function guideservice_meta_callback( $post ) {
         <p class="meta-description">Add an image here that is used on mobile
             devices. Mobile devices do not auto-play video. The "Poster" image
             is returned on mobile devices when a video is presented on tablets
-            and desktop.</p>
+            and desktop. <br>This image is required for proper layout!</br></p>
     </div>
 
     <p> <!-- ==== TFS LOGO ==== -->
@@ -143,6 +142,11 @@ function guideservice_meta_callback( $post ) {
         <input type="button" id="guideservice-image-button" class="button"
                value="<?php _e( 'Choose or Upload an Image',
 			       'guideservice-textdomain' ); ?>"/>
+        <p>
+            When video is not used and you wnat a stand alone Hero image, use
+            this input for the image but make sure video and poster inputs are
+            clear.
+        </p>
     </div>
 
     <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">

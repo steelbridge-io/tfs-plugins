@@ -54,8 +54,7 @@ function private_meta_callback( $post ) {
 		       } ?>"/>
         <p class="meta-description">Add video url here. Video url is associated
             with media stored in a bucket at AWS or Google Cloud. Do not enter
-            YouTube or Vimeo urls. Ensure <b>Private Water Hero Image</b> is
-                empty.</p>
+            YouTube or Vimeo urls.</p>
     </div>
 
     <div>
@@ -134,7 +133,7 @@ function private_meta_callback( $post ) {
 
     </p>
 
-    <p> <!-- ==== PRIVATE HERO IMAGE ==== -->
+    <div> <!-- ==== PRIVATE HERO IMAGE ==== -->
 
         <label for="private-image"
                class="private-row-title"><?php _e( '<h3>Private Water Hero Image</h3>',
@@ -146,8 +145,13 @@ function private_meta_callback( $post ) {
         <input type="button" id="private-image-button" class="button"
                value="<?php _e( 'Choose or Upload an Image',
 			       'private-textdomain' ); ?>"/>
+        <p>
+            When video is not used and you wnat a stand alone Hero image, use
+            this input for the image but make sure video and poster inputs above
+            are clear.
+        </p>
 
-    </p>
+    </div>
 
     <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
 

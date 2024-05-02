@@ -138,6 +138,11 @@ function travel_meta_callback( $post ) {
                value="<?php _e( 'Choose or Upload an Image',
 			       'the-fly-shop' ); ?>"/>
     </p>
+        <p>
+            When video is not used and you wnat a stand alone Hero image, use
+            this input for the image but make sure video and poster inputs above
+            are clear.
+        </p>
     <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
     <p> <!-- ==== COST / TRAVEL DETAILS IMAGE ==== -->
         <label for="feature-1-image"
