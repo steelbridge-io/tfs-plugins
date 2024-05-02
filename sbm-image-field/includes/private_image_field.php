@@ -12,7 +12,7 @@ include( plugin_dir_path( __FILE__ ) . '../inc/sanitize_private_image.php' );
 
 function private_custom_meta() {
 	global $post;
-	
+
 	if ( ! empty( $post ) ) {
 		$pageTemplate = get_post_meta( $post->ID, '_wp_page_template', TRUE );
 		$types        = array( 'post', 'page', 'adventures' );
@@ -41,11 +41,11 @@ function private_meta_callback( $post ) {
 	$private_stored_meta = get_post_meta( $post->ID ); ?>
 
     <!-- HERO VIDEO -->
-    
+
     <!-- ==== HERO VIDEO URL ==== -->
     <div class="sections-meta-cont">
         <strong><label for="private-temp-video"
-                       class="private-temp-video"><?php _e( 'Hero Video URL',
+                       class="private-temp-video"><?php _e( 'Hero Video URL (Requires Hero Video Poster image. See Hero Video Poster Image selector below Custom Range Value)',
 					'the-fly-shop' ); ?></label></strong>
         <input style="width:100%;" type="url" name="private-temp-video"
                id="private-temp-video"
@@ -64,7 +64,7 @@ function private_meta_callback( $post ) {
 		$private_hero_opacity = get_post_meta( $post->ID,
 			'private-hero-opacity-range',
 			TRUE );
-		
+
 		// Set a default value if the custom field is empty
 		if ( empty( $private_hero_opacity ) ) {
 			$private_hero_opacity = 0.1; // Set your desired default value here
@@ -110,10 +110,7 @@ function private_meta_callback( $post ) {
                class="button"
                value="<?php _e( 'Choose or Upload an Image',
 			       'the-fly-shop' ); ?>"/>
-        <p class="meta-description">Add an image here that is used on mobile
-            devices. Mobile devices do not auto-play video. The "Poster" image
-            is returned on mobile devices when a video is presented on tablets
-            and desktop.</p>
+        <p class="meta-description">A "Poster" image replaces the video in the event the browser does not support video auto-play.</p>
     </div>
 
     <!-- /HERO VIDEO -->
@@ -173,7 +170,7 @@ function private_meta_callback( $post ) {
     <p> <!-- ==== FEATURE #1 / PRIVATE WATERS TEXT/VIDEO ==== -->
 
         <label for="feature-pw1-video"
-               class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>',
+               class="private-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'private-textdomain' ) ?></label>
         <input type="url" name="feature-pw1-video" id="feature-pw1-video"
                value="<?php if ( isset ( $private_stored_meta['feature-pw1-video'] ) ) {
@@ -200,7 +197,7 @@ function private_meta_callback( $post ) {
     <p> <!-- ==== FEATURE #2 / TRAVEL TEXT/VIDEO ==== -->
 
         <label for="feature-pw2-video"
-               class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>',
+               class="private-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'private-textdomain' ) ?></label>
         <input type="url" name="feature-pw2-video" id="feature-pw2-video"
                value="<?php if ( isset ( $private_stored_meta['feature-pw2-video'] ) ) {
@@ -228,7 +225,7 @@ function private_meta_callback( $post ) {
     <p> <!-- ==== FEATURE #3 / GETTING TO TEXT/VIDEO ==== -->
 
         <label for="feature-pw3-video"
-               class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>',
+               class="private-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'private-textdomain' ) ?></label>
         <input type="url" name="feature-pw3-video" id="feature-pw3-video"
                value="<?php if ( isset ( $private_stored_meta['feature-pw3-video'] ) ) {
@@ -256,7 +253,7 @@ function private_meta_callback( $post ) {
     <p> <!-- ==== FEATURE #4 / LODGING TEXT/VIDEO ==== -->
 
         <label for="feature-pw4-video"
-               class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>',
+               class="private-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'private-textdomain' ) ?></label>
         <input type="url" name="feature-pw4-video" id="feature-pw4-video"
                value="<?php if ( isset ( $private_stored_meta['feature-pw4-video'] ) ) {
@@ -284,7 +281,7 @@ function private_meta_callback( $post ) {
     <p> <!-- ==== FEATURE #5 / FISHING TEXT/VIDEO ==== -->
 
         <label for="feature-pw5-video"
-               class="private-row-title"><?php _e( '<strong>Add Video URL:</strong>',
+               class="private-row-title"><?php _e( '<strong>Enter Public Video URL:</strong>',
 				'private-textdomain' ) ?></label>
         <input type="url" name="feature-pw5-video" id="feature-pw5-video"
                value="<?php if ( isset ( $private_stored_meta['feature-pw5-video'] ) ) {
