@@ -1,0 +1,17 @@
+.carousel-item {
+    clear: both;
+    height: 100px;
+}
+
+.carousel-item img {
+    width: 100px;
+    height: 100px;
+}
+
+#my-scroller {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 600px; /* Adjust this value to show only two items simultaneously */
+}

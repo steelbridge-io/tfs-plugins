@@ -4,10 +4,12 @@ Plugin Name: Meta Field Content Plugin
 Version: 1.0
 */
 
+include_once 'includes/load-scripts-styles.php';
+include_once 'includes/shortcode.php';
 function get_custom_fields($post_id) {
-	$meta_elements = ['title', 'sub-title', 'link', 'description', 'image'];
+	$meta_elements = ['title1', 'sub-title', 'link', 'description1', 'image1'];
 	$post_meta_data = [];
-	
+
 	foreach ($meta_elements as $meta) {
 		$post_meta_data[$meta] = get_post_meta($post_id, $meta, true);
 	}
@@ -29,10 +31,10 @@ function meta_content_settings_page() { ?>
                 <tbody>
                 <tr>
                     <th scope="row">
-                        <label for="title">Title</label>
+                        <label for="title1">Title 1</label>
                     </th>
                     <td>
-                        <input name="title" type="text" id="title" class="regular-text" value="<?php echo esc_attr( get_option('title') ); ?>">
+                        <input name="title1" type="text" id="title1" class="regular-text" value="<?php echo esc_attr( get_option('title1') ); ?>">
                     </td>
                 </tr>
                 <tr>
@@ -45,24 +47,24 @@ function meta_content_settings_page() { ?>
                 </tr>
                 <tr>
                     <th scope="row">
-                        <label for="description">Description</label>
+                        <label for="description1">Description 1</label>
                     </th>
                     <td>
-                        <textarea name="description" id="description" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description') ); ?></textarea>
+                        <textarea name="description1" id="description1" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description1') ); ?></textarea>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">
-                        <label for="image_url">Image</label>
+                        <label for="image_url">Image 1</label>
                     </th>
                     <td>
                         <input id="upload_image_button" type="button" class="button" value="Upload Image" />
-                        <input id="image_url" name="image" type="text" class="regular-text" value="<?php echo esc_url( get_option('image') ); ?>">
+                        <input id="image_url" name="image1" type="text" class="regular-text" value="<?php echo esc_url( get_option('image1') ); ?>">
                     </td>
                 </tr>
                 </tbody>
             </table>
-			
+
 			<?php
 			settings_fields( 'meta_field_content_settings' );
 			do_settings_sections( 'meta_field_content_settings' );
@@ -78,18 +80,18 @@ function load_wp_media_files() {
 add_action( 'admin_enqueue_scripts', 'load_wp_media_files' );
 
 function meta_field_content_register_settings() {
-	register_setting( 'meta_field_content_settings', 'title' );
+	register_setting( 'meta_field_content_settings', 'title1' );
 	register_setting( 'meta_field_content_settings', 'link' );
-	register_setting( 'meta_field_content_settings', 'description' );
-	register_setting( 'meta_field_content_settings', 'image' );
+	register_setting( 'meta_field_content_settings', 'description1' );
+	register_setting( 'meta_field_content_settings', 'image1' );
 }
 add_action( 'admin_init', 'meta_field_content_register_settings' );
 
 function meta_field_content_sanitize() {
-	register_setting( 'meta_field_content_settings', 'title', 'sanitize_text_field' );
+	register_setting( 'meta_field_content_settings', 'title1', 'sanitize_text_field' );
 	register_setting( 'meta_field_content_settings', 'link', 'esc_url_raw' );
-	register_setting( 'meta_field_content_settings', 'description', 'sanitize_textarea_field' );
-	register_setting( 'meta_field_content_settings', 'image', 'sanitize_text_field' );
+	register_setting( 'meta_field_content_settings', 'description1', 'sanitize_textarea_field' );
+	register_setting( 'meta_field_content_settings', 'image1', 'sanitize_text_field' );
 }
 add_action( 'admin_init', 'meta_field_content_register_settings' );
 
@@ -102,9 +104,9 @@ add_action( 'admin_enqueue_scripts', 'my_admin_enqueue_scripts' );
 
 function render_meta_field_content() {
 	global $post;
-	
+
 	$post_meta_data = get_custom_fields($post->ID);
-	
+
 	// HTML building part
 	$html_content = '';
 	foreach ($post_meta_data as $key => $data) {
