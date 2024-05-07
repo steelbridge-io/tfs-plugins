@@ -1,0 +1,87 @@
+/*** Common CSS ***/
+
+.mfcp-carousel-item {
+  .mfcp-carousel-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    padding: 5px;
+
+    .mfcp-carousel-item-img-container {
+        /*flex: 0 0 33.333333%;
+        max-width: 33.333333%;*/
+        flex: 1;
+      text-align: center;
+    }
+
+    .mfcp-carousel-item-description-container {
+        /*flex: 0 0 66.666667%;
+        max-width: 66.666667%;*/
+      flex: 1;
+        text-align: center;
+
+        p {
+          margin: 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+.mfcp-carousel-item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  clear: both;
+  max-height: 200px;
+  padding: 0;
+}
+
+.mfcp-carousel-item img {
+  max-width: 200px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+
+#my-scroller {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  overflow-y: auto;
+  padding: 1em 1em 1em 0;
+}
+
+button {
+  &.slick-prev {
+    border: none;
+    background: transparent;
+  }
+  &.slick-next {
+    border: none;
+    background: transparent;
+  }
+
+  .svg-inline--fa.fa-chevron-up.fa-w-14.mfpc-publication,
+  .svg-inline--fa.fa-chevron-down.fa-w-14.mfpc-publication {
+    color: $chevronColor;
+  }
+
+  .mfpc-publication.fa.fa-chevron-down,
+  .mfpc-publication.fa.fa-chevron-up {
+    color: $chevronColor;
+  }
+}
+
+@media screen and (max-width: 991.99px) {
+  #my-scroller {
+    width: 100%;
+    padding: 0;
+  }
+}
