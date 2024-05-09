@@ -41,390 +41,174 @@ function meta_field_content_menu() {
 
 function meta_content_settings_page() { ?>
     <div class="wrap">
-        <h2>Meta Field Content</h2>
-        <form method="post" action="options.php"
-              class="editor-publication-form-grid">
-            <table class="form-table">
-                <tbody>
-                <tr>
-                    <th scope="row">
-                        <label for="title1">Title 1</label>
-                    </th>
-                    <td>
-                        <input name="title1" type="text" id="title1" class="regular-text" value="<?php echo esc_attr( get_option('title1') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="subtitle1">Sub Title 1</label>
-                    </th>
-                    <td>
-                        <input name="subtitle1" type="text" id="subtitle1"
-                               class="regular-text" value="<?php echo
-                        esc_attr( get_option('subtitle1') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="link1">Link 1</label>
-                    </th>
-                    <td>
-                        <input name="link1" type="text" id="link1"
-                               class="regular-text" value="<?php echo
-                        esc_attr( get_option('link1') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="description1">Description 1</label>
-                    </th>
-                    <td>
-                        <textarea name="description1" id="description1" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description1') ); ?></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="image_url">Image 1</label>
-                    </th>
-                    <td>
-                        <input id="upload_image_button1" type="button"
-                               class="button" value="Upload Image" />
-                        <input id="image_url1" name="image1" type="text"
-                               class="regular-text" value="<?php echo esc_url( get_option('image1') ); ?>">
-                    </td>
-                </tr>
-                <!-- Row #2 -->
-                <tr>
-                    <th scope="row">
-                        <label for="title2">Title 2</label>
-                    </th>
-                    <td>
-                        <input name="title2" type="text" id="title2" class="regular-text" value="<?php echo esc_attr( get_option('title2') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="subtitle2">Sub Title 2</label>
-                    </th>
-                    <td>
-                        <input name="subtitle2" type="text" id="subtitle2"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('subtitle2') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="link2">Link 2</label>
-                    </th>
-                    <td>
-                        <input name="link2" type="text" id="link2"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('link2') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="description2">Description 2</label>
-                    </th>
-                    <td>
-                        <textarea name="description2" id="description2" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description2') ); ?></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="image_url">Image 2</label>
-                    </th>
-                    <td>
-                        <input id="upload_image_button2" type="button"
-                               class="button" value="Upload Image" />
-                        <input id="image_url2" name="image2" type="text"
-                               class="regular-text" value="<?php echo esc_url( get_option('image2') ); ?>">
-                    </td>
-                </tr>
-                <!-- Row #3 -->
-                <tr>
-                    <th scope="row">
-                        <label for="title3">Title 3</label>
-                    </th>
-                    <td>
-                        <input name="title3" type="text" id="title3" class="regular-text" value="<?php echo esc_attr( get_option('title3') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="subtitle3">Sub Title 3</label>
-                    </th>
-                    <td>
-                        <input name="subtitle3" type="text" id="subtitle3"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('subtitle3') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="link3">Link 3</label>
-                    </th>
-                    <td>
-                        <input name="link3" type="text" id="link3"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('link3') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="description3">Description 3</label>
-                    </th>
-                    <td>
-                        <textarea name="description3" id="description3" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description3') ); ?></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="image_url">Image 3</label>
-                    </th>
-                    <td>
-                        <input id="upload_image_button" type="button" class="button" value="Upload Image" />
-                        <input id="image_url" name="image3" type="text" class="regular-text" value="<?php echo esc_url( get_option('image3') ); ?>">
-                    </td>
-                </tr>
-                <!-- Row #4 -->
-                <tr>
-                    <th scope="row">
-                        <label for="title4">Title 4</label>
-                    </th>
-                    <td>
-                        <input name="title4" type="text" id="title4" class="regular-text" value="<?php echo esc_attr( get_option('title4') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="subtitle4">Sub Title 4</label>
-                    </th>
-                    <td>
-                        <input name="subtitle4" type="text" id="subtitle4"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('subtitle4') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="link4">Link 4</label>
-                    </th>
-                    <td>
-                        <input name="link4" type="text" id="link4"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('link4') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="description4">Description 4</label>
-                    </th>
-                    <td>
-                        <textarea name="description4" id="description4" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description4') ); ?></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="image_url">Image 4</label>
-                    </th>
-                    <td>
-                        <input id="upload_image_button" type="button" class="button" value="Upload Image" />
-                        <input id="image_url" name="image4" type="text" class="regular-text" value="<?php echo esc_url( get_option('image4') ); ?>">
-                    </td>
-                </tr>
-                <!-- Row #5 -->
-                <tr>
-                    <th scope="row">
-                        <label for="title5">Title 5</label>
-                    </th>
-                    <td>
-                        <input name="title5" type="text" id="title5" class="regular-text" value="<?php echo esc_attr( get_option('title5') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="subtitle5">Sub Title 5</label>
-                    </th>
-                    <td>
-                        <input name="subtitle5" type="text" id="subtitle5"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('subtitle5') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="link5">Link 5</label>
-                    </th>
-                    <td>
-                        <input name="link5" type="text" id="link5"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('link5') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="description5">Description 5</label>
-                    </th>
-                    <td>
-                        <textarea name="description5" id="description5" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description5') ); ?></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="image_url">Image 5</label>
-                    </th>
-                    <td>
-                        <input id="upload_image_button" type="button" class="button" value="Upload Image" />
-                        <input id="image_url" name="image5" type="text" class="regular-text" value="<?php echo esc_url( get_option('image5') ); ?>">
-                    </td>
-                </tr>
-                <!-- Row #6 -->
-                <tr>
-                    <th scope="row">
-                        <label for="title6">Title 6</label>
-                    </th>
-                    <td>
-                        <input name="title6" type="text" id="title6" class="regular-text" value="<?php echo esc_attr( get_option('title6') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="subtitle6">Sub Title 6</label>
-                    </th>
-                    <td>
-                        <input name="subtitle6" type="text" id="subtitle6"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('subtitle6') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="link6">Link 6</label>
-                    </th>
-                    <td>
-                        <input name="link6" type="text" id="link6"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('link6') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="description6">Description 6</label>
-                    </th>
-                    <td>
-                        <textarea name="description6" id="description6" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description6') ); ?></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="image_url">Image 6</label>
-                    </th>
-                    <td>
-                        <input id="upload_image_button" type="button" class="button" value="Upload Image" />
-                        <input id="image_url" name="image6" type="text" class="regular-text" value="<?php echo esc_url( get_option('image6') ); ?>">
-                    </td>
-                </tr>
-                <!-- Row #7 -->
-                <tr>
-                    <th scope="row">
-                        <label for="title7">Title 7</label>
-                    </th>
-                    <td>
-                        <input name="title7" type="text" id="title7" class="regular-text" value="<?php echo esc_attr( get_option('title7') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="subtitle7">Sub Title 7</label>
-                    </th>
-                    <td>
-                        <input name="subtitle7" type="text" id="subtitle7"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('subtitle7') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="link7">Link 7</label>
-                    </th>
-                    <td>
-                        <input name="link7" type="text" id="link7"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('link7') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="description7">Description 7</label>
-                    </th>
-                    <td>
-                        <textarea name="description7" id="description7" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description7') ); ?></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="image_url">Image 7</label>
-                    </th>
-                    <td>
-                        <input id="upload_image_button" type="button" class="button" value="Upload Image" />
-                        <input id="image_url" name="image7" type="text" class="regular-text" value="<?php echo esc_url( get_option('image7') ); ?>">
-                    </td>
-                </tr>
-                <!-- Row #8 -->
-                <tr>
-                    <th scope="row">
-                        <label for="title8">Title 8</label>
-                    </th>
-                    <td>
-                        <input name="title8" type="text" id="title8" class="regular-text" value="<?php echo esc_attr( get_option('title8') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="subtitle8">Sub Title 8</label>
-                    </th>
-                    <td>
-                        <input name="subtitle8" type="text" id="subtitle8"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('subtitle8') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="link8">Link 8</label>
-                    </th>
-                    <td>
-                        <input name="link8" type="text" id="link8"
-                               class="regular-text" value="<?php echo
-		                esc_attr( get_option('link8') ); ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="description8">Description 8</label>
-                    </th>
-                    <td>
-                        <textarea name="description8" id="description8" rows="10" class="regular-text"><?php echo esc_textarea( get_option('description8') ); ?></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="image_url">Image 8</label>
-                    </th>
-                    <td>
-                        <input id="upload_image_button" type="button" class="button" value="Upload Image" />
-                        <input id="image_url" name="image8" type="text" class="regular-text" value="<?php echo esc_url( get_option('image8') ); ?>">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <h2>Publications - Meta Field Content</h2>
+        <form method="post" action="options.php" id="editor-publication-form-grid">
+        <!-- Row #1 -->
+        <div class="form-row">
+            
+            <label class="form-label" for="title1">Title 1</label>
+            <input name="title1" type="text" id="title1" class="regular-text form-input" value="<?php echo esc_attr( get_option('title1') ); ?>">
+            
+            <label class="form-label" for="subtitle1">Sub Title 1</label>
+            <input name="subtitle1" type="text" id="subtitle1" class="regular-text form-input" value="<?php echo esc_attr( get_option('subtitle1') ); ?>">
+        
+            <label class="form-label" for="link1">Link 1</label>
+            <input name="link1" type="text" id="link1" class="regular-text form-input" value="<?php echo esc_attr( get_option('link1') ); ?>">
+       
+            <label class="form-label" for="description1">Description 1</label>
+            <textarea name="description1" id="description1" rows="10" class="regular-text form-input"><?php echo esc_textarea( get_option('description1') ); ?></textarea>
+       
+            <label class="form-label" for="image_url">Image 1</label>
+            <input id="image_url1" name="image1" type="text" class="regular-text form-input" value="<?php echo esc_url( get_option('image1') ); ?>">
+            <input id="upload_image_button1" type="button" class="button form-input" value="Upload Image" />
+            
+        </div>
+            <!-- Row #2 -->
+        <div class="form-row">
+            
+            <label class="form-label" for="title2">Title 2</label>
+            <input name="title2" type="text" id="title2" class="regular-text form-input" value="<?php echo esc_attr( get_option('title2') ); ?>">
+            
+            <label class="form-label" for="subtitle2">Sub Title 2</label>
+            <input name="subtitle2" type="text" id="subtitle2" class="regular-text form-input" value="<?php echo esc_attr( get_option('subtitle2') ); ?>">
+            
+            <label class="form-label" for="link2">Link 2</label>
+            <input name="link2" type="text" id="link2" class="regular-text form-input" value="<?php echo esc_attr( get_option('link2') ); ?>">
+        
+            <label class="form-label" for="description2">Description 2</label>
+            <textarea name="description2" id="description2" rows="10" class="regular-text form-input"><?php echo esc_textarea( get_option('description2') ); ?></textarea>
+           
+            <label class="form-label" for="image_url">Image 2</label>
+            <input id="image_url2" name="image2" type="text" class="regular-text form-input" value="<?php echo esc_url( get_option('image2') ); ?>">
+            <input id="upload_image_button2" type="button" class="button form-input" value="Upload Image" />
+            
+        </div>
+        <!-- Row #3 -->
+        <div class="form-row">
 
-			<?php
-			settings_fields( 'meta_field_content_settings' );
-			do_settings_sections( 'meta_field_content_settings' );
-			submit_button();
-			?>
+            <label class="form-label" for="title3">Title 3</label>
+            <input name="title3" type="text" id="title3" class="regular-text form-input" value="<?php echo esc_attr( get_option('title3') ); ?>">
+            
+            <label class="form-label" for="subtitle3">Sub Title 3</label>
+            <input name="subtitle3" type="text" id="subtitle3" class="regular-text form-input" value="<?php echo esc_attr( get_option('subtitle3') ); ?>">
+            
+            <label class="form-label" for="link3">Link 3</label>
+            <input name="link3" type="text" id="link3" class="regular-text form-input" value="<?php echo esc_attr( get_option('link3') ); ?>">
+            
+            <label class="form-label" for="description3">Description 3</label>
+            <textarea name="description3" id="description3" rows="10" class="regular-text form-input"><?php echo esc_textarea( get_option('description3') ); ?></textarea>
+            
+            <label class="form-label" for="image_url">Image 3</label>
+            <input id="image_url3" name="image3" type="text" class="regular-text form-input" value="<?php echo esc_url( get_option('image3') ); ?>">
+            <input id="upload_image_button3" type="button" class="button form-input" value="Upload Image" />
+            
+        </div>
+        <!-- Row #4 -->
+        <div class="form-row">
+            <label class="form-label" for="title4">Title 4</label>
+            <input name="title4" type="text" id="title4" class="regular-text form-input" value="<?php echo esc_attr( get_option('title4') ); ?>">
+            
+            <label class="form-label" for="subtitle4">Sub Title 4</label>
+            <input name="subtitle4" type="text" id="subtitle4" class="regular-text form-input" value="<?php echo esc_attr( get_option('subtitle4') ); ?>">
+            
+            <label class="form-label" for="link4">Link 4</label>
+            <input name="link4" type="text" id="link4" class="regular-text form-input" value="<?php echo esc_attr( get_option('link4') ); ?>">
+            
+            <label class="form-label" for="description4">Description 4</label>
+            <textarea name="description4" id="description4" rows="10" class="regular-text form-input"><?php echo esc_textarea( get_option('description4') ); ?></textarea>
+            
+            <label class="form-label" for="image_url">Image 4</label>
+            <input id="image_url4" name="image4" type="text" class="regular-text form-input" value="<?php echo esc_url( get_option('image4') ); ?>">
+            <input id="upload_image_button4" type="button" class="button form-input" value="Upload Image" />
+            
+        </div>
+        <!-- Row #5 -->
+        <div class="form-row">
+            
+            <label class="form-label" for="title5">Title 5</label>
+            <input name="title5" type="text" id="title5" class="regular-text form-input" value="<?php echo esc_attr( get_option('title5') ); ?>">
+            
+            <label class="form-label" for="subtitle5">Sub Title 5</label>
+            <input name="subtitle5" type="text" id="subtitle5" class="regular-text form-input" value="<?php echo esc_attr( get_option('subtitle5') ); ?>">
+            
+            <label class="form-label" for="link5">Link 5</label>
+            <input name="link5" type="text" id="link5" class="regular-text form-input" value="<?php echo esc_attr( get_option('link5') ); ?>">
+            
+            <label class="form-label" for="description5">Description 5</label>
+            <textarea name="description5" id="description5" rows="10" class="regular-text form-input"><?php echo esc_textarea( get_option('description5') ); ?></textarea>
+            
+            <label class="form-label" for="image_url">Image 5</label>
+            <input id="image_url5" name="image5" type="text" class="regular-text form-input" value="<?php echo esc_url( get_option('image5') ); ?>">
+            <input id="upload_image_button5" type="button" class="button form-input" value="Upload Image" />
+            
+        </div>
+        <!-- Row #6 -->
+        <div class="form-row">
+            
+            <label class="form-label" for="title6">Title 6</label>
+            <input name="title6" type="text" id="title6" class="regular-text form-input" value="<?php echo esc_attr( get_option('title6') ); ?>">
+            
+            <label class="form-label" for="subtitle6">Sub Title 6</label>
+            <input name="subtitle6" type="text" id="subtitle6" class="regular-text form-input" value="<?php echo esc_attr( get_option('subtitle6') ); ?>">
+            
+            <label class="form-label" for="link6">Link 6</label>
+            <input name="link6" type="text" id="link6" class="regular-text form-input" value="<?php echo esc_attr( get_option('link6') ); ?>">
+            
+            <label class="form-label" for="description6">Description 6</label>
+            <textarea name="description6" id="description6" rows="10" class="regular-text form-input"><?php echo esc_textarea( get_option('description6') ); ?></textarea>
+            
+            <label class="form-label" for="image_url">Image 6</label>
+            <input id="image_url6" name="image6" type="text" class="regular-text form-input" value="<?php echo esc_url( get_option('image6') ); ?>">
+            <input id="upload_image_button6" type="button" class="button form-input" value="Upload Image" />
+            
+        </div>
+        <!-- Row #7 -->
+        <div class="form-row">
+            
+            <label class="form-label" for="title7">Title 7</label>
+            <input name="title7" type="text" id="title7" class="regular-text form-input" value="<?php echo esc_attr( get_option('title7') ); ?>">
+            
+            <label class="form-label" for="subtitle7">Sub Title 7</label>
+            <input name="subtitle7" type="text" id="subtitle7" class="regular-text form-input" value="<?php echo esc_attr( get_option('subtitle7') ); ?>">
+            
+            <label class="form-label" for="link7">Link 7</label>
+            <input name="link7" type="text" id="link7" class="regular-text form-input" value="<?php echo esc_attr( get_option('link7') ); ?>">
+            
+            <label class="form-label" for="description7">Description 7</label>
+            <textarea name="description7" id="description7" rows="10" class="regular-text form-input"><?php echo esc_textarea( get_option('description7') ); ?></textarea>
+            
+            <label class="form-label" for="image_url">Image 7</label>
+            <input id="image_url7" name="image7" type="text" class="regular-text form-input" value="<?php echo esc_url( get_option('image7') ); ?>">
+            <input id="upload_image_button7" type="button" class="button form-input" value="Upload Image" />
+            
+        </div>
+        <!-- Row #8 -->
+        <div class="form-row">
+            
+            <label class="form-label" for="title8">Title 8</label>
+            <input name="title8" type="text" id="title8" class="regular-text form-input" value="<?php echo esc_attr( get_option('title8') ); ?>">
+            
+            <label class="form-label" for="subtitle8">Sub Title 8</label>
+            <input name="subtitle8" type="text" id="subtitle8" class="regular-text form-input" value="<?php echo esc_attr( get_option('subtitle8') ); ?>">
+            
+            <label class="form-label" for="link8">Link 8</label>
+            <input name="link8" type="text" id="link8" class="regular-text form-input" value="<?php echo esc_attr( get_option('link8') ); ?>">
+            
+            <label class="form-label" for="description8">Description 8</label>
+            <textarea name="description8" id="description8" rows="10" class="regular-text form-input"><?php echo esc_textarea( get_option('description8') ); ?></textarea>
+            
+            <label class="form-label" for="image_url">Image 8</label>
+            <input id="image_url8" name="image8" type="text" class="regular-text form-input" value="<?php echo esc_url( get_option('image8') ); ?>">
+            <input id="upload_image_button8" type="button" class="button form-input" value="Upload Image" />
+            
+        </div>
+
+        <?php
+        settings_fields( 'meta_field_content_settings' );
+        do_settings_sections( 'meta_field_content_settings' );
+        submit_button();
+        ?>
+        
         </form>
     </div>
 <?php }

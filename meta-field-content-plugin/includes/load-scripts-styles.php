@@ -113,5 +113,10 @@ function enqueue_and_localize_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_and_localize_scripts' );
 
+function enqueue_admin_scripts() {
+	wp_enqueue_style( 'admin-style', plugins_url( '../admin/admin-styles.css', __FILE__ ) );
+}
+add_action( 'admin_enqueue_scripts', 'enqueue_admin_scripts' );
+
 
 

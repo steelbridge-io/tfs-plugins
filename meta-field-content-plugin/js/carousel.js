@@ -14,17 +14,23 @@ class ScrollerItems {
 
     // Generate HTML for individual item
     getHTML() {
+
+        // If imageUrl is null, do not generate this item
+        if(this.imageUrl === null) {
+            return '';
+        }
+
         return `
             <div class="mfcp-carousel-item">
                 <div class="mfcp-carousel-item-row">
                     <div id="mfcp-item-image-${this.id}" class="mfcp-carousel-item-img-container">
-                        <img src="${this.imageUrl}" alt="${this.title}">
+                        <a href="${this.link}" title="${this.title} - ${this.subtitle}"><img src="${this.imageUrl}" alt="${this.title}"></a>
                     </div>
                     <div id="mfcp-item-text-${this.id}" class="mfcp-carousel-item-description-container">
                         <h3>${this.title}</h3>
                         <h4>${this.subtitle}</h4>
                         <p>${this.description}</p>
-                        <a href="${this.link}">Learn More</a>
+                        <a href="${this.link}">Read More...</a>
                     </div>
                 </div>
             </div>
@@ -58,7 +64,7 @@ function generateScroller(carouselItems, targetDivId, maxNumItems = 8) {
  */
 let carouselItems = [
     new ScrollerItems(
-        typeof localizedObject !== 'undefined' && localizedObject.image1 ? localizedObject.image1 : 'https://via.placeholder.com/150',
+        typeof localizedObject !== 'undefined' && localizedObject.image1 ? localizedObject.image1 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title1 ? localizedObject.title1 : '',
         typeof localizedObject !== 'undefined' && localizedObject.subtitle1 ? localizedObject.subtitle1 : '',
         typeof localizedObject !== 'undefined' && localizedObject.description1 ? localizedObject.description1 : '',
@@ -69,7 +75,7 @@ let carouselItems = [
 
     //new ScrollerItems('https://via.placeholder.com/150', 'Title 2', 'Sub Title 2', 'Description 2', '#', 26789),
     new ScrollerItems(
-        typeof localizedObject !== 'undefined' && localizedObject.image2 ? localizedObject.image2 : 'https://via.placeholder.com/150',
+        typeof localizedObject !== 'undefined' && localizedObject.image2 ? localizedObject.image2 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title2 ? localizedObject.title2 : '',
         typeof localizedObject !== 'undefined' && localizedObject.subtitle2 ? localizedObject.subtitle2 : '',
         typeof localizedObject !== 'undefined' && localizedObject.description2 ? localizedObject.description2 : '',
@@ -79,7 +85,7 @@ let carouselItems = [
 
     //new ScrollerItems('https://via.placeholder.com/150', 'Title 3', 'Sub Title 3', 'Description 3', '#', 36789),
     new ScrollerItems(
-        typeof localizedObject !== 'undefined' && localizedObject.image3 ? localizedObject.image3 : 'https://via.placeholder.com/150',
+        typeof localizedObject !== 'undefined' && localizedObject.image3 ? localizedObject.image3 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title3 ? localizedObject.title3 : '',
         typeof localizedObject !== 'undefined' && localizedObject.subtitle3 ? localizedObject.subtitle3 : '',
         typeof localizedObject !== 'undefined' && localizedObject.description3 ? localizedObject.description3 : '',
@@ -89,7 +95,7 @@ let carouselItems = [
 
     //new ScrollerItems('https://via.placeholder.com/150', 'Title 4', 'Sub Title 4', 'Description 4', '#', 46789),
     new ScrollerItems(
-        typeof localizedObject !== 'undefined' && localizedObject.image4 ? localizedObject.image4 : 'https://via.placeholder.com/150',
+        typeof localizedObject !== 'undefined' && localizedObject.image4 ? localizedObject.image4 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title4 ? localizedObject.title4 : '',
         typeof localizedObject !== 'undefined' && localizedObject.subtitle4 ? localizedObject.subtitle4 : '',
         typeof localizedObject !== 'undefined' && localizedObject.description4 ? localizedObject.description4 : '',
@@ -99,7 +105,7 @@ let carouselItems = [
 
     //new ScrollerItems('https://via.placeholder.com/150', 'Title 5', 'Sub Title 5', 'Description 5', '#', 56789),
     new ScrollerItems(
-        typeof localizedObject !== 'undefined' && localizedObject.image5 ? localizedObject.image5 : 'https://via.placeholder.com/150',
+        typeof localizedObject !== 'undefined' && localizedObject.image5 ? localizedObject.image5 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title5 ? localizedObject.title5 : '',
         typeof localizedObject !== 'undefined' && localizedObject.subtitle5 ? localizedObject.subtitle5 : '',
         typeof localizedObject !== 'undefined' && localizedObject.description5 ? localizedObject.description5 : '',
@@ -109,7 +115,7 @@ let carouselItems = [
 
     //new ScrollerItems('https://via.placeholder.com/150', 'Title 6', 'Sub Title 6', 'Description 6', '#', 66789),
     new ScrollerItems(
-        typeof localizedObject !== 'undefined' && localizedObject.image6 ? localizedObject.image6 : 'https://via.placeholder.com/150',
+        typeof localizedObject !== 'undefined' && localizedObject.image6 ? localizedObject.image6 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title6 ? localizedObject.title6 : '',
         typeof localizedObject !== 'undefined' && localizedObject.subtitle6 ? localizedObject.subtitle6 : '',
         typeof localizedObject !== 'undefined' && localizedObject.description6 ? localizedObject.description6 : '',
@@ -119,7 +125,7 @@ let carouselItems = [
 
     //new ScrollerItems('https://via.placeholder.com/150', 'Title 7', 'Sub Title 7', 'Description 7', '#', 76789),
     new ScrollerItems(
-        typeof localizedObject !== 'undefined' && localizedObject.image7 ? localizedObject.image7 : 'https://via.placeholder.com/150',
+        typeof localizedObject !== 'undefined' && localizedObject.image7 ? localizedObject.image7 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title7 ? localizedObject.title7 : '',
         typeof localizedObject !== 'undefined' && localizedObject.subtitle7 ? localizedObject.subtitle7 : '',
         typeof localizedObject !== 'undefined' && localizedObject.description7 ? localizedObject.description7 : '',
@@ -129,7 +135,7 @@ let carouselItems = [
 
     //new ScrollerItems('https://via.placeholder.com/150', 'Title 8', 'Sub Title 8', 'Description 8', '#', 86789),
     new ScrollerItems(
-        typeof localizedObject !== 'undefined' && localizedObject.image8 ? localizedObject.image8 : 'https://via.placeholder.com/150',
+        typeof localizedObject !== 'undefined' && localizedObject.image8 ? localizedObject.image8 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title8 ? localizedObject.title8 : '',
         typeof localizedObject !== 'undefined' && localizedObject.subtitle8 ? localizedObject.subtitle8 : '',
         typeof localizedObject !== 'undefined' && localizedObject.description8 ? localizedObject.description8 : '',

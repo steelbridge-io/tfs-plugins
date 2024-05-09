@@ -1,0 +1,22 @@
+#editor-publication-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.form-row {
+  background-color: #ccc;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: .5rem;
+}
+
+.form-label {
+  margin-top: .5rem;
+}
+
+.button.form-input {
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+  width: 150px;
+}
