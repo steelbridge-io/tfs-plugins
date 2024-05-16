@@ -1,3 +1,5 @@
+/** Verticle Carousel */
+
 /*** Common CSS ***/
 
 .mfcp-carousel-item {
@@ -98,6 +100,23 @@ button {
   .mfpc-publication.fa.fa-chevron-down,
   .mfpc-publication.fa.fa-chevron-up {
     color: $chevronColor;
+  }
+}
+
+.slick-track {
+  .slick-slide {
+    h3 {
+      color: $title_color;
+      font-size: .7rem;
+      line-height: 1.2;
+      margin: 0;
+    }
+    h4 {
+      color: $title_color;
+      font-size: .68rem;
+      line-height: 1.5;
+      margin: 0;
+    }
   }
 }
 

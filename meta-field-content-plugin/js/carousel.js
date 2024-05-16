@@ -1,7 +1,9 @@
-// Define an item constructor
-/** Vertical Scroller  */
-
-// Define an item constructor
+/**
+ * ScrollerItems class represents individual items in a scroller.
+ * The class has properties for the item's image URL, title, subtitle, description, link, and ID.
+ * It also provides a method to generate the HTML representation of the item.
+ * For verticle scroller.
+ */
 class ScrollerItems {
     constructor(imageUrl, title, subtitle, description, link, id) {
         this.imageUrl = imageUrl;
@@ -38,12 +40,54 @@ class ScrollerItems {
     }
 }
 
+/**
+ * Represents a class for generating HTML for individual items in a horizontal scroller layout.
+ *
+ * @extends ScrollerItems
+ */
+class ScrollerItemsHorizontal extends ScrollerItems {
+    // Generate HTML for individual item in the horizontal layout
+    getHTML() {
+        // If imageUrl is null, do not generate this item
+        if (this.imageUrl === null) {
+            return '';
+        }
+
+        return `
+            <div class="hs-mfcp-carousel-item">
+                <h3 class="widget-title">${this.title}</h3>
+                <div class="hs-mfcp-carousel-item-row">
+                    <div id="hs-mfcp-item-image-${this.id}" class="hs-mfcp-carousel-item-img-container">
+                        <a href="${this.link}" title="${this.title} - ${this.subtitle}"><img src="${this.imageUrl}" alt="${this.title}"></a>
+                    </div>
+                    <div id="hs-mfcp-item-text-${this.id}" class="hs-mfcp-carousel-item-description-container">
+                        <h4 class="widget-title">${this.subtitle}</h4>
+                        <p class="text-justify">${this.description}</p>
+                        <div class="hs-link-cont">
+                        <a href="${this.link}">Read More...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+}
+
 // Generate carousel
 function generateScroller(carouselItems, targetDivId, maxNumItems = 8) {
     const targetDiv = document.getElementById(targetDivId);
     let scrollerHTML = '';
     for (let i = 0; i < Math.min(maxNumItems, carouselItems.length); i++) {
 
+        scrollerHTML += carouselItems[i].getHTML();
+    }
+    targetDiv.innerHTML = scrollerHTML;
+}
+
+function generateHorizontalSlider(carouselItems, targetDivId, maxNumItems = 8) {
+    const targetDiv = document.getElementById(targetDivId);
+    let scrollerHTML = '';
+    for (let i = 0; i < Math.min(maxNumItems, carouselItems.length); i++) {
         scrollerHTML += carouselItems[i].getHTML();
     }
     targetDiv.innerHTML = scrollerHTML;
@@ -63,6 +107,11 @@ function generateScroller(carouselItems, targetDivId, maxNumItems = 8) {
  * @type {ScrollerItems[]}
  */
 let carouselItems = [
+
+    /**
+     * Footer Verticle Carousel
+     */
+
     new ScrollerItems(
         typeof localizedObject !== 'undefined' && localizedObject.image1 ? localizedObject.image1 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title1 ? localizedObject.title1 : '',
@@ -73,7 +122,6 @@ let carouselItems = [
 
     ),
 
-    //new ScrollerItems('https://via.placeholder.com/150', 'Title 2', 'Sub Title 2', 'Description 2', '#', 26789),
     new ScrollerItems(
         typeof localizedObject !== 'undefined' && localizedObject.image2 ? localizedObject.image2 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title2 ? localizedObject.title2 : '',
@@ -83,7 +131,6 @@ let carouselItems = [
         26789
     ),
 
-    //new ScrollerItems('https://via.placeholder.com/150', 'Title 3', 'Sub Title 3', 'Description 3', '#', 36789),
     new ScrollerItems(
         typeof localizedObject !== 'undefined' && localizedObject.image3 ? localizedObject.image3 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title3 ? localizedObject.title3 : '',
@@ -93,7 +140,6 @@ let carouselItems = [
         36789
     ),
 
-    //new ScrollerItems('https://via.placeholder.com/150', 'Title 4', 'Sub Title 4', 'Description 4', '#', 46789),
     new ScrollerItems(
         typeof localizedObject !== 'undefined' && localizedObject.image4 ? localizedObject.image4 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title4 ? localizedObject.title4 : '',
@@ -103,7 +149,6 @@ let carouselItems = [
         46789
     ),
 
-    //new ScrollerItems('https://via.placeholder.com/150', 'Title 5', 'Sub Title 5', 'Description 5', '#', 56789),
     new ScrollerItems(
         typeof localizedObject !== 'undefined' && localizedObject.image5 ? localizedObject.image5 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title5 ? localizedObject.title5 : '',
@@ -113,7 +158,6 @@ let carouselItems = [
         56789
     ),
 
-    //new ScrollerItems('https://via.placeholder.com/150', 'Title 6', 'Sub Title 6', 'Description 6', '#', 66789),
     new ScrollerItems(
         typeof localizedObject !== 'undefined' && localizedObject.image6 ? localizedObject.image6 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title6 ? localizedObject.title6 : '',
@@ -123,7 +167,6 @@ let carouselItems = [
         66789
     ),
 
-    //new ScrollerItems('https://via.placeholder.com/150', 'Title 7', 'Sub Title 7', 'Description 7', '#', 76789),
     new ScrollerItems(
         typeof localizedObject !== 'undefined' && localizedObject.image7 ? localizedObject.image7 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title7 ? localizedObject.title7 : '',
@@ -133,7 +176,6 @@ let carouselItems = [
         76789
     ),
 
-    //new ScrollerItems('https://via.placeholder.com/150', 'Title 8', 'Sub Title 8', 'Description 8', '#', 86789),
     new ScrollerItems(
         typeof localizedObject !== 'undefined' && localizedObject.image8 ? localizedObject.image8 : null,
         typeof localizedObject !== 'undefined' && localizedObject.title8 ? localizedObject.title8 : '',
@@ -146,6 +188,106 @@ let carouselItems = [
 
 generateScroller(carouselItems, 'my-scroller', 8);
 
+/**
+ * Represents a horizontal carousel with scroller items.
+ * @typedef {Object} HorizontalCarouselItem
+ * @property {string|null} image - The image url of the carousel item.
+ * @property {string} title - The title of the carousel item.
+ * @property {string} subtitle - The subtitle of the carousel item.
+ * @property {string} description - The description of the carousel item.
+ * @property {string} link - The link of the carousel item.
+ * @property {number} id - The id of the carousel item.
+ */
+
+let horizontalCarouselItems = [
+
+    /**
+     * Horizontal Carousel
+     */
+
+    new ScrollerItemsHorizontal(
+        typeof localizedObject !== 'undefined' && localizedObject.hs_image1 ? localizedObject.hs_image1 : null,
+        typeof localizedObject !== 'undefined' && localizedObject.hs_title1 ? localizedObject.hs_title1 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_subtitle1 ? localizedObject.hs_subtitle1 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_description1 ? localizedObject.hs_description1 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_link1 ? localizedObject.hs_link1 : '',
+        116789
+
+    ),
+
+    new ScrollerItemsHorizontal(
+        typeof localizedObject !== 'undefined' && localizedObject.hs_image2 ? localizedObject.hs_image2 : null,
+        typeof localizedObject !== 'undefined' && localizedObject.hs_title2 ? localizedObject.hs_title2 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_subtitle2 ? localizedObject.hs_subtitle2 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_description2 ? localizedObject.hs_description2 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_link2 ? localizedObject.hs_link2 : '',
+        216789
+
+    ),
+
+    new ScrollerItemsHorizontal(
+        typeof localizedObject !== 'undefined' && localizedObject.hs_image3 ? localizedObject.hs_image3 : null,
+        typeof localizedObject !== 'undefined' && localizedObject.hs_title3 ? localizedObject.hs_title3 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_subtitle3 ? localizedObject.hs_subtitle3 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_description3 ? localizedObject.hs_description3 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_link3 ? localizedObject.hs_link3 : '',
+        316789
+
+    ),
+
+    new ScrollerItemsHorizontal(
+        typeof localizedObject !== 'undefined' && localizedObject.hs_image4 ? localizedObject.hs_image4 : null,
+        typeof localizedObject !== 'undefined' && localizedObject.hs_title4 ? localizedObject.hs_title4 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_subtitle4 ? localizedObject.hs_subtitle4 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_description4 ? localizedObject.hs_description4 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_link4 ? localizedObject.hs_link4 : '',
+        416789
+
+    ),
+
+    new ScrollerItemsHorizontal(
+        typeof localizedObject !== 'undefined' && localizedObject.hs_image5 ? localizedObject.hs_image5 : null,
+        typeof localizedObject !== 'undefined' && localizedObject.hs_title5 ? localizedObject.hs_title5 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_subtitle5 ? localizedObject.hs_subtitle5 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_description5 ? localizedObject.hs_description5 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_link5 ? localizedObject.hs_link5 : '',
+        516789
+
+    ),
+
+    new ScrollerItemsHorizontal(
+        typeof localizedObject !== 'undefined' && localizedObject.hs_image6 ? localizedObject.hs_image6 : null,
+        typeof localizedObject !== 'undefined' && localizedObject.hs_title6 ? localizedObject.hs_title6 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_subtitle6 ? localizedObject.hs_subtitle6 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_description6 ? localizedObject.hs_description6 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_link6 ? localizedObject.hs_link6 : '',
+        616789
+
+    ),
+
+    new ScrollerItemsHorizontal(
+        typeof localizedObject !== 'undefined' && localizedObject.hs_image7 ? localizedObject.hs_image7 : null,
+        typeof localizedObject !== 'undefined' && localizedObject.hs_title7 ? localizedObject.hs_title7 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_subtitle7 ? localizedObject.hs_subtitle7 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_description7 ? localizedObject.hs_description7 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_link7 ? localizedObject.hs_link7 : '',
+        716789
+
+    ),
+
+    new ScrollerItemsHorizontal(
+        typeof localizedObject !== 'undefined' && localizedObject.hs_image8 ? localizedObject.hs_image8 : null,
+        typeof localizedObject !== 'undefined' && localizedObject.hs_title8 ? localizedObject.hs_title8 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_subtitle8 ? localizedObject.hs_subtitle8 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_description8 ? localizedObject.hs_description8 : '',
+        typeof localizedObject !== 'undefined' && localizedObject.hs_link8 ? localizedObject.hs_link8 : '',
+        816789
+
+    ),
+];
+
+generateHorizontalSlider(horizontalCarouselItems, 'my-horizontal-scroller', 8);
+
 jQuery(document).ready(function ($) {
     $('#my-scroller').slick({
         infinite: true,
@@ -156,5 +298,32 @@ jQuery(document).ready(function ($) {
         arrows: true,
         prevArrow: "<button type='button' class='slick-prev'><i class=\"mfpc-publication fa fa-chevron-up\" aria-hidden=\"true\"></i></button>",
         nextArrow: "<button type='button' class='slick-next'><i class=\"mfpc-publication fa fa-chevron-down\" aria-hidden=\"true\"></i></button>",
+    });
+
+    $('#my-horizontal-scroller').slick({
+        infinite: true,
+        vertical: false,
+        verticalSwiping: false,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }
+        ],
+        arrows: true,
+        prevArrow: "<button type='button' class='slick-prev'><i class=\"hs-mfpc-publication fa fa-4x fa-chevron-left\" aria-hidden=\"true\"></i></button>",
+        nextArrow: "<button type='button' class='slick-next'><i class=\"hs-mfpc-publication fa fa-4x fa-chevron-right\" aria-hidden=\"true\"></i></button>",
     });
 });
