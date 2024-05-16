@@ -58,6 +58,9 @@ function load_holiday_template_css() {
     ';
     return $css_holiday_template;
   }
+  
+  return '';
+  
 }
 
 function load_travel_destination_css() {
@@ -110,6 +113,7 @@ function load_guide_service_css() {
 ';
 	 return $css_section_hero;
 	}
+	return '';
  }
  
  function load_section_herovideo_css() {
@@ -138,6 +142,8 @@ function load_guide_service_css() {
 	 ';
 	 return $css_section_hero_video;
 	}
+	
+	return '';
  }
 	
  function load_private_waters_css() {
@@ -243,4 +249,6 @@ function load_opacity_range_css_private_waters() {
 		
 		return $guidesvc_template_opacity_range;
 	}
+	
+	return '';
 }

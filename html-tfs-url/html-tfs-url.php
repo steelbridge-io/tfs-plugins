@@ -300,6 +300,9 @@ function custom_permalinks_trailingslash($string, $type) {
   $url = parse_url(get_bloginfo('url'));
   $request = ltrim(isset($url['path']) ? substr($string, strlen($url['path'])) : $string, '/');
   add_filter( 'user_trailingslashit', 'custom_permalinks_trailingslash', 10, 2 );
+	
+	$request = is_null($request) ? '' : trim($request); // Check if $request is null
+	$_CPRegisteredURL = is_null($_CPRegisteredURL) ? '' : trim($_CPRegisteredURL); // Check if $_CPRegisteredURL is null
 
   if ( !trim($request) ) return $string;
 
