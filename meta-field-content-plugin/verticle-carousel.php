@@ -6,7 +6,7 @@ if (!current_user_can('manage_options')) {
 }
 ?>
 	<div class="wrap">
-		<h2>Footer Carousel</h2>
+		<h2>Footer Vertical Carousel</h2>
 		<form method="post" action="options.php" id="editor-publication-form-grid">
 			<!-- Row #1 -->
 			<div class="form-row">

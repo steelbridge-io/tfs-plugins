@@ -64,8 +64,8 @@ function meta_field_content_menu() {
 	
 	add_submenu_page(
 		'meta-field-content-setting',
-		'Verticle Carousel Settings',
-		'Verticle Carousel',
+		'Vertical Carousel Settings',
+		'Vertical Carousel',
 		'manage_options',
 		'verticle-slider-settings',
 		'verticle_slider_settings_page'
@@ -84,7 +84,7 @@ function meta_content_settings_page() {
 	// Output the links to your subpages
 	echo '<p>This page provides links to the carousel options. Includes the footer carousel and the horizontal carousel found on the home page. Click the corresponding links below to access the editor for each carousel where you can add and delete content.</p>';
 	echo '<p><a href="' . esc_url(admin_url('admin.php?page=horizontal-slider-settings')) . '">Horizontal Carousel Settings</a></p>';
-	echo '<p><a href="' . esc_url(admin_url('admin.php?page=verticle-slider-settings')) . '">Verticle Carousel Settings</a></p>';
+	echo '<p><a href="' . esc_url(admin_url('admin.php?page=verticle-slider-settings')) . '">Vertical Carousel Settings</a></p>';
 	
 	echo '</div>';
 	
