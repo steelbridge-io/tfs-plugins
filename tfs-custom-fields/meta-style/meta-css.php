@@ -156,4 +156,6 @@
 			 return $travel_template_opacity_range;
 			 
 		 }
+		 
+		 return '';
  }
