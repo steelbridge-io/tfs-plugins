@@ -77,7 +77,9 @@ function meta_field_content_menu() {
  *
  */
 function meta_content_settings_page() {
-	echo '<div class="carousl-wrap">';
+	echo '<div class="carousel-wrap">' .
+	     '<div class="carousel-cont">' .
+		 '<div class="carousel-control">';
 	// Output the page title
 	echo '<h2>Carousel Content Settings</h2>';
 	
@@ -86,7 +88,9 @@ function meta_content_settings_page() {
 	echo '<p><a href="' . esc_url(admin_url('admin.php?page=horizontal-slider-settings')) . '">Horizontal Carousel Settings</a></p>';
 	echo '<p><a href="' . esc_url(admin_url('admin.php?page=verticle-slider-settings')) . '">Vertical Carousel Settings</a></p>';
 	
-	echo '</div>';
+	echo '</div>' .
+		 '</div>' .
+		 '</div>';
 	
 	// More content for the page can go here
 	}
