@@ -74,8 +74,11 @@ class ScrollerItemsHorizontal extends ScrollerItems {
 }
 
 // Generate carousel
-function generateScroller(carouselItems, targetDivId, maxNumItems = 8) {
-    const targetDiv = document.getElementById(targetDivId);
+function generateScroller(carouselItems, myScroller, maxNumItems = 8) {
+    const targetDiv = document.getElementById(myScroller);
+    if (!targetDiv) {
+        return;
+    }
     let scrollerHTML = '';
     for (let i = 0; i < Math.min(maxNumItems, carouselItems.length); i++) {
 
@@ -84,8 +87,11 @@ function generateScroller(carouselItems, targetDivId, maxNumItems = 8) {
     targetDiv.innerHTML = scrollerHTML;
 }
 
-function generateHorizontalSlider(carouselItems, targetDivId, maxNumItems = 8) {
-    const targetDiv = document.getElementById(targetDivId);
+function generateHorizontalSlider(carouselItems, myHorizontalScroller, maxNumItems = 8) {
+    const targetDiv = document.getElementById(myHorizontalScroller);
+    if (!targetDiv) {
+        return;
+    }
     let scrollerHTML = '';
     for (let i = 0; i < Math.min(maxNumItems, carouselItems.length); i++) {
         scrollerHTML += carouselItems[i].getHTML();
@@ -186,7 +192,7 @@ let carouselItems = [
     ),
 ];
 
-generateScroller(carouselItems, 'my-scroller', 8);
+generateScroller(carouselItems, 'myScroller', 8);
 
 /**
  * Represents a horizontal carousel with scroller items.
@@ -286,10 +292,10 @@ let horizontalCarouselItems = [
     ),
 ];
 
-generateHorizontalSlider(horizontalCarouselItems, 'my-horizontal-scroller', 8);
+generateHorizontalSlider(horizontalCarouselItems, 'myHorizontalScroller', 8);
 
 jQuery(document).ready(function ($) {
-    $('#my-scroller').slick({
+    $('#myScroller').slick({
         infinite: true,
         vertical: true,
         verticalSwiping: true,
@@ -300,7 +306,7 @@ jQuery(document).ready(function ($) {
         nextArrow: "<button type='button' class='slick-next'><i class=\"mfpc-publication fa fa-chevron-down\" aria-hidden=\"true\"></i></button>",
     });
 
-    $('#my-horizontal-scroller').slick({
+    $('#myHorizontalScroller').slick({
         infinite: true,
         vertical: false,
         verticalSwiping: false,
