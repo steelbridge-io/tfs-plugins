@@ -26,6 +26,7 @@ include_once('post-types/fish-report.php');
 //include_once('post-types/esb-lodge.php');
 include_once('post-types/traveldocs-cpt.php');
 include_once('post-types/travel-questionnaire.php');
+include_once('post-types/travel-questionnaire-posted.php');
 
 add_action( 'after_switch_theme', 'tfspw_rewrite_flush' );
 function tfspw_rewrite_flush()
