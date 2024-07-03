@@ -12286,6 +12286,41 @@ jQuery(document).ready( function($){ "use strict";
         guidesvc_temp_video_poster_frame.open();
     });
 
+    var front_page_video_poster_frame;
+
+    // Runs when the image button is clicked.
+    $('#front-page-video-poster-button').click(function(e) {
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if (front_page_video_poster_frame) {
+            front_page_video_poster_frame.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        front_page_video_poster_frame = wp.media.frames.front_page_video_poster_frame = wp.media({
+            title: meta_image.title,
+            button: {text: meta_image.button},
+            /*library: { type: 'image' }*/
+        });
+
+        // Runs when an image is selected.
+        front_page_video_poster_frame.on('select', function () {
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = front_page_video_poster_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#front-page-video-poster').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        front_page_video_poster_frame.open();
+    });
+
 
 });
 

@@ -12,6 +12,18 @@ function front_page_meta_save( $post_id ) {
     if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
         return;
     }
+	
+	// Checks for input and saves if needed
+		if( isset( $_POST['front-page-hero-video'] ) ) {
+			$url = esc_url_raw( $_POST['front-page-hero-video'] );
+			update_post_meta( $post_id, 'front-page-hero-video', $url );
+		}
+	
+	// Checks for input and saves if needed
+		if( isset( $_POST['front-page-video-poster'] ) ) {
+			$poster_url = esc_url_raw( $_POST['front-page-video-poster'] );
+			update_post_meta( $post_id, 'front-page-video-poster', $poster_url );
+		}
 
 	// Checks for input and saves if needed
 		if( isset( $_POST[ 'front-page-logo' ] ) ) {

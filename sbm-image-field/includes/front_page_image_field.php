@@ -43,8 +43,26 @@ include( plugin_dir_path( __FILE__ ) . '../inc/sanitize_front_page_image.php');
 	<strong>NOTE: To add an image to the head section, go to view page and navigate to customize -> Header Image.<br>The Tagline below the logo is found: view page -> customize -> Site Identity. Look in the Front Page section in the customizer for additional options.</strong>
 	
 	</p>
+
+    <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
+
+    <p> <!-- ==== TFS HERO VIDEO ==== -->
+
+    <strong><label for="front-page-hero-video" class="front-page-hero-video"><?php _e( 'Front Page Hero Video', 'the-fly-shop' );?></label></strong><br>
+        <span>Add video url. Google Cloud, s3 object storage url recommended. To test, use: https://tfs-spaces.sfo2.cdn.digitaloceanspaces.com/video/cerro-torre.mp4</span>
+    <input style="width: 100%;" type="url" name="front-page-hero-video" id="front-page-hero-video" value="<?php if ( isset ( $front_page_stored_meta['front-page-hero-video'] ) ) echo $front_page_stored_meta['front-page-hero-video'][0]; ?>" />
+    
+    </p>
+
+    <p> <!-- ==== HERO VIDEO POSTER ==== -->
+
+        <label for="front-page-video-poster" class="front-page-video-poster"><?php _e( 'Front Page Hero Video Poster', 'the-fly-shop' );?></label>
+        <input type="text" name="front-page-video-poster" id="front-page-video-poster" value="<?php if ( isset ( $front_page_stored_meta['front-page-video-poster'] ) ) echo $front_page_stored_meta['front-page-video-poster'][0];?>" />
+        <input type="button" id="front-page-video-poster-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
+
+    </p>
    
-   <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
+    <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
    
 	<p> <!-- ==== TFS LOGO ==== -->
 
