@@ -3,7 +3,7 @@
 Plugin Name: Outfitters Posts And Excerpts
 Plugin URI: http://steelbridgemedia.com
 Description: A widget that lists your most recent posts with excerpts.
-Version: 1.0
+Version: 1.2
 Author: Chris Parsons
 Author URI: http://steelbridgemedia.com
 Text Domain: outfitters_posts_excerpts

@@ -1,7 +1,7 @@
 <?php
 /**
 * Plugin Name: TFS Custom Text
-* Version: 1.1.2
+* Version: 1.2.2
 * Plugin URI: http://steelbridgemedia.com
 * Description: Custom text widget
 * Author: Chris Parsons
