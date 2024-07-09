@@ -40,16 +40,18 @@ include( plugin_dir_path( __FILE__ ) . '../inc/sanitize_front_page_image.php');
 	<p>
 	
 	<label for="front-page-hero" class="front-page-row-title"><?php _e( '<h3>Header Image</h3>', 'the-fly-shop' );?></label>
-	<strong>NOTE: To add an image to the head section, go to view page and navigate to customize -> Header Image.<br>The Tagline below the logo is found: view page -> customize -> Site Identity. Look in the Front Page section in the customizer for additional options.</strong>
+	<strong>NOTE: To add an image to the head section, go to view page and navigate to customize -> Header Image.<br>The Tagline below the logo is found: view page -> customize -> Site Identity. Look in the Front Page section in the customizer for additional options. To add video, see the video Hero Video input below.</strong>
 	
 	</p>
 
     <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
+    
+    <h3>Hero Video</h3>
 
     <p> <!-- ==== TFS HERO VIDEO ==== -->
-
+    
     <strong><label for="front-page-hero-video" class="front-page-hero-video"><?php _e( 'Front Page Hero Video', 'the-fly-shop' );?></label></strong><br>
-        <span>Add video url. Google Cloud, s3 object storage url recommended. To test, use: https://tfs-spaces.sfo2.cdn.digitaloceanspaces.com/video/cerro-torre.mp4</span>
+        <span>Add video url. Google Cloud, s3 object storage or DigitalOcean Spaces url recommended. To test, use: https://tfs-spaces.sfo2.cdn.digitaloceanspaces.com/video/cerro-torre.mp4</span>
     <input style="width: 100%;" type="url" name="front-page-hero-video" id="front-page-hero-video" value="<?php if ( isset ( $front_page_stored_meta['front-page-hero-video'] ) ) echo $front_page_stored_meta['front-page-hero-video'][0]; ?>" />
     
     </p>
