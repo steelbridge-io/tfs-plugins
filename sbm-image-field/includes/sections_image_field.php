@@ -32,6 +32,13 @@
     <div style="margin-top: 1.618em;">
         <h1>Sections Template Content</h1>
     </div>
+     <div class="sections-meta-cont">
+     <p><b>Prime Travel Form Submit button html - copy and paste, then update:</b></p>
+        <pre>
+        &lt;button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#primeTravelTempmodal"&gt;Sign Up!&lt;/button&gt;
+        </pre>
+         <p><i>The submit button above is used to trigger the Prime Travel Subscribe form modal. Place the button html into the editor via "text" mode, then update. </p>
+     </div>
     <div class="sections-meta-cont">
         <strong><label for="sections-video" class="sections-row-title"><?php _e('Hero Video URL', 'the-fly-shop'); ?></label></strong>
         <input style="width:100%;" type="url" name="sections-video" id="sections-video" value="<?php if (isset ($sections_stored_meta['sections-video'])) echo $sections_stored_meta['sections-video'][0]; ?>"/>
