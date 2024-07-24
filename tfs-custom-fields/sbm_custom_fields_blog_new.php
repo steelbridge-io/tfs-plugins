@@ -76,13 +76,7 @@ function tfs_newblog_callback( $post ) {
 			});
 		});
  </script>
- 
- 
- 
- 
- 
- 
-  
+    
     <p>
     <label for="select-sidebar" class="prfx-row-title"><h3><?php _e( 'Sidebar Select', 'The_Fly_Shop' )?></h3></label>
     <select name="select-sidebar" id="select-sidebar">
