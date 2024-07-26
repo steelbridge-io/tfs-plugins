@@ -19,6 +19,15 @@ function tfs_parent_options_enqueue() {
 		
 		wp_enqueue_script( 'custom-js', plugin_dir_url( __FILE__ ) . 'js/custom.js', array('wp-color-picker'), '',
 			false );
+	
+		global $post;
+		if ( ! empty( $post ) ) {
+		$pageTemplate = get_post_meta( $post->ID, '_wp_page_template', TRUE );
+				if ( $pageTemplate == 'page-templates/landing-page.php' ) {
+				wp_enqueue_style( 'bootstrap_css', '//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', __FILE__ );
+				wp_enqueue_script( 'bootstrap-js', '//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', array( 'jquery' ), '5.3.3', TRUE );
+			}
+		}
 		
 		// Registers and enqueues the required javascript for image management within wp dashboard.
 		wp_register_script( 'wp-meta-box-image', plugin_dir_url( __FILE__ ) . 'js/wp-image-api.js', array( 'jquery' ) );
@@ -30,14 +39,6 @@ function tfs_parent_options_enqueue() {
 		);
 		wp_enqueue_script( 'wp-meta-box-image' );
 		
-		/*wp_register_script( 'holiday-template-meta-box-image', plugin_dir_url( __FILE__ ) . 'js/holiday-template-images.js', array( 'jquery' ) );
-		wp_localize_script( 'holiday-template-meta-box-image', 'meta_image',
-			array(
-				'title' => __( 'Chose or Upload an Image', 'streamreport-textdomain'),
-				'button' => __( 'Use this image', 'streamreport-textdomain'),
-			)
-		);
-		wp_enqueue_script('holiday-template-meta-box-image');*/
 	}
 	
 }
