@@ -1,5 +1,13 @@
 /* TFS Parent Theme Options */
 
+.accordion-cmf {
+  margin: 1em auto;
+}
+
+.grid-label {
+  width: 100px;
+}
+
 #meta-wrapper {
   padding: 1.618em .5em;
 }
