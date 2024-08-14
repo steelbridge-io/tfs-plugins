@@ -49,7 +49,7 @@
 	  </p>
   
     <p>
-	    <strong><label for="hero-template-select-sidebar" class="prfx-row-title"><?php _e( 'Sidebar Select', 'the-fly-shop' )?></label></strong><br />
+    <strong><label for="hero-template-select-sidebar" class="prfx-row-title"><?php _e( 'Sidebar Select', 'the-fly-shop' )?></label></strong><br />
     <select name="hero-template-select-sidebar" id="hero-template-select-sidebar">
       <option value="" <?php if ( isset ( $hero_temp_store_meta['hero-template-select-sidebar'] ) ) selected( $hero_temp_store_meta['hero-template-select-sidebar'][0], '' ); ?>><?php _e( 'Default', 'the-fly-shop' )?></option>';
       <option value="esblodge" <?php if ( isset ( $hero_temp_store_meta['hero-template-select-sidebar'] ) ) selected( $hero_temp_store_meta['hero-template-select-sidebar'][0], 'esblodge' ); ?>><?php _e( 'ESB Lodge', 'the-fly-shop' )?></option>';
