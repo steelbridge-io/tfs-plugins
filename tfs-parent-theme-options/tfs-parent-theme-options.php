@@ -9,6 +9,7 @@
  */
 
 include_once 'inc/landing-page-options.php';
+include( plugin_dir_path( __FILE__ ) . 'css/parent-theme-css.php');
 
 function tfs_parent_options_enqueue() {
 	global $typenow;
