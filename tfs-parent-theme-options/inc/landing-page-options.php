@@ -8,7 +8,7 @@ function register_landing_page_meta_box() {
 	if ( ! empty( $post ) ) {
 		$pageTemplate = get_post_meta( $post->ID, '_wp_page_template', TRUE );
 		$types        = array( 'page', 'post' );
-		
+
 		if ( $pageTemplate == 'page-templates/landing-page.php' ) {
 			foreach ( $types as $type ) {
 				add_meta_box( 'landing_page_meta',
@@ -30,28 +30,28 @@ add_action( 'add_meta_boxes', 'register_landing_page_meta_box' );
 function landing_page_meta_callback( $post ) {
 	wp_nonce_field( basename( __FILE__ ), 'landing_page_nonce' );
 	$landing_page_stored_meta = get_post_meta( $post->ID ); ?>
-    
+
     <div id="meta-wrapper">
-    
+
         <div class="meta-cont"> <!-- ==== TFS LOGO ==== -->
-        
+
             <?php
             $landing_page_logo = '';
             if ( isset( $landing_page_stored_meta['landing-page-logo'] ) ) {
             $landing_page_logo = $landing_page_stored_meta['landing-page-logo'][0];
             }
-            
+
             $landing_page_logo = get_post_meta( $post->ID, 'landing-page-logo', true );
             ?>
             <div class="input-cont">
-            <div class="landing-inputs">
-                <label for="landing-page-logo" class="landing-page-row-title"><?php _e( 'TFS Logo', 'landing-page-textdomain' ); ?></label>
-                <input type="text" style="width:55%;" name="landing-page-logo" id="landing-page-logo" value="<?php echo esc_attr($landing_page_logo); ?>"/>
-                <input type="button" id="landing-page-logo-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'landing-page-textdomain' ); ?>"/>
-                <img class="image-preview" id="landing-page-logo-preview" src="<?php echo( $landing_page_logo ? $landing_page_logo : plugins_url( '../img/placeholder.jpg', __FILE__ ) ); ?>" alt="Image Preview">
+                <div class="landing-inputs">
+                    <label for="landing-page-logo" class="landing-page-row-title"><?php _e( 'TFS Logo', 'landing-page-textdomain' ); ?></label>
+                    <input type="text" style="width:55%;" name="landing-page-logo" id="landing-page-logo" value="<?php echo esc_attr($landing_page_logo); ?>"/>
+                    <input type="button" id="landing-page-logo-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'landing-page-textdomain' ); ?>"/>
+                    <img class="image-preview" id="landing-page-logo-preview" src="<?php echo( $landing_page_logo ? $landing_page_logo : plugins_url( '../img/placeholder.jpg', __FILE__ ) ); ?>" alt="Image Preview">
+                </div>
             </div>
-            </div>
-            
+
         </div>
 
         <div class="meta-cont">
@@ -59,7 +59,7 @@ function landing_page_meta_callback( $post ) {
                 <?php
                 // Retrieve the custom field value
                 $landing_temp_basic_value = get_post_meta($post->ID, 'landing-temp-opacity-range', true);
-                
+
                 // Set a default value if the custom field is empty
                 if (empty($landing_temp_basic_value)) {
                     $landing_temp_basic_value = 0.1; // Set your desired default value here
@@ -89,9 +89,9 @@ function landing_page_meta_callback( $post ) {
                 });
             });
         </script>
-    
+
         <div class="meta-cont"> <!-- ==== LANDING PAGE HERO IMAGE ==== -->
-        
+
             <?php
             $landing_page_image = '';
             if ( isset( $landing_page_stored_meta['landing-page-image'] ) ) {
@@ -108,11 +108,11 @@ function landing_page_meta_callback( $post ) {
             <img class="image-preview" id="landing-page-image-preview" src="<?php echo( $landing_page_image ? $landing_page_image : plugins_url( '../img/placeholder.jpg', __FILE__ ) ); ?>" alt="Image Preview">
             </div>
             </div>
-            
+
         </div>
-        
+
         <div class="meta-cont">
-        
+
             <?php
             $landing_page_desc = '';
             if ( isset( $landing_page_stored_meta['landing-page-desc'] ) ) {
@@ -120,17 +120,38 @@ function landing_page_meta_callback( $post ) {
             }
             $landing_page_desc = get_post_meta( $post->ID, 'landing-page-desc', true );
             ?>
-            
+
             <div class="input-cont">
             <div class="landing-inputs">
             <label for="landing-page-desc" class="blog-row-desc"><?php _e( 'Header Description', 'tfs-blog-textdomain' ) ?></label>
             <input style="width: 80%;" type="text" name="landing-page-desc" id="landing-page-desc" value="<?php echo esc_attr($landing_page_desc); ?>"/>
             </div>
-            
+
             </div>
         </div>
+
+        <div class="meta-cont">
+
+            <?php
+            $landing_page_cta = '';
+            if ( isset( $landing_page_stored_meta['landing-page-cta'] ) ) {
+                $landing_page_cta = $landing_page_stored_meta['landing-page-cta'][0];
+            }
+            $landing_page_cta = get_post_meta( $post->ID, 'landing-page-cta', true );
+            ?>
+
+            <div class="input-cont">
+                <div class="landing-inputs">
+                    <label for="landing-page-cta" class="blog-row-cta"><?php _e( 'Call To Action', 'tfs-blog-textdomain' ) ?></label>
+                    <textarea style="width: 80%;" type="text" name="landing-page-cta" id="landing-page-cta"><?php echo esc_attr($landing_page_cta); ?></textarea>
+                </div>
+
+            </div>
+        </div>
+
+
     </div>
-    
+
     <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
             <h2 class="accordion-header">
@@ -142,14 +163,14 @@ function landing_page_meta_callback( $post ) {
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-				            
+
                     <?php
                     $grid_item_1_img = '';
                     if ( isset( $landing_page_stored_meta['grid-item-1-img'] ) ) {
                     $grid_item_1_img = $landing_page_stored_meta['grid-item-1-img'][0];
                     }
                     $grid_item_1_img = get_post_meta( $post->ID, 'grid-item-1-img', true );
-                    
+
                     $grid_item_1_cta = '';
                     if ( isset( $landing_page_stored_meta['grid-item-1-cta'] ) ) {
 	                    $grid_item_1_cta = $landing_page_stored_meta['grid-item-1-cta'][0];
@@ -178,21 +199,21 @@ function landing_page_meta_callback( $post ) {
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                
+
                     <?php
                     $grid_item_2_img = '';
                     if ( isset( $landing_page_stored_meta['grid-item-2-img'] ) ) {
                     $grid_item_2_img = $landing_page_stored_meta['grid-item-2-img'][0];
                     }
                     $grid_item_2_img = get_post_meta( $post->ID, 'grid-item-2-img', true );
-                    
+
                     $grid_item_2_cta = '';
                     if ( isset( $landing_page_stored_meta['grid-item-2-cta'] ) ) {
 	                    $grid_item_2_cta = $landing_page_stored_meta['grid-item-2-cta'][0];
                     }
                     $grid_item_2_cta = get_post_meta( $post->ID, 'grid-item-2-cta', true );
                     ?>
-                    
+
                     <div class="accordion-cmf">
                     <label for="grid-item-2-img" class="grid-label grid-item-2-img-row"><?php _e( 'Item Image', 'tfs-blog-textdomain' ) ?></label>
                     <input type="text" style="width:50%;" name="grid-item-2-img" id="grid-item-2-img" value="<?php echo esc_attr($grid_item_2_img); ?>"/>
@@ -202,7 +223,7 @@ function landing_page_meta_callback( $post ) {
                     <label for="grid-item-2-cta" class="grid-label grid-item-2-cta-row"><?php _e( 'Call to action', 'tfs-blog-textdomain' ) ?></label>
                     <input style="width: 80%;" type="text" name="grid-item-2-cta" id="grid-item-2-cta" value="<?php echo esc_attr($grid_item_2_cta); ?>"/>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -216,14 +237,14 @@ function landing_page_meta_callback( $post ) {
             </h2>
             <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                
+
                     <?php
                     $grid_item_3_img = '';
                     if ( isset( $landing_page_stored_meta['grid-item-3-img'] ) ) {
                     $grid_item_3_img = $landing_page_stored_meta['grid-item-3-img'][0];
                     }
                     $grid_item_3_img = get_post_meta( $post->ID, 'grid-item-3-img', true );
-                    
+
                     $grid_item_3_cta = '';
                     if ( isset( $landing_page_stored_meta['grid-item-3-cta'] ) ) {
 	                    $grid_item_3_cta = $landing_page_stored_meta['grid-item-3-cta'][0];
@@ -252,14 +273,14 @@ function landing_page_meta_callback( $post ) {
             </h2>
             <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-												    
+
                     <?php
                     $grid_item_4_img = '';
                     if ( isset( $landing_page_stored_meta['grid-item-4-img'] ) ) {
                     $grid_item_4_img = $landing_page_stored_meta['grid-item-4-img'][0];
                     }
                     $grid_item_4_img = get_post_meta( $post->ID, 'grid-item-4-img', true );
-                    
+
                     $grid_item_4_cta = '';
                     if ( isset( $landing_page_stored_meta['grid-item-4-cta'] ) ) {
 	                    $grid_item_4_cta = $landing_page_stored_meta['grid-item-4-cta'][0];
@@ -294,7 +315,7 @@ add_action( 'save_post', 'save_landing_page_fields' );
         {
             return;
         }
-	    
+
 	    if ( isset( $_POST['landing-page-image'] ) ) {
 		    $landing_page_image = $_POST['landing-page-image'];
 		    if ( ! empty( $landing_page_image ) )
@@ -304,7 +325,7 @@ add_action( 'save_post', 'save_landing_page_fields' );
 			    delete_post_meta( $post_id, 'landing-page-image' );
 		    }
 	    }
-     
+
 	    if ( isset( $_POST['landing-temp-opacity-range'] ) ) {
 		    $landing_temp_opacity_range = $_POST['landing-temp-opacity-range'];
 		    if ( ! empty(  $landing_temp_opacity_range ) )
@@ -314,15 +335,15 @@ add_action( 'save_post', 'save_landing_page_fields' );
 			    delete_post_meta( $post_id, 'landing-temp-opacity-range' );
 		    }
 	    }
-        
+
         if ( isset( $_POST['landing-page-logo'] ) ) {
             $landing_page_logo = $_POST['landing-page-logo'];
             } else {
             $landing_page_logo = '';
         }
-    
+
         update_post_meta( $post_id, 'landing-page-logo', sanitize_text_field( $landing_page_logo ) );
-	    
+
 	    if ( isset( $_POST['landing-page-desc'] ) ) {
 		    $landing_page_desc = $_POST['landing-page-desc'];
 		    if ( ! empty( $landing_page_desc ) ) {
@@ -331,15 +352,30 @@ add_action( 'save_post', 'save_landing_page_fields' );
 			    delete_post_meta( $post_id, 'landing-page-desc' );
 		    }
 	    }
-        
+
+        if ( isset( $_POST['landing-page-cta'] ) ) {
+
+            $landing_page_cta = $_POST['landing-page-cta'];
+
+            global $allowed_tags;
+
+            $landing_page_cta = wp_kses( $landing_page_cta, $allowed_tags );
+
+            if ( ! empty( $landing_page_cta ) ) {
+                update_post_meta( $post_id, 'landing-page-cta', $landing_page_cta );
+            } else {
+                delete_post_meta( $post_id, 'landing-page-cta' );
+            }
+        }
+
         if ( isset( $_POST['grid-item-1-img'] ) ) {
             $grid_item_1_img = $_POST['grid-item-1-img'];
             } else {
             $grid_item_1_img = '';
         }
-        
+
         update_post_meta( $post_id, 'grid-item-1-img', sanitize_text_field( $grid_item_1_img ) );
-	    
+
 	    if ( isset( $_POST['grid-item-1-cta'] ) ) {
 		    $grid_item_1_cta = $_POST['grid-item-1-cta'];
 		    if ( ! empty( $grid_item_1_cta ) ) {
@@ -348,15 +384,15 @@ add_action( 'save_post', 'save_landing_page_fields' );
 			    delete_post_meta( $post_id, 'grid-item-1-cta' );
 		    }
 	    }
-    
+
         if ( isset( $_POST['grid-item-2-img'] ) ) {
             $grid_item_2_img = $_POST['grid-item-2-img'];
             } else {
             $grid_item_2_img = '';
         }
-        
+
         update_post_meta( $post_id, 'grid-item-2-img', sanitize_text_field( $grid_item_2_img ) );
-	    
+
 	    if ( isset( $_POST['grid-item-2-cta'] ) ) {
 		    $grid_item_2_cta = $_POST['grid-item-2-cta'];
 		    if ( ! empty( $grid_item_2_cta ) ) {
@@ -365,15 +401,15 @@ add_action( 'save_post', 'save_landing_page_fields' );
 			    delete_post_meta( $post_id, 'grid-item-2-cta' );
 		    }
 	    }
-    
+
         if ( isset( $_POST['grid-item-3-img'] ) ) {
             $grid_item_3_img = $_POST['grid-item-3-img'];
             } else {
             $grid_item_3_img = '';
         }
-    
+
         update_post_meta( $post_id, 'grid-item-3-img', sanitize_text_field( $grid_item_3_img ) );
-	    
+
 	    if ( isset( $_POST['grid-item-3-cta'] ) ) {
 		    $grid_item_3_cta = $_POST['grid-item-3-cta'];
 		    if ( ! empty( $grid_item_3_cta ) ) {
@@ -382,15 +418,15 @@ add_action( 'save_post', 'save_landing_page_fields' );
 			    delete_post_meta( $post_id, 'grid-item-3-cta' );
 		    }
 	    }
-    
+
         if ( isset( $_POST['grid-item-4-img'] ) ) {
         $grid_item_4_img = $_POST['grid-item-4-img'];
         } else {
         $grid_item_4_img = '';
         }
-        
+
         update_post_meta( $post_id, 'grid-item-4-img', sanitize_text_field( $grid_item_4_img ) );
-	    
+
 	    if ( isset( $_POST['grid-item-4-cta'] ) ) {
 		    $grid_item_4_cta = $_POST['grid-item-4-cta'];
 		    if ( ! empty( $grid_item_4_cta ) ) {
@@ -399,7 +435,7 @@ add_action( 'save_post', 'save_landing_page_fields' );
 			    delete_post_meta( $post_id, 'grid-item-4-cta' );
 		    }
 	    }
-    
+
     }
 
 
