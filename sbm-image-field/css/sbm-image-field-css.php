@@ -8,7 +8,7 @@
 function load_streamreport_css() {
 	$css_streamreport = '';
 	$report_image  = get_post_meta(get_the_ID(), 'report-image', true);
-	
+
 		$css_streamreport .= '
   
 		body.landing #page-wrapper-stream-report,
@@ -58,15 +58,15 @@ function load_holiday_template_css() {
     ';
     return $css_holiday_template;
   }
-  
+
   return '';
-  
+
 }
 
 function load_travel_destination_css() {
   $css_travel = '';
   $travel_image = get_post_meta(get_the_ID(), 'travel-image', true);
-  
+
   $css_travel .='
   
   	body.landing #page-wrapper-travel,
@@ -82,7 +82,7 @@ function load_travel_destination_css() {
 function load_guide_service_css() {
   $css_guide_service = '';
   $guide_hero = get_post_meta(get_the_ID(), 'guideservice-image', true);
-  
+
   $css_guide_service .='
   
     body.landing #page-wrapper-guide-service,
@@ -99,9 +99,9 @@ function load_guide_service_css() {
  {
 	$css_section_hero = '';
 	$sections_hero_image = get_post_meta(get_the_ID(), 'sections-hero-image', true);
-	
+
 	if (!empty($sections_hero_image)) {
-	 
+
 	 $css_section_hero .= '
 
 	body.landing.sections-template .container-fluid #page-wrapper-sections-template,
@@ -115,13 +115,13 @@ function load_guide_service_css() {
 	}
 	return '';
  }
- 
+
  function load_section_herovideo_css() {
  $css_section_hero_video = '';
  $sections_hero_video = get_post_meta(get_the_ID(), 'sections-video', true);
- 
+
 	if(!empty($sections_hero_video)) {
-		
+
 	 $css_section_hero_video .='
 			#sections-background-video {
 			display: initial;
@@ -142,14 +142,14 @@ function load_guide_service_css() {
 	 ';
 	 return $css_section_hero_video;
 	}
-	
+
 	return '';
  }
-	
+
  function load_private_waters_css() {
   $css_private_waters = '';
   $private_image  = get_post_meta(get_the_ID(), 'private-image', true);
-  
+
   $css_private_waters .='
   
    body.landing #page-wrapper-private-waters,
@@ -165,7 +165,7 @@ function load_guide_service_css() {
 function load_schools_hero_css() {
   $css_schools_hero = '';
   $schools_hero = get_post_meta(get_the_ID(), 'schools-image', true);
-  
+
   $css_schools_hero .='
   
    body.landing #page-wrapper-schools,
@@ -180,7 +180,7 @@ function load_schools_hero_css() {
 function load_fish_camp_hero_css() {
   $css_fish_camp_hero = '';
   $fish_camp_hero  = get_post_meta(get_the_ID(), 'fish-camp-image', true);
-  
+
   $css_fish_camp_hero .='
   
    body.landing #page-wrapper-fish-camp,
@@ -198,11 +198,11 @@ function load_opacity_range_css() {
 
 		$css_overlay_opacity .='
 		  #outfitters-jumbotron .overlay {
-						opacity: ' . $custom_range_value . ';
-				}
-				#heroheader .overlay {
 					opacity: ' . $custom_range_value . ';
 				}
+		  #heroheader .overlay {
+					opacity: ' . $custom_range_value . ';
+				} 
 		';
 		return $css_overlay_opacity;
 }
@@ -211,7 +211,7 @@ function load_opacity_range_css_private_waters() {
 	if (is_page_template('page-templates/private-template.php')) {
 		$private_hero_opacity_range = get_post_meta(get_the_ID(), 'private-hero-opacity-range', true);
 		$private_template_opacity_range = '';
-		
+
 		$private_template_opacity_range .='
 			 #banner.private-temp-hero-overlay .overlay,
 			 #banner.private-template-banner .overlay {
@@ -225,14 +225,14 @@ function load_opacity_range_css_private_waters() {
 			    z-index: 1;
 			 }
 			 ';
-		
+
 		return $private_template_opacity_range;
 	}
-	
+
 	if (is_page_template('page-templates/guide-service-template.php')) {
 		$guidesvc_hero_opacity_range = get_post_meta(get_the_ID(), 'guidesvc-hero-opacity-range', true);
 		$guidesvc_template_opacity_range = '';
-		
+
 		$guidesvc_template_opacity_range .='
 			 #banner.guidesvc-temp-hero-overlay .overlay,
 			 #banner.guidesvc-template-banner .overlay {
@@ -246,9 +246,9 @@ function load_opacity_range_css_private_waters() {
 			    z-index: 1;
 			 }
 			 ';
-		
+
 		return $guidesvc_template_opacity_range;
 	}
-	
+
 	return '';
 }
