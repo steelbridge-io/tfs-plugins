@@ -4,7 +4,7 @@ Plugin Name: SBM Image Field
 Plugin URI: http://steelbridgemedia.com
 Description: Provides custom image uploads for stream report content. Stream Report Image Field.
 Author: SteelBridge Media
-Version: 2.0.0
+Version: 2.0.5
 Author URI: http://steelbridgemedia.com
 */
 
