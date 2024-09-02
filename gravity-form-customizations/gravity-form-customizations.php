@@ -26,7 +26,8 @@ add_filter('gform_pre_form_editor_save', function($form) {
 // Redirect from form editor if form ID is 57
 add_action('admin_init', function() {
 	if (is_admin() && isset($_GET['page']) && $_GET['page'] === 'gf_edit_forms' && isset($_GET['id']) && $_GET['id'] == 57) {
-		wp_redirect(admin_url());
+		GFCommon::add_error_message('Deleting this form is not allowed.');
+		wp_redirect(admin_url('admin.php?page=gf_edit_forms'));
 		exit;
 	}
 });
