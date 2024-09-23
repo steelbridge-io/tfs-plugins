@@ -249,6 +249,51 @@ function load_opacity_range_css_private_waters() {
 
 		return $guidesvc_template_opacity_range;
 	}
+	
+	if(is_page_template('page-templates/travel-template.php')) {
+		
+		$travel_hero_opacity_range = get_post_meta(get_the_ID(), 'travel-hero-opacity-range', true);
+		$travel_template_opacity_range = '';
+		
+		$travel_template_opacity_range .='
+			 #banner.travel-temp-hero-overlay .overlay,
+			 #banner.travel-template-banner .overlay {
+			    opacity: ' . $travel_hero_opacity_range . ';
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    height: 100%;
+			    width: 100%;
+			    background-color: black;
+			    z-index: 1;
+			 }
+			 ';
+		
+		return $travel_template_opacity_range;
+		
+	}
+	
+	if(is_page_template('page-templates/hero-template.php')) {
+		
+		$hero_opacity_range = get_post_meta(get_the_ID(), 'hero-opacity-range', true);
+		$hero_template_opacity_range = '';
+		
+		$hero_template_opacity_range .='
+			 #heroheader .overlay {
+			    opacity: ' . $hero_opacity_range . ';
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    height: 100%;
+			    width: 100%;
+			    background-color: black;
+			    z-index: 1;
+			 }
+			 ';
+		
+		return $hero_template_opacity_range;
+		
+	}
 
 	return '';
 }
