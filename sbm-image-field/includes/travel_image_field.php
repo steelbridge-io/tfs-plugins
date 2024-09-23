@@ -94,53 +94,33 @@ function travel_meta_callback( $post ) {
     </script>
 
     <div class="sections-meta-cont">
-        <strong><label for="travel-temp-video-poster"
-                       class="sections-row-title"><?php _e( 'Hero Video Poster',
-					'the-fly-shop' ); ?></label></strong><br>
-        <input style="width:75%;" type="text" name="travel-temp-video-poster"
-               id="travel-temp-video-poster"
-               value="<?php if ( isset ( $travel_stored_meta['travel-temp-video-poster'] ) ) {
-			       echo $travel_stored_meta['travel-temp-video-poster'][0];
-		       } ?>"/>
-        <input type="button" id="travel-temp-video-poster-button" class="button"
-               value="<?php _e( 'Choose or Upload an Image',
-			       'the-fly-shop' ); ?>"/>
+        <strong><label for="travel-temp-video-poster" class="sections-row-title"><?php _e( 'Hero Video Poster', 'the-fly-shop' ); ?></label></strong><br>
+        <input style="width:75%;" type="text" name="travel-temp-video-poster" id="travel-temp-video-poster" value="<?php if ( isset ($travel_stored_meta['travel-temp-video-poster'] ) ) { echo $travel_stored_meta['travel-temp-video-poster'][0]; } ?>"/>
+        <input type="button" id="travel-temp-video-poster-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' ); ?>"/>
         <p class="meta-description">A "Poster" image replaces the video in the event the browser does not support video auto-play.</p>
     </div>
 
     <p> <!-- ==== TFS LOGO ==== -->
-        <label for="travel-logo"
-               class="travel-row-title"><?php _e( '<h3>TFS Logo</h3>',
-                'the-fly-shop' ); ?></label>
+        <label for="travel-logo" class="travel-row-title"><?php _e( '<h3>TFS Logo</h3>', 'the-fly-shop' ); ?></label>
 
-        <input type="text" name="travel-logo" id="travel-logo"
-               value="<?php if ( isset ( $travel_stored_meta['travel-logo'] ) ) {
-                   echo $travel_stored_meta['travel-logo'][0];
-               } ?>"/>
-        <input type="button" id="travel-logo-button" class="button"
-               value="<?php _e( 'Choose or Upload an Image',
-                   'the-fly-shop' ); ?>"/>
+        <input type="text" name="travel-logo" id="travel-logo" value="<?php if ( isset ( $travel_stored_meta['travel-logo'] ) ) { echo $travel_stored_meta['travel-logo'][0]; } ?>"/>
+        <input type="button" id="travel-logo-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' ); ?>"/>
     </p>
 
 
     <p> <!-- ==== TRAVEL HERO IMAGE ==== -->
-        <label for="travel-image"
-               class="travel-row-title"><?php _e( '<h3>Travel Hero Image</h3>',
-				'the-fly-shop' ); ?></label>
+        <label for="travel-image" class="travel-row-title"><?php _e( '<h3>Travel Hero Image</h3>', 'the-fly-shop' ); ?></label>
 
-        <input type="text" name="travel-image" id="travel-image"
-               value="<?php if ( isset ( $travel_stored_meta['travel-image'] ) ) {
-			       echo $travel_stored_meta['travel-image'][0];
-		       } ?>"/>
+        <input type="text" name="travel-image" id="travel-image" value="<?php if ( isset ( $travel_stored_meta['travel-image'] ) ) { echo $travel_stored_meta['travel-image'][0]; } ?>"/>
         <input type="button" id="travel-image-button" class="button"
                value="<?php _e( 'Choose or Upload an Image',
 			       'the-fly-shop' ); ?>"/>
     </p>
-        <p>
-            When video is not used and you wnat a stand alone Hero image, use
-            this input for the image but make sure video and poster inputs above
-            are clear.
-        </p>
+    <p>
+        When video is not used and you wnat a stand alone Hero image, use
+        this input for the image but make sure video and poster inputs above
+        are clear.
+    </p>
     <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
     <p> <!-- ==== COST / TRAVEL DETAILS IMAGE ==== -->
         <label for="feature-1-image"
