@@ -89,6 +89,8 @@ function tfs_newblog_callback( $post ) {
       <option value="retail" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'retail' ); ?>><?php _e( 'Retail', 'The_Fly_Shop' )?></option>';
       <option value="survey" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'survey' ); ?>><?php _e( 'Survey', 'The_Fly_Shop' )?></option>';
       <option value="travel" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected( $sbm_stored_blog_meta['select-sidebar'][0], 'travel' ); ?>><?php _e( 'Travel', 'The_Fly_Shop' )?></option>';
+      <option value="riomarie" <?php if ( isset ( $sbm_stored_blog_meta['select-sidebar'] ) ) selected(
+       $sbm_stored_blog_meta['select-sidebar'][0], 'riomarie' ); ?>><?php _e( 'Rio Marié', 'The_Fly_Shop' ) ?></option>';
     </select>
     </p>
   
