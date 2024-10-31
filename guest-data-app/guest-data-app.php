@@ -17,8 +17,6 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'inc/role-setup.php';
-
 // Register meta box
 add_action('add_meta_boxes', 'gda_register_meta_box');
 function gda_register_meta_box() {
