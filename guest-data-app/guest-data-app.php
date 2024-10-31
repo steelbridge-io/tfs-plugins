@@ -17,6 +17,8 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
+require_once plugin_dir_path( __FILE__ ) . 'inc/role-setup.php';
+
 // Register meta box
 add_action('add_meta_boxes', 'gda_register_meta_box');
 function gda_register_meta_box() {
@@ -68,4 +70,3 @@ function gda_save_meta_box_data($post_id) {
 	$gda_data = sanitize_text_field($_POST['gda_meta_field']);
 	update_post_meta($post_id, '_gda_meta_key', $gda_data);
 }
-?>
