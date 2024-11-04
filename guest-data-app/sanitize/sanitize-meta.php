@@ -156,3 +156,6 @@ if (isset($_POST['gda_meta_field_what_float_doing_id'])) {
   update_post_meta($post_id, '_gda_meta_key_what_float_doing_id', $gda_data);
 }
 
+$show_meta_fields = isset($_POST['gda_show_meta_fields']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_fields', $show_meta_fields);
+

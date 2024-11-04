@@ -287,6 +287,13 @@ echo '</div>'; // end .gta-meta-box
 
 echo '<div class="gda-meta-box">';
 
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_fields', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_fields">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_fields" name="gda_show_meta_fields" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+
 // Table header title: What float are you doing
 $gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_what_float_doing', true);
 echo '<div class="gda-meta-row">';
