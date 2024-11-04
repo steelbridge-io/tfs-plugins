@@ -150,7 +150,7 @@ echo '</div>';
 // Body weight
 $gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_body_weight_id', true);
 echo '<div class="gda-meta-row">';
-echo '<label for="gda_meta_field_body_weight_id">' . __('Date of birth ID:', 'guest-data-app') . '</label>';
+echo '<label for="gda_meta_field_body_weight_id">' . __('Body weight ID:', 'guest-data-app') . '</label>';
 echo '<input type="number" id="gda_meta_field_body_weight_id" name="gda_meta_field_body_weight_id" value="' . esc_attr($gda_meta_value) . '" />';
 echo '<p class="description">' . __('Default field ID 284', 'guest-data-app') . '</p>';
 echo '</div>';
@@ -311,6 +311,289 @@ echo '<p class="description">' . __('Default field ID 288', 'guest-data-app') . 
 echo '</div>';
 
 echo '</div>'; // end .gta-meta-box
+
+echo '<div class="gda-meta-box-container">';
+
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_arrival_airport', true);
+echo '<div class="gda-meta-box-wrapper">';
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_field_arrival_airport">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_field_arrival_airport" name="gda_show_meta_field_arrival_airport" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="gda-meta-box-wrapper">';
+// Table header title: Arrival airport city/town
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_arrival_airport', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_header_arrival_airport">' . __('Arrival airport city/town table header title:',
+    'guest-data-app') . '</label>';
+echo '<input type="text" id="gda_meta_field_header_arrival_airport" name="gda_meta_field_header_arrival_airport" value="' . esc_attr($gda_meta_value) . '" />';
+echo '</div>';
+
+// What float are you doing?
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_arrival_airport_id', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_arrival_airport_id">' . __('Arrival airport city/town ID:', 'guest-data-app') . '</label>';
+echo '<input type="number" id="gda_meta_field_arrival_airport_id" name="gda_meta_field_arrival_airport_id" value="' . esc_attr($gda_meta_value) . '" />';
+echo '<p class="description">' . __('Default field ID 289', 'guest-data-app') . '</p>';
+echo '</div>';
+
+echo '</div>'; // end .gda-meta-box-wrapper
+echo '</div>'; // end .gta-meta-box-container
+
+echo '<div class="gda-meta-box-container">';
+
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_arrival_airline', true);
+echo '<div class="gda-meta-box-wrapper">';
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_field_arrival_airline">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_field_arrival_airline" name="gda_show_meta_field_arrival_airline" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="gda-meta-box-wrapper">';
+// Table header title: Arrival airline
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_arrival_airline', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_header_arrival_airline">' . __('Arrival airline table header title:',
+    'guest-data-app') . '</label>';
+echo '<input type="text" id="gda_meta_field_header_arrival_airline" name="gda_meta_field_header_arrival_airline" value="' . esc_attr($gda_meta_value) . '" />';
+echo '</div>';
+
+// Arrival airline
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_arrival_airline_id', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_arrival_airline_id">' . __('Arrival airline ID:', 'guest-data-app') . '</label>';
+echo '<input type="number" id="gda_meta_field_arrival_airline_id" name="gda_meta_field_arrival_airline_id" value="' . esc_attr($gda_meta_value) . '" />';
+echo '<p class="description">' . __('Default field ID 48', 'guest-data-app') . '</p>';
+echo '</div>';
+
+echo '</div>'; // end .gda-meta-box-wrapper
+echo '</div>'; // end .gta-meta-box-container
+
+echo '<div class="gda-meta-box-container">';
+
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_other_arrival_airline', true);
+echo '<div class="gda-meta-box-wrapper">';
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_field_other_arrival_airline">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_field_other_arrival_airline" name="gda_show_meta_field_other_arrival_airline" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="gda-meta-box-wrapper">';
+// Table header title: Other arrival airline
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_other_arrival_airline', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_header_other_arrival_airline">' . __('Other arrival airline table header title:',
+    'guest-data-app') . '</label>';
+echo '<input type="text" id="gda_meta_field_header_other_arrival_airline" name="gda_meta_field_header_other_arrival_airline" value="' . esc_attr($gda_meta_value) . '" />';
+echo '</div>';
+
+// Arrival airline
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_other_arrival_airline_id', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_other_arrival_airline_id">' . __('Other arrival airline ID:', 'guest-data-app') . '</label>';
+echo '<input type="number" id="gda_meta_field_other_arrival_airline_id" name="gda_meta_field_other_arrival_airline_id" value="' . esc_attr($gda_meta_value) . '" />';
+echo '<p class="description">' . __('Default field ID 50', 'guest-data-app') . '</p>';
+echo '</div>';
+
+echo '</div>'; // end .gda-meta-box-wrapper
+echo '</div>'; // end .gta-meta-box-container
+
+echo '<div class="gda-meta-box-container">';
+
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_arrival_date', true);
+echo '<div class="gda-meta-box-wrapper">';
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_field_flight_arrival_date">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_field_flight_arrival_date" name="gda_show_meta_field_flight_arrival_date" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="gda-meta-box-wrapper">';
+// Table header title: Flight arrival date
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_arrival_date', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_header_flight_arrival_date">' . __('Flight arrival date table header title:',
+    'guest-data-app') . '</label>';
+echo '<input type="text" id="gda_meta_field_header_flight_arrival_date" name="gda_meta_field_header_flight_arrival_date" value="' . esc_attr($gda_meta_value) . '" />';
+echo '</div>';
+
+// Arrival airline
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_flight_arrival_date_id', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_flight_arrival_date_id">' . __('Flight arrival date ID:', 'guest-data-app') . '</label>';
+echo '<input type="number" id="gda_meta_field_flight_arrival_date_id" name="gda_meta_field_flight_arrival_date_id" value="' . esc_attr($gda_meta_value) . '" />';
+echo '<p class="description">' . __('Default field ID 66', 'guest-data-app') . '</p>';
+echo '</div>';
+
+echo '</div>'; // end .gda-meta-box-wrapper
+echo '</div>'; // end .gta-meta-box-container
+
+echo '<div class="gda-meta-box-container">';
+
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_arrival_number', true);
+echo '<div class="gda-meta-box-wrapper">';
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_field_flight_arrival_number">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_field_flight_arrival_number" name="gda_show_meta_field_flight_arrival_number" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="gda-meta-box-wrapper">';
+// Table header title: Flight arrival number
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_arrival_number', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_header_flight_arrival_number">' . __('Flight arrival number table header title:',
+    'guest-data-app') . '</label>';
+echo '<input type="text" id="gda_meta_field_header_flight_arrival_number" name="gda_meta_field_header_flight_arrival_number" value="' . esc_attr($gda_meta_value) . '" />';
+echo '</div>';
+
+// Flight arrival number
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_flight_arrival_number_id', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_flight_arrival_number_id">' . __('Flight arrival number ID:', 'guest-data-app') . '</label>';
+echo '<input type="number" id="gda_meta_field_flight_arrival_number_id" name="gda_meta_field_flight_arrival_number_id" value="' . esc_attr($gda_meta_value) . '" />';
+echo '<p class="description">' . __('Default field ID 172', 'guest-data-app') . '</p>';
+echo '</div>';
+
+echo '</div>'; // end .gda-meta-box-wrapper
+echo '</div>'; // end .gta-meta-box-containe
+
+
+echo '<div class="gda-meta-box-container">';
+
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_arrival_time', true);
+echo '<div class="gda-meta-box-wrapper">';
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_field_flight_arrival_time">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_field_flight_arrival_time" name="gda_show_meta_field_flight_arrival_time" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="gda-meta-box-wrapper">';
+// Table header title: Flight arrival time
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_arrival_time', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_header_flight_arrival_time">' . __('Flight arrival time table header title:',
+    'guest-data-app') . '</label>';
+echo '<input type="text" id="gda_meta_field_header_flight_arrival_time" name="gda_meta_field_header_flight_arrival_time" value="' . esc_attr($gda_meta_value) . '" />';
+echo '</div>';
+
+// Flight arrival number
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_flight_arrival_time_id', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_flight_arrival_time_id">' . __('Flight arrival time ID:', 'guest-data-app') . '</label>';
+echo '<input type="number" id="gda_meta_field_flight_arrival_time_id" name="gda_meta_field_flight_arrival_time_id" value="' . esc_attr($gda_meta_value) . '" />';
+echo '<p class="description">' . __('Default field ID 60', 'guest-data-app') . '</p>';
+echo '</div>';
+
+echo '</div>'; // end .gda-meta-box-wrapper
+echo '</div>'; // end .gta-meta-box-containe
+
+echo '<div class="gda-meta-box-container">';
+
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_departure_date', true);
+echo '<div class="gda-meta-box-wrapper">';
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_field_flight_departure_date">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_field_flight_departure_date" name="gda_show_meta_field_flight_departure_date" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="gda-meta-box-wrapper">';
+// Table header title: Flight departure date
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_departure_date', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_header_flight_departure_date">' . __('Flight departure date table header title:',
+    'guest-data-app') . '</label>';
+echo '<input type="text" id="gda_meta_field_header_flight_departure_date" name="gda_meta_field_header_flight_departure_date" value="' . esc_attr($gda_meta_value) . '" />';
+echo '</div>';
+
+// Flight departure date
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_flight_departure_date_id', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_flight_departure_date_id">' . __('Flight departure date ID:', 'guest-data-app') . '</label>';
+echo '<input type="number" id="gda_meta_field_flight_departure_date_id" name="gda_meta_field_flight_departure_date_id" value="' . esc_attr($gda_meta_value) . '" />';
+echo '<p class="description">' . __('Default field ID 67', 'guest-data-app') . '</p>';
+echo '</div>';
+
+echo '</div>'; // end .gda-meta-box-wrapper
+echo '</div>'; // end .gta-meta-box-containe
+
+echo '<div class="gda-meta-box-container">';
+
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_departure_number', true);
+echo '<div class="gda-meta-box-wrapper">';
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_field_flight_departure_number">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_field_flight_departure_number" name="gda_show_meta_field_flight_departure_number" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="gda-meta-box-wrapper">';
+// Table header title: Flight departure number
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_departure_number', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_header_flight_departure_number">' . __('Flight departure number table header title:',
+    'guest-data-app') . '</label>';
+echo '<input type="text" id="gda_meta_field_header_flight_departure_number" name="gda_meta_field_header_flight_departure_number" value="' . esc_attr($gda_meta_value) . '" />';
+echo '</div>';
+
+// Flight departure number
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_flight_departure_number_id', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_flight_departure_number_id">' . __('Flight departure number ID:', 'guest-data-app') .
+  '</label>';
+echo '<input type="number" id="gda_meta_field_flight_departure_number_id" name="gda_meta_field_flight_departure_number_id" value="' . esc_attr($gda_meta_value) . '" />';
+echo '<p class="description">' . __('Default field ID 58', 'guest-data-app') . '</p>';
+echo '</div>';
+
+echo '</div>'; // end .gda-meta-box-wrapper
+echo '</div>'; // end .gta-meta-box-containe
+
+echo '<div class="gda-meta-box-container">';
+
+// Display Meta Fields Checkbox
+$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_departure_time', true);
+echo '<div class="gda-meta-box-wrapper">';
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_show_meta_field_flight_departure_time">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
+echo '<input type="checkbox" id="gda_show_meta_field_flight_departure_time" name="gda_show_meta_field_flight_departure_time" value="1"' . checked(1, $show_meta_fields, false) . ' />';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="gda-meta-box-wrapper">';
+// Table header title: Flight departure number
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_departure_time', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_header_flight_departure_time">' . __('Flight departure time table header title:',
+    'guest-data-app') . '</label>';
+echo '<input type="text" id="gda_meta_field_header_flight_departure_time" name="gda_meta_field_header_flight_departure_time" value="' . esc_attr($gda_meta_value) . '" />';
+echo '</div>';
+
+// Flight departure number
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_flight_departure_time_id', true);
+echo '<div class="gda-meta-row">';
+echo '<label for="gda_meta_field_flight_departure_time_id">' . __('Flight departure time ID:', 'guest-data-app') .
+  '</label>';
+echo '<input type="number" id="gda_meta_field_flight_departure_time_id" name="gda_meta_field_flight_departure_time_id" value="' . esc_attr($gda_meta_value) . '" />';
+echo '<p class="description">' . __('Default field ID 61', 'guest-data-app') . '</p>';
+echo '</div>';
+
+echo '</div>'; // end .gda-meta-box-wrapper
+echo '</div>'; // end .gta-meta-box-containe
+
 
 
 

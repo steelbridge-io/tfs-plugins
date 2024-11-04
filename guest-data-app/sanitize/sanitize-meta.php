@@ -159,3 +159,121 @@ if (isset($_POST['gda_meta_field_what_float_doing_id'])) {
 $show_meta_fields = isset($_POST['gda_show_meta_fields']) ? 1 : 0;
 update_post_meta($post_id, '_gda_show_meta_fields', $show_meta_fields);
 
+if (isset($_POST['gda_meta_field_header_arrival_airport'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_header_arrival_airport']);
+  update_post_meta($post_id, '_gda_meta_key_header_arrival_airport', $gda_data);
+}
+
+if (isset($_POST['gda_meta_field_arrival_airport_id'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_arrival_airport_id']);
+  update_post_meta($post_id, '_gda_meta_key_arrival_airport_id', $gda_data);
+}
+
+$show_meta_fields = isset($_POST['gda_show_meta_field_arrival_airport']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_field_arrival_airport', $show_meta_fields);
+
+if (isset($_POST['gda_meta_field_header_arrival_airline'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_header_arrival_airline']);
+  update_post_meta($post_id, '_gda_meta_key_header_arrival_airline', $gda_data);
+}
+
+if (isset($_POST['gda_meta_field_arrival_airline_id'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_arrival_airline_id']);
+  update_post_meta($post_id, '_gda_meta_key_arrival_airline_id', $gda_data);
+}
+
+$show_meta_fields = isset($_POST['gda_show_meta_field_arrival_airline']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_field_arrival_airline', $show_meta_fields);
+
+if (isset($_POST['gda_meta_field_header_other_arrival_airline'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_header_other_arrival_airline']);
+  update_post_meta($post_id, '_gda_meta_key_header_other_arrival_airline', $gda_data);
+}
+
+if (isset($_POST['gda_meta_field_other_arrival_airline_id'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_other_arrival_airline_id']);
+  update_post_meta($post_id, '_gda_meta_key_other_arrival_airline_id', $gda_data);
+}
+
+$show_meta_fields = isset($_POST['gda_show_meta_field_other_arrival_airline']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_field_other_arrival_airline', $show_meta_fields);
+
+if (isset($_POST['gda_meta_field_header_flight_arrival_date'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_header_flight_arrival_date']);
+  update_post_meta($post_id, '_gda_meta_key_header_flight_arrival_date', $gda_data);
+}
+
+if (isset($_POST['gda_meta_field_flight_arrival_date_id'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_flight_arrival_date_id']);
+  update_post_meta($post_id, '_gda_meta_key_flight_arrival_date_id', $gda_data);
+}
+
+$show_meta_fields = isset($_POST['gda_show_meta_field_flight_arrival_date']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_field_flight_arrival_date', $show_meta_fields);
+
+if (isset($_POST['gda_meta_field_header_flight_arrival_number'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_header_flight_arrival_number']);
+  update_post_meta($post_id, '_gda_meta_key_header_flight_arrival_number', $gda_data);
+}
+
+if (isset($_POST['gda_meta_field_flight_arrival_number_id'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_flight_arrival_number_id']);
+  update_post_meta($post_id, '_gda_meta_key_flight_arrival_number_id', $gda_data);
+}
+
+$show_meta_fields = isset($_POST['gda_show_meta_field_flight_arrival_number']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_field_flight_arrival_number', $show_meta_fields);
+
+if (isset($_POST['gda_meta_field_header_flight_arrival_time'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_header_flight_arrival_time']);
+  update_post_meta($post_id, '_gda_meta_key_header_flight_arrival_time', $gda_data);
+}
+
+if (isset($_POST['gda_meta_field_flight_arrival_time_id'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_flight_arrival_time_id']);
+  update_post_meta($post_id, '_gda_meta_key_flight_arrival_time_id', $gda_data);
+}
+
+$show_meta_fields = isset($_POST['gda_show_meta_field_flight_arrival_time']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_field_flight_arrival_time', $show_meta_fields);
+
+if (isset($_POST['gda_meta_field_header_flight_departure_date'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_header_flight_departure_date']);
+  update_post_meta($post_id, '_gda_meta_key_header_flight_departure_date', $gda_data);
+}
+
+if (isset($_POST['gda_meta_field_flight_departure_date_id'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_flight_departure_date_id']);
+  update_post_meta($post_id, '_gda_meta_key_flight_departure_date_id', $gda_data);
+}
+
+$show_meta_fields = isset($_POST['gda_show_meta_field_flight_departure_date']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_field_flight_departure_date', $show_meta_fields);
+
+if (isset($_POST['gda_meta_field_header_flight_departure_number'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_header_flight_departure_number']);
+  update_post_meta($post_id, '_gda_meta_key_header_flight_departure_number', $gda_data);
+}
+
+if (isset($_POST['gda_meta_field_flight_departure_number_id'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_flight_departure_number_id']);
+  update_post_meta($post_id, '_gda_meta_key_flight_departure_number_id', $gda_data);
+}
+
+$show_meta_fields = isset($_POST['gda_show_meta_field_flight_departure_number']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_field_flight_departure_number', $show_meta_fields);
+
+if (isset($_POST['gda_meta_field_header_flight_departure_time'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_header_flight_departure_time']);
+  update_post_meta($post_id, '_gda_meta_key_header_flight_departure_time', $gda_data);
+}
+
+if (isset($_POST['gda_meta_field_flight_departure_time_id'])) {
+  $gda_data = sanitize_text_field($_POST['gda_meta_field_flight_departure_time_id']);
+  update_post_meta($post_id, '_gda_meta_key_flight_departure_time_id', $gda_data);
+}
+
+$show_meta_fields = isset($_POST['gda_show_meta_field_flight_departure_time']) ? 1 : 0;
+update_post_meta($post_id, '_gda_show_meta_field_flight_departure_time', $show_meta_fields);
+
+
