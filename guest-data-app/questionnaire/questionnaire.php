@@ -37,10 +37,10 @@ echo '</div>'; // end .gda-meta-box
 echo '<div class="gda-meta-box">';
 
 // Table header title: Reservation
-$gda_meta_value_reservation = get_post_meta($post->ID, '_gda_meta_key_header_title_res', true);
+$gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_title_res', true);
 echo '<div class="gda-meta-row">';
 echo '<label for="gda_meta_field_header_title_res">' . __('Reservation table header title:', 'guest-data-app') . '</label>';
-echo '<input type="text" id="gda_meta_field_header_title_res" name="gda_meta_field_header_title_res" value="' . esc_attr($gda_meta_value_reservation) . '" />';
+echo '<input type="text" id="gda_meta_field_header_title_res" name="gda_meta_field_header_title_res" value="' . esc_attr($gda_meta_value) . '" />';
 echo '</div>';
 
 // Reservation #
@@ -288,11 +288,11 @@ echo '</div>'; // end .gta-meta-box
 echo '<div class="gda-meta-box">';
 
 // Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_fields', true);
+/*$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_fields', true);
 echo '<div class="gda-meta-row">';
 echo '<label for="gda_show_meta_fields">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
 echo '<input type="checkbox" id="gda_show_meta_fields" name="gda_show_meta_fields" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
+echo '</div>';*/
 
 // Table header title: What float are you doing
 $gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_what_float_doing', true);
