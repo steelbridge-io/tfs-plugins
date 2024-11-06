@@ -6,7 +6,7 @@ echo '<label for="gda_meta_field">' . __('Gravity Form ID:', 'guest-data-app') .
 echo '<input type="number" id="gda_meta_field" name="gda_meta_field" value="' . esc_attr($gda_meta_value) . '" />';
 echo '<p class="description">' . __('Enter the ID of the Gravity Form you want to link to this post.', 'guest-data-app') . '</p>';
 echo '</div>';
-
+/*
 echo '<div class="gda-meta-box">';
 
 // Table header title
@@ -111,7 +111,7 @@ echo '<div class="gda-meta-row">';
 echo '<label for="gda_meta_field_cell_phone_id">' . __('Cell phone ID:', 'guest-data-app') . '</label>';
 echo '<input type="number" id="gda_meta_field_cell_phone_id" name="gda_meta_field_cell_phone_id" value="' . esc_attr
   ($gda_meta_value) . '" />';
-echo '<p class="description">' . __('Default field ID 30', 'guest-data-app') . '</p>';
+echo '<p class="description">' . __('Default field ID 101', 'guest-data-app') . '</p>';
 echo '</div>';
 
 echo '</div>'; // end .gta-meta-box
@@ -287,13 +287,6 @@ echo '</div>'; // end .gta-meta-box
 
 echo '<div class="gda-meta-box">';
 
-// Display Meta Fields Checkbox
-/*$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_fields', true);
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_fields">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_fields" name="gda_show_meta_fields" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';*/
-
 // Table header title: What float are you doing
 $gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_what_float_doing', true);
 echo '<div class="gda-meta-row">';
@@ -313,15 +306,6 @@ echo '</div>';
 echo '</div>'; // end .gta-meta-box
 
 echo '<div class="gda-meta-box-container">';
-
-// Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_arrival_airport', true);
-echo '<div class="gda-meta-box-wrapper">';
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_field_arrival_airport">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_field_arrival_airport" name="gda_show_meta_field_arrival_airport" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
-echo '</div>';
 
 echo '<div class="gda-meta-box-wrapper">';
 // Table header title: Arrival airport city/town
@@ -345,15 +329,6 @@ echo '</div>'; // end .gta-meta-box-container
 
 echo '<div class="gda-meta-box-container">';
 
-// Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_arrival_airline', true);
-echo '<div class="gda-meta-box-wrapper">';
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_field_arrival_airline">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_field_arrival_airline" name="gda_show_meta_field_arrival_airline" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
-echo '</div>';
-
 echo '<div class="gda-meta-box-wrapper">';
 // Table header title: Arrival airline
 $gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_arrival_airline', true);
@@ -375,15 +350,6 @@ echo '</div>'; // end .gda-meta-box-wrapper
 echo '</div>'; // end .gta-meta-box-container
 
 echo '<div class="gda-meta-box-container">';
-
-// Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_other_arrival_airline', true);
-echo '<div class="gda-meta-box-wrapper">';
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_field_other_arrival_airline">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_field_other_arrival_airline" name="gda_show_meta_field_other_arrival_airline" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
-echo '</div>';
 
 echo '<div class="gda-meta-box-wrapper">';
 // Table header title: Other arrival airline
@@ -407,15 +373,6 @@ echo '</div>'; // end .gta-meta-box-container
 
 echo '<div class="gda-meta-box-container">';
 
-// Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_arrival_date', true);
-echo '<div class="gda-meta-box-wrapper">';
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_field_flight_arrival_date">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_field_flight_arrival_date" name="gda_show_meta_field_flight_arrival_date" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
-echo '</div>';
-
 echo '<div class="gda-meta-box-wrapper">';
 // Table header title: Flight arrival date
 $gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_arrival_date', true);
@@ -437,15 +394,6 @@ echo '</div>'; // end .gda-meta-box-wrapper
 echo '</div>'; // end .gta-meta-box-container
 
 echo '<div class="gda-meta-box-container">';
-
-// Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_arrival_number', true);
-echo '<div class="gda-meta-box-wrapper">';
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_field_flight_arrival_number">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_field_flight_arrival_number" name="gda_show_meta_field_flight_arrival_number" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
-echo '</div>';
 
 echo '<div class="gda-meta-box-wrapper">';
 // Table header title: Flight arrival number
@@ -470,15 +418,6 @@ echo '</div>'; // end .gta-meta-box-containe
 
 echo '<div class="gda-meta-box-container">';
 
-// Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_arrival_time', true);
-echo '<div class="gda-meta-box-wrapper">';
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_field_flight_arrival_time">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_field_flight_arrival_time" name="gda_show_meta_field_flight_arrival_time" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
-echo '</div>';
-
 echo '<div class="gda-meta-box-wrapper">';
 // Table header title: Flight arrival time
 $gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_arrival_time', true);
@@ -501,15 +440,6 @@ echo '</div>'; // end .gta-meta-box-containe
 
 echo '<div class="gda-meta-box-container">';
 
-// Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_departure_date', true);
-echo '<div class="gda-meta-box-wrapper">';
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_field_flight_departure_date">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_field_flight_departure_date" name="gda_show_meta_field_flight_departure_date" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
-echo '</div>';
-
 echo '<div class="gda-meta-box-wrapper">';
 // Table header title: Flight departure date
 $gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_departure_date', true);
@@ -531,15 +461,6 @@ echo '</div>'; // end .gda-meta-box-wrapper
 echo '</div>'; // end .gta-meta-box-containe
 
 echo '<div class="gda-meta-box-container">';
-
-// Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_departure_number', true);
-echo '<div class="gda-meta-box-wrapper">';
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_field_flight_departure_number">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_field_flight_departure_number" name="gda_show_meta_field_flight_departure_number" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
-echo '</div>';
 
 echo '<div class="gda-meta-box-wrapper">';
 // Table header title: Flight departure number
@@ -564,15 +485,6 @@ echo '</div>'; // end .gta-meta-box-containe
 
 echo '<div class="gda-meta-box-container">';
 
-// Display Meta Fields Checkbox
-$show_meta_fields = get_post_meta($post->ID, '_gda_show_meta_field_flight_departure_time', true);
-echo '<div class="gda-meta-box-wrapper">';
-echo '<div class="gda-meta-row">';
-echo '<label for="gda_show_meta_field_flight_departure_time">' . __('Show Meta Fields on Front End:', 'guest-data-app') . '</label>';
-echo '<input type="checkbox" id="gda_show_meta_field_flight_departure_time" name="gda_show_meta_field_flight_departure_time" value="1"' . checked(1, $show_meta_fields, false) . ' />';
-echo '</div>';
-echo '</div>';
-
 echo '<div class="gda-meta-box-wrapper">';
 // Table header title: Flight departure number
 $gda_meta_value = get_post_meta($post->ID, '_gda_meta_key_header_flight_departure_time', true);
@@ -593,6 +505,7 @@ echo '</div>';
 
 echo '</div>'; // end .gda-meta-box-wrapper
 echo '</div>'; // end .gta-meta-box-containe
+*/
 
 
 
