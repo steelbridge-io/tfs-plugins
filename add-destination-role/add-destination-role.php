@@ -133,12 +133,15 @@ add_action('wp_dashboard_setup', 'remove_default_dashboard_widgets', 20);
 // Remove the toolbar option for 'destination' users
 function remove_toolbar_option() {
   if (current_user_can('destination')) {
-    echo '<style>.show-admin-bar { display: none; }</style>';
-    echo '<script type="text/javascript">
+    //echo '<style>.show-admin-bar { display: none; }</style>';
+   /* echo '<script type="text/javascript">
             jQuery(document).ready(function($) {
               $("#your-profile .show-admin-bar").remove();
             });
-          </script>';
+          </script>';*/
+    wp_enqueue_style('remove-admin-bar-style', plugins_url('assets/css/admin-styles.css', __FILE__));
+    wp_enqueue_script('remove-admin-bar-script', plugins_url('assets/js/admin-js.js', __FILE__), array('jquery'),
+      '1.0.0', true);
   }
 }
 add_action('admin_enqueue_scripts', 'remove_toolbar_option');
