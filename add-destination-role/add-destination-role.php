@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Add Destination Role and Redirect
-Description: Adds a custom user role called "Destination" and redirects users with this role to a specific customizable post upon login. Adds a custom dashboard widget with the link and title of the assigned private page.
+Description: Adds custom user roles called "Destination" and "Travel Manager" and redirects users with these roles to specific customizable posts upon login. Adds custom dashboard widgets with the link and title of the assigned private pages.
 Version: 1.9
 Author: Your Name
 */
@@ -20,28 +20,85 @@ function add_destination_role() {
   );
 }
 
-register_activation_hook(__FILE__, 'add_destination_role');
-register_deactivation_hook(__FILE__, 'remove_destination_role');
-
-// Hook to remove the role when the plugin is deactivated
-function remove_destination_role() {
-  remove_role('destination');
+function add_travel_manager_role() {
+  add_role(
+    'travel_manager',
+    'Travel Manager',
+    array(
+      'read'                               => true,
+      'edit_posts'                         => true,
+      'delete_posts'                       => true,
+      'publish_posts'                      => true,
+      'edit_published_posts'               => true,
+      'edit_others_posts'                  => true,
+      'delete_published_posts'             => true,
+      'delete_others_posts'                => true,
+      'read_private_posts'                 => true,
+      'edit_pages'                         => true,
+      'edit_others_pages'                  => true,
+      'edit_published_pages'               => true,
+      'publish_pages'                      => true,
+      'delete_pages'                       => true,
+      'delete_others_pages'                => true,
+      'delete_published_pages'             => true,
+      'read_private_pages'                 => true,
+      'gravityforms_edit_forms'            => true,
+      'gravityforms_delete_forms'          => true,
+      'gravityforms_create_form'           => true,
+      'gravityforms_view_entries'          => true,
+      'gravityforms_edit_entries'          => true,
+      'gravityforms_delete_entries'        => true,
+      'gravityforms_view_settings'         => true,
+      'gravityforms_edit_settings'         => true,
+      'gravityforms_export_entries'        => true,
+      'gravityforms_view_entry_notes'      => true,
+      'gravityforms_edit_entry_notes'      => true
+    )
+  );
 }
+add_action('init', 'add_travel_manager_role');
 
-// Hook to add the role when the plugin is activated
-function add_role_on_activation($network_wide) {
-  add_destination_role();
+function add_gravity_forms_caps_to_admin() {
+  // Adding necessary capabilities to the 'travel_manager' role
+  $role = get_role('travel_manager');
 
-  if (is_multisite() && $network_wide) {
-    global $wpdb;
-    $blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs WHERE site_id = {$wpdb->siteid}");
-    foreach ($blog_ids as $blog_id) {
-      switch_to_blog($blog_id);
-      add_destination_role();
-      restore_current_blog();
+  if ($role) {
+    $caps = array(
+      'gravityforms_edit_forms',
+      'gravityforms_delete_forms',
+      'gravityforms_create_form',
+      'gravityforms_view_entries',
+      'gravityforms_edit_entries',
+      'gravityforms_delete_entries',
+      'gravityforms_view_settings',
+      'gravityforms_edit_settings',
+      'gravityforms_export_entries',
+      'gravityforms_view_entry_notes',
+      'gravityforms_edit_entry_notes'
+    );
+
+    foreach ($caps as $cap) {
+      $role->add_cap($cap);
     }
   }
 }
+add_action('admin_init', 'add_gravity_forms_caps_to_admin');
+
+// Function to add roles upon plugin activation
+function add_roles_on_activation() {
+  add_destination_role();
+  add_travel_manager_role();
+}
+
+register_activation_hook(__FILE__, 'add_roles_on_activation');
+
+// Function to remove roles upon plugin deactivation
+function remove_roles_on_deactivation() {
+  remove_role('destination');
+  remove_role('travel_manager');
+}
+
+register_deactivation_hook(__FILE__, 'remove_roles_on_deactivation');
 
 // Grant the 'destination' role access to private travel forms and specific private pages
 function grant_destination_role_private_access() {
@@ -52,10 +109,10 @@ function grant_destination_role_private_access() {
 }
 add_action('init', 'grant_destination_role_private_access');
 
-// Add a custom user meta field to the user profile page
+// Add custom user meta fields to the user profile pages
 function add_custom_user_meta_field($user) {
-  if (in_array('destination', (array) $user->roles)) { ?>
-    <h3><?php _e('Custom Redirect URL for Destination Role', 'custom-user-meta'); ?></h3>
+  if (in_array('destination', (array) $user->roles) || in_array('travel_manager', (array) $user->roles)) { ?>
+    <h3><?php _e('Custom Redirect URL', 'custom-user-meta'); ?></h3>
     <table class="form-table">
       <tr>
         <th><label for="custom_redirect_url"><?php _e('Redirect URL'); ?></label></th>
@@ -80,22 +137,24 @@ function save_custom_user_meta_field($user_id) {
 add_action('personal_options_update', 'save_custom_user_meta_field');
 add_action('edit_user_profile_update', 'save_custom_user_meta_field');
 
-// Redirect 'destination' users to a specific page upon login based on the user meta field
-function redirect_destination_user_on_login($redirect_to, $request, $user) {
-  if (isset($user->roles) && is_array($user->roles) && in_array('destination', $user->roles)) {
-    $custom_redirect_url = get_user_meta($user->ID, 'custom_redirect_url', true);
-    if ($custom_redirect_url) {
-      $redirect_to = $custom_redirect_url;
+// Redirect 'destination' and 'travel_manager' users to specific pages upon login based on the user meta field
+function redirect_custom_user_on_login($redirect_to, $request, $user) {
+  if (isset($user->roles) && is_array($user->roles)) {
+    if (in_array('destination', $user->roles) || in_array('travel_manager', $user->roles)) {
+      $custom_redirect_url = get_user_meta($user->ID, 'custom_redirect_url', true);
+      if ($custom_redirect_url) {
+        return $custom_redirect_url;
+      }
     }
   }
   return $redirect_to;
 }
 
-add_filter('login_redirect', 'redirect_destination_user_on_login', 10, 3);
+add_filter('login_redirect', 'redirect_custom_user_on_login', 10, 3);
 
 // Add a custom dashboard widget for 'destination' users
 function add_destination_dashboard_widget() {
-  if (current_user_can('read_private_posts')) {
+  if (current_user_can('destination')) {
     wp_add_dashboard_widget(
       'destination_dashboard_widget',
       'Your Private Page',
@@ -105,8 +164,36 @@ function add_destination_dashboard_widget() {
 }
 add_action('wp_dashboard_setup', 'add_destination_dashboard_widget');
 
-// Display the content of the custom dashboard widget
+// Display content of the custom dashboard widget for 'destination' users
 function display_destination_dashboard_widget_content() {
+  $user_id = get_current_user_id();
+  $custom_redirect_url = get_user_meta($user_id, 'custom_redirect_url', true);
+
+  if ($custom_redirect_url) {
+    $page_id = url_to_postid($custom_redirect_url);
+    $page_title = get_the_title($page_id);
+    echo '<p>You have access to the following private page:</p>';
+    echo '<p><strong>Title:</strong> ' . esc_html($page_title) . '</p>';
+    echo '<p><strong>Link:</strong> <a href="' . esc_url($custom_redirect_url) . '">' . esc_html($custom_redirect_url) . '</a></p>';
+  } else {
+    echo '<p>No private page assigned yet.</p>';
+  }
+}
+
+// Add a custom dashboard widget for 'travel_manager' users
+function add_travel_manager_dashboard_widget() {
+  if (current_user_can('travel_manager')) {
+    wp_add_dashboard_widget(
+      'travel_manager_dashboard_widget',
+      'Your Private Page',
+      'display_travel_manager_dashboard_widget_content'
+    );
+  }
+}
+add_action('wp_dashboard_setup', 'add_travel_manager_dashboard_widget');
+
+// Display content of the custom dashboard widget for 'travel_manager' users
+function display_travel_manager_dashboard_widget_content() {
   $user_id = get_current_user_id();
   $custom_redirect_url = get_user_meta($user_id, 'custom_redirect_url', true);
 
@@ -132,20 +219,13 @@ add_action('wp_dashboard_setup', 'remove_default_dashboard_widgets', 20);
 
 // Remove the toolbar option for 'destination' users
 function remove_toolbar_option() {
-  if (current_user_can('destination')) {
-    //echo '<style>.show-admin-bar { display: none; }</style>';
-   /* echo '<script type="text/javascript">
-            jQuery(document).ready(function($) {
-              $("#your-profile .show-admin-bar").remove();
-            });
-          </script>';*/
-    wp_enqueue_style('remove-admin-bar-style', plugins_url('assets/css/admin-styles.css', __FILE__));
-    wp_enqueue_script('remove-admin-bar-script', plugins_url('assets/js/admin-js.js', __FILE__), array('jquery'),
-      '1.0.0', true);
+  if (current_user_can('destination') && !current_user_can('travel_manager')) {
+    add_filter('show_admin_bar', '__return_false');
   }
 }
-add_action('admin_enqueue_scripts', 'remove_toolbar_option');
+add_action('after_setup_theme', 'remove_toolbar_option');
 
+// Redirect specific travel forms to login if the user is not logged in
 function redirect_travel_form_to_login_wp_hook() {
   if (!is_user_logged_in() &&
     (strpos($_SERVER['REQUEST_URI'], '/travel-form/') === 0 || $_SERVER['REQUEST_URI'] === '/travel-form')) {
