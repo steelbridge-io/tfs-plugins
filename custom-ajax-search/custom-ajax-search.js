@@ -1,6 +1,7 @@
 jQuery(document).ready(function($) {
-    $('#custom-search-field').on('keyup', function() {
+    $(document).on('keyup', '.custom-search-field', function() {
         var search_term = $(this).val();
+        var post_type = $(this).data('post-type');
 
         // Only trigger the ajax if the search term is at least 3 characters long
         if (search_term.length >= 3) {
@@ -9,10 +10,11 @@ jQuery(document).ready(function($) {
                 type: 'POST',
                 data: {
                     action: 'custom_ajax_search',
-                    search_term: search_term
+                    search_term: search_term,
+                    post_type: post_type
                 },
                 success: function(response) {
-                    var $results = $('#custom-search-results');
+                    var $results = $(this).siblings('.custom-search-results');
                     $results.empty();
 
                     if (response.length) {
@@ -22,10 +24,10 @@ jQuery(document).ready(function($) {
                     } else {
                         $results.append('<div class="custom-search-result-item">No results found</div>');
                     }
-                }
+                }.bind(this)
             });
         } else {
-            $('#custom-search-results').empty(); // Clear results if less than 3 characters
+            $(this).siblings('.custom-search-results').empty(); // Clear results if less than 3 characters
         }
     });
 });
