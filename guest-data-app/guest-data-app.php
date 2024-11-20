@@ -30,7 +30,7 @@ function gda_enqueue_admin_styles($hook_suffix) {
 	if ($hook_suffix == 'post.php' || $hook_suffix == 'post-new.php') {
 		if ($post->post_type == 'travel-form') {
 			$template_file = get_post_meta($post->ID, '_wp_page_template', true);
-			if ($template_file === 'questionnaire-templates/travel-form-posts-v2.php') {
+			if ($template_file === 'questionnaire-templates/guest-data-template.php') {
 				wp_enqueue_style('gda_admin_styles', plugin_dir_url(__FILE__) . 'assets/css/admin-style.css');
 			}
 		}
@@ -40,13 +40,13 @@ function gda_enqueue_admin_styles($hook_suffix) {
 // Meta box callback function
 function gda_meta_box_callback($post) {
 	$template_file = get_post_meta($post->ID, '_wp_page_template', true);
-	if ($template_file === 'questionnaire-templates/travel-form-posts-v2.php') {
+	if ($template_file === 'questionnaire-templates/guest-data-template.php') {
 		wp_nonce_field('gda_save_meta_box_data', 'gda_meta_box_nonce');
 
     require_once __DIR__ . '/questionnaire/questionnaire.php';
 
 	} else {
-		echo '<p>' . __('This meta box is only available for the "travel-form-posts-v2.php" template', 'guest-data-app') . '</p>';
+		echo '<p>' . __('This meta box is only available for the "guest-data-template.php" template', 'guest-data-app') . '</p>';
 	}
 }
 // Save meta box data
