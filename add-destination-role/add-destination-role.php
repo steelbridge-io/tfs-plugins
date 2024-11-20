@@ -58,6 +58,44 @@ function add_travel_manager_role() {
 }
 add_action('init', 'add_travel_manager_role');
 
+function add_tfs_staff_role() {
+	add_role(
+		'tfs_staff',
+		'TFS Staff',
+		array(
+			'read'                               => true,
+			'edit_posts'                         => false,
+			'delete_posts'                       => false,
+			'publish_posts'                      => false,
+			'edit_published_posts'               => false,
+			'edit_others_posts'                  => false,
+			'delete_published_posts'             => false,
+			'delete_others_posts'                => false,
+			'read_private_posts'                 => true,
+			'edit_pages'                         => false,
+			'edit_others_pages'                  => false,
+			'edit_published_pages'               => false,
+			'publish_pages'                      => false,
+			'delete_pages'                       => false,
+			'delete_others_pages'                => false,
+			'delete_published_pages'             => false,
+			'read_private_pages'                 => true,
+			'gravityforms_edit_forms'            => false,
+			'gravityforms_delete_forms'          => false,
+			'gravityforms_create_form'           => false,
+			'gravityforms_view_entries'          => false,
+			'gravityforms_edit_entries'          => false,
+			'gravityforms_delete_entries'        => false,
+			'gravityforms_view_settings'         => false,
+			'gravityforms_edit_settings'         => false,
+			'gravityforms_export_entries'        => false,
+			'gravityforms_view_entry_notes'      => false,
+			'gravityforms_edit_entry_notes'      => false
+		)
+	);
+}
+add_action('init', 'add_tfs_staff_role');
+
 function add_gravity_forms_caps_to_admin() {
   // Adding necessary capabilities to the 'travel_manager' role
   $role = get_role('travel_manager');
@@ -88,6 +126,7 @@ add_action('admin_init', 'add_gravity_forms_caps_to_admin');
 function add_roles_on_activation() {
   add_destination_role();
   add_travel_manager_role();
+  add_tfs_staff_role();
 }
 
 register_activation_hook(__FILE__, 'add_roles_on_activation');
@@ -96,6 +135,7 @@ register_activation_hook(__FILE__, 'add_roles_on_activation');
 function remove_roles_on_deactivation() {
   remove_role('destination');
   remove_role('travel_manager');
+  add_tfs_staff_role();
 }
 
 register_deactivation_hook(__FILE__, 'remove_roles_on_deactivation');
@@ -111,7 +151,7 @@ add_action('init', 'grant_destination_role_private_access');
 
 // Add custom user meta fields to the user profile pages
 function add_custom_user_meta_field($user) {
-  if (in_array('destination', (array) $user->roles) || in_array('travel_manager', (array) $user->roles)) { ?>
+  if (in_array('destination', (array) $user->roles) || in_array('travel_manager', (array) $user->roles) || in_array('tfs_staff', (array) $user->roles)) { ?>
     <h3><?php _e('Custom Redirect URL', 'custom-user-meta'); ?></h3>
     <table class="form-table">
       <tr>
@@ -140,7 +180,7 @@ add_action('edit_user_profile_update', 'save_custom_user_meta_field');
 // Redirect 'destination' and 'travel_manager' users to specific pages upon login based on the user meta field
 function redirect_custom_user_on_login($redirect_to, $request, $user) {
   if (isset($user->roles) && is_array($user->roles)) {
-    if (in_array('destination', $user->roles) || in_array('travel_manager', $user->roles)) {
+    if (in_array('destination', $user->roles) || in_array('travel_manager', $user->roles) || in_array('tfs_staff', $user->roles)) {
       $custom_redirect_url = get_user_meta($user->ID, 'custom_redirect_url', true);
       if ($custom_redirect_url) {
         return $custom_redirect_url;
@@ -219,9 +259,15 @@ add_action('wp_dashboard_setup', 'remove_default_dashboard_widgets', 20);
 
 // Remove the toolbar option for 'destination' users
 function remove_toolbar_option() {
-  if (current_user_can('destination') && !current_user_can('travel_manager')) {
-    add_filter('show_admin_bar', '__return_false');
-  }
+	// Ensure that administrators and super administrators always see the toolbar
+	if (current_user_can('administrator') || current_user_can('super_admin')) {
+		return; // Exit the function, hence the toolbar is not hidden
+	}
+	
+	// Hide the toolbar for 'destination' and 'tfs_staff' roles
+	if (current_user_can('destination') || current_user_can('tfs_staff')) {
+		add_filter('show_admin_bar', '__return_false');
+	}
 }
 add_action('after_setup_theme', 'remove_toolbar_option');
 
