@@ -6,6 +6,13 @@ Version: 1.9
 Author: Your Name
 */
 
+// Prevent direct access
+if (!defined('ABSPATH')) {
+ exit;
+}
+
+//require_once plugin_dir_path(__FILE__) . 'inc/requested-destination.php';
+
 // Function to add the 'destination' role
 function add_destination_role() {
   add_role(
