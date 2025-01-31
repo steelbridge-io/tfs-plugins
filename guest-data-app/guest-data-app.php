@@ -70,6 +70,8 @@ function gda_save_meta_box_data($post_id)
     return;
   }
 
+  global $post_id;
+
   require_once __DIR__ . '/sanitize/sanitize-meta.php';
 
 }

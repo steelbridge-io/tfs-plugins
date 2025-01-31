@@ -6,6 +6,11 @@
     update_post_meta($post_id, '_gda_meta_key', $gda_data);
   }
 
+if (isset($_POST['gda_meta_field_waiver_url'])) {
+ $gda_waiver_url = esc_url_raw($_POST['gda_meta_field_waiver_url']);
+ update_post_meta($post_id, '_gda_meta_key_waiver_url', $gda_waiver_url);
+}
+
  /* if (isset($_POST['gda_meta_field_table_header_title'])) {
     $gda_data = sanitize_text_field($_POST['gda_meta_field_table_header_title']);
     update_post_meta($post_id, '_gda_meta_key_table_header_title', $gda_data);
