@@ -1,7 +1,12 @@
 /* assets/css/admin-style.css */
-.form-id {
+.form-id,
+.gda-waiver-url {
+  margin: .5em 0;
   padding: 1em .5em;
   background: #eee;
+}
+#gda_meta_field_waiver_url {
+  width: 90%;
 }
 .gda-meta-box {
   display: grid;
