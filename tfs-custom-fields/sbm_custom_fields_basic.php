@@ -35,6 +35,28 @@
 	<div style="margin-top: 1.618em;">
 	<h1>Basic Template Custom Content</h1>
 	</div>
+    <?php if ( isset( $_GET['post'] ) && $_GET['post'] == 194 && isset( $_GET['action'] ) && $_GET['action'] == 'edit' ) { ?>
+    <p>
+    <strong><label for="publication-cta-img-1" class="publication-cta-img-1"><?php _e('Add or Update Publications Image &#35;1', 'the-fly-shop' ); ?></label></strong>
+    <input type="text" style="width:50%;" name="publication-cta-img-1" id="publication-cta-img-1" value="<?php if ( isset ( $sbm_stored_basic_meta['publication-cta-img-1'] ) ) echo $sbm_stored_basic_meta['publication-cta-img-1'][0];?>" />
+    <input type="button" id="publication-cta-img-1-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
+    </p>
+    <p>
+    <strong><label for="publication-cta-img-2" class="publication-cta-img-2"><?php _e('Add or Update Publications Image &#35;2', 'the-fly-shop' ); ?></label></strong>
+    <input type="text" style="width:50%;" name="publication-cta-img-2" id="publication-cta-img-2" value="<?php if ( isset ( $sbm_stored_basic_meta['publication-cta-img-2'] ) ) echo $sbm_stored_basic_meta['publication-cta-img-2'][0];?>" />
+    <input type="button" id="publication-cta-img-2-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
+    </p>
+    <p>
+    <strong><label for="publication-cta-img-3" class="publication-cta-img-3"><?php _e('Add or Update Publications Image &#35;3', 'the-fly-shop' ); ?></label></strong>
+    <input type="text" style="width:50%;" name="publication-cta-img-3" id="publication-cta-img-3" value="<?php if ( isset ( $sbm_stored_basic_meta['publication-cta-img-3'] ) ) echo $sbm_stored_basic_meta['publication-cta-img-3'][0];?>" />
+    <input type="button" id="publication-cta-img-3-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
+    </p>
+    <p>
+    <strong><label for="publication-cta-img-4" class="publication-cta-img-4"><?php _e('Add or Update Publications Image &#35;4', 'the-fly-shop' ); ?></label></strong>
+    <input type="text" style="width:50%;" name="publication-cta-img-4" id="publication-cta-img-4" value="<?php if ( isset ( $sbm_stored_basic_meta['publication-cta-img-4'] ) ) echo $sbm_stored_basic_meta['publication-cta-img-4'][0];?>" />
+    <input type="button" id="publication-cta-img-4-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'the-fly-shop' );?>" />
+    </p>
+    <?php } ?>
  
     <p>
     <!-- Hero Video URL -->

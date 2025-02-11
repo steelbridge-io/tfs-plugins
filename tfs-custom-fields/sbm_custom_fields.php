@@ -33,24 +33,35 @@ function favicon_function() {
 add_action('wp_head', 'favicon_function');
 
 function load_custom_private_admin_style() {
-  
-        wp_enqueue_media();
-  
-        wp_enqueue_style( 'sbm_wp_admin_css', plugins_url('css/bootstrap.css', __FILE__) );
+				wp_enqueue_media();
+				wp_enqueue_style( 'sbm_wp_admin_css', plugins_url('css/bootstrap.css', __FILE__) );
 				wp_enqueue_style( 'sbm_cust_styles', plugins_url( 'css/custom_fields_style.css', __FILE__ ) );
 
 				wp_enqueue_script( 'custom_wp_admin_js', plugins_url('js/bootstrap.min.js', __FILE__));
 				wp_enqueue_script( 'custom_meta_field_js', plugin_dir_url( __FILE__ ) . 'js/custom-meta.js', array('wp-color-picker'), '', false );
   
-        // Registers and enqueues the required javascript for image management within wp dashboard.
-        wp_register_script( 'tfs-custom-fields-image', plugin_dir_url( __FILE__ ) . 'tfs-custom-fields-image.js', array( 'jquery' ) );
-        wp_localize_script( 'tfs-custom-fields-image', 'meta_image',
-          array(
-            'title' => __( 'Choose or Upload an Image', 'the-fly-shop' ),
-            'button' => __( 'Use this image', 'the-fly-shop' ),
-          )
-        );
-        wp_enqueue_script( 'tfs-custom-fields-image' );
+    // Registers and enqueues the required javascript for image management within wp dashboard.
+    wp_register_script( 'tfs-custom-fields-image', plugin_dir_url( __FILE__ ) . 'tfs-custom-fields-image.js', array( 'jquery' ) );
+    wp_localize_script( 'tfs-custom-fields-image', 'meta_image',
+      array(
+        'title' => __( 'Choose or Upload an Image', 'the-fly-shop' ),
+        'button' => __( 'Use this image', 'the-fly-shop' ),
+      )
+    );
+    wp_enqueue_script( 'tfs-custom-fields-image' );
+
+	// Load 'publications-cta-images.js' only for a specific URL.
+	if ( isset( $_GET['post'] ) && $_GET['post'] == 194 && isset( $_GET['action'] ) && $_GET['action'] == 'edit' ) {
+		wp_register_script( 'publications-cta-img', plugin_dir_url( __FILE__ ) . 'publications-cta-img.js', array( 'jquery' ) );
+		wp_localize_script( 'publications-cta-img', 'meta_image',
+			array(
+				'title' => __( 'Choose or Upload an Image', 'the-fly-shop' ),
+				'button' => __( 'Use this image', 'the-fly-shop' ),
+			)
+		);
+		wp_enqueue_script( 'publications-cta-img' );
+	}
+
 }
 add_action( 'admin_enqueue_scripts', 'load_custom_private_admin_style' );
 

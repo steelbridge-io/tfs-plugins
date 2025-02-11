@@ -15,6 +15,26 @@ function sbm_basic_meta_save($post_id) {
   if ($is_autosave || $is_revision || !$is_valid_nonce) {
     return;
   }
+
+		// Checks for input and sanitizes/saves if needed
+		if( isset( $_POST[ 'publication-cta-img-1' ] ) ) {
+			update_post_meta( $post_id, 'publication-cta-img-1', sanitize_text_field( $_POST[ 'publication-cta-img-1' ] ) );
+		}
+
+		// Checks for input and sanitizes/saves if needed
+		if( isset( $_POST[ 'publication-cta-img-2' ] ) ) {
+			update_post_meta( $post_id, 'publication-cta-img-2', sanitize_text_field( $_POST[ 'publication-cta-img-2' ] ) );
+		}
+
+		// Checks for input and sanitizes/saves if needed
+		if( isset( $_POST[ 'publication-cta-img-3' ] ) ) {
+			update_post_meta( $post_id, 'publication-cta-img-3', sanitize_text_field( $_POST[ 'publication-cta-img-3' ] ) );
+		}
+
+		// Checks for input and sanitizes/saves if needed
+		if( isset( $_POST[ 'publication-cta-img-4' ] ) ) {
+			update_post_meta( $post_id, 'publication-cta-img-4', sanitize_text_field( $_POST[ 'publication-cta-img-4' ] ) );
+		}
 	
   // Checks for input and sanitizes/saves if needed
   if (isset($_POST['hero-video-url'])) {
