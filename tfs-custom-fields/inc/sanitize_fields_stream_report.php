@@ -731,22 +731,22 @@ function sbm_meta_save( $post_id ) {
 	
 	/* === KESWICK RESERVOIR === */
 	
-	// Checks for input and sanitizes/saves if needed
+	/*
     if( isset( $_POST[ 'keswickres-updated' ] ) ) {
         update_post_meta( $post_id, 'keswickres-updated', sanitize_text_field( $_POST[ 'keswickres-updated' ] ) );
     }
 	
-	// Checks for input and sanitizes/saves if needed
+
     if( isset( $_POST[ 'keswickres-report' ] ) ) {
         update_post_meta( $post_id, 'keswickres-report', wp_kses_post( $_POST[ 'keswickres-report' ] ) );
 		}
 	
-	// Checks for input and sanitizes/saves if needed
+
     if( isset( $_POST[ 'keswickres-hot-flies' ] ) ) {
         update_post_meta( $post_id, 'keswickres-hot-flies', wp_kses_post( $_POST[ 'keswickres-hot-flies' ] ) );
     }
   
-  // Checks for input and sanitizes/saves if needed
+
     if( isset( $_POST[ 'keswickres-closed-message' ] ) ) {
         update_post_meta( $post_id, 'keswickres-closed-message', sanitize_text_field( $_POST[ 'keswickres-closed-message' ] ) );
     }
@@ -763,33 +763,33 @@ function sbm_meta_save( $post_id ) {
 				update_post_meta( $post_id, 'keswickres-checkbox-poor', '' );
 		}
 	
-	// Checks for input and saves - save checked as yes and unchecked at no
+
 		if( isset( $_POST[ 'keswickres-checkbox-fair' ] ) ) {
 				update_post_meta( $post_id, 'keswickres-checkbox-fair', '-danger' );
 		} else {
 				update_post_meta( $post_id, 'keswickres-checkbox-fair', '' );
 		}
 	
-	// Checks for input and saves - save checked as yes and unchecked at no
+
 		if( isset( $_POST[ 'keswickres-checkbox-fairgood' ] ) ) {
 				update_post_meta( $post_id, 'keswickres-checkbox-fairgood', '-danger' );
 		} else {
 				update_post_meta( $post_id, 'keswickres-checkbox-fairgood', '' );
 		}
 	
-	// Checks for input and saves - save checked as yes and unchecked at no
+
 		if( isset( $_POST[ 'keswickres-checkbox-good' ] ) ) {
 				update_post_meta( $post_id, 'keswickres-checkbox-good', '-danger' );
 		} else {
 				update_post_meta( $post_id, 'keswickres-checkbox-good', '' );
 		}
 	
-	// Checks for input and saves - save checked as yes and unchecked at no
+
 		if( isset( $_POST[ 'keswickres-checkbox-great' ] ) ) {
 				update_post_meta( $post_id, 'keswickres-checkbox-great', '-danger' );
 		} else {
 				update_post_meta( $post_id, 'keswickres-checkbox-great', '' );
-		}
+		} */
 	
 	/* === LAKE SHASTA === */
 	
