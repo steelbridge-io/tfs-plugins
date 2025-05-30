@@ -48,7 +48,7 @@
       <label for="meta-one-select" class="sbm-row-title"><strong><?php _e('Featured Report #1','sbm-textdomain')?></strong></label>
       <select name="meta-one-select" id="meta-one-select">
 
-        <option value="AntelopeCreek" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) ) selected( $sbm_stored_meta['meta-one-select'][0], 'AntelopeCreek' ); ?>><?php _e( 'Antelope Creek Lodge',
+        <option value="AntelopeCreek" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) ) selected( $sbm_stored_meta['meta-one-select'][0], 'AntelopeCreek' ); ?>><?php _e( 'Antelope Creek Ranch',
             'sbm-textdomain' )?></option>';
 
         <option value="BaileyCreek" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) ) selected( $sbm_stored_meta['meta-one-select'][0], 'BaileyCreek' ); ?>><?php _e( 'Bailey Creek',
@@ -62,7 +62,7 @@
         <option value="Bollibokka" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) ) selected( $sbm_stored_meta['meta-one-select'][0], 'Bollibokka' ); ?>><?php _e( 'Bollibokka',
             'sbm-textdomain' )?></option>';
 
-        <option value="CircleSeven" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) ) selected( $sbm_stored_meta['meta-one-select'][0], 'CircleSeven' ); ?>><?php _e( 'Circle 7 Guest Ranch',
+        <option value="CircleSeven" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) ) selected( $sbm_stored_meta['meta-one-select'][0], 'CircleSeven' ); ?>><?php _e( 'Circle 7 Ranch',
             'sbm-textdomain' )?></option>';
 
         <option value="ClearCreek" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) ) selected( $sbm_stored_meta['meta-one-select'][0], 'ClearCreek' ); ?>><?php _e( 'Clear Creek Ranch',
@@ -82,9 +82,9 @@
         <option value="IronCanyon" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) ) selected($sbm_stored_meta['meta-one-select'][0], 'IronCanyon' ); ?>><?php _e( 'Iron Canyon Res.',
             'sbm-textdomain' )?></option>';
 
-        <option value="KeswickRes" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) )
-          selected($sbm_stored_meta['meta-one-select'][0], 'KeswickRes' ); ?>><?php _e( 'Keswick Res.',
-            'sbm-textdomain' )?></option>';
+        <!-- <option value="KeswickRes"  //if ( isset ( $sbm_stored_meta['meta-one-select'] ) )
+          //selected($sbm_stored_meta['meta-one-select'][0], 'KeswickRes' ); ?>> //_e( 'Keswick Res.',
+            //'sbm-textdomain' )</option>'; -->
 
         <option value="KlamathRiver" <?php if ( isset ( $sbm_stored_meta['meta-one-select'] ) ) selected( $sbm_stored_meta['meta-one-select'][0], 'KlamathRiver' ); ?>><?php _e( 'Klamath River', 'sbm-textdomain' )?></option>';
 
@@ -140,7 +140,7 @@
       <label for="meta-two-select" class="sbm-row-title"><strong><?php _e('Featured Report #2','sbm-textdomain')?></strong></label>
       <select name="meta-two-select" id="meta-two-select">
 
-        <option value="AntelopeCreek" <?php if ( isset ( $sbm_stored_meta['meta-two-select'] ) ) selected( $sbm_stored_meta['meta-two-select'][0], 'AntelopeCreek' ); ?>><?php _e( 'Antelope Creek Lodge',
+        <option value="AntelopeCreek" <?php if ( isset ( $sbm_stored_meta['meta-two-select'] ) ) selected( $sbm_stored_meta['meta-two-select'][0], 'AntelopeCreek' ); ?>><?php _e( 'Antelope Creek Ranch',
             'sbm-textdomain' )?></option>';
 
         <option value="BaileyCreek" <?php if ( isset ( $sbm_stored_meta['meta-two-select'] ) )
@@ -158,7 +158,7 @@
           selected( $sbm_stored_meta['meta-two-select'][0], 'Bollibokka' ); ?>><?php _e( 'Bollibokka',
             'sbm-textdomain' )?></option>';
 
-        <option value="CircleSeven" <?php if ( isset ( $sbm_stored_meta['meta-two-select'] ) ) selected( $sbm_stored_meta['meta-two-select'][0], 'CircleSeven' ); ?>><?php _e( 'Circle 7 Guest Ranch',
+        <option value="CircleSeven" <?php if ( isset ( $sbm_stored_meta['meta-two-select'] ) ) selected( $sbm_stored_meta['meta-two-select'][0], 'CircleSeven' ); ?>><?php _e( 'Circle 7 Ranch',
             'sbm-textdomain' )?></option>';
 
         <option value="ClearCreek" <?php if ( isset ( $sbm_stored_meta['meta-two-select'] ) ) selected( $sbm_stored_meta['meta-two-select'][0], 'ClearCreek' ); ?>><?php _e( 'Clear Creek Ranch',
@@ -181,9 +181,9 @@
           selected($sbm_stored_meta['meta-two-select'][0], 'IronCanyon' ); ?>><?php _e( 'Iron Canyon Res.',
             'sbm-textdomain' )?></option>';
 
-        <option value="KeswickRes" <?php if ( isset ( $sbm_stored_meta['meta-two-select'] ) )
-          selected($sbm_stored_meta['meta-two-select'][0], 'KeswickRes' ); ?>><?php _e( 'Keswick Res.',
-            'sbm-textdomain' )?></option>';
+        <!-- <option value="KeswickRes"  //if ( isset ( $sbm_stored_meta['meta-two-select'] ) )
+          //selected($sbm_stored_meta['meta-two-select'][0], 'KeswickRes' ); > //_e( 'Keswick Res.',
+            'sbm-textdomain' )</option>'; -->
 
         <option value="KlamathRiver" <?php if ( isset ( $sbm_stored_meta['meta-two-select'] ) ) selected( $sbm_stored_meta['meta-two-select'][0], 'KlamathRiver' ); ?>><?php _e( 'Klamath River', 'sbm-textdomain' )?></option>';
 
@@ -238,7 +238,7 @@
       <label for="meta-three-select" class="sbm-row-title"><strong><?php _e('Featured Report #3','sbm-textdomain')?></strong></label>
       <select name="meta-three-select" id="meta-three-select">
 
-        <option value="AntelopeCreek" <?php if ( isset ( $sbm_stored_meta['meta-three-select'] ) ) selected( $sbm_stored_meta['meta-three-select'][0], 'AntelopeCreek' ); ?>><?php _e( 'Antelope Creek Lodge',
+        <option value="AntelopeCreek" <?php if ( isset ( $sbm_stored_meta['meta-three-select'] ) ) selected( $sbm_stored_meta['meta-three-select'][0], 'AntelopeCreek' ); ?>><?php _e( 'Antelope Creek Ranch',
             'sbm-textdomain' )?></option>';
 
         <option value="BaileyCreek" <?php if ( isset ( $sbm_stored_meta['meta-three-select'] ) ) selected( $sbm_stored_meta['meta-three-select'][0], 'BaileyCreek' ); ?>><?php _e( 'Bailey Creek',
@@ -254,7 +254,7 @@
           selected( $sbm_stored_meta['meta-three-select'][0], 'Bollibokka' ); ?>><?php _e( 'Bollibokka',
             'sbm-textdomain' )?></option>';
 
-        <option value="CircleSeven" <?php if ( isset ( $sbm_stored_meta['meta-three-select'] ) ) selected( $sbm_stored_meta['meta-three-select'][0], 'CircleSeven' ); ?>><?php _e( 'Circle 7 Guest Ranch',
+        <option value="CircleSeven" <?php if ( isset ( $sbm_stored_meta['meta-three-select'] ) ) selected( $sbm_stored_meta['meta-three-select'][0], 'CircleSeven' ); ?>><?php _e( 'Circle 7 Ranch',
             'sbm-textdomain' )?></option>';
 
         <option value="ClearCreek" <?php if ( isset ( $sbm_stored_meta['meta-three-select'] ) )
@@ -276,9 +276,9 @@
         <option value="IronCanyon" <?php if ( isset ( $sbm_stored_meta['meta-three-select'] ) ) selected($sbm_stored_meta['meta-three-select'][0], 'IronCanyon' ); ?>><?php _e( 'Iron Canyon Res.',
             'sbm-textdomain' )?></option>';
 
-        <option value="KeswickRes" <?php if ( isset ( $sbm_stored_meta['meta-three-select'] ) )
-          selected($sbm_stored_meta['meta-three-select'][0], 'KeswickRes' ); ?>><?php _e( 'Keswick Res.',
-            'sbm-textdomain' )?></option>';
+        <!-- <option value="KeswickRes"  if ( isset ( $sbm_stored_meta['meta-three-select'] ) )
+          selected($sbm_stored_meta['meta-three-select'][0], 'KeswickRes' ); ?>> _e( 'Keswick Res.',
+            'sbm-textdomain' )?></option>'; -->
 
         <option value="KlamathRiver" <?php if ( isset ( $sbm_stored_meta['meta-three-select'] ) ) selected( $sbm_stored_meta['meta-three-select'][0], 'KlamathRiver' ); ?>><?php _e( 'Klamath River', 'sbm-textdomain' )?></option>';
 
@@ -330,7 +330,7 @@
       <select name="meta-four-select" id="meta-four-select">
 
         <option value="AntelopeCreek" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) )
-          selected( $sbm_stored_meta['meta-four-select'][0], 'AntelopeCreek' ); ?>><?php _e( 'Antelope Creek Lodge',
+          selected( $sbm_stored_meta['meta-four-select'][0], 'AntelopeCreek' ); ?>><?php _e( 'Antelope Creek Ranch',
             'sbm-textdomain' )?></option>';
 
         <option value="BaileyCreek" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'BaileyCreek' ); ?>><?php _e( 'Bailey Creek',
@@ -345,7 +345,7 @@
         <option value="Bollibokka" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'Bollibokka' ); ?>><?php _e( 'Bollibokka',
             'sbm-textdomain' )?></option>';
 
-        <option value="CircleSeven" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'CircleSeven' ); ?>><?php _e( 'Circle 7 Guest Ranch',
+        <option value="CircleSeven" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'CircleSeven' ); ?>><?php _e( 'Circle 7 Ranch',
             'sbm-textdomain' )?></option>';
 
         <option value="ClearCreek" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'ClearCreek' ); ?>><?php _e( 'Clear Creek Ranch',
@@ -366,9 +366,9 @@
 
         <option value="KlamathRiver" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'KlamathRiver' ); ?>><?php _e( 'Klamath River', 'sbm-textdomain' )?></option>';
 
-        <option value="KeswickRes" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) )
-          selected($sbm_stored_meta['meta-four-select'][0], 'KeswickRes' ); ?>><?php _e( 'Keswick Res.',
-            'sbm-textdomain' )?></option>';
+        <!-- <option value="KeswickRes"  if ( isset ( $sbm_stored_meta['meta-four-select'] ) )
+          selected($sbm_stored_meta['meta-four-select'][0], 'KeswickRes' ); ?>> _e( 'Keswick Res.',
+            'sbm-textdomain' )?></option>'; -->
 
         <option value="LakeShasta" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) )
           selected( $sbm_stored_meta['meta-four-select'][0], 'LakeShasta' ); ?>><?php _e( 'Lake Shasta', 'sbm-textdomain' )?></option>';
@@ -388,7 +388,7 @@
 
         <option value="McCloudRiver" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'McCloudRiver' ); ?>><?php _e( 'McCloud River', 'sbm-textdomain' )?></option>';
 
-        <option value="OasisSprings" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'OasisSprings' ); ?>><?php _e( 'Oasis Springs', 'sbm-textdomain' )?></option>';
+        <option value="OasisSprings" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'OasisSprings' ); ?>><?php _e( 'Oasis Springs Lodge', 'sbm-textdomain' )?></option>';
 
         <option value="PedrottiPonds" <?php if ( isset ( $sbm_stored_meta['meta-four-select'] ) ) selected( $sbm_stored_meta['meta-four-select'][0], 'PedrottiPonds' ); ?>><?php _e( 'Pedrotti Ponds',
             'sbm-textdomain' )?></option>';
@@ -1071,7 +1071,7 @@
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#baumlake" aria-controls="baumlake" role="tab" data-toggle="tab">Baum Lake</a></li>
           <li role="presentation"><a href="#ironcanyon" aria-controls="ironcanyon" role="tab" data-toggle="tab">Iron Canyon</a></li>
-          <li role="presentation"><a href="#keswickreservoir" aria-controls="keswickreservoir" role="tab" data-toggle="tab">Keswick Reservoir</a></li>
+          <!--<li role="presentation"><a href="#keswickreservoir" aria-controls="keswickreservoir" role="tab" data-toggle="tab">Keswick Reservoir</a></li> -->
           <li role="presentation"><a href="#lakeshasta" aria-controls="lakeshasta" role="tab" data-toggle="tab">Lake Shasta</a></li>
           <li role="presentation"><a href="#lewistonlake" aria-controls="lewistonlake" role="tab" data-toggle="tab">Lewiston Lake</a></li>
           <li role="presentation"><a href="#manzanitalake" aria-controls="manzanitalake" role="tab" data-toggle="tab">Manzanita Lake</a></li>
@@ -1235,41 +1235,41 @@
 
             <!-- ====== KESWICK RESERVOIR ====== -->
 
-            <div role="tabpanel" class="tab-pane fade" id="keswickreservoir">
+            <!-- <div role="tabpanel" class="tab-pane fade" id="keswickreservoir">
 
-              <h3><?php echo ' Keswick Reservoir '  ?></h3>
+              <h3> echo ' Keswick Reservoir '  ?></h3>
 
-              <p><!-- Keswick Reservoir Updated -->
+              <p>
 
-                <strong><label for="keswickres-updated" class="sbm-row-title"><?php _e( 'Keswick Reservoir Updated', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="keswickres-updated" class="sbm-row-title"> _e( 'Keswick Reservoir Updated', 'sbm-textdomain' )?></label></strong>
 
-                <input style="width: 100%;" type="text" name="keswickres-updated" id="keswickres-updated" value="<?php if ( isset ( $sbm_stored_meta['keswickres-updated'] ) ) echo $sbm_stored_meta['keswickres-updated'][0]; ?>" />
+                <input style="width: 100%;" type="text" name="keswickres-updated" id="keswickres-updated" value=" if ( isset ( $sbm_stored_meta['keswickres-updated'] ) ) echo $sbm_stored_meta['keswickres-updated'][0]; ?>" />
 
               </p>
 
-              <p><!-- Keswick Reservoir Report -->
+              <p>
 
-                <strong><label for="keswickres-report" class="sbm-row-title"><?php _e( 'Keswick Reservoir Report', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="keswickres-report" class="sbm-row-title"> _e( 'Keswick Reservoir Report', 'sbm-textdomain' )?></label></strong>
 
-                <textarea style="width: 100%;" rows="4" name="keswickres-report" id="keswickres-report"><?php if ( isset ( $sbm_stored_meta['keswickres-report'] ) ) echo $sbm_stored_meta['keswickres-report'][0]; ?></textarea>
+                <textarea style="width: 100%;" rows="4" name="keswickres-report" id="keswickres-report"> if ( isset ( $sbm_stored_meta['keswickres-report'] ) ) echo $sbm_stored_meta['keswickres-report'][0]; ?></textarea>
               </p>
 
-              <div class="mt-1618 mb-1618"><!-- Keswick Reservoir Hot Flies -->
+              <div class="mt-1618 mb-1618">
 
-                <strong><label for="keswickres-hot-flies" class="sbm-row-title"><?php _e( 'Keswick Reservoir Hot Flies', 'sbm-textdomain' )?></label></strong>
-                <p>To create a link: <?php echo esc_html('<a href="www.hotflylink.com" title="A link to a hot fly" target="_blank">The name and size of the hot fly. ex: #16 Hot Fly</a>'); ?></p>
+                <strong><label for="keswickres-hot-flies" class="sbm-row-title"> _e( 'Keswick Reservoir Hot Flies', 'sbm-textdomain' )?></label></strong>
+                <p>To create a link:  echo esc_html('<a href="www.hotflylink.com" title="A link to a hot fly" target="_blank">The name and size of the hot fly. ex: #16 Hot Fly</a>'); ?></p>
 
-                <textarea style="width: 100%;" name="keswickres-hot-flies" id="keswickres-hot-flies"><?php if ( isset ( $sbm_stored_meta['keswickres-hot-flies'] ) ) echo $sbm_stored_meta['keswickres-hot-flies'][0]; ?></textarea>
+                <textarea style="width: 100%;" name="keswickres-hot-flies" id="keswickres-hot-flies"> if ( isset ( $sbm_stored_meta['keswickres-hot-flies'] ) ) echo $sbm_stored_meta['keswickres-hot-flies'][0]; ?></textarea>
 
               </div>
 
-              <p><!-- Keswick Reservoir Rating -->
-                <span class="sbm-row-title"><?php _e( '<strong>How is the fishing?</strong> ', 'sbm-textdomain' )?></span>
+              <p>
+                <span class="sbm-row-title"> _e( '<strong>How is the fishing?</strong> ', 'sbm-textdomain' )?></span>
               <div class="sbm-row-content">
 
                 <label for="keswickres-closed-message">
-                  <?php _e( 'Custom Message&nbsp;', 'sbm-textdomain' )?>
-                  <input type="text" style="width: 50%;" name="keswickres-closed-message" id="keswickres-closed-message" value="<?php if ( isset ( $sbm_stored_meta['keswickres-closed-message'] ) ) echo $sbm_stored_meta['keswickres-closed-message'][0]; ?>" />
+                   _e( 'Custom Message&nbsp;', 'sbm-textdomain' )?>
+                  <input type="text" style="width: 50%;" name="keswickres-closed-message" id="keswickres-closed-message" value=" if ( isset ( $sbm_stored_meta['keswickres-closed-message'] ) ) echo $sbm_stored_meta['keswickres-closed-message'][0]; ?>" />
                 </label>
 
               </div>
@@ -1277,37 +1277,37 @@
               <div class="sbm-row-content">
 
                 <label for="keswickres-closed-checkbox">
-                  <input type="checkbox" name="keswickres-closed-checkbox" id="keswickres-closed-checkbox" value="-danger" <?php if ( isset ( $sbm_stored_meta['keswickres-closed-checkbox'] ) ) checked( $sbm_stored_meta['keswickres-closed-checkbox'][0], '-danger' ); ?> />
-                  <?php _e( 'Custom&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="keswickres-closed-checkbox" id="keswickres-closed-checkbox" value="-danger"  if ( isset ( $sbm_stored_meta['keswickres-closed-checkbox'] ) ) checked( $sbm_stored_meta['keswickres-closed-checkbox'][0], '-danger' ); ?> />
+                   _e( 'Custom&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="keswickres-checkbox-poor">
-                  <input type="checkbox" name="keswickres-checkbox-poor" id="keswickres-checkbox-poor" value="-danger" <?php if ( isset ( $sbm_stored_meta['keswickres-checkbox-poor'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-poor'][0], '-danger' ); ?> />
-                  <?php _e( 'Poor&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="keswickres-checkbox-poor" id="keswickres-checkbox-poor" value="-danger"  if ( isset ( $sbm_stored_meta['keswickres-checkbox-poor'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-poor'][0], '-danger' ); ?> />
+                   _e( 'Poor&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="keswickres-checkbox-fair">
-                  <input type="checkbox" name="keswickres-checkbox-fair" id="keswickres-checkbox-fair" value="-danger" <?php if ( isset ( $sbm_stored_meta['keswickres-checkbox-fair'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-fair'][0], '-danger' ); ?> />
-                  <?php _e( 'Fair&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="keswickres-checkbox-fair" id="keswickres-checkbox-fair" value="-danger"  if ( isset ( $sbm_stored_meta['keswickres-checkbox-fair'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-fair'][0], '-danger' ); ?> />
+                   _e( 'Fair&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="keswickres-checkbox-fairgood">
-                  <input type="checkbox" name="keswickres-checkbox-fairgood" id="keswickres-checkbox-fairgood" value="-danger" <?php if ( isset ( $sbm_stored_meta['keswickres-checkbox-fairgood'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-fairgood'][0], '-danger' ); ?> />
-                  <?php _e( 'Fair to Good&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="keswickres-checkbox-fairgood" id="keswickres-checkbox-fairgood" value="-danger"  if ( isset ( $sbm_stored_meta['keswickres-checkbox-fairgood'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-fairgood'][0], '-danger' ); ?> />
+                   _e( 'Fair to Good&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="keswickres-checkbox-good">
-                  <input type="checkbox" name="keswickres-checkbox-good" id="keswickres-checkbox-good" value="-danger" <?php if ( isset ( $sbm_stored_meta['keswickres-checkbox-good'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-good'][0], '-danger' ); ?> />
-                  <?php _e( 'Good&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="keswickres-checkbox-good" id="keswickres-checkbox-good" value="-danger"  if ( isset ( $sbm_stored_meta['keswickres-checkbox-good'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-good'][0], '-danger' ); ?> />
+                   _e( 'Good&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="keswickres-checkbox-great">
-                  <input type="checkbox" name="keswickres-checkbox-great" id="keswickres-checkbox-great" value="-danger" <?php if ( isset ( $sbm_stored_meta['keswickres-checkbox-great'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-great'][0], '-danger' ); ?> />
-                  <?php _e( 'Great', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="keswickres-checkbox-great" id="keswickres-checkbox-great" value="-danger"  if ( isset ( $sbm_stored_meta['keswickres-checkbox-great'] ) ) checked( $sbm_stored_meta['keswickres-checkbox-great'][0], '-danger' ); ?> />
+                   _e( 'Great', 'sbm-textdomain' )?>
                 </label>
 
               </div>
-            </div> <!-- /.tab-pane keswick reservoir -->
+            </div> --> <!-- /.tab-pane keswick reservoir -->
 
             <!-- ====== LAKE SHASTA ====== -->
 
@@ -1690,7 +1690,7 @@
       </div> <!-- /.panel-heading -->
     </div> <!-- /.panel .with-nav-tabs .panel-default -->
 
-    <!-- ====== ANTELOPE CREEK LODGE ====== -->
+    <!-- ====== Antelope Creek Ranch ====== -->
 
     <hr style="margin-top: 1.618em; border-top: 3px double #8c8b8b;">
     <div style="margin-top: 1.618em;">
@@ -1702,20 +1702,20 @@
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#antelopecreek" aria-controls="antelopecreek" role="tab" data-toggle="tab">Antelope Creek Lodge</a></li>
+          <li role="presentation" class="active"><a href="#antelopecreek" aria-controls="antelopecreek" role="tab" data-toggle="tab">Antelope Creek Ranch</a></li>
           <!-- <li role="presentation"><a href="#baileycreek" aria-controls="baileycreek" role="tab" data-toggle="tab">Bailey Creek Lodge</a></li> -->
           <li role="presentation"><a href="#battlecreek" aria-controls="battlecreek" role="tab" data-toggle="tab">Battle Creek Lodge</a></li>
           <li role="presentation"><a href="#bollibokka" aria-controls="bollibokka" role="tab" data-toggle="tab">Bollibokka</a></li>
-          <li role="presentation"><a href="#circle7" aria-controls="circle7" role="tab" data-toggle="tab">Circle 7 Guest Ranch</a></li>
+          <li role="presentation"><a href="#circle7" aria-controls="circle7" role="tab" data-toggle="tab">Circle 7 Ranch</a></li>
           <li role="presentation"><a href="#clearcreek" aria-controls="clearcreek" role="tab" data-toggle="tab">Clear Creek Ranch</a></li>
           <li role="presentation"><a href="#goldriver" aria-controls="goldriver" role="tab" data-toggle="tab">Gold River Lodge</a></li>
           <li role="presentation"><a href="#hatcreekranch" aria-controls="hatcreekranch" role="tab" data-toggle="tab">Hat Creek Ranch</a></li>
           <li role="presentation"><a href="#luklake" aria-controls="luklake" role="tab" data-toggle="tab">Luk Lake</a></li>
-          <li role="presentation"><a href="#oasissprings" aria-controls="oasissprings" role="tab" data-toggle="tab">Oasis Springs</a></li>
+          <li role="presentation"><a href="#oasissprings" aria-controls="oasissprings" role="tab" data-toggle="tab">Oasis Springs Lodge</a></li>
           <!-- <li role="presentation"><a href="#pedrottiponds" aria-controls="pedrottiponds" role="tab" data-toggle="tab">Pedrotti Ponds</a></li> -->
           <li role="presentation"><a href="#rockcreek" aria-controls="rockcreek" role="tab" data-toggle="tab">Rock Creek Lake</a></li>
           <!--<li role="presentation"><a href="#spinnerfall" aria-controls="spinnerfall" role="tab" data-toggle="tab">Spinner Fall Lodge</a></li>-->
-          <li role="presentation"><a href="#sugarcreek" aria-controls="surgarcreek" role="tab" data-toggle="tab">Sugar Creek Ranch</a></li>
+          <!--<li role="presentation"><a href="#sugarcreek" aria-controls="surgarcreek" role="tab" data-toggle="tab">Sugar Creek Ranch</a></li>-->
         </ul>
 
         <div class="panel-body boof">
@@ -1723,33 +1723,33 @@
 
             <div role="tabpanel" class="tab-pane fade in active" id="antelopecreek">
 
-              <h3><?php echo ' Antelope Creek Lodge '  ?></h3>
+              <h3><?php echo ' Antelope Creek Ranch '  ?></h3>
 
-              <p><!-- Antelope Creek Lodge Updated -->
+              <p><!-- Antelope Creek Ranch Updated -->
 
-                <strong><label for="antelopecreek-updated" class="sbm-row-title"><?php _e( 'Antelope Creek Lodge Updated', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="antelopecreek-updated" class="sbm-row-title"><?php _e( 'Antelope Creek Ranch Updated', 'sbm-textdomain' )?></label></strong>
 
                 <input style="width: 100%;" type="text" name="antelopecreek-updated" id="antelopecreek-updated" value="<?php if ( isset ( $sbm_stored_meta['antelopecreek-updated'] ) ) echo $sbm_stored_meta['antelopecreek-updated'][0]; ?>" />
 
               </p>
 
-              <p><!-- Antelope Creek Lodge Report -->
+              <p><!-- Antelope Creek Ranch Report -->
 
-                <strong><label for="antelopecreek-report" class="sbm-row-title"><?php _e( 'Antelope Creek Lodge Report', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="antelopecreek-report" class="sbm-row-title"><?php _e( 'Antelope Creek Ranch Report', 'sbm-textdomain' )?></label></strong>
 
                 <textarea style="width: 100%;" rows="4" name="antelopecreek-report" id="antelopecreek-report"><?php if ( isset ( $sbm_stored_meta['antelopecreek-report'] ) ) echo $sbm_stored_meta['antelopecreek-report'][0]; ?></textarea>
               </p>
 
-              <div class="mt-1618 mb-1618"><!-- Antelope Creek Lodge Hot Flies -->
+              <div class="mt-1618 mb-1618"><!-- Antelope Creek Ranch Hot Flies -->
 
-                <strong><label for="antelopecreek-hot-flies" class="sbm-row-title"><?php _e( 'Antelope Creek Lodge Hot Flies', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="antelopecreek-hot-flies" class="sbm-row-title"><?php _e( 'Antelope Creek Ranch Hot Flies', 'sbm-textdomain' )?></label></strong>
                 <p>To create a link: <?php echo esc_html('<a href="www.hotflylink.com" title="A link to a hot fly" target="_blank">The name and size of the hot fly. ex: #16 Hot Fly</a>'); ?></p>
 
                 <textarea style="width: 100%;" name="antelopecreek-hot-flies" id="antelopecreek-hot-flies"><?php if ( isset ( $sbm_stored_meta['antelopecreek-hot-flies'] ) ) echo $sbm_stored_meta['antelopecreek-hot-flies'][0]; ?></textarea>
 
               </div>
 
-              <p><!-- Antelope Creek Lodge Rating -->
+              <p><!-- Antelope Creek Ranch Rating -->
                 <span class="sbm-row-title"><?php _e( '<strong>How is the fishing?</strong> ', 'sbm-textdomain' )?></span>
               <div class="sbm-row-content">
 
@@ -1949,37 +1949,37 @@
               </div>
             </div> <!-- /.tab-pane bollibokka -->
 
-            <!-- ====== CIRCLE 7 GUEST RANCH ====== -->
+            <!-- ====== Circle 7 Ranch ====== -->
 
             <div role="tabpanel" class="tab-pane fade" id="circle7">
 
-              <h3><?php echo ' Circle 7 Guest Ranch '  ?></h3>
+              <h3><?php echo ' Circle 7 Ranch '  ?></h3>
 
-              <p><!-- Circle 7 Guest Ranch Updated -->
+              <p><!-- Circle 7 Ranch Updated -->
 
-                <strong><label for="circle7-updated" class="sbm-row-title"><?php _e( 'Circle 7 Guest Ranch Updated', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="circle7-updated" class="sbm-row-title"><?php _e( 'Circle 7 Ranch Updated', 'sbm-textdomain' )?></label></strong>
 
                 <input style="width: 100%;" type="text" name="circle7-updated" id="circle7-updated" value="<?php if ( isset ( $sbm_stored_meta['circle7-updated'] ) ) echo $sbm_stored_meta['circle7-updated'][0]; ?>" />
 
               </p>
 
-              <p><!-- Circle 7 Guest Ranch Report -->
+              <p><!-- Circle 7 Ranch Report -->
 
-                <strong><label for="circle7-report" class="sbm-row-title"><?php _e( 'Circle 7 Guest Ranch Report', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="circle7-report" class="sbm-row-title"><?php _e( 'Circle 7 Ranch Report', 'sbm-textdomain' )?></label></strong>
 
                 <textarea style="width: 100%;" rows="4" name="circle7-report" id="circle7-report"><?php if ( isset ( $sbm_stored_meta['circle7-report'] ) ) echo $sbm_stored_meta['circle7-report'][0]; ?></textarea>
               </p>
 
-              <div class="mt-1618 mb-1618"><!-- Circle 7 Guest Ranch Hot Flies -->
+              <div class="mt-1618 mb-1618"><!-- Circle 7 Ranch Hot Flies -->
 
-                <strong><label for="circle7-hot-flies" class="sbm-row-title"><?php _e( 'Circle 7 Guest Ranch Hot Flies', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="circle7-hot-flies" class="sbm-row-title"><?php _e( 'Circle 7 Ranch Hot Flies', 'sbm-textdomain' )?></label></strong>
                 <p>To create a link: <?php echo esc_html('<a href="www.hotflylink.com" title="A link to a hot fly" target="_blank">The name and size of the hot fly. ex: #16 Hot Fly</a>'); ?></p>
 
                 <textarea style="width: 100%;" name="circle7-hot-flies" id="circle7-hot-flies"><?php if ( isset ( $sbm_stored_meta['circle7-hot-flies'] ) ) echo $sbm_stored_meta['circle7-hot-flies'][0]; ?></textarea>
 
               </div>
 
-              <p><!-- Circle 7 Guest Ranch Rating -->
+              <p><!-- Circle 7 Ranch Rating -->
                 <span class="sbm-row-title"><?php _e( '<strong>How is the fishing?</strong> ', 'sbm-textdomain' )?></span>
               <div class="sbm-row-content">
 
@@ -2327,36 +2327,36 @@
               </div>
             </div> <!-- /.tab-pane luk lake -->
 
-            <!-- ====== OASIS SPRINGS ====== -->
+            <!-- ====== Oasis Springs Lodge ====== -->
 
             <div role="tabpanel" class="tab-pane fade" id="oasissprings">
-              <h3><?php echo ' Oasis Springs ' ?></h3>
+              <h3><?php echo ' Oasis Springs Lodge ' ?></h3>
 
-              <p><!-- Oasis Springs Updated -->
+              <p><!-- Oasis Springs Lodge Updated -->
 
-                <strong><label for="oasissprings-updated" class="sbm-row-title"><?php _e( 'Oasis Springs Updated', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="oasissprings-updated" class="sbm-row-title"><?php _e( 'Oasis Springs Lodge Updated', 'sbm-textdomain' )?></label></strong>
 
                 <input style="width: 100%;" type="text" name="oasissprings-updated" id="oasissprings-updated" value="<?php if ( isset ( $sbm_stored_meta['oasissprings-updated'] ) ) echo $sbm_stored_meta['oasissprings-updated'][0]; ?>" />
 
               </p>
 
-              <p><!-- Oasis Springs Report -->
+              <p><!-- Oasis Springs Lodge Report -->
 
-                <strong><label for="oasissprings-report" class="sbm-row-title"><?php _e( 'Oasis Springs Report', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="oasissprings-report" class="sbm-row-title"><?php _e( 'Oasis Springs Lodge Report', 'sbm-textdomain' )?></label></strong>
 
                 <textarea style="width: 100%;" rows="4" name="oasissprings-report" id="oasissprings-report"><?php if ( isset ( $sbm_stored_meta['oasissprings-report'] ) ) echo $sbm_stored_meta['oasissprings-report'][0]; ?></textarea>
               </p>
 
-              <div class="mt-1618 mb-1618"><!-- Oasis Springs Hot Flies -->
+              <div class="mt-1618 mb-1618"><!-- Oasis Springs Lodge Hot Flies -->
 
-                <strong><label for="oasissprings-hot-flies" class="sbm-row-title"><?php _e( 'Oasis Springs Hot Flies', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="oasissprings-hot-flies" class="sbm-row-title"><?php _e( 'Oasis Springs Lodge Hot Flies', 'sbm-textdomain' )?></label></strong>
                 <p>To create a link: <?php echo esc_html('<a href="www.hotflylink.com" title="A link to a hot fly" target="_blank">The name and size of the hot fly. ex: #16 Hot Fly</a>'); ?></p>
 
                 <textarea style="width: 100%;" name="oasissprings-hot-flies" id="oasissprings-hot-flies"><?php if ( isset ( $sbm_stored_meta['oasissprings-hot-flies'] ) ) echo $sbm_stored_meta['oasissprings-hot-flies'][0]; ?></textarea>
 
               </div>
 
-              <p><!-- Oasis Springs Rating -->
+              <p><!-- Oasis Springs Lodge Rating -->
                 <span class="sbm-row-title"><?php _e( '<strong>How is the fishing?</strong> ', 'sbm-textdomain' )?></span>
               <div class="sbm-row-content">
 
@@ -2400,7 +2400,7 @@
                 </label>
 
               </div>
-            </div> <!-- /.tab-pane oasis springs -->
+            </div> <!-- /.tab-pane Oasis Springs Lodge -->
 
             <!-- ====== PEDROTTI PONDS ====== -->
 
@@ -2559,41 +2559,41 @@
 
             <!-- ====== SUGAR CREEK RANCH ====== -->
 
-            <div role="tabpanel" class="tab-pane fade" id="sugarcreek">
+            <!-- <div role="tabpanel" class="tab-pane fade" id="sugarcreek">
 
-              <h3><?php echo ' Sugar Creek Ranch ' ?></h3>
+              <h3> echo ' Sugar Creek Ranch ' ?></h3>
 
-              <p><!-- Sugar Creek Ranch Updated -->
+              <p>
 
-                <strong><label for="sugarcreek-updated" class="sbm-row-title"><?php _e( 'Sugar Creek Ranch Updated', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="sugarcreek-updated" class="sbm-row-title"> _e( 'Sugar Creek Ranch Updated', 'sbm-textdomain' )?></label></strong>
 
-                <input style="width: 100%;" type="text" name="sugarcreek-updated" id="sugarcreek-updated" value="<?php if ( isset ( $sbm_stored_meta['sugarcreek-updated'] ) ) echo $sbm_stored_meta['sugarcreek-updated'][0]; ?>" />
+                <input style="width: 100%;" type="text" name="sugarcreek-updated" id="sugarcreek-updated" value=" if ( isset ( $sbm_stored_meta['sugarcreek-updated'] ) ) echo $sbm_stored_meta['sugarcreek-updated'][0]; ?>" />
 
               </p>
 
-              <p><!-- Sugar Creek Ranch Report -->
+              <p>
 
-                <strong><label for="sugarcreek-report" class="sbm-row-title"><?php _e( 'Sugar Creek Ranch Report', 'sbm-textdomain' )?></label></strong>
+                <strong><label for="sugarcreek-report" class="sbm-row-title"> _e( 'Sugar Creek Ranch Report', 'sbm-textdomain' )?></label></strong>
 
-                <textarea style="width: 100%;" rows="4" name="sugarcreek-report" id="sugarcreek-report"><?php if ( isset ( $sbm_stored_meta['sugarcreek-report'] ) ) echo $sbm_stored_meta['sugarcreek-report'][0]; ?></textarea>
+                <textarea style="width: 100%;" rows="4" name="sugarcreek-report" id="sugarcreek-report"> if ( isset ( $sbm_stored_meta['sugarcreek-report'] ) ) echo $sbm_stored_meta['sugarcreek-report'][0]; ?></textarea>
               </p>
 
-              <div class="mt-1618 mb-1618"><!-- Sugar Creek Ranch Hot Flies -->
+              <div class="mt-1618 mb-1618">
 
-                <strong><label for="sugarcreek-hot-flies" class="sbm-row-title"><?php _e( 'Sugar Creek Ranch Hot Flies', 'sbm-textdomain' )?></label></strong>
-                <p>To create a link: <?php echo esc_html('<a href="www.hotflylink.com" title="A link to a hot fly" target="_blank">The name and size of the hot fly. ex: #16 Hot Fly</a>'); ?></p>
+                <strong><label for="sugarcreek-hot-flies" class="sbm-row-title"> _e( 'Sugar Creek Ranch Hot Flies', 'sbm-textdomain' )?></label></strong>
+                <p>To create a link:  echo esc_html('<a href="www.hotflylink.com" title="A link to a hot fly" target="_blank">The name and size of the hot fly. ex: #16 Hot Fly</a>'); ?></p>
 
-                <textarea style="width: 100%;" name="sugarcreek-hot-flies" id="sugarcreek-hot-flies"><?php if ( isset ( $sbm_stored_meta['sugarcreek-hot-flies'] ) ) echo $sbm_stored_meta['sugarcreek-hot-flies'][0]; ?></textarea>
+                <textarea style="width: 100%;" name="sugarcreek-hot-flies" id="sugarcreek-hot-flies"> if ( isset ( $sbm_stored_meta['sugarcreek-hot-flies'] ) ) echo $sbm_stored_meta['sugarcreek-hot-flies'][0]; ?></textarea>
 
               </div>
 
-              <p><!-- Sugar Creek Ranch Rating -->
-                <span class="sbm-row-title"><?php _e( '<strong>How is the fishing?</strong> ', 'sbm-textdomain' )?></span>
+              <p>
+                <span class="sbm-row-title"> _e( '<strong>How is the fishing?</strong> ', 'sbm-textdomain' )?></span>
               <div class="sbm-row-content">
 
                 <label for="sugarcreek-closed-message">
-                  <?php _e( 'Closed Message&nbsp;', 'sbm-textdomain' )?>
-                  <input type="text" style="width: 50%;" name="sugarcreek-closed-message" id="sugarcreek-closed-message" value="<?php if ( isset ( $sbm_stored_meta['sugarcreek-closed-message'] ) ) echo $sbm_stored_meta['sugarcreek-closed-message'][0]; ?>" />
+                   _e( 'Closed Message&nbsp;', 'sbm-textdomain' )?>
+                  <input type="text" style="width: 50%;" name="sugarcreek-closed-message" id="sugarcreek-closed-message" value=" if ( isset ( $sbm_stored_meta['sugarcreek-closed-message'] ) ) echo $sbm_stored_meta['sugarcreek-closed-message'][0]; ?>" />
                 </label>
 
               </div>
@@ -2601,37 +2601,37 @@
               <div class="sbm-row-content">
 
                 <label for="sugarcreek-closed-checkbox">
-                  <input type="checkbox" name="sugarcreek-closed-checkbox" id="sugarcreek-closed-checkbox" value="-danger" <?php if ( isset ( $sbm_stored_meta['sugarcreek-closed-checkbox'] ) ) checked( $sbm_stored_meta['sugarcreek-closed-checkbox'][0], '-danger' ); ?> />
-                  <?php _e( 'Closed&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="sugarcreek-closed-checkbox" id="sugarcreek-closed-checkbox" value="-danger"  if ( isset ( $sbm_stored_meta['sugarcreek-closed-checkbox'] ) ) checked( $sbm_stored_meta['sugarcreek-closed-checkbox'][0], '-danger' ); ?> />
+                   _e( 'Closed&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="sugarcreek-checkbox-poor">
-                  <input type="checkbox" name="sugarcreek-checkbox-poor" id="sugarcreek-checkbox-poor" value="-danger" <?php if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-poor'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-poor'][0], '-danger' ); ?> />
-                  <?php _e( 'Poor&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="sugarcreek-checkbox-poor" id="sugarcreek-checkbox-poor" value="-danger"  if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-poor'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-poor'][0], '-danger' ); ?> />
+                   _e( 'Poor&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="sugarcreek-checkbox-fair">
-                  <input type="checkbox" name="sugarcreek-checkbox-fair" id="sugarcreek-checkbox-fair" value="-danger" <?php if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-fair'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-fair'][0], '-danger' ); ?> />
-                  <?php _e( 'Fair&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="sugarcreek-checkbox-fair" id="sugarcreek-checkbox-fair" value="-danger"  if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-fair'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-fair'][0], '-danger' ); ?> />
+                   _e( 'Fair&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="sugarcreek-checkbox-fairgood">
-                  <input type="checkbox" name="sugarcreek-checkbox-fairgood" id="sugarcreek-checkbox-fairgood" value="-danger" <?php if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-fairgood'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-fairgood'][0], '-danger' ); ?> />
-                  <?php _e( 'Fair to Good&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="sugarcreek-checkbox-fairgood" id="sugarcreek-checkbox-fairgood" value="-danger"  if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-fairgood'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-fairgood'][0], '-danger' ); ?> />
+                   _e( 'Fair to Good&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="sugarcreek-checkbox-good">
-                  <input type="checkbox" name="sugarcreek-checkbox-good" id="sugarcreek-checkbox-good" value="-danger" <?php if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-good'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-good'][0], '-danger' ); ?> />
-                  <?php _e( 'Good&nbsp;', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="sugarcreek-checkbox-good" id="sugarcreek-checkbox-good" value="-danger"  if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-good'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-good'][0], '-danger' ); ?> />
+                   _e( 'Good&nbsp;', 'sbm-textdomain' )?>
                 </label>
 
                 <label for="sugarcreek-checkbox-great">
-                  <input type="checkbox" name="sugarcreek-checkbox-great" id="sugarcreek-checkbox-great" value="-danger" <?php if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-great'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-great'][0], '-danger' ); ?> />
-                  <?php _e( 'Great', 'sbm-textdomain' )?>
+                  <input type="checkbox" name="sugarcreek-checkbox-great" id="sugarcreek-checkbox-great" value="-danger"  if ( isset ( $sbm_stored_meta['sugarcreek-checkbox-great'] ) ) checked( $sbm_stored_meta['sugarcreek-checkbox-great'][0], '-danger' ); ?> />
+                   _e( 'Great', 'sbm-textdomain' )?>
                 </label>
 
               </div>
-            </div> <!-- /.tab-pane sugar creek -->
+            </div> --> <!-- /.tab-pane sugar creek -->
 
           </div> <!-- /.tab-content -->
         </div> <!-- /.panel-body boof -->
