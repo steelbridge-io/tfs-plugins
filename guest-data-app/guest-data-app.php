@@ -32,6 +32,7 @@ add_action('admin_enqueue_scripts', 'gda_enqueue_admin_styles');
 function gda_enqueue_admin_styles($hook_suffix) {
  global $post;
  if ($hook_suffix == 'post.php' || $hook_suffix == 'post-new.php') {
+	// Add post types
 	if ($post->post_type == 'travel-form' || $post->post_type == 'evaluation-data') {
 	 $template_file = get_post_meta($post->ID, '_wp_page_template', true);
 	 if ($template_file === 'questionnaire-templates/guest-data-template.php' ||
