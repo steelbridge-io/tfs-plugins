@@ -11,8 +11,6 @@ if (!defined('ABSPATH')) {
  exit;
 }
 
-
-
 //require_once plugin_dir_path(__FILE__) . 'inc/requested-destination.php';
 require_once plugin_dir_path(__FILE__) . 'inc/custom-user-nav.php';
 
