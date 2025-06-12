@@ -1,0 +1,634 @@
+<?php
+/*
+Plugin Name: Pending Users Manager
+Description: Display and manage pending user registrations and invitations for multisite subsites
+Version: 1.2.0
+*/
+
+defined('ABSPATH') || exit;
+
+class PendingUsersManager {
+
+    public function __construct() {
+        add_action('admin_menu', array($this, 'add_admin_menu'));
+        add_action('admin_post_pum_resend_activation', array($this, 'handle_resend_activation'));
+        add_action('admin_post_pum_activate_user', array($this, 'handle_activate_user'));
+        add_action('admin_post_pum_remove_user', array($this, 'handle_remove_user'));
+        add_action('admin_post_pum_bulk_action', array($this, 'handle_bulk_action'));
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
+    }
+
+    public function enqueue_scripts($hook) {
+        if ($hook !== 'users_page_pending-users') {
+            return;
+        }
+        
+        wp_enqueue_script('jquery');
+        wp_add_inline_script('jquery', '
+            jQuery(document).ready(function($) {
+                $("#bulk-action-selector-top, #bulk-action-selector-bottom").change(function() {
+                    var action = $(this).val();
+                    if (action === "remove") {
+                        $(this).css("background-color", "#dc3232");
+                    } else {
+                        $(this).css("background-color", "");
+                    }
+                });
+                
+                $("form[data-confirm]").submit(function(e) {
+                    var message = $(this).data("confirm");
+                    if (!confirm(message)) {
+                        e.preventDefault();
+                    }
+                });
+                
+                $("#check-all-users").change(function() {
+                    $(".user-checkbox").prop("checked", this.checked);
+                });
+            });
+        ');
+    }
+
+    public function add_admin_menu() {
+        if (!current_user_can('list_users')) {
+            return;
+        }
+
+        add_users_page(
+            'Pending Users',
+            'Pending Users',
+            'list_users',
+            'pending-users',
+            array($this, 'display_pending_users_page')
+        );
+    }
+
+    /**
+     * Get the proper redirect URL back to pending users page
+     */
+    private function get_redirect_url($message = '') {
+        $url = admin_url('users.php?page=pending-users');
+        if ($message) {
+            $url = add_query_arg('message', $message, $url);
+        }
+        return $url;
+    }
+
+    /**
+     * Get all available roles for the current blog
+     */
+    private function get_available_roles() {
+        global $wp_roles;
+        
+        if (!isset($wp_roles)) {
+            $wp_roles = new WP_Roles();
+        }
+        
+        return $wp_roles->get_names();
+    }
+
+    /**
+     * Generate role selector HTML
+     */
+    private function generate_role_selector($name, $selected_role = 'subscriber', $css_class = '') {
+        $available_roles = $this->get_available_roles();
+        $html = '<select name="' . esc_attr($name) . '"';
+        if ($css_class) {
+            $html .= ' class="' . esc_attr($css_class) . '"';
+        }
+        $html .= '>';
+        
+        foreach ($available_roles as $role_key => $role_name) {
+            $html .= '<option value="' . esc_attr($role_key) . '"';
+            if ($role_key === $selected_role) {
+                $html .= ' selected';
+            }
+            $html .= '>' . esc_html($role_name) . '</option>';
+        }
+        
+        $html .= '</select>';
+        return $html;
+    }
+
+    // Action Handlers
+    public function handle_resend_activation() {
+        if (!current_user_can('promote_users') || !isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'pum_resend_' . $_POST['user_email'])) {
+            wp_die(__('Security check failed.'), __('Error'), array('response' => 403));
+        }
+        
+        $user_email = sanitize_email($_POST['user_email']);
+        $activation_key = sanitize_text_field($_POST['activation_key']);
+        
+        $result = $this->send_activation_email($user_email, $activation_key);
+        
+        $message = $result ? 'activation_sent' : 'activation_failed';
+        wp_redirect($this->get_redirect_url($message));
+        exit;
+    }
+
+    public function handle_activate_user() {
+        if (!current_user_can('promote_users') || !isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'pum_activate_' . $_POST['user_email'])) {
+            wp_die(__('Security check failed.'), __('Error'), array('response' => 403));
+        }
+        
+        $user_email = sanitize_email($_POST['user_email']);
+        $user_login = sanitize_text_field($_POST['user_login']);
+        $activation_key = sanitize_text_field($_POST['activation_key']);
+        $role = sanitize_text_field($_POST['role']);
+        
+        // Validate that the role exists
+        $available_roles = array_keys($this->get_available_roles());
+        if (!in_array($role, $available_roles)) {
+            wp_redirect($this->get_redirect_url('invalid_role'));
+            exit;
+        }
+        
+        $result = $this->manually_activate_user($user_email, $user_login, $activation_key, $role);
+        
+        $message = $result ? 'user_activated' : 'activation_failed';
+        wp_redirect($this->get_redirect_url($message));
+        exit;
+    }
+
+    public function handle_remove_user() {
+        if (!current_user_can('delete_users') || !isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'pum_remove_' . $_POST['user_email'])) {
+            wp_die(__('Security check failed.'), __('Error'), array('response' => 403));
+        }
+        
+        $user_email = sanitize_email($_POST['user_email']);
+        
+        $result = $this->remove_pending_user($user_email);
+        
+        $message = $result ? 'user_removed' : 'removal_failed';
+        wp_redirect($this->get_redirect_url($message));
+        exit;
+    }
+
+    public function handle_bulk_action() {
+        if (!current_user_can('promote_users') || !isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'bulk-users')) {
+            wp_die(__('Security check failed.'), __('Error'), array('response' => 403));
+        }
+        
+        $action = sanitize_text_field($_POST['action']);
+        $user_emails = isset($_POST['users']) ? array_map('sanitize_email', $_POST['users']) : array();
+        
+        if (empty($user_emails)) {
+            wp_redirect($this->get_redirect_url('no_users_selected'));
+            exit;
+        }
+        
+        $success_count = 0;
+        
+        foreach ($user_emails as $user_email) {
+            switch ($action) {
+                case 'resend':
+                    if ($this->send_activation_email_by_email($user_email)) {
+                        $success_count++;
+                    }
+                    break;
+                    
+                case 'activate':
+                    if ($this->manually_activate_user_by_email($user_email, 'subscriber')) {
+                        $success_count++;
+                    }
+                    break;
+                    
+                case 'remove':
+                    if (!current_user_can('delete_users')) continue;
+                    if ($this->remove_pending_user($user_email)) {
+                        $success_count++;
+                    }
+                    break;
+            }
+        }
+        
+        $message = $action . '_bulk_' . $success_count;
+        wp_redirect($this->get_redirect_url($message));
+        exit;
+    }
+
+    // Helper methods for actions
+    private function send_activation_email($user_email, $activation_key) {
+        global $wpdb;
+        
+        $signup = $wpdb->get_row($wpdb->prepare(
+            "SELECT * FROM {$wpdb->signups} 
+             WHERE user_email = %s AND activation_key = %s AND active = 0",
+            $user_email, $activation_key
+        ));
+        
+        if (!$signup) {
+            return false;
+        }
+        
+        $subject = sprintf(__('[%s] Activate %s'), get_network_option(null, 'site_name'), $signup->user_login);
+        
+        $activation_url = add_query_arg(array(
+            'key' => $activation_key,
+            'login' => $signup->user_login
+        ), network_site_url('wp-activate.php'));
+        
+        $message = sprintf(__('To activate your account, please click the following link: %s'), $activation_url);
+        
+        return wp_mail($user_email, $subject, $message);
+    }
+
+    private function send_activation_email_by_email($user_email) {
+        global $wpdb;
+        
+        $signup = $wpdb->get_row($wpdb->prepare(
+            "SELECT * FROM {$wpdb->signups} 
+             WHERE user_email = %s AND active = 0
+             ORDER BY registered DESC LIMIT 1",
+            $user_email
+        ));
+        
+        if (!$signup) {
+            return false;
+        }
+        
+        return $this->send_activation_email($user_email, $signup->activation_key);
+    }
+
+    private function manually_activate_user($user_email, $user_login, $activation_key, $role) {
+        global $wpdb;
+        
+        // Simulate the WordPress activation process
+        $signup = $wpdb->get_row($wpdb->prepare(
+            "SELECT * FROM {$wpdb->signups} 
+             WHERE user_email = %s AND activation_key = %s AND active = 0",
+            $user_email, $activation_key
+        ));
+        
+        if (!$signup) {
+            return false;
+        }
+        
+        $current_blog_id = get_current_blog_id();
+        
+        // Check if user already exists
+        $user = get_user_by('email', $user_email);
+        if (!$user) {
+            // Create the user if they don't exist
+            $user_id = wp_create_user($user_login, wp_generate_password(), $user_email);
+            if (is_wp_error($user_id)) {
+                return false;
+            }
+            $user = get_user_by('id', $user_id);
+        }
+        
+        // Add user to current blog
+        $result = add_user_to_blog($current_blog_id, $user->ID, $role);
+        
+        if (!is_wp_error($result)) {
+            // Mark signup as active
+            $wpdb->update(
+                $wpdb->signups,
+                array('active' => 1, 'activated' => current_time('mysql')),
+                array('user_email' => $user_email, 'activation_key' => $activation_key),
+                array('%d', '%s'),
+                array('%s', '%s')
+            );
+            
+            return true;
+        }
+        
+        return false;
+    }
+
+    private function manually_activate_user_by_email($user_email, $role) {
+        global $wpdb;
+        
+        $signup = $wpdb->get_row($wpdb->prepare(
+            "SELECT * FROM {$wpdb->signups} 
+             WHERE user_email = %s AND active = 0
+             ORDER BY registered DESC LIMIT 1",
+            $user_email
+        ));
+        
+        if (!$signup) {
+            return false;
+        }
+        
+        return $this->manually_activate_user($user_email, $signup->user_login, $signup->activation_key, $role);
+    }
+
+    private function remove_pending_user($user_email) {
+        global $wpdb;
+        
+        // Remove signup record
+        $result = $wpdb->delete(
+            $wpdb->signups,
+            array('user_email' => $user_email, 'active' => 0),
+            array('%s', '%d')
+        );
+        
+        return $result !== false;
+    }
+
+    public function get_comprehensive_pending_data() {
+        global $wpdb;
+
+        $current_blog_id = get_current_blog_id();
+        $results = array();
+
+        // Method 1: ALL signups (not filtered by domain)
+        $all_signups = $wpdb->get_results(
+            "SELECT * FROM {$wpdb->signups} 
+             WHERE active = 0
+             ORDER BY registered DESC
+             LIMIT 50"
+        );
+        if ($all_signups) {
+            $results['all_signups'] = $all_signups;
+        }
+
+        // Method 2: Signups with specific path matching current site
+        $site_path = parse_url(get_site_url(), PHP_URL_PATH);
+        if ($site_path && $site_path !== '/') {
+            $path_signups = $wpdb->get_results($wpdb->prepare(
+                "SELECT * FROM {$wpdb->signups} 
+                 WHERE path LIKE %s
+                 AND active = 0
+                 ORDER BY registered DESC",
+                $site_path . '%'
+            ));
+            if ($path_signups) {
+                $results['path_signups'] = $path_signups;
+            }
+        }
+
+        // Method 3: Search for blog ID in signup meta
+        $blog_meta_signups = $wpdb->get_results($wpdb->prepare(
+            "SELECT * FROM {$wpdb->signups} 
+             WHERE meta LIKE %s
+             AND active = 0
+             ORDER BY registered DESC",
+            '%"add_to_blog";i:' . $current_blog_id . ';%'
+        ));
+        if ($blog_meta_signups) {
+            $results['blog_meta_signups'] = $blog_meta_signups;
+        }
+
+        // Method 4: Search for blog ID in different meta format
+        $blog_meta_signups2 = $wpdb->get_results($wpdb->prepare(
+            "SELECT * FROM {$wpdb->signups} 
+             WHERE meta LIKE %s
+             AND active = 0
+             ORDER BY registered DESC",
+            '%"add_to_blog":"' . $current_blog_id . '"%'
+        ));
+        if ($blog_meta_signups2) {
+            $results['blog_meta_signups2'] = $blog_meta_signups2;
+        }
+
+        // Method 5: Look for user meta with various blog-specific patterns
+        $meta_patterns = array(
+            'wp_' . $current_blog_id . '_capabilities',
+            'wp_' . $current_blog_id . '_user_level',
+            'new_user_' . $current_blog_id,
+            'invitation_' . $current_blog_id,
+            '%' . $current_blog_id . '%invitation%',
+            '%' . $current_blog_id . '%pending%'
+        );
+
+        foreach ($meta_patterns as $pattern) {
+            $meta_users = $wpdb->get_results($wpdb->prepare(
+                "SELECT DISTINCT u.ID, u.user_login, u.user_email, u.user_registered, 
+                        um.meta_key, um.meta_value
+                 FROM {$wpdb->users} u
+                 INNER JOIN {$wpdb->usermeta} um ON u.ID = um.user_id
+                 WHERE um.meta_key LIKE %s
+                 ORDER BY u.user_registered DESC
+                 LIMIT 20",
+                $pattern
+            ));
+
+            if ($meta_users) {
+                $results['meta_' . sanitize_key($pattern)] = $meta_users;
+            }
+        }
+
+        // Method 6: Get recent users who aren't members of current blog
+        $recent_users = $wpdb->get_results($wpdb->prepare(
+            "SELECT u.ID, u.user_login, u.user_email, u.user_registered
+             FROM {$wpdb->users} u
+             WHERE u.user_registered > %s
+             AND u.ID NOT IN (
+                 SELECT user_id FROM {$wpdb->usermeta} 
+                 WHERE meta_key = 'wp_{$current_blog_id}_capabilities'
+             )
+             ORDER BY u.user_registered DESC
+             LIMIT 20",
+            date('Y-m-d H:i:s', strtotime('-30 days'))
+        ));
+        if ($recent_users) {
+            $results['recent_non_members'] = $recent_users;
+        }
+
+        return $results;
+    }
+
+    private function display_admin_notice($message) {
+        $notices = array(
+            'activation_sent' => array('success', 'Activation email sent successfully.'),
+            'activation_failed' => array('error', 'Failed to send activation email.'),
+            'user_activated' => array('success', 'User activated successfully.'),
+            'user_removed' => array('success', 'User removed successfully.'),
+            'removal_failed' => array('error', 'Failed to remove user.'),
+            'invalid_role' => array('error', 'Invalid role selected.'),
+            'no_users_selected' => array('warning', 'No users selected for bulk action.'),
+        );
+        
+        // Handle bulk action messages
+        if (preg_match('/^(resend|activate|remove)_bulk_(\d+)$/', $message, $matches)) {
+            $action = $matches[1];
+            $count = $matches[2];
+            $action_names = array('resend' => 'emails sent', 'activate' => 'users activated', 'remove' => 'users removed');
+            $notices[$message] = array('success', "Bulk action completed: {$count} {$action_names[$action]}.");
+        }
+        
+        if (isset($notices[$message])) {
+            list($type, $text) = $notices[$message];
+            echo '<div class="notice notice-' . $type . ' is-dismissible"><p>' . esc_html($text) . '</p></div>';
+        }
+    }
+
+    public function display_pending_users_page() {
+        global $wpdb;
+
+        // Handle messages
+        if (isset($_GET['message'])) {
+            $this->display_admin_notice($_GET['message']);
+        }
+
+        $pending_results = $this->get_comprehensive_pending_data();
+        $current_blog_id = get_current_blog_id();
+        $available_roles = $this->get_available_roles();
+
+        echo '<div class="wrap">';
+        echo '<h1>Pending Users - Management Interface</h1>';
+        echo '<p>Manage pending user registrations and invitations for this site.</p>';
+
+        $total_found = 0;
+        foreach ($pending_results as $method => $users) {
+            $total_found += count($users);
+        }
+
+        echo '<div class="notice notice-info">';
+        echo '<p><strong>Total potential matches found: ' . $total_found . '</strong></p>';
+        echo '<p><strong>Available Roles:</strong> ' . implode(', ', array_values($available_roles)) . '</p>';
+        echo '</div>';
+
+        // Display results from each method with management options
+        foreach ($pending_results as $method => $users) {
+            if (strpos($method, 'signups') !== false) {
+                echo '<div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; background: #f9f9f9;">';
+                echo '<h2>' . esc_html(ucfirst(str_replace('_', ' ', $method))) . ' (' . count($users) . ' found)</h2>';
+
+                if (!empty($users)) {
+                    echo '<form method="post" action="' . admin_url('admin-post.php') . '">';
+                    wp_nonce_field('bulk-users');
+                    echo '<input type="hidden" name="action" value="pum_bulk_action">';
+                    
+                    // Bulk actions
+                    echo '<div class="tablenav top">';
+                    echo '<div class="alignleft actions bulkactions">';
+                    echo '<select name="action" id="bulk-action-selector-top">';
+                    echo '<option value="">Bulk Actions</option>';
+                    echo '<option value="resend">Resend Activation Email</option>';
+                    echo '<option value="activate">Activate as Subscriber</option>';
+                    if (current_user_can('delete_users')) {
+                        echo '<option value="remove">Remove User</option>';
+                    }
+                    echo '</select>';
+                    echo '<input type="submit" class="button action" value="Apply">';
+                    echo '</div>';
+                    echo '</div>';
+
+                    echo '<table class="wp-list-table widefat fixed striped">';
+                    echo '<thead><tr>';
+                    echo '<td class="check-column"><input type="checkbox" id="check-all-users"></td>';
+                    echo '<th>Email</th><th>Login</th><th>Domain/Path</th><th>Registered</th><th>Meta Info</th><th>Actions</th>';
+                    echo '</tr></thead><tbody>';
+
+                    foreach ($users as $user) {
+                        echo '<tr>';
+                        echo '<td class="check-column"><input type="checkbox" name="users[]" value="' . esc_attr($user->user_email) . '" class="user-checkbox"></td>';
+                        echo '<td><strong>' . esc_html($user->user_email) . '</strong></td>';
+                        echo '<td>' . esc_html($user->user_login) . '</td>';
+                        echo '<td>' . esc_html($user->domain . $user->path) . '</td>';
+                        echo '<td>' . esc_html(mysql2date('M j, Y g:i a', $user->registered)) . '</td>';
+                        echo '<td>';
+
+                        // Show parsed meta for intended role
+                        if ($user->meta) {
+                            $meta = maybe_unserialize($user->meta);
+                            if (is_array($meta)) {
+                                $intended_role = isset($meta['role']) ? $meta['role'] : 'subscriber';
+                                echo '<strong>Role:</strong> ' . esc_html($intended_role);
+                                if (isset($meta['add_to_blog'])) {
+                                    echo '<br><strong>Blog:</strong> ' . esc_html($meta['add_to_blog']);
+                                }
+                            }
+                        }
+                        echo '</td>';
+                        
+                        echo '<td>';
+                        // Individual actions
+                        
+                        // Resend activation email
+                        echo '<form method="post" action="' . admin_url('admin-post.php') . '" style="display: inline-block; margin-right: 5px;">';
+                        wp_nonce_field('pum_resend_' . $user->user_email);
+                        echo '<input type="hidden" name="action" value="pum_resend_activation">';
+                        echo '<input type="hidden" name="user_email" value="' . esc_attr($user->user_email) . '">';
+                        echo '<input type="hidden" name="activation_key" value="' . esc_attr($user->activation_key) . '">';
+                        echo '<input type="submit" class="button button-small" value="Resend Email">';
+                        echo '</form>';
+                        
+                        // Manual activation
+                        echo '<form method="post" action="' . admin_url('admin-post.php') . '" style="display: inline-block; margin-right: 5px;">';
+                        wp_nonce_field('pum_activate_' . $user->user_email);
+                        echo '<input type="hidden" name="action" value="pum_activate_user">';
+                        echo '<input type="hidden" name="user_email" value="' . esc_attr($user->user_email) . '">';
+                        echo '<input type="hidden" name="user_login" value="' . esc_attr($user->user_login) . '">';
+                        echo '<input type="hidden" name="activation_key" value="' . esc_attr($user->activation_key) . '">';
+                        
+                        // Get intended role from meta
+                        $intended_role = 'subscriber';
+                        if ($user->meta) {
+                            $meta = maybe_unserialize($user->meta);
+                            if (is_array($meta) && isset($meta['role'])) {
+                                $intended_role = $meta['role'];
+                            }
+                        }
+                        
+                        echo $this->generate_role_selector('role', $intended_role, 'button-small');
+                        echo '<input type="submit" class="button button-small button-primary" value="Activate">';
+                        echo '</form>';
+                        
+                        // Remove user
+                        if (current_user_can('delete_users')) {
+                            echo '<form method="post" action="' . admin_url('admin-post.php') . '" style="display: inline-block;" data-confirm="Are you sure you want to remove this pending user?">';
+                            wp_nonce_field('pum_remove_' . $user->user_email);
+                            echo '<input type="hidden" name="action" value="pum_remove_user">';
+                            echo '<input type="hidden" name="user_email" value="' . esc_attr($user->user_email) . '">';
+                            echo '<input type="submit" class="button button-small button-link-delete" value="Remove">';
+                            echo '</form>';
+                        }
+                        
+                        echo '</td>';
+                        echo '</tr>';
+                    }
+
+                    echo '</tbody></table>';
+                    echo '</form>';
+                }
+                echo '</div>';
+            } else {
+                // Display non-signup results (for reference only, no actions since these aren't true pending signups)
+                echo '<div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; background: #f9f9f9;">';
+                echo '<h2>' . esc_html(ucfirst(str_replace('_', ' ', $method))) . ' (' . count($users) . ' found) - <em>Reference Only</em></h2>';
+
+                echo '<table class="wp-list-table widefat fixed striped">';
+                echo '<thead><tr>';
+                echo '<th>ID</th><th>Username</th><th>Email</th><th>Registered</th>';
+                if (isset($users[0]->meta_key)) {
+                    echo '<th>Meta Key</th><th>Meta Value</th>';
+                }
+                echo '</tr></thead><tbody>';
+
+                foreach ($users as $user) {
+                    echo '<tr>';
+                    echo '<td>' . esc_html($user->ID) . '</td>';
+                    echo '<td>' . esc_html($user->user_login) . '</td>';
+                    echo '<td>' . esc_html($user->user_email) . '</td>';
+                    echo '<td>' . esc_html(mysql2date('M j, Y g:i a', $user->user_registered)) . '</td>';
+                    if (isset($user->meta_key)) {
+                        echo '<td><code>' . esc_html($user->meta_key) . '</code></td>';
+                        echo '<td>' . esc_html(substr($user->meta_value, 0, 100));
+                        if (strlen($user->meta_value) > 100) echo '...';
+                        echo '</td>';
+                    }
+                    echo '</tr>';
+                }
+
+                echo '</tbody></table>';
+                echo '</div>';
+            }
+        }
+
+        // Enhanced debug information
+        echo '<div style="margin-top: 30px; padding: 15px; background: #f1f1f1; border-left: 4px solid #0073aa;">';
+        echo '<h3>Debug Information</h3>';
+        echo '<p><strong>Current Blog ID:</strong> ' . $current_blog_id . '</p>';
+        echo '<p><strong>Site URL:</strong> ' . get_site_url() . '</p>';
+        echo '<p><strong>Site Path:</strong> ' . parse_url(get_site_url(), PHP_URL_PATH) . '</p>';
+        echo '<p><strong>Site Domain:</strong> ' . parse_url(get_site_url(), PHP_URL_HOST) . '</p>';
+
+        echo '</div>';
+        echo '</div>';
+    }
+}
+
+new PendingUsersManager();
