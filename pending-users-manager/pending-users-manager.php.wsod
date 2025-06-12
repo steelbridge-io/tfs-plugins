@@ -1,3 +1,4 @@
+
 <?php
 /*
 Plugin Name: Pending Users Manager
@@ -162,47 +163,22 @@ class PendingUsersManager {
  private function get_existing_users_for_this_blog() {
   $current_blog_id = get_current_blog_id();
 
-  // Get users for this specific blog
-  $args = array(
+  $users = get_users(array(
    'blog_id' => $current_blog_id,
    'orderby' => 'user_registered',
    'order' => 'DESC'
-  );
+  ));
 
-  $users = get_users($args);
-
-  // Process user data
+  // Get role information for each user
   foreach ($users as $key => $user) {
-   // Create a new user object for this specific blog to get correct roles
    $user_obj = new WP_User($user->ID, '', $current_blog_id);
-
-   // Get all roles for this user on this specific blog
-   $roles = array();
+   $users[$key]->roles = $user_obj->roles;
+   $users[$key]->primary_role = !empty($user_obj->roles) ? reset($user_obj->roles) : 'none';
    $role_names = array();
-
-   // Only process if user has roles
-   if (!empty($user_obj->roles) && is_array($user_obj->roles)) {
-    $roles = $user_obj->roles;
-
-    // Get the translated role names
-    foreach ($roles as $role) {
-     // Make sure the role exists in the role names
-     $all_roles = wp_roles()->get_names();
-     if (isset($all_roles[$role])) {
-      $role_names[] = translate_user_role($all_roles[$role]);
-     } else {
-      $role_names[] = $role; // Fallback to role key if not found
-     }
-    }
+   foreach ($user_obj->roles as $role) {
+    $role_names[] = translate_user_role(wp_roles()->get_names()[$role]);
    }
-
-   // Set the primary role (first role) or 'none' if no roles
-   $primary_role = !empty($roles) ? reset($roles) : 'none';
-
-   // Add these properties to the user object
-   $users[$key]->roles = $roles;
    $users[$key]->role_names = $role_names;
-   $users[$key]->primary_role = $primary_role;
   }
 
   return $users;
@@ -487,6 +463,7 @@ class PendingUsersManager {
   }
 
   $pending_users = $this->get_pending_users_for_this_blog();
+  $existing_users = $this->get_existing_users_for_this_blog();
   $current_blog_id = get_current_blog_id();
   $available_roles = $this->get_available_roles();
 
@@ -579,75 +556,61 @@ class PendingUsersManager {
 
   // Existing Users Section
   echo '<div class="pum-section">';
-  echo '<h2>Current Site Members</h2>';
+  echo '<h2>Current Site Members (' . count($existing_users) . ')</h2>';
   echo '<p>Users who are already active members of this site.</p>';
 
-  // Get existing users with error handling
-  try {
-   $existing_users = $this->get_existing_users_for_this_blog();
-   echo '<h3>Total Members: ' . count($existing_users) . '</h3>';
+  if (empty($existing_users)) {
+   echo '<p style="margin: 16px; color: #646970; font-style: italic;">No users found for this site.</p>';
+  } else {
+   echo '<table class="wp-list-table widefat fixed striped pum-table">';
+   echo '<thead><tr>';
+   echo '<th>Username</th><th>Email</th><th>Display Name</th><th>Current Role</th><th>Registered</th><th>Actions</th>';
+   echo '</tr></thead><tbody>';
 
-   if (empty($existing_users)) {
-    echo '<p style="margin: 16px; color: #646970; font-style: italic;">No users found for this site.</p>';
-   } else {
-    echo '<table class="wp-list-table widefat fixed striped pum-table">';
-    echo '<thead><tr>';
-    echo '<th>Username</th><th>Email</th><th>Display Name</th><th>Current Role</th><th>Actions</th>';
-    echo '</tr></thead><tbody>';
+   foreach ($existing_users as $user) {
+    echo '<tr>';
+    echo '<td><strong>' . esc_html($user->user_login) . '</strong></td>';
+    echo '<td>' . esc_html($user->user_email) . '</td>';
+    echo '<td>' . esc_html($user->display_name) . '</td>';
+    echo '<td>' . esc_html(implode(', ', $user->role_names)) . '</td>';
+    echo '<td>' . esc_html(mysql2date('M j, Y g:i a', $user->user_registered)) . '</td>';
+    echo '<td>';
 
-    foreach ($existing_users as $user) {
-     echo '<tr>';
-     echo '<td><strong>' . esc_html($user->user_login) . '</strong></td>';
-     echo '<td>' . esc_html($user->user_email) . '</td>';
-     echo '<td>' . esc_html($user->display_name) . '</td>';
+    echo '<div class="pum-action-forms">';
 
-     // Display roles safely
-     $role_display = 'None';
-     if (!empty($user->role_names) && is_array($user->role_names)) {
-      $role_display = esc_html(implode(', ', $user->role_names));
-     }
-     echo '<td>' . $role_display . '</td>';
-
-     echo '<td>';
-     echo '<div class="pum-action-forms">';
-
-     // Change role
-     if (current_user_can('promote_users')) {
-      echo '<form method="post" action="' . admin_url('admin-post.php') . '" class="pum-action-form">';
-      wp_nonce_field('pum_change_role_' . $user->ID);
-      echo '<input type="hidden" name="action" value="pum_change_user_role">';
-      echo '<input type="hidden" name="user_id" value="' . esc_attr($user->ID) . '">';
-      echo $this->generate_role_selector('role', $user->primary_role);
-      echo '<input type="submit" class="button button-secondary" value="Change Role">';
-      echo '</form>';
-     }
-
-     // Remove from site (don't allow removal of yourself)
-     if (current_user_can('remove_users') && get_current_user_id() != $user->ID) {
-      echo '<form method="post" action="' . admin_url('admin-post.php') . '" class="pum-action-form" data-confirm="Are you sure you want to remove this user from this site?">';
-      wp_nonce_field('pum_remove_existing_' . $user->ID);
-      echo '<input type="hidden" name="action" value="pum_remove_existing_user">';
-      echo '<input type="hidden" name="user_id" value="' . esc_attr($user->ID) . '">';
-      echo '<input type="submit" class="button button-link-delete" value="Remove from Site">';
-      echo '</form>';
-     }
-
-     echo '</div>';
-     echo '</td>';
-     echo '</tr>';
+    // Change role
+    if (current_user_can('promote_users')) {
+     echo '<form method="post" action="' . admin_url('admin-post.php') . '" class="pum-action-form">';
+     wp_nonce_field('pum_change_role_' . $user->ID);
+     echo '<input type="hidden" name="action" value="pum_change_user_role">';
+     echo '<input type="hidden" name="user_id" value="' . esc_attr($user->ID) . '">';
+     echo $this->generate_role_selector('role', $user->primary_role);
+     echo '<input type="submit" class="button button-secondary" value="Change Role">';
+     echo '</form>';
     }
 
-    echo '</tbody></table>';
-   }
-  } catch (Exception $e) {
-   echo '<div class="notice notice-error"><p>Error loading existing users: ' . esc_html($e->getMessage()) . '</p></div>';
-  }
+    // Remove from site (don't allow removal of yourself)
+    if (current_user_can('remove_users') && get_current_user_id() != $user->ID) {
+     echo '<form method="post" action="' . admin_url('admin-post.php') . '" class="pum-action-form" data-confirm="Are you sure you want to remove this user from this site?">';
+     wp_nonce_field('pum_remove_existing_' . $user->ID);
+     echo '<input type="hidden" name="action" value="pum_remove_existing_user">';
+     echo '<input type="hidden" name="user_id" value="' . esc_attr($user->ID) . '">';
+     echo '<input type="submit" class="button button-link-delete" value="Remove from Site">';
+     echo '</form>';
+    }
 
+    echo '</div>';
+    echo '</td>';
+    echo '</tr>';
+   }
+
+   echo '</tbody></table>';
+  }
   echo '</div>';
 
   // Summary info
   echo '<div class="notice notice-info">';
-  echo '<p><strong>Site ID:</strong> ' . $current_blog_id . '</p>';
+  echo '<p><strong>Summary:</strong> ' . count($pending_users) . ' pending users, ' . count($existing_users) . ' current members</p>';
   echo '<p><strong>Available Roles:</strong> ' . implode(', ', array_values($available_roles)) . '</p>';
   echo '</div>';
 
@@ -655,5 +618,4 @@ class PendingUsersManager {
  }
 }
 
-// Initialize the plugin
-$pending_users_manager = new PendingUsersManager();
+new PendingUsersManager();

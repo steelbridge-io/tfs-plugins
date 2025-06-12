@@ -161,6 +161,15 @@
     max-width: 100%;
 }
 
+.pum-action-forms .button.button-secondary {
+    max-width: 90px;
+    color: #000000 !important;
+    font-size: 11px;
+    border-color: #000000 !important;
+    height: auto;
+    min-height: 24px;
+}
+
 .pum-action-form {
     display: flex;
     align-items: center;
