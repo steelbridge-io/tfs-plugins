@@ -6,6 +6,7 @@ Description: A plugin for The Fly Shop that contains all the custom meta
 field code.
 Version: 1.0
 Requires at least: 6.5.2
+Requires PHP: 8.0
 Author: Chris Parsons
 Author URI: https://steelbridge.io
 License: GPLv2
