@@ -125,8 +125,6 @@ html {
 #banner h2,
 #cta h2 {
   color: #f5f5f5;
-  position: relative;
-  z-index: 1;
 }
 
 /* Author
@@ -1204,6 +1202,7 @@ footer#footer {
 
 .page img {
   margin: 0 auto;
+  height: auto;
 }
 
 header.text-center {
@@ -1488,6 +1487,37 @@ nav#nav {
   width: 1.5em;
 }
 
+/* Animation */
+/*.scrollto.animated.animatedFadeInUp.fadeInUp {
+  -moz-transition: -moz-transform 0.75s ease, opacity 0.75s ease;
+  -webkit-transition: -webkit-transform 0.75s ease, opacity 0.75s ease;
+  -ms-transition: -ms-transform 0.75s ease, opacity 0.75s ease;
+  transition: transform 0.75s ease, opacity 0.75s ease;
+  -moz-transition-delay: 3.5s;
+  -webkit-transition-delay: 3.5s;
+  -ms-transition-delay: 3.5s;
+  transition-delay: 3.5s;
+  -moz-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  border: none;
+  bottom: 0;
+  color: inherit;
+  font-size: 0.8em;
+  height: 8.5em;
+  left: 50%;
+  letter-spacing: 0.225em;
+  margin-left: -8.5em;
+  opacity: 1;
+  outline: 0;
+  padding-left: 0.225em;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  width: 16em;
+  z-index: 1;
+}*/
 @keyframes fadeInUp {
   from {
     transform: translate3d(0, 40px, 0);
@@ -1590,6 +1620,12 @@ p.template-description {
 ------------------------------- */
 #wpadminbar {
   position: fixed;
+}
+
+/* Sidebar
+------------------------------- */
+h2.widget-title {
+  color: #2e3842;
 }
 
 #survey-secondary.survey-widget-area {
@@ -2030,7 +2066,6 @@ nav.navigation.post-navigation .polls.nav-previous .fa-chevron-left {
   #fp-well .row {
     display: flex;
     justify-content: center;
-    align-items: center;
   }
 }
 @media (min-width: 600px) and (max-width: 800px) {
@@ -2110,15 +2145,6 @@ nav.navigation.post-navigation .polls.nav-previous .fa-chevron-left {
   }
 }
 /** Sections Template CSS */
-#sections-hero-image.template-header {
-  height: 700px;
-  margin-top: 2.3em;
-}
-
-#sections-content-center.center-content-flex {
-  margin-top: 1em;
-}
-
 #sections-temp-hero-content.signature-header .scrollto {
   position: initial;
 }
@@ -2141,10 +2167,7 @@ nav.navigation.post-navigation .polls.nav-previous .fa-chevron-left {
 @media (max-width: 768px) {
   #sections-background-video[poster] {
     object-fit: cover;
-    min-height: 450px;
-  }
-  #sections-hero-image.template-header {
-    min-height: 450px;
+    max-height: 400px;
   }
 }
 /* SCSS Variables
@@ -2244,48 +2267,8 @@ nav.navigation.post-navigation .polls.nav-previous .fa-chevron-left {
   display: block;
 }
 
-#secondary h2.widget-title {
-  color: #2e3842;
-  font-size: 1.5rem;
-}
-#secondary h3 {
-  font-size: 1.2rem;
-  margin: 0;
-}
-#secondary h4.date {
-  font-size: 1rem;
-}
-
 /* Outfitter Blog SCSS
 ---------------------------------------------- */
-#outfitters-jumbotron.outfitters.jumbotron {
-  padding: 0 !important;
-}
-
-#outfitters-jumbotron.outfitters.jumbotron img.outfitters {
-  position: relative !important;
-  z-index: 1 !important;
-  padding: 0 !important;
-  width: 100%;
-}
-
-#outfitters-jumbotron.outfitters.jumbotron .container {
-  position: absolute !important;
-  z-index: 2 !important;
-  top: 33% !important;
-  left: 10% !important;
-  right: 10% !important;
-  transition: 0.5s !important;
-}
-
-#outfitters-jumbotron.outfitters.jumbotron .container .landing-hd .dd-2 .logo-tel {
-  font-size: calc(16px + 8 * (100vw - 400px) / 400) !important;
-}
-
-#outfitters-jumbotron.outfitters.jumbotron .container .landing-hd .dd-4 .logo-tel {
-  font-size: calc(16px + 2 * (100vw - 300px) / 400) !important;
-}
-
 .wrapper-blog {
   margin-top: 3.618em;
 }
@@ -2359,23 +2342,20 @@ nav.navigation.post-navigation .polls.nav-previous .fa-chevron-left {
 #collapse-news-archive-one .well,
 #collapse-news-archive-two .well,
 #collapse-news-archive-three .well,
-#collapse-news-archive-four .well,
-#collapse-news-archive-five .well {
+#collapse-news-archive-four .well {
   background-color: #eeeeee;
 }
 #collapse-news-archive-one .well .row,
 #collapse-news-archive-two .well .row,
 #collapse-news-archive-three .well .row,
-#collapse-news-archive-four .well .row,
-#collapse-news-archive-five .well .row {
+#collapse-news-archive-four .well .row {
   display: flex;
   flex-wrap: wrap;
 }
 #collapse-news-archive-one .well .row > [class*=col-],
 #collapse-news-archive-two .well .row > [class*=col-],
 #collapse-news-archive-three .well .row > [class*=col-],
-#collapse-news-archive-four .well .row > [class*=col-],
-#collapse-news-archive-five .well .row > [class*=col-] {
+#collapse-news-archive-four .well .row > [class*=col-] {
   display: flex;
   flex-direction: column;
 }
@@ -2652,45 +2632,14 @@ nav.navigation.post-navigation .polls.nav-previous .fa-chevron-left {
 }
 /* Front Page SCSS
 ----------------------------------------------------- */
-#collapseFrontpage {
-  background-color: #000000;
-  margin: 0 auto;
-  padding: 0;
-  width: 50%;
-}
-#collapseFrontpage .well {
-  background-color: #000000;
-  border: none;
-  padding: 0;
-}
-#collapseFrontpage .well p {
-  color: #f5f5f5;
-  font-size: 1rem;
-}
-
 .nc-fly-fishing-news {
   display: flex;
   justify-content: center;
 }
 
-@media (max-width: 992px) {
-  .col-6.mobile-position {
-    height: 132px;
-    margin: 0 auto;
-    width: 95%;
-  }
-  .ctct-form-defaults form.ctct-form-custom {
-    justify-content: center;
-  }
-}
 @media (max-width: 767.98px) {
   #banner .inner {
     padding: 5em 1em 3em;
-  }
-}
-@media (max-width: 430px) {
-  #news-cta #front-page-blog-cta h2 {
-    font-size: 1.3rem;
   }
 }
 /* SCSS For Taxonomy Archives
@@ -2735,65 +2684,6 @@ nav.navigation.post-navigation .polls.nav-previous .fa-chevron-left {
   .article-content.row {
     display: flex;
     align-items: center;
-  }
-}
-/** Constant Contact for Gravity Forms */
-#digital-pulication-sign-up {
-  padding-top: 3em;
-}
-#digital-pulication-sign-up #email_address_label_1 {
-  color: #fff;
-}
-#digital-pulication-sign-up .ctct-form-button {
-  background-color: #A51113;
-}
-#digital-pulication-sign-up .ctct-form-embed.form_1 .ctct-form-defaults {
-  background-color: rgba(62, 140, 203, 0.9);
-}
-#digital-pulication-sign-up .ctct-form-custom {
-  display: initial;
-}
-#digital-pulication-sign-up .ctct-form-custom h2 {
-  font-size: 1rem;
-  color: #f5f5f5;
-}
-#digital-pulication-sign-up .ctct-form-custom .ctct-form-text {
-  color: #f5f5f5;
-}
-#digital-pulication-sign-up .col-sign-up-catalog {
-  display: flex;
-  justify-content: center;
-}
-#digital-pulication-sign-up .col-sign-up-catalog img {
-  width: 25%;
-  opacity: 0; /* Not visible initially */
-  transform: translateY(10px); /* Slight downward offset for animation effect */
-  transition: opacity 1s ease, transform 1s ease; /* Smooth fade and slide */
-}
-#digital-pulication-sign-up .col-sign-up-form {
-  display: flex;
-  align-items: center;
-  opacity: 0; /* Fully hidden at the start */
-  transform: translateX(20px); /* Slight rightward offset for animation effect */
-  transition: opacity 1s ease, transform 1s ease; /* Smooth fade and slide */
-}
-#digital-pulication-sign-up .col-sign-up-form.move-to-grid {
-  position: static; /* Relocate to Bootstrap's grid (col-md-4 layout) */
-  transform: none; /* Reset any transform for normal alignment */
-  z-index: auto; /* Normal stacking context */
-}
-
-#constant-contact-container .row .col-md-11 .gform_confirmation_wrapper .gform_confirmation_message h2 {
-  color: #fff;
-}
-
-#pop-over-fp.form-group {
-  margin-top: 20px;
-}
-
-@media (min-width: 1681px) {
-  #pop-over-fp.no-spam-signup {
-    margin-top: 8px;
   }
 }
 /* SCSS for content.php template part
@@ -3138,50 +3028,15 @@ h2.content-title {
 /** min width */
 /* SCSS Forms
 ------------------------- */
-#gform_confirmation_message_15 {
-  border: 0.5px #fff solid;
-  padding: 1em 0;
-  margin: 3.5em auto;
+#pop-over-fp {
+  margin-top: 15px;
 }
-#gform_confirmation_message_15 h2 {
-  color: #f5f5f5;
-  font-size: 1.3em;
-  margin: 0;
-}
-
-#fp-well h2.ctct-form-header {
-  color: #f5f5f5;
-}
-#fp-well .esb-signup-cta {
-  padding: 3em 0 0 0;
-}
-#fp-well #esb-report-email-sign-up {
-  margin-bottom: 4em;
-}
-#fp-well #esb-report-email-sign-up .ctct-form-container.ctct-form-embed.form_1 {
-  width: 100%;
-}
-#fp-well #esb-report-email-sign-up .ctct-form-container.ctct-form-embed.form_1 .ctct-form-defaults {
-  border: 0.5px #fff solid;
-  width: 53%;
-}
-#fp-well #esb-report-email-sign-up .ctct-form-container.ctct-form-embed.form_1 .ctct-form-defaults #ctct_form_1 {
-  display: initial;
-  min-width: 100%;
-}
-
 #pop-over-fp .glyphicon.glyphicon-question-sign.gi-2x {
   color: #a01624;
 }
 
 .row.front-page-email-signup {
   align-items: center;
-}
-.row.front-page-email-signup .ctct-form-defaults {
-  width: 100%;
-}
-.row.front-page-email-signup .ctct-form-defaults form.ctct-form-custom {
-  width: 100%;
 }
 
 .ctct-gdpr-text {
@@ -3216,7 +3071,7 @@ div.ctct-form-embed form.ctct-form-custom button.ctct-form-button {
 }
 
 div.ctct-form-embed div.ctct-form-defaults {
-  padding: 0;
+  padding: 0 !important;
 }
 
 div.ctct-form-embed form.ctct-form-custom label.ctct-form-label {
@@ -3225,18 +3080,8 @@ div.ctct-form-embed form.ctct-form-custom label.ctct-form-label {
 
 /** SCSS Global Properties
 =========================== */
-a {
-  text-decoration: none !important;
-}
-
 body {
   overflow: hidden;
-}
-
-.display-items-inline {
-  display: flex;
-  align-items: center;
-  align-content: center;
 }
 
 .max-width-lg {
@@ -3291,47 +3136,6 @@ body {
   object-fit: cover;
 }
 
-.media-controls-container {
-  display: none !important;
-}
-
-.media-controls {
-  display: none !important;
-}
-
-.play-button-overlay {
-  position: absolute;
-  top: 75%;
-  left: 49.5%;
-  transform: translate(-50%, -50%);
-  color: white;
-  padding: 20px;
-  cursor: pointer;
-  border-radius: 10px;
-}
-.play-button-overlay p {
-  font-size: 12px;
-}
-
-.video-control video::-webkit-media-controls {
-  display: none !important;
-}
-.video-control video::-moz-media-controls {
-  display: none !important;
-}
-.video-control video::-ms-media-controls {
-  display: none !important;
-}
-.video-control video::-webkit-media-controls-fullscreen-button {
-  display: none !important;
-}
-.video-control video::-webkit-media-controls-play-button {
-  display: none !important;
-}
-.video-control video::-webkit-media-controls-enclosure {
-  display: none !important;
-}
-
 .link-color-tfs-red {
   color: #a01624;
 }
@@ -3345,10 +3149,6 @@ body {
 .link-color-tfs-red a:hover, .link-color-tfs-red a:focus {
   opacity: 0.7;
   text-decoration: none;
-}
-
-.col-6 {
-  width: 48.333%;
 }
 
 a:hover {
@@ -3402,7 +3202,7 @@ a:hover {
 .signature-template #main #banner {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   min-height: auto;
 }
@@ -3580,10 +3380,6 @@ body.default-template #primary #main article.page .container-fluid .entry-conten
   margin: 0 auto;
   padding: 2.618em 1em;
 }
-body.default-template #primary #main article.travel-blog {
-  padding-top: 3.618em;
-  padding-bottom: 1em;
-}
 
 .default-template .default-single .site-main #default-blog-hero-image #outfitters-jumbotron:after {
   content: "";
@@ -3596,43 +3392,6 @@ body.default-template #primary #main article.travel-blog {
   bottom: 0;
 }
 
-/*.entry-content {
-  p {
-    margin: 1.618em 0 0 0;
-  }
-  img {
-    margin-top: 1.618em;
-    margin-bottom: 1.618em;
-  }
-}*/
-.outfitters.default-template.jumbotron img {
-  object-fit: cover;
-  height: 100%;
-  width: auto;
-}
-
-.travel-blog #content-template-part-content p:nth-child(n+2) {
-  margin-top: 1.618em;
-}
-.travel-blog #content-template-part-content img {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-body.default-template .outer .wrap .container #primary #main article.travel-blog {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-body.default-template .outer .wrap .container #primary #main article .entry-content p:nth-child(n+2) {
-  margin-top: 1.618em !important;
-}
-
-@media screen and (max-width: 767.99px) {
-  .travel-blog {
-    padding-left: 1em;
-    padding-right: 1em;
-  }
-}
 /** SCSS Travel Template
 ============================ */
 /*#banner {
@@ -3645,16 +3404,6 @@ body.default-template .outer .wrap .container #primary #main article .entry-cont
     }
   }
 }*/
-#collapseTraveltemplate {
-  background-color: #000;
-  margin: 0 auto;
-  padding: 0;
-  width: 100%;
-}
-#collapseTraveltemplate .well {
-  background-color: #000 !important;
-}
-
 #customControls {
   position: absolute;
   top: 76%;
@@ -3776,29 +3525,9 @@ body.default-template .outer .wrap .container #primary #main article .entry-cont
   transform: translateX(-50%) translateY(-50%);
 }
 
-#heroheader.heroheader-nccffi {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 600px;
-}
-#heroheader.heroheader-nccffi .hero-temp-img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  max-width: 100%;
-  max-height: 600px;
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-  z-index: 0;
-  transform: translateX(-50%) translateY(-50%);
-}
-
 #heroheader .container {
   position: relative;
   z-index: 2;
-  margin-top: 1.7em;
 }
 
 #heroheader .overlay,
@@ -3815,6 +3544,15 @@ body.default-template .outer .wrap .container #primary #main article .entry-cont
   z-index: 1;
 }
 
+/* @media (pointer: coarse) and (hover: none) {
+
+  #heroheader {
+    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+  }
+  #heroheader video {
+    display: none;
+  }
+} */
 /* Archive styles **/
 #archive-container .archive .col-md-9 .card:nth-of-type(odd) {
   background-color: #eee;
@@ -3889,19 +3627,6 @@ body.default-template .outer .wrap .container #primary #main article .entry-cont
 .btn.btn-flies[aria-expanded=true] {
   background-color: #771014;
   color: #f5f5f5;
-}
-
-.clear-results {
-  height: 2.75em;
-  border-radius: 3px;
-  font-size: 0.8em;
-  font-weight: 600;
-  letter-spacing: 0.225em;
-  padding: 0.6em 2.75em 0;
-  text-align: center;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 /* Pagination */
@@ -4007,14 +3732,6 @@ a.page-numbers:hover {
   justify-content: center;
 }
 
-#non_safari_video_section {
-  height: 100%;
-}
-
-#safari_video_section {
-  height: 100%;
-}
-
 .image .video-poster {
   position: relative;
   overflow: hidden;
@@ -4033,13 +3750,13 @@ a.page-numbers:hover {
 
 #narf {
   position: relative;
-  z-index: 0;
+  z-index: 5;
 }
 
 .video {
   position: relative;
   background-color: black;
-  height: 100%;
+  height: 100vh;
   min-height: 25rem;
   width: 100%;
   overflow: hidden;
@@ -4135,45 +3852,6 @@ a.page-numbers:hover {
   justify-content: center;
 }
 
-/**
- Media Queries
- **********************************/
-@media screen and (max-width: 932px) and (orientation: landscape) {
-  #non_safari_video_section .video .container {
-    height: 100%;
-    margin-top: 2em;
-  }
-  #safari_video_section .video .container {
-    height: 100%;
-    margin-top: 2em;
-  }
-}
-@media screen and (max-width: 915px) and (orientation: portrait) {
-  #banner .more {
-    display: initial !important;
-  }
-}
-@media screen and (max-width: 915px) and (orientation: landscape) {
-  #non_safari_video_section .video .container {
-    height: 100%;
-  }
-  #safari_video_section .video .container {
-    height: 100%;
-  }
-}
-@media screen and (max-width: 896px) and (max-height: 414px) {
-  .video .container {
-    height: 100%;
-  }
-  .video .play-button-overlay {
-    top: 71%;
-  }
-}
-@media screen and (max-width: 720px) and (orientation: landscape) {
-  #banner .more {
-    display: initial !important;
-  }
-}
 @media (max-width: 767.98px) {
   #banner.travel-temp-hero-overlay .inner {
     padding: 5em 1em 1em !important;
@@ -4183,14 +3861,6 @@ a.page-numbers:hover {
   }
   #banner.guidesvc-temp-hero-overlay .inner {
     padding: 5em 1em 1em !important;
-  }
-}
-@media screen and (max-width: 667px) and (orientation: landscape) {
-  #non_safari_video_section .video .container {
-    margin-top: 2.4em;
-  }
-  #safari_video_section .video .container {
-    margin-top: 2.4em;
   }
 }
 /* @media (pointer: coarse) and (hover: none) {
@@ -4687,12 +4357,6 @@ section {
   }
 }
 /** Basic Template CSS */
-#post-194 {
-  border: 1px solid #ccc;
-  padding: 1em;
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
-}
-
 #basic-content {
   margin: 3.5em auto;
 }
@@ -4717,11 +4381,6 @@ section {
   width: clamp(200px, 40vh, 270px);
 }
 
-dl.hero-logo-info.landing-hd {
-  margin-bottom: 0;
-  margin-top: 1.3em;
-}
-
 /** WordPress Helpers */
 .alignright {
   margin-top: 1em;
@@ -4735,199 +4394,16 @@ dl.hero-logo-info.landing-hd {
     margin-bottom: 1em;
   }
 }
-/*--------------------------------------------------------------
-# Alignments
---------------------------------------------------------------*/
-.alignleft {
-  display: inline;
-  float: left;
-  margin-right: 1.5em;
-  max-width: 100%;
-  /*height: auto;*/
-}
-
-.alignright {
-  display: inline;
-  float: right;
-  margin-left: 1.5em;
-  max-width: 100%;
-  /*height: auto;*/
-}
-
-.aligncenter {
-  clear: both;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-  /*height: auto;*/
-}
-
 @media (max-width: 767.99px) {
   .alignright {
-    float: none;
-    display: block;
-    margin: 1.5em auto !important;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
   .alignleft {
-    float: none;
-    display: block;
-    margin: 1.5em auto !important;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 }
-/** Travel Form Posts */
-#filter-cont.filter-wrap form label {
-  margin: 0 0.5em 0 0;
-}
-#filter-cont.filter-wrap form input {
-  margin-bottom: 1em;
-}
-#filter-cont.filter-wrap form .btn {
-  border: none;
-  margin-left: 1em;
-}
-
-#travel-form-posts {
-  margin-top: 8em !important;
-}
-#travel-form-posts .destination-form {
-  background-color: #eee;
-  margin-top: 3.618em;
-  margin-bottom: 3.618em;
-  padding: 1.618em;
-}
-#travel-form-posts .form-entry {
-  margin: 0.5em auto;
-}
-#travel-form-posts .form-entry b {
-  margin-right: 0.618em;
-}
-#travel-form-posts .form-entry .name-g {
-  margin-right: 0.618em;
-}
-
-#question-items.display-items-inline {
-  margin-bottom: 1.618em;
-}
-#question-items.display-items-inline label {
-  height: 24px;
-  line-height: 20px;
-  margin: 0 0.5em 0 0;
-}
-#question-items.display-items-inline input.no-margin {
-  margin: 0 1em 0 0;
-  height: 20px;
-  width: 20px;
-}
-
-#question-grid.table-wrapper {
-  display: flex;
-  margin: 0 auto;
-  overflow: auto;
-  border-collapse: collapse;
-  /* Ensuring that the header is also fixed */
-}
-#question-grid.table-wrapper .table-scrollable {
-  overflow: auto;
-  max-height: 400px; /* Adjust as necessary */
-  max-width: 100%; /* Adjust as necessary */
-}
-#question-grid.table-wrapper table {
-  border-collapse: collapse;
-  width: 100%;
-}
-#question-grid.table-wrapper th, #question-grid.table-wrapper td {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  color: #000000;
-  text-align: left;
-  white-space: nowrap; /* Prevent auto wrap */
-}
-#question-grid.table-wrapper .fixed-column {
-  position: sticky;
-  left: 0;
-  background: #f1f1f1;
-  z-index: 1;
-  /* Optional: provide an addition background to the fixed column */
-}
-#question-grid.table-wrapper thead th.fixed-column {
-  z-index: 2;
-}
-
-/** Travel Questionnaire */
-.btn-passport-preview {
-  position: relative;
-  padding: 0;
-  border: none;
-  background: none;
-}
-
-.overlay-container {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.overlay-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 5px 10px;
-  border-radius: 3px;
-  font-size: 14px;
-}
-
-.btn-passport-preview {
-  padding: 0;
-  width: 100%;
-}
-
-.passport-copy-preview {
-  width: 100%;
-  object-fit: cover;
-  height: 50px;
-}
-
-#travel-form-questionnaire {
-  margin-top: 8em;
-  margin-bottom: 4em;
-}
-#travel-form-questionnaire .container {
-  background-color: #eee;
-  padding: 1.618em;
-}
-
-.collapse .form-entry:nth-child(odd) {
-  background-color: rgba(169, 169, 169, 0.5) !important; /* Light gray with 50% transparency */
-  margin: 0.5em 0 !important;
-  padding: 1em !important;
-}
-
-.collapse .form-entry:nth-child(even) {
-  background-color: rgba(211, 211, 211, 0.5) !important; /* Lighter gray with 50% transparency */
-  padding: 1em !important;
-}
-
-/** Guest Data App */
-.display-flex {
-  display: flex;
-}
-
-.align-items-center {
-  align-items: center;
-}
-
-.gda-filter-wrapper {
-  margin: 1.618em auto;
-}
-
-.gda-search-wrapper {
-  margin: 1.618em auto;
-}
-
 /*@import "supports/side-nav";*/
 
 /*# sourceMappingURL=custom.css.map */
