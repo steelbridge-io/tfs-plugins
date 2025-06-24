@@ -309,21 +309,28 @@ class tpb {
 
         $screen = get_current_screen();
         $settings = $this->get_option( 'settings' );
-
+        
+        // Ensure all required settings have defaults if they don't exist
+        $defaults = $this->get_default_settings();
+        foreach ($defaults as $key => $default_value) {
+            if (!isset($settings[$key])) {
+                $settings[$key] = $default_value;
+            }
+        }
 
         // scripts
         wp_enqueue_script( 'tpb-admin' );
         wp_localize_script( 'tpb-admin', 'tpb_l10n', array(
-            'button_bg' => $settings['button_bg_color'],
-            'draft_button' => (bool) $settings['draft_button'],
-            'preview_button' => (bool) $settings['preview_button'],
-            'buttons_to_the_right' => (bool) $settings['buttons_to_the_right']
+            'button_bg' => isset($settings['button_bg_color']) ? $settings['button_bg_color'] : '#0073AA',
+            'draft_button' => (bool) (isset($settings['draft_button']) ? $settings['draft_button'] : 1),
+            'preview_button' => (bool) (isset($settings['preview_button']) ? $settings['preview_button'] : 1),
+            'buttons_to_the_right' => (bool) (isset($settings['buttons_to_the_right']) ? $settings['buttons_to_the_right'] : 0)
         ) );
 
 
-        if ( (bool) $settings['scrollbar_return'] ) {
+        if ( isset($settings['scrollbar_return']) && (bool) $settings['scrollbar_return'] ) {
 
-            if ( ( 'acf-field-group' === $screen->post_type && (bool) $settings['expand_acf'] ) || 
+            if ( ( 'acf-field-group' === $screen->post_type && isset($settings['expand_acf']) && (bool) $settings['expand_acf'] ) || 
                  'acf-field-group' !== $screen->post_type ) {
                 wp_enqueue_script( 'tpb-scrollbar' );
             }
