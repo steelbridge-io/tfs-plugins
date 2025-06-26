@@ -33,6 +33,6 @@
 /http-headers/
 /gravity-form-customizations/
 /wp-mail-smtp/
-debug.log
+**/debug.log
 *.sql
 *.gz
