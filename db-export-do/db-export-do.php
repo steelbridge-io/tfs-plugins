@@ -2,8 +2,8 @@
 /**
  * Plugin Name: DB Export to DigitalOcean Spaces
  * Description: Exports WordPress database and uploads it to DigitalOcean Spaces.
- * Version: 1.0.0
- * Author: Your Name
+ * Version: 1.1.0
+ * Author: Chris Parsons
  * Text Domain: db-export-do
  */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('DBEDO_VERSION', '1.0.0');
+define('DBEDO_VERSION', '1.1.0');
 define('DBEDO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('DBEDO_PLUGIN_URL', plugin_dir_url(__FILE__));
 // Force a specific schedule setting - change this to your desired frequency

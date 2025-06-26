@@ -34,3 +34,5 @@
 /gravity-form-customizations/
 /wp-mail-smtp/
 debug.log
+*.sql
+*.gz

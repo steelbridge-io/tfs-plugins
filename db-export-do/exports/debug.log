@@ -1,26 +1,35 @@
-Export started at 2025-06-26 00:20:51
+Export started at 2025-06-26 04:43:58
 DB Name: wordpress
 DB User: wordpress
 DB Host: db:3306
-Export file: /var/www/html/wp-content/plugins/db-export-do/exports/wp-database-backup-2025-06-26-00-20-51.sql
+Export file: /var/www/html/wp-content/plugins/db-export-do/exports/wp-database-backup-2025-06-26-04-43-58.sql
 mysqldump found at: /usr/bin/mysqldump
 Connection type: TCP
 Executing mysqldump (command details hidden for security)
 mysqldump return code: 0
-SQL file created, size: 441134607 bytes
-Created gzipped file: /var/www/html/wp-content/plugins/db-export-do/exports/wp-database-backup-2025-06-26-00-20-51.sql.gz
-Export successful, file: /var/www/html/wp-content/plugins/db-export-do/exports/wp-database-backup-2025-06-26-00-20-51.sql.gz
-Starting upload_to_spaces for file: /var/www/html/wp-content/plugins/db-export-do/exports/wp-database-backup-2025-06-26-00-20-51.sql.gz
-Retrieved saved schedule: not set at 2025-06-26 00:21:16
-Forcing schedule to: daily at 2025-06-26 00:21:16
+SQL file created, size: 441352802 bytes
+Setting up schedule: daily at 2025-06-26 04:44:10
+Clearing existing schedule at 2025-06-26 03:00:00
+Scheduling new export with frequency: daily at 2025-06-27 03:00:00
+Created gzipped file: /var/www/html/wp-content/plugins/db-export-do/exports/wp-database-backup-2025-06-26-04-43-58.sql.gz
+Export successful, file: /var/www/html/wp-content/plugins/db-export-do/exports/wp-database-backup-2025-06-26-04-43-58.sql.gz
+Starting upload_to_spaces for file: /var/www/html/wp-content/plugins/db-export-do/exports/wp-database-backup-2025-06-26-04-43-58.sql.gz
+Retrieved saved schedule: not set at 2025-06-26 04:44:23
+Forcing schedule to: daily at 2025-06-26 04:44:23
 DigitalOcean Spaces settings: {"endpoint":"https:\/\/sfo2.digitaloceanspaces.com","region":"sfo2","bucket":"tfs-spaces"}
 Using endpoint: https://sfo2.digitaloceanspaces.com
 S3 client configured
-Uploading to path: back-ups/production/wp-database-backup-2025-06-26-00-20-51.sql.gz
+Uploading to path: back-ups/production/wp-database-backup-2025-06-26-04-43-58.sql.gz
 Upload successful, getting URL
-Upload successful: {"success":true,"url":"https:\/\/tfs-spaces.sfo2.digitaloceanspaces.com\/back-ups\/production\/wp-database-backup-2025-06-26-00-20-51.sql.gz","key":"back-ups\/production\/wp-database-backup-2025-06-26-00-20-51.sql.gz","bucket":"tfs-spaces"}
+Upload successful: {"success":true,"url":"https:\/\/tfs-spaces.sfo2.digitaloceanspaces.com\/back-ups\/production\/wp-database-backup-2025-06-26-04-43-58.sql.gz","key":"back-ups\/production\/wp-database-backup-2025-06-26-04-43-58.sql.gz","bucket":"tfs-spaces"}
 Cleaning up old backups older than 2 days
 Export and transfer completed successfully
-Setting up schedule: daily at 2025-06-26 00:21:44
-Clearing existing schedule at 2025-06-26 03:00:00
-Scheduling new export with frequency: daily at 2025-06-26 03:00:00
+Setting up schedule: daily at 2025-06-26 04:44:57
+Clearing existing schedule at 2025-06-27 03:00:00
+Scheduling new export with frequency: daily at 2025-06-27 03:00:00
+Setting up schedule: daily at 2025-06-26 04:46:57
+Clearing existing schedule at 2025-06-27 03:00:00
+Scheduling new export with frequency: daily at 2025-06-27 03:00:00
+Setting up schedule: daily at 2025-06-26 04:48:57
+Clearing existing schedule at 2025-06-27 03:00:00
+Scheduling new export with frequency: daily at 2025-06-27 03:00:00
