@@ -33,6 +33,7 @@
 /http-headers/
 /gravity-form-customizations/
 /wp-mail-smtp/
+/db-export-do/exports/export.lock
 **/debug.log
 *.sql
 *.gz
